@@ -1,22 +1,13 @@
 <?php
 
-Route::post('posts', function(\Illuminate\Http\Request $request) {
-    $rule = [
-        'title' => ['required'],
-        'body' => ['required', 'min:10']
-    ];
-
-    $validator = Validator::make($request->all(), $rule);
-
-    if ($validator->fails()) {
-        return redirect('posts/create')->withErrors($validator)->withInput();
-    }
-
-    return 'Valid & proceed to next job ~';
+Route::get('/', function() {
+    throw new Exception('Some bad thing happened');
 });
 
-Route::get('posts/create', function() {
-    return view('posts.create');
-});
+//Route::get('/', function() {
+//    abort(404);
+//});
 
-//Route::resource('posts', 'PostsController');
+//Route::get('/', function() {
+//    return App\Post::findOrFail(100);
+//});
