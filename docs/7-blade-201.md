@@ -1,0 +1,75 @@
+# 7강 - 블레이드 201
+
+## @yield, @extends, @section - 마스터 레이아웃 사용하기
+
+페이지마다 반복되는 헤더랑 풋터는 어디에 넣지? 이때 필요한 것이 마스터 레이아웃이다. resources/views/master.blade.php 파일을 만들고, 아래와 같이 HTML 뼈대를 만들어 보자.
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Laravel 5 Essential</title>
+</head>
+<body>
+
+  @yield('content')
+
+</body>
+</html>
+```
+
+**`참고`** phpStorm은 [Emmet](http://docs.emmet.io/)을 지원한다. 위 파일에서 `!` 만 입력한 상태에서 <kbd>Tab</kbd>을 누르면 HTML 기본 뼈대가 채워진다. ul>li*3>a<kbd>Tab</kbd> 을 한번 해 보면 Emmet 문법을 왜 익혀야 하는지 금방 알 것이다.
+
+resources/views/index.php는 다음과 같이 수정하고, 브라우저에서 확인해 보자. HTML 소스도 반드시 확인해 보자.
+
+```html
+@extends('master')
+
+@section('content')
+  Your content here !!!
+@stop
+```
+
+여기서 `@extends`라는 키워드는 index.blade.php가 master.blade.php를 상속한다는 뜻이다. 또 `@yield('content')` 와 `@section('content')`를 주목하자. content라고 이름 지어진 섹션이 마스터 레이아웃에서 yield('생산하다'라는 뜻) 된다는 의미다. 섹션은 원하는 숫자만큼 여러개 만들 수 있다. 뷰에서 만든 섹션의 이름으로 마스터 레이아웃에서 yield해 주기만 하면 된다. 가령, 이런 것이 가능해 진다.
+
+```html
+@extends('master')
+
+@section('style')
+  <style>
+    body {background: red;}
+  </style>
+@stop
+
+@section('content')
+  Your content here !!!
+@stop
+
+@section('script')
+  <script>
+    alert("Hello Blade~ ^^/");
+  </script>
+@stop
+```
+
+## @include - 하위 뷰 포함하기
+
+resources/views/footer.blade.php를 만들자.
+
+```html
+<footer>
+  <p>This is footer</p>
+</footer>
+```
+
+resources/views/master.blade.php 또는 resources/views/index.blade.php 어디서든 방금 만든 footer 뷰를 불러와 삽입할 수 있다.
+
+```html
+@include('footer')
+```
+
+---
+
+- [6강 - 블레이드 101](https://github.com/appkr/l5essential/blob/master/docs/6-blade-101.md)
+- [8강 - 날 쿼리 :(](https://github.com/appkr/l5essential/blob/master/docs/8-raw-queries.md)
