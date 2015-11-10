@@ -4,3 +4,4 @@ Homestead.yaml
 Homestead.json
 #.env # 학습 참고를 위해 버전 컨트롤에 포함한다.
 .idea
+git_*
