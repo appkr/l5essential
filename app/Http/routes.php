@@ -1,21 +1,24 @@
 <?php
 
-Route::get('/', function() {
-    return 'See you soon~';
+Route::get('posts', function() {
+    $posts = App\Post::get();
+
+    return view('posts.index', compact('posts'));
 });
 
-Route::get('home', [
-    'middleware' => 'auth',
-    function() {
-        return 'Welcome back, ' . Auth::user()->name;
-    }
-]);
+//Route::get('posts', function() {
+//    $posts = App\Post::with('user')->get();
+//
+//    return view('posts.index', compact('posts'));
+//});
+//
+//Route::get('posts', function() {
+//    $posts = App\Post::get();
+//    $posts->load('user');
+//
+//    return view('posts.index', compact('posts'));
+//});
 
-// Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-// Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+DB::listen(function($sql, $bindings, $time){
+    var_dump($sql);
+});
