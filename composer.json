@@ -1,12 +1,13 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "appkr/l5essential",
+    "description": "Laravel 5 Essential",
+    "keywords": ["laravel", "how-to", "lesson", "beginners"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "erusev/parsedown-extra": " 0.7.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
