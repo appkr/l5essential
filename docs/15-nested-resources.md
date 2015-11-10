@@ -18,7 +18,7 @@ $ php artisan make:controller PostCommentController
 
 `$ php artisan route:list`로 확인해 보자. `posts/{posts}/comments/{comments}` 형태의 라우트를 얻을 수 있다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/14-nested-resources-img-01.png)
+![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/15-nested-resources-img-01.png)
 
 ## Route Parameter 접근
 

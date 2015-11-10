@@ -74,10 +74,8 @@ class Author extends Model
 
 ```bash
 >>> $author = new App\Author;
-=> App\Author {#670}
->>> $author->email = 'foo@bar.com';                                           => "foo@bar.com"
+>>> $author->email = 'foo@bar.com';
 >>> $author->password = 'password';
-=> "password"
 >>> $author->save();
 => true
 ```
