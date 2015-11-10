@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Laravel 5 Essential</title>
-{{--    @yield('style')--}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    {{--    @yield('style')--}}
 </head>
 <body>
 
     @yield('content')
 
-{{--    @include('footer')--}}
+    @include('footer')
 
 {{--    @yield('script')--}}
 

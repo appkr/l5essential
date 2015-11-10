@@ -1,3 +1,5 @@
+<hr>
+
 <footer>
-    <p>This is footer</p>
+    <p class="text-center">This is footer</p>
 </footer>
