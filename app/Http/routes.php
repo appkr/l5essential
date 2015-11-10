@@ -1,7 +1,15 @@
 <?php
 
-Route::get('posts', function() {
-    $posts = App\Post::with('user')->paginate(10);
+Route::get('mail', function() {
+    $to = 'somebody@example.com';
+    $subject = 'Studying sending email in Laravel';
+    $data = [
+        'title' => 'Hi there',
+        'body' => 'This is the body of an email message',
+        'user' => App\User::find(1)
+    ];
 
-    return view('posts.index', compact('posts'));
+    return Mail::send('emails.welcome', $data, function($message) use($to, $subject) {
+        $message->to($to)->subject($subject);
+    });
 });
