@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/', 'IndexController@index');
+Route::resource('posts', 'PostsController');
