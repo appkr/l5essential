@@ -1,39 +1,21 @@
 <?php
 
-Route::get('auth', function () {
-    $credentials = [
-        'email'    => 'john@example.com',
-        'password' => 'password'
-    ];
+Route::get('/', function() {
+    return 'See you soon~';
+});
 
-    if (! Auth::attempt($credentials)) {
-        return 'Incorrect username and password combination';
+Route::get('home', [
+    'middleware' => 'auth',
+    function() {
+        return 'Welcome back, ' . Auth::user()->name;
     }
+]);
 
-    return redirect('protected');
-});
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::get('auth/logout', function () {
-    Auth::logout();
-
-    return 'See you again~';
-});
-
-Route::get('protected', function () {
-    if (! Auth::check()) {
-        return 'Illegal access !!! Get out of here~';
-    }
-
-    return 'Welcome back, ' . Auth::user()->name;
-});
-
-//Route::get('protected', [
-//    'middleware' => 'auth',
-//    function () {
-//        return 'Welcome back, ' . Auth::user()->name;
-//    }
-//]);
-
-Route::get('auth/login', function() {
-    return "You've reached to the login page~";
-});
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
