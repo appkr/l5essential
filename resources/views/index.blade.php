@@ -1,20 +1,17 @@
-{{--@foreach--}}
-<ul>
-    @foreach($items as $item)
-        <li>{{ $item }}</li>
-    @endforeach
-</ul>
+@extends('master')
 
-{{--@if--}}
-{{--@if($itemCount = count($items))--}}
-    {{--<p>There are {{ $itemCount }} items !</p>--}}
-{{--@else--}}
-    {{--<p>There is no item !</p>--}}
-{{--@endif--}}
+{{--@section('style')--}}
+    {{--<style>--}}
+        {{--body {background: red;}--}}
+    {{--</style>--}}
+{{--@stop--}}
 
-{{--@forelse--}}
-{{--@forelse($items as $item)--}}
-    {{--<p>The item is {{ $item }}</p>--}}
-{{--@empty--}}
-    {{--<p>There is no item !</p>--}}
-{{--@endforelse--}}
+@section('content')
+    Your content here !!!
+@stop
+
+{{--@section('script')--}}
+    {{--<script>--}}
+        {{--alert("Hello Blade~ ^^/");--}}
+    {{--</script>--}}
+{{--@stop--}}
