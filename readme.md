@@ -2,7 +2,7 @@
 
 ## 목적
 
-국내 라라벨 사용자가 늘어 나길 바라는 마음에서, 라라벨을 처음 접하는 분들도 이해하기 쉬운 코스를 만들고 싶었다.
+국내 라라벨 사용자가 늘어나길 바라는 마음에서, 라라벨을 처음 접하는 분들도 이해하기 쉬운 코스를 만들고 싶었다.
  
 ## 목표
 
@@ -24,43 +24,49 @@
 
 라라벨을 처음 접하는 분들이 꼭 알아야 하는 내용만 추렸다(고 생각한다). 
 
--   [1강 - 처음 만나는 라라벨](https://github.com/appkr/l5essential/blob/master/docs/1-welcome.md)
--   [2강 - 라라벨 5 설치하기](https://github.com/appkr/l5essential/blob/master/docs/2-hello-laravel.md)
--   [3강 - 글로벌 설정 살펴보기](https://github.com/appkr/l5essential/blob/master/docs/3-configuration.md)
--   [4강 - Routing 기본기](https://github.com/appkr/l5essential/blob/master/docs/4-routing-basics.md)
--   [5강 - 뷰에 데이터 바인딩하기](https://github.com/appkr/l5essential/blob/master/docs/5-pass-data-to-view.md)
--   [6강 - 블레이드 101](https://github.com/appkr/l5essential/blob/master/docs/6-blade-101.md)
--   [7강 - 블레이드 201](https://github.com/appkr/l5essential/blob/master/docs/7-blade-201.md)
--   [8강 - 날 쿼리 :(](https://github.com/appkr/l5essential/blob/master/docs/8-raw-queries.md)
--   [9강 - 쿼리 빌더](https://github.com/appkr/l5essential/blob/master/docs/9-query-builder.md)
--   [10강 - 엘로퀀트 ORM](https://github.com/appkr/l5essential/blob/master/docs/10-eloquent.md)
--   [11강 - DB 마이그레이션](https://github.com/appkr/l5essential/blob/master/docs/11-migration.md)
--   [12강 - 컨트롤러](https://github.com/appkr/l5essential/blob/master/docs/12-controller.md)
--   [13강 - RESTful 리소스 컨트롤러](https://github.com/appkr/l5essential/blob/master/docs/13-restful-resource-controller.md)
--   [14강 - 이름 있는 Route](https://github.com/appkr/l5essential/blob/master/docs/14-named-routes.md)
--   [15강 - 중첩된 리소스](https://github.com/appkr/l5essential/blob/master/docs/15-nested-resources.md)
--   [16강 - 사용자 인증 기본기](https://github.com/appkr/l5essential/blob/master/docs/16-authentication.md)
--   [17강 - 라라벨에 내장된 사용자 인증](https://github.com/appkr/l5essential/blob/master/docs/17-authentication-201.md)
--   [18강 - 모델간 관계 맺기](https://github.com/appkr/l5essential/blob/master/docs/18-eloquent-relationships.md)
--   [19강 - 데이터 심기](https://github.com/appkr/l5essential/blob/master/docs/19-seeder.md)
--   [20강 - Eager 로딩](https://github.com/appkr/l5essential/blob/master/docs/20-eager-loading.md)
--   [추가 - 페이징](https://github.com/appkr/l5essential/blob/master/docs/20-1-pagination.md)
--   [21강 - 메일 보내기](https://github.com/appkr/l5essential/blob/master/docs/21-mail.md)
--   [22강 - 이벤트](https://github.com/appkr/l5essential/blob/master/docs/22-events.md)
--   [23강 - 입력 값 유효성 검사](https://github.com/appkr/l5essential/blob/master/docs/23-validation.md)
--   [24강 - 예외 처리](https://github.com/appkr/l5essential/blob/master/docs/24-exception-handling.md)
--   [25강 - 컴포저](https://github.com/appkr/l5essential/blob/master/docs/25-composer.md)
+-   [1강 - 처음 만나는 라라벨](docs/01-welcome.md)
+-   [2강 - 라라벨 5 설치하기](docs/02-hello-laravel.md)
+-   [3강 - 글로벌 설정 살펴보기](docs/03-configuration.md)
+-   [4강 - Routing 기본기](docs/04-routing-basics.md)
+-   [5강 - 뷰에 데이터 바인딩하기](docs/05-pass-data-to-view.md)
+-   [6강 - 블레이드 101](docs/06-blade-101.md)
+-   [7강 - 블레이드 201](docs/07-blade-201.md)
+-   [8강 - 날 쿼리 :(](docs/08-raw-queries.md)
+-   [9강 - 쿼리 빌더](docs/09-query-builder.md)
+-   [10강 - 엘로퀀트 ORM](docs/10-eloquent.md)
+-   [11강 - DB 마이그레이션](docs/11-migration.md)
+-   [12강 - 컨트롤러](docs/12-controller.md)
+-   [13강 - RESTful 리소스 컨트롤러](docs/13-restful-resource-controller.md)
+-   [14강 - 이름 있는 Route](docs/14-named-routes.md)
+-   [15강 - 중첩된 리소스](docs/15-nested-resources.md)
+-   [16강 - 사용자 인증 기본기](docs/16-authentication.md)
+-   [17강 - 라라벨에 내장된 사용자 인증](docs/17-authentication-201.md)
+-   [18강 - 모델간 관계 맺기](docs/18-eloquent-relationships.md)
+-   [19강 - 데이터 심기](docs/19-seeder.md)
+-   [20강 - Eager 로딩](docs/20-eager-loading.md)
+-   [추가 - 페이징](docs/20-1-pagination.md)
+-   [21강 - 메일 보내기](docs/21-mail.md)
+-   [22강 - 이벤트](docs/22-events.md)
+-   [23강 - 입력 값 유효성 검사](docs/23-validation.md)
+-   [24강 - 예외 처리](docs/24-exception-handling.md)
+-   [25강 - 컴포저](docs/25-composer.md)
 
 ### 실전 프로젝트
 
-아래 프로젝트들을 기획 중이다.
+아래 프로젝트들을 기획하고 있다.
 
--   **Markdown Viewer**
-    기본기 강좌에 포함된 마크다운 문서를 HTML 뷰에서 나이스하게 보여주는 기능을 구현해 본다. 이를 통해 Route, 컨트롤러 로직, Helper Function, Filesystem, Cache, Elixir 등을 살펴볼 예정이다.
--   **Forum**
-    댓글이 가능한 간단한 게시판을 구현해 본다. 이를 통해 HTTP Request &amp; Response 에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.  
--   **RESTful API**
-    Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있도록 만들어 본다. 실험을 위해 프론트엔드 프레임웍을 이용 간단한 모바일 앱을 만들어 볼 예정이다. 
+#### Markdown Viewer
+
+기본기 강좌에 포함된 마크다운 문서를 HTML 뷰에서 나이스하게 보여주는 기능을 구현해 본다. 이를 통해 Filesystem, Custom Helper, Cache, Elixir 등을 살펴볼 예정이다.
+
+- [26강 - Document 모델](docs/26-document-model.md)
+- [27강 - Document 컨트롤러](docs/26-document-controller.md)
+
+#### Forum
+댓글이 가능한 간단한 게시판을 구현해 본다. 이를 통해 HTTP Request &amp; Response 에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.  
+
+#### RESTful API
+Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있도록 만들어 본다. 실험을 위해 프론트엔드 프레임웍을 이용 간단한 모바일 앱을 만들어 볼 예정이다. 
 
 ## 이 강좌를 보는 방법
 

@@ -16,8 +16,8 @@ Virtualbox[https://www.virtualbox.org/]와 Vargrant[https://www.vagrantup.com/]�
 ## 라라벨이 동작하기 위한 php 버전 및 필요 모듈 조건 확인
 
 라라벨을 설치하려는 개발환경 또는 서버가 아래 필요사항을 충족하는 지 확인한다.
-- PHP 5.5.9 이상
-- PHP Extensions
+- php 5.5.9 이상
+- php Extensions
     - OpenSSL
     - PDO
     - Mbstring
@@ -79,13 +79,13 @@ Virtualbox[https://www.virtualbox.org/]와 Vargrant[https://www.vagrantup.com/]�
 
 Laravel 5 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한 것이다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/2-hello-laravel-img-02.png)
+![](./02-hello-laravel-img-02.png)
 
 **`참고`** `artisan`은 라라벨의 코맨드 라인 툴이다. `\> php artisan`을 실행한 후, 설명을 쭈욱~ 한번 살펴보자. 개발 중에 코드에디터와 콘솔을 오가면서, `artisan` 코맨드를 많이 사용하게 될 것이다.
 
-프로젝트의 디렉토리 구조와 라라벨의 동작 시퀀스 다이어그램은 Mac용 설치 문서 "[2강 - 라라벨 5 설치하기](https://github.com/appkr/l5essential/blob/master/docs/2-hello-laravel.md)"를 참조하자.
+프로젝트의 디렉토리 구조와 라라벨의 동작 시퀀스 다이어그램은 Mac용 설치 문서 "[2강 - 라라벨 5 설치하기](02-hello-laravel.md)"를 참조하자.
 
 ---
 
-- [1강 - 처음 만나는 라라벨](https://github.com/appkr/l5essential/blob/master/docs/1-welcome.md)
-- [3강 - 글로벌 설정 살펴보기](https://github.com/appkr/l5essential/blob/master/docs/3-configuration.md)
+- [1강 - 처음 만나는 라라벨](01-welcome.md)
+- [3강 - 글로벌 설정 살펴보기](03-configuration.md)

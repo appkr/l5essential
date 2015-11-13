@@ -95,9 +95,9 @@ Route::get('/', function() {
 });
 ```
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/24-exception-handling-img-01.png)
+![](./24-exception-handling-img-01.png)
 
 ---
 
-- [23강 - 입력 값 유효성 검사](https://github.com/appkr/l5essential/blob/master/docs/23-validation.md)
-- [25강 - 컴포저](https://github.com/appkr/l5essential/blob/master/docs/25-composer.md)
+- [23강 - 입력 값 유효성 검사](23-validation.md)
+- [25강 - 컴포저](25-composer.md)

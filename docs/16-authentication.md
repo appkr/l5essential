@@ -115,5 +115,5 @@ Route::get('auth/login', function() {
 
 ---
 
-- [15강 - 중첩된 리소스](https://github.com/appkr/l5essential/blob/master/docs/15-nested-resources.md)
-- [17강 - 라라벨에 내장된 사용자 인증](https://github.com/appkr/l5essential/blob/master/docs/17-authentication-201.md)
+- [15강 - 중첩된 리소스](15-nested-resources.md)
+- [17강 - 라라벨에 내장된 사용자 인증](17-authentication-201.md)

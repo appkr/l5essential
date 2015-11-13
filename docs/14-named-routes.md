@@ -68,5 +68,5 @@ $ php artisan tinker
 
 ---
 
-- [13강 - RESTful 리소스 컨트롤러](https://github.com/appkr/l5essential/blob/master/docs/13-restful-resource-controller.md)
-- [15강 - 중첩된 리소스](https://github.com/appkr/l5essential/blob/master/docs/15-nested-resources.md)
+- [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller.md)
+- [15강 - 중첩된 리소스](15-nested-resources.md)

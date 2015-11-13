@@ -85,6 +85,6 @@ $ php artisan tinker
 
 ---
 
-- [8강 - 날 쿼리 :(](https://github.com/appkr/l5essential/blob/master/docs/8-raw-queries.md)
-- [10강 - 엘로퀀트 ORM](https://github.com/appkr/l5essential/blob/master/docs/10-eloquent.md)
+- [8강 - 날 쿼리 :(](08-raw-queries.md)
+- [10강 - 엘로퀀트 ORM](10-eloquent.md)
 

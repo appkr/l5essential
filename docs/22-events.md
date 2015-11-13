@@ -103,7 +103,7 @@ $ php artisan tinker
 
 서버를 부트업하고 브라우저에서 'auth' Route 로 접근해 보자. `Event::fire(string|object $event, mixed $payload)` 에서 이벤트를 던지고, `Event::listen(string|array $events, mixed $listener)`이 이벤트를 받아서 처리하는 식의 구조체이다. `Event::fire()` 대신 `event()` Helper Function을 이용할 수도 있다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/22-events-img-01.png)
+![](./22-events-img-01.png)
 
 ## 이벤트를 처리하자.
 
@@ -146,6 +146,6 @@ $ php artisan tinker
 
 ---
 
-- [21강 - 메일 보내기](https://github.com/appkr/l5essential/blob/master/docs/21-mail.md)
-- [23강 - 입력 값 유효성 검사](https://github.com/appkr/l5essential/blob/master/docs/23-validation.md)
+- [21강 - 메일 보내기](21-mail.md)
+- [23강 - 입력 값 유효성 검사](23-validation.md)
 

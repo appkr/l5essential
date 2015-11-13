@@ -35,6 +35,6 @@ class IndexController extends Controller
 
 ---
 
-- [11강 - DB 마이그레이션](https://github.com/appkr/l5essential/blob/master/docs/11-migration.md)
-- [13강 - RESTful 리소스 컨트롤러](https://github.com/appkr/l5essential/blob/master/docs/13-restful-resource-controller.md)
+- [11강 - DB 마이그레이션](11-migration.md)
+- [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller.md)
 

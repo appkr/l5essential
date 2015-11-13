@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
 //            $e = new NotFoundHttpException($e->getMessage(), $e);
 //        }
 
-        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+        if ($e instanceof ModelNotFoundException or $e instanceof NotFoundHttpException) {
             return response(view('errors.notice', [
                 'title'       => 'Page Not Found',
                 'description' => 'Sorry, the page or resource you are trying to view does not exist.'
