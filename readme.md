@@ -59,8 +59,9 @@
 
 기본기 강좌에 포함된 마크다운 문서를 HTML 뷰에서 나이스하게 보여주는 기능을 구현해 본다. 이를 통해 Filesystem, Custom Helper, Cache, Elixir 등을 살펴볼 예정이다.
 
-- [26강 - Document 모델](docs/26-document-model.md)
-- [27강 - Document 컨트롤러](docs/26-document-controller.md)
+-   [26강 - Document 모델](docs/26-document-model.md)
+-   [27강 - Document 컨트롤러](docs/26-document-controller.md)
+-   [28강 - Cache](docs/28-cache.md)
 
 #### Forum
 댓글이 가능한 간단한 게시판을 구현해 본다. 이를 통해 HTTP Request &amp; Response 에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.  

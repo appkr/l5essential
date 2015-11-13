@@ -49,7 +49,6 @@ class Document
                 : $this->directory
         );
     }
-
 }
 ```
 
@@ -109,6 +108,6 @@ Route::get('docs/{file?}', function($file = null) {
 
 ---
 
-- [27강 - Document 컨트롤러](docs/26-document-controller.md)
+- [27강 - Document 컨트롤러](26-document-controller.md)
 
 
