@@ -89,4 +89,4 @@ $sb->run();
 ---
 
 - [24강 - 예외 처리](24-exception-handling.md)
-- [첫 페이지로 돌아가]기(../readme.md)
+- [첫 페이지로 돌아가기](../readme.md)

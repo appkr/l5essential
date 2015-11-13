@@ -6,17 +6,17 @@
  
 ## 목표
 
-1.  8 시간 정도에 라라벨의 기본기를 모두 마스터하는 것을 목표로 한다.
-2.  제시된 실전 프로젝트를 통해 중급 이상의 라라벨 개발자로 성장하도록 한다.
+1.  8 시간 정도에 라라벨의 기본기를 모두 마스터하는 것을 목표로 한다. (1강 ~ 25강)
+2.  제시된 실전 프로젝트를 통해 중급 이상의 라라벨 개발자로 성장하도록 한다. (26강 ~ 계속 연재 중)
 
 ## 무엇을 다루지 않나?
 
 강좌를 진행하기 위해 사용하지만, 설명하지 않는 것들이다.
 
--   웹 프로그래밍 일반론
 -   php 문법
--   객체 지향 프로그래밍(OOP)
--   프론트엔드 프로그래밍
+-   웹 프로그래밍 일반론
+-   객체 지향 프로그래밍(OOP) 일반론
+-   프론트엔드 프로그래밍 일반론
 
 ## 무엇을 다루나?
 
@@ -55,17 +55,18 @@
 
 아래 프로젝트들을 기획하고 있다.
 
-#### Markdown Viewer
+#### 1. Markdown Viewer
 
 기본기 강좌에 포함된 마크다운 문서를 HTML 뷰에서 나이스하게 보여주는 기능을 구현해 본다. 이를 통해 Filesystem, Custom Helper, Cache, Elixir 등을 살펴볼 예정이다.
 
-- [26강 - Document 모델](docs/26-document-model.md)
-- [27강 - Document 컨트롤러](docs/26-document-controller.md)
+-   [26강 - Document 모델](docs/26-document-model.md)
+-   [27강 - Document 컨트롤러](docs/27-document-controller.md)
+-   [28강 - Cache](docs/28-cache.md)
 
-#### Forum
+#### 2. Forum
 댓글이 가능한 간단한 게시판을 구현해 본다. 이를 통해 HTTP Request &amp; Response 에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.  
 
-#### RESTful API
+#### 3. RESTful API
 Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있도록 만들어 본다. 실험을 위해 프론트엔드 프레임웍을 이용 간단한 모바일 앱을 만들어 볼 예정이다. 
 
 ## 이 강좌를 보는 방법
