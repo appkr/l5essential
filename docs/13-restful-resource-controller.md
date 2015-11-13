@@ -40,7 +40,7 @@ $ php artisan make:controller PostsController
 $ php artisan route:list
 ```
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/13-restful-resource-controller-img-02.png)
+![](./13-restful-resource-controller-img-02.png)
 
 ## 테스트
 
@@ -88,7 +88,7 @@ class PostsController extends Controller
 
 테스트를 위해 [PostMan 크롬 플러그인](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)을 사용할 것을 권장한다. 이 문서의 표 대로 하나씩 대입해 보자. PostMan에서 GET을 선택하고 http://localhost:8000/posts, http://localhost:8000/posts/1, http://localhost:8000/posts/1/edit.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/13-restful-resource-controller-img-01.png)
+![](./13-restful-resource-controller-img-01.png)
 
 그럼, HTTP 요청 메소드를 POST로 바꾸고, http://localhost:8000/posts를 해보자.
 
@@ -129,5 +129,5 @@ class VerifyCsrfToken extends BaseVerifier
 
 ---
 
-- [12강 - 컨트롤러](https://github.com/appkr/l5essential/blob/master/docs/12-controller.md)
-- [14강 - 이름 있는 Route](https://github.com/appkr/l5essential/blob/master/docs/14-named-routes.md)
+- [12강 - 컨트롤러](12-controller.md)
+- [14강 - 이름 있는 Route](14-named-routes.md)

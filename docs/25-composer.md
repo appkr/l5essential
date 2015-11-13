@@ -1,6 +1,6 @@
 # 25강 - 컴포저
 
-2강에서 라라벨 5 처음 설치할 때 Composer를 설치했을 것이다. 그땐 무엇인지 모르고 마냥 썼을 수도 있지만, 이제 그 정체를 조금만 핥아 보자. Composer는 PHP의 패키지 매니저이다. 패키지 레지스트리는 [패키지스트](https://packagist.org/)라 불린다. Java에 Maven, Python에 PyPi, Ruby에 Gem, Node에 Npm이 있다면, PHP엔 Composer가 있다. 라라벨도 버전 4로 넘어가면서 Composer를 본격적을 도입하고, 코어 프레임웍과 외부 패키지로 분리했다.
+2강에서 라라벨 5 처음 설치할 때 Composer를 설치했을 것이다. 그땐 무엇인지 모르고 마냥 썼을 수도 있지만, 이제 그 정체를 조금만 핥아 보자. Composer는 php의 패키지 매니저이다. 패키지 레지스트리는 [패키지스트](https://packagist.org/)라 불린다. Java에 Maven, Python에 PyPi, Ruby에 Gem, Node에 Npm이 있다면, php엔 Composer가 있다. 라라벨도 버전 4로 넘어가면서 Composer를 본격적을 도입하고, 코어 프레임웍과 외부 패키지로 분리했다.
 
 작은 서비스를 개발할 때는 패키지를 관리하는 일이 필요없지만, 서비스가 커질 수록 패키지 관리의 필요성은 급증한다. 급기야 **패키지를 관리하지 않아서, 개발자들이 패키지에 의해서 관리 당해지는 웃지 못할 사태**가 벌어질 수 있다. 패키지 매니저를 쓸 때 개인적으로 좋은 점을 정리해 봤다.
 
@@ -65,7 +65,7 @@ EOT;
 
 서버를 부트업하고 '/' Route를 방문해 보자. Html로 잘 포맷팅 된 문서를 보고 있으면 성공한 것이다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/25-composer-img-01.png)
+![](./25-composer-img-01.png)
 
 입력 문자열로 긴 스트림을 쓰기 위해서 [Heredoc](http://php.net/manual/kr/language.types.string.php#language.types.string.syntax.heredoc) 문법을 사용하였다. 실전에서는 POST 로 넘겨 받은 폼 데이터의, 가령 'body' 필드 값일 것이며, `Input::get('body')/Request::input('body')`로 값을 얻어 올 수 있을 것이다.
 
@@ -88,4 +88,5 @@ $sb->run();
 
 ---
 
-- [24강 - 예외 처리](https://github.com/appkr/l5essential/blob/master/docs/24-exception-handling.md)
+- [24강 - 예외 처리](24-exception-handling.md)
+- [첫 페이지로 돌아가]기(../readme.md)

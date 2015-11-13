@@ -125,5 +125,5 @@ $ php artisan migrate
 
 ---
 
-- [10강 - 엘로퀀트 ORM](https://github.com/appkr/l5essential/blob/master/docs/10-eloquent.md)
-- [12강 - 컨트롤러](https://github.com/appkr/l5essential/blob/master/docs/12-controller.md)
+- [10강 - 엘로퀀트 ORM](10-eloquent.md)
+- [12강 - 컨트롤러](12-controller.md)

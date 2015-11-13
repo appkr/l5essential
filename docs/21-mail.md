@@ -58,7 +58,7 @@ resources/views/emails/welcome.blade.php 를 만들자.
 
 브라우저를 열고 'mail' Route를 방문한 후, `$to`로 지정한 메일 계정으로 가서 이메일이 잘 왔나 확인해 보자.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/21-mail-img-01.png)
+![](./21-mail-img-01.png)
  
 ## 테스트 방법
 
@@ -78,5 +78,5 @@ $ tail -f ./storage/logs/laravel.log
 
 ---
 
-- [추가 - 페이징](https://github.com/appkr/l5essential/blob/master/docs/20-1-pagination.md)
-- [22강 - 이벤트](https://github.com/appkr/l5essential/blob/master/docs/22-events.md)
+- [추가 - 페이징](20-1-pagination.md)
+- [22강 - 이벤트](22-events.md)

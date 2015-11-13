@@ -37,9 +37,9 @@ Route::get('posts', function() {
 @stop
 ```
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/20-1-pagination-img-01.png)
+![](./20-1-pagination-img-01.png)
 
 ---
 
-- [20강 - Eager 로딩](https://github.com/appkr/l5essential/blob/master/docs/20-eager-loading.md)
-- [21강 - 메일 보내기](https://github.com/appkr/l5essential/blob/master/docs/21-mail.md)
+- [20강 - Eager 로딩](20-eager-loading.md)
+- [21강 - 메일 보내기](21-mail.md)

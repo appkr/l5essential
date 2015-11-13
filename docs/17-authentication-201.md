@@ -116,6 +116,6 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 ---
 
-- [16강 - 사용자 인증 기본기](https://github.com/appkr/l5essential/blob/master/docs/16-authentication.md)
-- [18강 - 모델간 관계 맺기](https://github.com/appkr/l5essential/blob/master/docs/18-eloquent-relationships.md)
+- [16강 - 사용자 인증 기본기](16-authentication.md)
+- [18강 - 모델간 관계 맺기](18-eloquent-relationships.md)
 

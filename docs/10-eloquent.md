@@ -130,5 +130,5 @@ $ php artisan tinker
 
 ---
 
-- [9강 - 쿼리 빌더](https://github.com/appkr/l5essential/blob/master/docs/9-query-builder.md)
-- [11강 - DB 마이그레이션](https://github.com/appkr/l5essential/blob/master/docs/11-migration.md)
+- [9강 - 쿼리 빌더](09-query-builder.md)
+- [11강 - DB 마이그레이션](11-migration.md)

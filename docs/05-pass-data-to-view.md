@@ -61,6 +61,6 @@ Route::get('/', function () {
 
 ---
 
-- [4강 - Routing 기본기](https://github.com/appkr/l5essential/blob/master/docs/4-routing-basics.md)
-- [6강 - 블레이드 101](https://github.com/appkr/l5essential/blob/master/docs/6-blade-101.md)
+- [4강 - Routing 기본기](04-routing-basics.md)
+- [6강 - 블레이드 101](06-blade-101.md)
 

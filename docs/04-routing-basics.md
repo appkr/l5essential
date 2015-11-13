@@ -18,7 +18,7 @@ $ open http://localhost:8000 # 크롬브라우저에 주소를 직접 입력하�
 
 **`중요`** 실습 중에 .env 파일 또는 config/\*\*.php 파일 수정으로 환경 변수가 바뀌면 반드시 로컬 서버를 재실행 해 주어야 한다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/4-routing-basic-img-01.png)
+![](./04-routing-basic-img-01.png)
 
 ## Routing
 
@@ -56,5 +56,5 @@ Route::get('/', function () {
 
 ---
 
-- [3강 - 글로벌 설정 살펴보기](https://github.com/appkr/l5essential/blob/master/docs/3-configuration.md)
-- [5강 - 뷰에 데이터 바인딩하기](https://github.com/appkr/l5essential/blob/master/docs/5-pass-data-to-view.md)
+- [3강 - 글로벌 설정 살펴보기](03-configuration.md)
+- [5강 - 뷰에 데이터 바인딩하기](05-pass-data-to-view.md)

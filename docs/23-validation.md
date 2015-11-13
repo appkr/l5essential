@@ -123,5 +123,5 @@ class PostsController extends Controller
 
 ---
 
-- [22강 - 이벤트](https://github.com/appkr/l5essential/blob/master/docs/22-events.md)
-- [24강 - 예외 처리](https://github.com/appkr/l5essential/blob/master/docs/24-exception-handling.md)
+- [22강 - 이벤트](22-events.md)
+- [24강 - 예외 처리](24-exception-handling.md)

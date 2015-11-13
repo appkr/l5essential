@@ -150,5 +150,5 @@ $ php artisan tinker
 
 ---
 
-- [17강 - 라라벨에 내장된 사용자 인증](https://github.com/appkr/l5essential/blob/master/docs/17-authentication-201.md)
-- [19강 - 데이터 심기](https://github.com/appkr/l5essential/blob/master/docs/19-seeder.md)
+- [17강 - 라라벨에 내장된 사용자 인증](17-authentication-201.md)
+- [19강 - 데이터 심기](19-seeder.md)

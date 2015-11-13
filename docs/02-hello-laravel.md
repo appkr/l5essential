@@ -2,7 +2,7 @@
 
 ## 윈도우즈 사용자라면
 
-[여기를 참고](https://github.com/appkr/l5essential/blob/master/docs/2-install-on-windows.md)하자. 장기적으로 보고 Mac이나 Linux로 전환할 것을 권장한다. 윈도우즈는 코맨드 프롬프트(콘솔)에서 명령어 사용이 불편해서 금방 한계에 달하게 된다.
+[여기를 참고](02-install-on-windows.md)하자. 장기적으로 보고 Mac이나 Linux로 전환할 것을 권장한다. 윈도우즈는 코맨드 프롬프트(콘솔)에서 명령어 사용이 불편해서 금방 한계에 달하게 된다.
 
 ## 터미널에 익숙해 지자.
 
@@ -51,8 +51,8 @@ Virtualbox[https://www.virtualbox.org/]와 Vargrant[https://www.vagrantup.com/]�
 ## 라라벨이 동작하기 위한 php 버전 및 필요 모듈 조건 확인
 
 라라벨을 설치하려는 개발환경 또는 서버가 아래 필요사항을 충족하는 지 확인한다.
-- PHP 5.5.9 이상
-- PHP Extensions
+- php 5.5.9 이상
+- php Extensions
     - OpenSSL
     - PDO
     - Mbstring
@@ -131,7 +131,7 @@ $ open http://localhost:8000
 
 Laravel 5 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한 것이다. 라라벨 개발자가 되신 것을 축하드린다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/2-hello-laravel-img-02.png)
+![](./02-hello-laravel-img-02.png)
 
 **`참고`** `artisan`은 라라벨의 코맨드 라인 툴이다. `$ php artisan`을 실행한 후, 설명을 쭈욱~ 한번 살펴보자. 개발 중에 코드에디터와 콘솔을 오가면서, `artisan` 코맨드를 많이 사용하게 될 것이다.
 
@@ -182,9 +182,9 @@ Laravel 5 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한
 
 역시 마찬가지다. 지금은 몰라도 된다. 나중에 한번 돌아와서 다시 보게 된다면, 아~ 하고 이해될 것이다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/2-hello-laravel-img-01.png)
+![](./02-hello-laravel-img-01.png)
 
 ---
 
-- [1강 - 처음 만나는 라라벨](https://github.com/appkr/l5essential/blob/master/docs/1-welcome.md)
-- [3강 - 글로벌 설정 살펴보기](https://github.com/appkr/l5essential/blob/master/docs/3-configuration.md)
+- [1강 - 처음 만나는 라라벨](01-welcome.md)
+- [3강 - 글로벌 설정 살펴보기](03-configuration.md)

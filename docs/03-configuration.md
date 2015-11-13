@@ -50,5 +50,5 @@ DB_PASSWORD=secret
 
 ---
 
-- [2강 - 라라벨 5 설치하기](https://github.com/appkr/l5essential/blob/master/docs/2-hello-laravel.md)
-- [4강 - Routing 기본기](https://github.com/appkr/l5essential/blob/master/docs/4-routing-basics.md)
+- [2강 - 라라벨 5 설치하기](02-hello-laravel.md)
+- [4강 - Routing 기본기](04-routing-basics.md)

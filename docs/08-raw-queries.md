@@ -2,7 +2,7 @@
 
 ## 사용할 테이블을 만들자
 
-[3강 - 글로벌 설정 살펴보기](https://github.com/appkr/l5essential/blob/master/docs/3-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자. 가능하면 GUI 툴을 사용하자 (Sequel Pro 권장)
+[3강 - 글로벌 설정 살펴보기](03-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자. 가능하면 GUI 툴을 사용하자 (Sequel Pro 권장)
 
 ```bash
 # homestead 사용자를 생성하고, myProject DB 에 권한을 부여하는 등이 CLI 툴로는 굉장히 복잡하다.
@@ -27,7 +27,7 @@ mysql > exit (enter)
 
 mySql에 root로 로그인하여 myProject DB를 만들고, homestead 사용자에 대해 myProject DB에 대한 접근 권한 부여를 반드시 해야 한다. 아래 그림은 Sequel Pro에서 권한 부여<kbd>Cmd</kbd> + <kbd>U</kbd>하는 과정이다.
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/8-raw-queries-img-01.png)
+![](./08-raw-queries-img-01.png)
 
 ## 라라벨을 이용해서 DB 쿼리를 해 보자. 
 
@@ -83,6 +83,6 @@ Collection이 아니라 하나의 Instance만 얻으려면 어떻게 해야 할�
 
 ---
 
-- [7강 - 블레이드 201](https://github.com/appkr/l5essential/blob/master/docs/7-blade-201.md)
-- [9강 - 쿼리 빌더](https://github.com/appkr/l5essential/blob/master/docs/9-query-builder.md)
+- [7강 - 블레이드 201](07-blade-201.md)
+- [9강 - 쿼리 빌더](09-query-builder.md)
 

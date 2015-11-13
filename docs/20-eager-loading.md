@@ -50,7 +50,7 @@ DB::listen(function($sql, $bindings, $time){
 - `select * from posts` x 1건
 - `select * from users where users.id = ? limit 1` x N건
 
-![](https://raw.githubusercontent.com/appkr/l5essential/master/docs/20-eager-loading-img-01.png)
+![](./20-eager-loading-img-01.png)
 
 ## Eager 로딩으로 N+1개의 쿼리를 2개로 만들어 보자.
 
@@ -86,5 +86,5 @@ Route::get('posts', function() {
 
 ---
 
-- [19강 - 데이터 심기](https://github.com/appkr/l5essential/blob/master/docs/19-seeder.md)
-- [추가 - 페이징](https://github.com/appkr/l5essential/blob/master/docs/20-1-pagination.md)
+- [19강 - 데이터 심기](19-seeder.md)
+- [추가 - 페이징](20-1-pagination.md)
