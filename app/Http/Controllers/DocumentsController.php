@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\Http\Requests;
-use ParsedownExtra;
-
+use Cache;
 class DocumentsController extends Controller
 {
 
@@ -27,15 +26,20 @@ class DocumentsController extends Controller
     /**
      * Show document page in response to the given $file
      *
-     * @param string|null $file
+     * @param string $file
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($file = null)
+    public function show($file = '01-welcome.md')
     {
-        return view('documents.index', [
-            'index'   => markdown($this->document->get()),
-            'content' => markdown($this->document->get($file ?: '01-welcome.md'))
-        ]);
+        $index = Cache::remember('documents.index', 120, function () {
+            return markdown($this->document->get());
+        });
+
+        $content = Cache::remember("documents.{$file}", 120, function() use ($file) {
+            return markdown($this->document->get($file));
+        });
+
+        return view('documents.index', compact('index', 'content'))->header('max-age=0');
     }
 
 }

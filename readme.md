@@ -62,6 +62,7 @@
 -   [26강 - Document 모델](docs/26-document-model.md)
 -   [27강 - Document 컨트롤러](docs/27-document-controller.md)
 -   [28강 - Cache](docs/28-cache.md)
+-   [29강 - Elixir, 뭐지?](docs/29-elixir.md)
 
 #### 2. Forum
 댓글이 가능한 간단한 게시판을 구현해 본다. 이를 통해 HTTP Request &amp; Response 에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.  
