@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\File;
+use File;
 
 class Document
 {

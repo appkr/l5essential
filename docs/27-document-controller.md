@@ -50,7 +50,6 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\Http\Requests;
-use ParsedownExtra;
 
 class DocumentsController extends Controller
 {
