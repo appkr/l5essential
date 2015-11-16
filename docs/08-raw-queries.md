@@ -83,6 +83,7 @@ Collection이 아니라 하나의 Instance만 얻으려면 어떻게 해야 할�
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [7강 - 블레이드 201](07-blade-201.md)
 - [9강 - 쿼리 빌더](09-query-builder.md)
 

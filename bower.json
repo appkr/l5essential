@@ -1,0 +1,7 @@
+{
+  "name": "myProject",
+  "devDependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "font-awesome": "~4.4.0"
+  }
+}

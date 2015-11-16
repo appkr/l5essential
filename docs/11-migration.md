@@ -125,5 +125,6 @@ $ php artisan migrate
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [10강 - 엘로퀀트 ORM](10-eloquent.md)
 - [12강 - 컨트롤러](12-controller.md)

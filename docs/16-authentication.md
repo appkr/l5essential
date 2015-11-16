@@ -115,5 +115,6 @@ Route::get('auth/login', function() {
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [15강 - 중첩된 리소스](15-nested-resources.md)
 - [17강 - 라라벨에 내장된 사용자 인증](17-authentication-201.md)

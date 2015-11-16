@@ -68,5 +68,6 @@ $ php artisan tinker
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller.md)
 - [15강 - 중첩된 리소스](15-nested-resources.md)

@@ -41,5 +41,6 @@ Route::get('posts', function() {
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [20강 - Eager 로딩](20-eager-loading.md)
 - [21강 - 메일 보내기](21-mail.md)
