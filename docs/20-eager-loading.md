@@ -86,5 +86,6 @@ Route::get('posts', function() {
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [19강 - 데이터 심기](19-seeder.md)
 - [추가 - 페이징](20-1-pagination.md)

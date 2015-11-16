@@ -123,5 +123,6 @@ class PostsController extends Controller
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [22강 - 이벤트](22-events.md)
 - [24강 - 예외 처리](24-exception-handling.md)

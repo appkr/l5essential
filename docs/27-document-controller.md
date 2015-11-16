@@ -119,6 +119,7 @@ resources/views/documents/index.blade.php 를 만들자.
 
 ---
 
-[26강 - Document 모델](26-document-model.md)
-[28강 - Cache](28-cache.md)
+- [목록으로 돌아가기](../readme.md)
+- [26강 - Document 모델](26-document-model.md)
+- [28강 - Cache](28-cache.md)
 

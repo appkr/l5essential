@@ -61,6 +61,7 @@ Route::get('/', function () {
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [4강 - Routing 기본기](04-routing-basics.md)
 - [6강 - 블레이드 101](06-blade-101.md)
 

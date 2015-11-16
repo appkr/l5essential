@@ -56,5 +56,6 @@ Route::get('/', function () {
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [3강 - 글로벌 설정 살펴보기](03-configuration.md)
 - [5강 - 뷰에 데이터 바인딩하기](05-pass-data-to-view.md)

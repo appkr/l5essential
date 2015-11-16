@@ -116,6 +116,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 ---
 
+- [목록으로 돌아가기](../readme.md)
 - [16강 - 사용자 인증 기본기](16-authentication.md)
 - [18강 - 모델간 관계 맺기](18-eloquent-relationships.md)
 
