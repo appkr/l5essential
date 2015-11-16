@@ -31,3 +31,4 @@
     -   [27강 - Document 컨트롤러](/docs/27-document-controller.md)
     -   [28강 - Cache](/docs/28-cache.md)
     -   [29강 - Elixir, 만병통치약?](/docs/29-elixir.md)
+    -   [30강 - Debug & Final Touch](/docs/30-final-touch.md)
