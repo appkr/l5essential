@@ -20,12 +20,32 @@ class Document
      */
     public function get($file = 'index.md')
     {
-        if (! File::exists($this->getPath($file))) {
+        $path = $this->getPath($file);
+
+        if (! File::exists($path)) {
             abort(404, 'File not exist');
         }
 
-        return File::get($this->getPath($file));
+        return File::get($path);
     }
+
+    /**
+     * Calculate and respond image path
+     *
+     * @param string $file
+     * @return mixed
+     */
+    public function imagePath($file)
+    {
+        $path = $this->getPath($file);
+
+        if (! File::exists($path)) {
+            abort(404, 'Image not exist');
+        }
+
+        return $path;
+    }
+
 
     /**
      * Calculate full path

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Document;
 use App\Http\Requests;
 use Cache;
+use Image;
+
 class DocumentsController extends Controller
 {
 
@@ -40,6 +42,18 @@ class DocumentsController extends Controller
         });
 
         return view('documents.index', compact('index', 'content'));
+    }
+
+    /**
+     * Make image response
+     *
+     * @param $file
+     * @return \Illuminate\Http\Response
+     */
+    public function image($file) {
+        $image = Image::make($this->document->imagePath($file));
+
+        return $image->response('png');
     }
 
 }

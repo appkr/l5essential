@@ -183,3 +183,4 @@ $ gulp --production
 
 - [목록으로 돌아가기](../readme.md)
 - [28강 - Cache](28-cache.md)
+- [30강 - Debug & Final Touch](30-final-touch.md)
