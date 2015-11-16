@@ -6,6 +6,7 @@ elixir(function (mix) {
     .scripts([
       '../vendor/jquery/dist/jquery.js',
       '../vendor/bootstrap-sass/assets/javascripts/bootstrap.js',
+      '../vendor/google-code-prettify/src/run_prettify.js',
       'app.js'
     ], 'public/js/app.js')
     .version([
