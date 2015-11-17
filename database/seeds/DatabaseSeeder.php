@@ -15,11 +15,8 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Model::unguard();
 
-        $this->call(UsersTableSeeder::class);
-        $this->command->info('users table seeded');
-
-        $this->call(PostsTableSeeder::class);
-        $this->command->info('users table seeded');
+//        $this->call(UsersTableSeeder::class);
+//        $this->command->info('users table seeded');
 
         Model::reguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
