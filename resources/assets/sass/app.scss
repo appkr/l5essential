@@ -57,6 +57,47 @@ hr {
   padding: 0;
 }
 
+/* layouts */
+body>div.container {
+  margin-top: 6rem;
+}
+
+.flash-message,
+.js-flash-message {
+  display: inline-block;
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+  max-width: 450px;
+  opacity: .8;
+  z-index: 9999;
+}
+
+.footer {
+  min-height: 60px;
+  padding: 1rem 1rem;
+  margin-top: $margin-base;
+  margin-bottom: $baseline;
+  border-top: 1px solid $color-hr;
+  color: $color-gray;
+  font-size: $font-size-small;
+
+  a {
+    color: $color-gray;
+
+    &:hover {
+      color: $color-text1;
+    }
+  }
+
+  .locale li.active {
+    background-color: $color-hr;
+    a {
+      color: $color-text1;
+    }
+  }
+}
+
 /* icon */
 i.icon {
   display: inline-block;
@@ -72,6 +113,37 @@ span.form-error {
   color: $brand-danger;
   font-style: italic;
   font-weight: 100
+}
+
+.form-auth {
+  max-width: 330px;
+  width: 100%;
+  padding: 15px;
+  margin: 0 auto;
+
+  .form-signin-heading,
+  .checkbox {
+    margin-bottom: 1rem;
+  }
+
+  .checkbox {
+    font-weight: normal;
+  }
+
+  .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 0.6rem;
+  }
+
+  .form-control:focus {
+    z-index: 2;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
 }
 
 /* documents */
