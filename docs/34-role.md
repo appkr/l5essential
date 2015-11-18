@@ -29,7 +29,7 @@ $ php artisan vendor:publish --provider="Bican\Roles\RolesServiceProvider" --tag
 $ php artisan migrate
 ```
 
-User 모델을 수정하자.
+User 모델을 수정하자. 라라벨 네이티브 Authorization을 사용하지 않을 것이므로 `AuthorizableContract` 와 `Authorizable` trait를 삭제하자.
 
 ```php
 use ...
@@ -37,11 +37,12 @@ use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 
 class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
+                                    /*AuthorizableContract,*/
                                     CanResetPasswordContract,
                                     HasRoleAndPermissionContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable;
+    use CanResetPassword;
     use HasRoleAndPermission;
     ...
 }

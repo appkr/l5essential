@@ -384,6 +384,8 @@ auth/reset/{token}|reset.create|PasswordController@getReset|auth.reset|비밀번
 @stop
 ```
 
+`<input type="checkbox" name="remember">` 의 값은 `Auth::attempt(array $credentials, bool $remember)` 메소드의 2번째 인자로 전달된다. 2번째 인자 없이 로그인하면 2시간동안 로그인 세션이 유지된다. 체크박스에 체크가 되어 `true` 값이 전달되면, 5년동안 로그인이 유지된다. 
+
 ![](32-login-img-04.png)
 
 ```html
