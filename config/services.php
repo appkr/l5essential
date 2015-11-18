@@ -36,8 +36,8 @@ return [
     ],
 
     'github' => [
-        'client_id' => 'f97ee17a05bf7a6bce27',
-        'client_secret' => '74b3d1967062da3116e2706f684edcbc51368eb0',
+        'client_id' => '복사한 Client ID',
+        'client_secret' => '복사한 Client Secret',
         'redirect' => 'http://localhost:8000/auth/github/callback',
     ],
 
