@@ -151,6 +151,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Bican\Roles\RolesServiceProvider::class,
 
     ],
 
