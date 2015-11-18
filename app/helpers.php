@@ -11,3 +11,20 @@ if (! function_exists('markdown')) {
         return app(ParsedownExtra::class)->text($text);
     }
 }
+
+if (! function_exists('icon')) {
+    /**
+     * Generate FontAwesome icon tag
+     *
+     * @param string $class font-awesome class name
+     * @param string $addition additional class
+     * @param string $inline inline style
+     * @return string
+     */
+    function icon($class, $addition = 'icon', $inline = null) {
+        $icon   = config('icons.' . $class);
+        $inline = $inline ? 'style="' . $inline . '"' : null;
+
+        return sprintf('<i class="%s %s" %s></i>', $icon, $addition, $inline);
+    }
+}

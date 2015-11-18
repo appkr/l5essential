@@ -62,6 +62,10 @@ body>div.container {
   margin-top: 6rem;
 }
 
+.navbar-brand {
+  padding: 10px 15px;
+}
+
 .flash-message,
 .js-flash-message {
   display: inline-block;
@@ -71,6 +75,10 @@ body>div.container {
   max-width: 450px;
   opacity: .8;
   z-index: 9999;
+}
+
+.page-header {
+  margin: 20px 0 20px;
 }
 
 .footer {
@@ -101,7 +109,7 @@ body>div.container {
 /* icon */
 i.icon {
   display: inline-block;
-  width: 10px;
+  width: 1rem;
   margin-right: 10px;
 }
 
