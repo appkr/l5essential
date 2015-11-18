@@ -49,8 +49,17 @@ Route::group(['prefix' => 'auth', 'as' => 'session.'], function () {
         'as'   => 'destroy',
         'uses' => 'Auth\AuthController@getLogout'
     ]);
-});
 
+    /* Social Login */
+    Route::get('github', [
+        'as'   => 'github.login',
+        'uses' => 'Auth\AuthController@redirectToProvider'
+    ]);
+    Route::get('github/callback', [
+        'as'   => 'github.callback',
+        'uses' => 'Auth\AuthController@handleProviderCallback'
+    ]);
+});
 
 /* Password Reminder */
 Route::group(['prefix' => 'auth'], function () {

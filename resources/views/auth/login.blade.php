@@ -1,5 +1,35 @@
 @extends('layouts.master')
 
+@section('style')
+  <style>
+    .login-or {
+      position: relative;
+      font-size: 16px;
+      color: #aaa;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    .span-or {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: -2px;
+      margin-left: -25px;
+      background-color: #f5f5f5;
+      width: 50px;
+      text-align: center;
+    }
+    .hr-or {
+      background-color: #cdcdcd;
+      height: 1px;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+    }
+  </style>
+@stop
+
 @section('content')
   <form action="{{ route('session.store') }}" method="POST" role="form" class="form-auth">
 
@@ -7,6 +37,17 @@
 
     <div class="page-header">
       <h4>Login</h4>
+    </div>
+
+    <div class="form-group">
+      <a class="btn btn-default btn-block" href="{{ route('session.github.login') }}">
+        <strong><i class="fa fa-github icon"></i> Login with Github</strong>
+      </a>
+    </div>
+
+    <div class="login-or">
+      <hr class="hr-or">
+      <span class="span-or">or</span>
     </div>
 
     <div class="form-group">

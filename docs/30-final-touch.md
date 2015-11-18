@@ -145,7 +145,10 @@ class DocumentsController extends Controller
 
 intervention/image 를 이용해서 만든 이미지 응답은 웹 서버가 접근할 수 있는 DocumentRoot에 있는 이미지가 아니다. URL 에 의해 동적으로 생성되는 이미지이기 때문에, 웹 서버가 브라우저 캐싱에 관여할 수 없다. 해서 수동으로 브라우저 캐싱 기능을 살려 주어야 한다.
  
-구현을 위해 웹서버와 브라우저간의 캐싱 메카니즘을 이해해야 한다. 브라우저가 리소스(이 예제에서는 이미지) 요청을 할 때, 캐시에 요청할 URL 과 연결된 캐시가 있는 지 확인하고, 키 값을 얻어온다. 이 키 값은 이전 동일 URL 요청에서 서버가 Etag 헤더 값으로 응답한 것이다. 얻어온 키 값은 If-Non-Match 헤더의 값으로 지정하고 서버에 리소스를 요청한다. 요청을 받은 서버는 In-Non-Match 헤더의 값과 URL 에 해당하는 서버의 Etag 로직에 의해 생성된 값을 비교하여, 같으면 304 Not Modified를, 다르면 200 OK와 함께 요청한 리소스를 HTTP 바디로 해서 응답한다.
+구현을 위해 웹서버와 브라우저간의 캐싱 메카니즘을 이해해야 한다. 브라우저가 리소스(이 예제에서는 이미지) 요청을 할 때, 캐시에 요청할 URL 과 연결된 캐시가 있는 지 확인하고, 키 값을 얻어온다. 이 키 값은 이전 동일 URL 요청에서 서버가 Etag 헤더 값으로 응답한 것이다. 얻어온 키 값은 If-Non-Match 헤더의 값으로 지정하고 서버에 리소스를 요청한다. 요청을 받은 서버는 If-Non-Match 헤더의 값과 URL 에 해당하는 서버의 Etag 로직에 의해 생성된 값을 비교하여, 같으면 304 Not Modified를, 다르면 200 OK와 함께 요청한 리소스를 HTTP 바디로 해서 응답한다. 아래 그림을 보자.
+
+![](http://4.bp.blogspot.com/-Oj6tyOt8ag0/VY4EkXx2OZI/AAAAAAAAAEI/7UJnCP4Y8OE/s640/etags.png)
+*`Image Source` ["Etags and browser cache, June 26 2015"](http://thespringthing.blogspot.kr/2015/06/etags-and-browser-cache.html)*
 
 먼저 Etag를 만드는 로직을 Document 모델에 구현하자. `md5()` php 내장 해시 함수를 사용하였다. Etag 값은 고유하기만 하면 어떤 문자열을 사용해도 상관없다.
 
