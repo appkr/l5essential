@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-  <header class="page-header">
-    <h1><i class="fa fa-book icons"></i> Documents Viewer</h1>
-  </header>
+  <div class="page-header">
+    <h2>{!! icon('book', null, 'margin-right:1rem') !!} {{ trans('documents.title_documents') }}</h2>
+  </div>
 
   <div class="row container__documents">
     <div class="col-md-3 sidebar__documents">
@@ -20,6 +20,6 @@
   </div>
 
   <!--div class="nav_documents">
-    <a type="button" role="button" class="btn btn-sm btn-danger">Document Index</a>
+    <a type="button" role="button" class="btn btn-sm btn-danger">{{ trans('documents.button_toc') }}</a>
   </div-->
 @stop

@@ -12,6 +12,11 @@ Route::get('home', [
     'uses' => 'WelcomeController@home'
 ]);
 
+Route::get('locale', [
+    'as' => 'locale',
+    'uses' => 'WelcomeController@locale'
+]);
+
 /* Documents */
 Route::get('docs/{image}', [
     'as'   => 'documents.image',

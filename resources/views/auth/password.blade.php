@@ -5,18 +5,21 @@
 
     {!! csrf_field() !!}
 
-    <h4>Password Remind</h4>
-
-    <p class="text-muted">
-      Provide the same email address that you've registered and check your email inbox to reset the password.
-    </p>
+    <div class="page-header">
+      <h4>{{ trans('auth.title_password_remind') }}</h4>
+      <p class="text-muted">
+        {{ trans('auth.title_password_remind_help') }}
+      </p>
+    </div>
 
     <div class="form-group">
-      <input type="email" name="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" autofocus>
+      <input type="email" name="email" class="form-control" placeholder="{{ trans('auth.email_address') }}" value="{{ old('email') }}" autofocus>
       {!! $errors->first('email', '<span class="form-error">:message</span>') !!}
     </div>
 
-    <button class="btn btn-primary btn-block" type="submit">Send Reminder</button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">
+      {{ trans('auth.button_send_reminder') }}
+    </button>
 
   </form>
 @stop

@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($locale = request()->cookie('locale__myProject')) {
+            app()->setLocale(\Crypt::decrypt($locale));
+        }
     }
 
     /**

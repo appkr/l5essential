@@ -10,7 +10,7 @@
       </button>
 
       <a href="{{ route('home') }}" class="navbar-brand">
-        <img src="/images/laravel_logo.png" style="display: inline-block; height: 1.2rem;"/>
+        <img src="/images/laravel_logo.png" style="display: inline-block; height: 30px;"/>
       </a>
     </div>
 
@@ -18,24 +18,24 @@
       <ul class="nav navbar-nav navbar-right">
         @if(! auth()->check())
           <li>
-            <a href="{{ route('session.create') }}"><i class="fa fa-sign-in icon"></i> Login</a>
+            <a href="{{ route('session.create') }}">{!! icon('login') !!} {{ trans('auth.title_login') }}</a>
           </li>
           <li>
-            <a href="{{ route('user.create') }}"><i class="fa fa-certificate icon"></i> Sign up</a>
+            <a href="{{ route('user.create') }}">{!! icon('certificate') !!} {{ trans('auth.title_signup') }}</a>
           </li>
         @else
           <li>
-            <a href="{{ route('documents.show') }}"><i class="fa fa-book icon"></i> Document Viewer</a>
+            <a href="{{ route('documents.show') }}">{!! icon('book') !!} {{ trans('documents.title_documents') }}</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-weixin icon"></i> Forum</a>
+            <a href="#">{!! icon('forum') !!} {{ trans('forum.title_forum') }}</a>
           </li>
           <li>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-user icon"></i> {{ auth()->user()->name }} <b class="caret"></b>
+              {!! icon('user') !!} {{ $currentUser->name }} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{{ route('session.destroy') }}"><i class="fa fa-sign-out icon"></i> Log out</a></li>
+              <li><a href="{{ route('session.destroy') }}">{!! icon('logout') !!} {{ trans('auth.title_logout') }}</a></li>
             </ul>
           </li>
         @endif

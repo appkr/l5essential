@@ -1,8 +1,13 @@
 <footer class="footer">
   <ul class="list-inline pull-right locale">
-    <li><i class="fa fa-language"></i></li>
-    <li class="active"><a href="#">English</a></li>
-    <li><a href="#">한국어</a></li>
+    <li>{!! icon('locale') !!}</li>
+    @foreach (['en' => 'English', 'ko' => '한국어'] as $locale => $language)
+      <li class="{{ ($locale == $currentLocale) ? 'active' : '' }}">
+        <a href="{{ route('locale', ['locale' => $locale, 'return' => urlencode($currentUrl)]) }}">
+          {{ $language }}
+        </a>
+      </li>
+    @endforeach
   </ul>
 
   <div>
