@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "erusev/parsedown-extra": " 0.7.*",
         "intervention/image": "2.3.*",
-        "laracasts/flash": "1.3.*"
+        "laracasts/flash": "1.3.*",
+        "laravel/socialite": "2.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

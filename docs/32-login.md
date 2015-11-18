@@ -471,4 +471,4 @@ Click here to reset your password: {{ route('reset.create', $token) }}
 
 - [목록으로 돌아가기](../readme.md)
 - [31강 - 포럼 요구사항 기획](31-forum-features.md)
-- [33강 - 사용자 역할](33-role.md)
+- [33강 - 소셜 로그인](33-social-login.md)

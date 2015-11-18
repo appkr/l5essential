@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'github' => [
+        'client_id' => '복사한 Client ID',
+        'client_secret' => '복사한 Client Secret',
+        'redirect' => 'http://localhost:8000/auth/github/callback',
+    ],
+
 ];
