@@ -143,7 +143,7 @@ class DocumentsController extends Controller
 
 ### 브라우저 캐시 살리기
 
-intervention/image 를 이용해서 만든 이미지 응답은 웹 서버가 접근할 수 있는 DocumentRoot에 있는 이미지가 아니다. URL 에 의해 동적으로 생성되는 이미지이기 때문에, 웹 서버가 브라우저 캐싱에 관여할 수 없다. 해서 수동으로 브라우저 캐싱 기능을 살려 주어야 한다.
+intervention/image 를 이용해서 만든 이미지 응답은 웹 서버가 접근할 수 있는 DocumentRoot(== public)에 있는 리소스로 만들어진 것이 아니다. 정해진 Route 규칙에 따라 요청하면 서버에서 이미지를 DocumentRoot 밖에서 찾아 반응하는 이미지 응답이기 때문에, 웹 서버가 브라우저 캐싱에 관여할 수 없다. 해서 수동으로 브라우저 캐싱 기능을 살려 주어야 한다.
  
 구현을 위해 웹서버와 브라우저간의 캐싱 메카니즘을 이해해야 한다. 브라우저가 리소스(이 예제에서는 이미지) 요청을 할 때, 캐시에 요청할 URL 과 연결된 캐시가 있는 지 확인하고, 키 값을 얻어온다. 이 키 값은 이전 동일 URL 요청에서 서버가 Etag 헤더 값으로 응답한 것이다. 얻어온 키 값은 If-Non-Match 헤더의 값으로 지정하고 서버에 리소스를 요청한다. 요청을 받은 서버는 If-Non-Match 헤더의 값과 URL 에 해당하는 서버의 Etag 로직에 의해 생성된 값을 비교하여, 같으면 304 Not Modified를, 다르면 200 OK와 함께 요청한 리소스를 HTTP 바디로 해서 응답한다. 아래 그림을 보자.
 
@@ -217,7 +217,7 @@ elixir(function (mix) {
 }
 ```
 
-해당 패키지에 대한 [사용법은 여기](https://code.google.com/p/google-code-prettify/wiki/GettingStarted)서 익혔다. 마크다운 컴파일러는 코드블럭을 `<pre>` 태그로 컴파일 한다. 따라서, `<pre>` 태그에 방금 설치 google-code-prettify의 스타일시들이 반응하도록 클래스를 추가해 줄 것이다. 마크다운 문서에 직접 추가할 수 없으니, resources/assets/js/app.js에 jQuery를 이용해 동적으로 추가해 보자.
+해당 패키지에 대한 [사용법은 여기](https://code.google.com/p/google-code-prettify/wiki/GettingStarted)서 익혔다. 마크다운 컴파일러는 코드블럭을 `<pre>` 태그로 컴파일 한다. 따라서, `<pre>` 태그에 방금 설치한 google-code-prettify의 스타일시트가 반응하도록 클래스를 추가해 줄 것이다. 마크다운 문서에 직접 추가할 수 없으니, resources/assets/js/app.js에 jQuery를 이용해 동적으로 추가해 보자.
 
 ```javascript
 $("pre").addClass("prettyprint");

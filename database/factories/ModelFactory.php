@@ -13,10 +13,39 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => bcrypt(str_random(10)),
+        'name'           => $faker->name,
+        'email'          => $faker->email,
+        'password'       => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+    return [
+        'title'   => $faker->sentence(),
+        'content' => $faker->paragraph(),
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'title'   => $faker->sentence,
+        'content' => $faker->paragraph,
+    ];
+});
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    $name = ucfirst($faker->optional(0.9, 'Laravel')->word);
+
+    return [
+        'name' => $name,
+        'slug' => str_slug($name),
+    ];
+});
+
+$factory->define(App\Attachment::class, function (Faker\Generator $faker) {
+    return [
+        'name' => sprintf("%s.%s", str_random(), $faker->randomElement(['png', 'jpg'])),
     ];
 });
 
