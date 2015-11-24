@@ -74,7 +74,8 @@ StackOverflow 처럼 댓글이 가능한 간단한 포럼을 구현해 본다. �
 -   [34강 - 사용자 역할](docs/34-role.md)
 -   [35강 - 다국어 지원](docs/35-locale.md)
 -   [36강 - 마이그레이션과 모델](docs/36-models.md)
--   [37강 - Article 기능 구현](docs/36-article.md)
+-   [37강 - Article 기능 구현](docs/37-articles.md)
+-   [38강 - Tag 기능 구현](docs/38-tags.md)
 
 #### 3. RESTful API
 Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있도록 만들어 본다. 실험을 위해 프론트엔드 프레임웍을 이용 간단한 모바일 앱을 만들어 볼 예정이다. 

@@ -1,0 +1,31 @@
+/* media queries */
+@media screen and (max-width: $screen-sm-max) {
+  /* MD 991px */
+  .sidebar__documents,
+  .sidebar__fodum {
+    display: none;
+    overflow: hidden;
+    margin-bottom: $baseline;
+
+    li a {
+      display: block;
+    }
+
+    li a:hover {
+      background-color: $brand-info;
+      color: $color-text2;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-xs) {
+  /* Phone Device */
+  article {
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

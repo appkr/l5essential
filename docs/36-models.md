@@ -308,7 +308,7 @@ class Attachment extends Model
 }
 ```
 
-## 모델 팩토리 작성
+### 모델 팩토리 작성
 
 Tag 팩토리의 `$faker->optional(0.9, 'Laravel')->word` 문법은 [fzaninotto/faker API](https://github.com/fzaninotto/Faker#unique-and-optional-modifiers), Attachment 팩토리의 `$faker->randomElement(['png', 'jpg'])` 문법은 [fzaninotto/faker API](https://github.com/fzaninotto/Faker#formatters)를 참고하자.
 
@@ -356,7 +356,7 @@ $factory->define(App\Attachment::class, function (Faker\Generator $faker) {
   
 **`참고`** 필자가 필드(field), Attribute, Property 란 용어를 혼용해서 사용하는데 모두 같은 의미로 이해하자. HTML 폼이나 DB 테이블에서는 필드라는 이름이 좀 더 적절하고, 오브젝트 컨텍스트에서는 Attribute나 Property란 용어가 더 적절할 것이다. 
 
-## Seeder 작성
+### Seeder 작성
 
 편의상 app/database/seeds/DatabaseSeeder.php 에 전부 몰아 넣었지만, 쪼개서 설명한다.
 
@@ -508,7 +508,7 @@ Article 모델과 동일하게, 이번에는 앞서 생성된 `App\Article` 전�
 
 `App\Attachment` Seeder에서는 DB 테이블에 저장되는 모델 뿐 아니라, 사용자가 업로드하여 서버의 파일 시스템에 저장되는 파일들도 같이 생성해 주어야 한다. 해서, `truncate()` 하는 과정에서 파일이 저장된 디렉토리를 청소해 주었고, Seeding 하면서 Dummy 파일도 같이 생성해 주었다.
 
-## Helper Function
+### Helper Function
 
 Seeding 과정에서 사용한 `attachment_path()` Helper 을 app/helpers.php 에 만들어 주자.
 
@@ -526,7 +526,7 @@ if (! function_exists('attachment_path')) {
 }
 ```
 
-## 테스트
+### 테스트
 
 Seeding 을 실행하자. 마이그레이션부터 완전 다시 할 것이다.
 
@@ -571,4 +571,4 @@ $ php artisan tinker
 
 - [목록으로 돌아가기](../readme.md)
 - [35강 - 다국어 지원](35-locale.md)
-- [37강 - Article 기능 구현](37-article.md)
+- [37강 - Article 기능 구현](37-articles.md)

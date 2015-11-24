@@ -2,7 +2,11 @@
 
 @section('content')
   <div class="page-header">
-    <h2>{!! icon('book', null, 'margin-right:1rem') !!} {{ trans('documents.title_documents') }}</h2>
+    <h4>
+      <a href="{{ route('documents.show') }}">
+        {!! icon('book', null, 'margin-right:1rem') !!} {{ trans('documents.title_documents') }}
+      </a>
+    </h4>
   </div>
 
   <div class="row container__documents">

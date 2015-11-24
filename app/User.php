@@ -54,4 +54,10 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Comment::class, 'author_id');
     }
+
+    /* Helpers */
+    public function isAdmin()
+    {
+        return $this->roles()->whereSlug('admin')->exists();
+    }
 }
