@@ -28,6 +28,9 @@ Route::get('docs/{file?}', [
     'uses' => 'DocumentsController@show'
 ]);
 
+/* Forum */
+Route::resource('articles', 'ArticlesController');
+
 /* User Registration */
 Route::group(['prefix' => 'auth', 'as' => 'user.'], function () {
     Route::get('register', [

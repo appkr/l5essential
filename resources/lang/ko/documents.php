@@ -2,7 +2,7 @@
 
 return [
 
-    'title_documents' => '문서 뷰어',
+    'title_documents' => '문서',
     'button_toc' => '문서 목록',
 
 ];

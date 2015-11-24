@@ -48,8 +48,8 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof ModelNotFoundException or $e instanceof NotFoundHttpException) {
             return response(view('errors.notice', [
-                'title'       => 'Page Not Found',
-                'description' => 'Sorry, the page or resource you are trying to view does not exist.'
+                'title'       => trans('errors.not_found'),
+                'description' => trans('errors.not_found_description')
             ]), 404);
         }
 

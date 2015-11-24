@@ -65,6 +65,9 @@ class DatabaseSeeder extends Seeder
             $user->articles()->save(
                 factory(App\Article::class)->make()
             );
+            $user->articles()->save(
+                factory(App\Article::class)->make()
+            );
         });
         $this->command->info('articles table seeded');
 
