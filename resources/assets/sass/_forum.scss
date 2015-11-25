@@ -12,6 +12,25 @@
     margin: $baseline 0;
   }
 
+  aside {
+    li {
+      display: block;
+    }
+
+    li a {
+      display: block;
+      padding: 0.5rem 1rem;
+    }
+
+    li.active {
+      background-color: $color-hr;
+
+      a, a:hover, a:active, a:focus {
+        color: $color-text1;
+      }
+    }
+  }
+
   pre.prettyprint {
     padding: 1rem !important;
     background-color: $color-background;
@@ -22,7 +41,7 @@
 
 .sidebar__forum aside {
   &>ul>li {
-    padding: 0 0 1rem 0;
+    margin-bottom: 1rem;
   }
 
   form {

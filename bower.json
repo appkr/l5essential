@@ -3,6 +3,7 @@
   "devDependencies": {
     "bootstrap-sass": "~3.3.5",
     "font-awesome": "~4.4.0",
-    "google-code-prettify": "~1.0.4"
+    "google-code-prettify": "~1.0.4",
+    "select2": "~4.0.0"
   }
 }

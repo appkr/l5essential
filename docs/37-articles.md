@@ -118,7 +118,7 @@ class ArticlesController extends Controller
 
 <ul class="list-unstyled">
   @foreach($allTags as $tag)
-    <li>
+    <li class="{{ (Route::current()->parameter('id') == $tag->id) ? 'active' : '' }}">
       <a href="#">
         {{ $tag->name }}
         @if ($tagCount = $tag->articles->count())
@@ -130,7 +130,9 @@ class ArticlesController extends Controller
 </ul>
 ```
 
-`ArticlesController::__construct()` 에서 모든 뷰에 공유한 `$allTags` 변수를 여기서 이용한다. 
+`ArticlesController::__construct()` 에서 모든 뷰에 공유한 `$allTags` 변수를 여기서 이용한다.
+ 
+'active' 클래스를 표시하기 위해 삼항 연산자를 이용하였고, `Route::current()->parameter('id')` 로 현재 요청의 Route 파라미터를 얻어 왔다. 아직 Route 가 정의되지 않았으므로 이 기능은 동작하지 않는데, 곧 고칠 것이다.
 
 `$tagCount = $tag->articles->count()` 로 각 Tag 에 해당하는 Article 의 갯수를 구하고, 태그 이름 옆에 숫자로 표시하였다. `ArticlesController::__construct()` 에서 `$allTags` 변수에서 Eager Loading 을 한 이유가, 여기서 N + 1 쿼리 문제를 피하기 위해서였다.
  
@@ -200,13 +202,15 @@ class ArticlesController extends Controller
 ```html
 <!-- resources/views/tags/partial/list.blade.php -->
 
-<span class="text-muted">{!! icon('tags') !!}</span>
-<ul class="tags__forum">
-  @foreach ($tags as $tag)
-    <li class="label label-default">
-      <a href="#">{{ $tag->name }}</a> </li>
-  @endforeach
-</ul>
+@if ($tags->count())
+  <span class="text-muted">{!! icon('tags') !!}</span>
+  <ul class="tags__forum">
+    @foreach ($tags as $tag)
+      <li class="label label-default">
+        <a href="#">{{ $tag->name }}</a> </li>
+    @endforeach
+  </ul>
+@endif
 ```
 
 'articles/partial/article.blade.php' 에서 넘겨 받은 `$tags` 변수를 이용하여, 각 Article 에 연결된 Tag 들의 이름을 뿌려준다. 링크 href 속성에 '#'로 표시된 부분은 나중에 다시 업데이트할 것이다.
@@ -525,7 +529,8 @@ public function edit($id)
 
 public function update(ArticlesRequest $request, $id)
 {
-    $request->user()->articles()->update($request->except('_token', '_method'));
+    $article = Article::findOrFail($id);
+    $article->update($request->except('_token', '_method'));
     flash()->success(trans('forum.updated'));
 
     return redirect(route('articles.index'));
