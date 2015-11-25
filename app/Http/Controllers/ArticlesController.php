@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Requests;
+use App\Tag;
 
 class ArticlesController extends Controller
 {
@@ -13,7 +14,7 @@ class ArticlesController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('accessible', ['except' => ['index', 'show', 'create']]);
 
-        view()->share('allTags', \App\Tag::with('articles')->get());
+        view()->share('allTags', Tag::with('articles')->get());
 
         parent::__construct();
     }
@@ -21,11 +22,16 @@ class ArticlesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param int|null $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
-        $articles = Article::with('comments', 'author', 'tags')->latest()->paginate(10);
+        $query = $id
+            ? Tag::find($id)->articles()
+            : new Article;
+
+        $articles = $query->with('comments', 'author', 'tags')->latest()->paginate(10);
 
         return view('articles.index', compact('articles'));
     }
@@ -50,8 +56,12 @@ class ArticlesController extends Controller
      */
     public function store(ArticlesRequest $request)
     {
-        // Todo : Revisit for tag synching
-        $request->user()->articles()->create($request->all());
+        $payload = array_merge($request->except('_token'), [
+            'notification' => $request->has('notification')
+        ]);
+
+        $article = $request->user()->articles()->create($payload);
+        $article->tags()->sync($request->input('tags'));
         flash()->success(trans('forum.created'));
 
         return redirect(route('articles.index'));
@@ -92,7 +102,13 @@ class ArticlesController extends Controller
      */
     public function update(ArticlesRequest $request, $id)
     {
-        $request->user()->articles()->update($request->except('_token', '_method'));
+        $payload = array_merge($request->except('_token'), [
+            'notification' => $request->has('notification')
+        ]);
+
+        $article = Article::findOrFail($id);
+        $article->update($payload);
+        $article->tags()->sync($request->input('tags'));
         flash()->success(trans('forum.updated'));
 
         return redirect(route('articles.index'));

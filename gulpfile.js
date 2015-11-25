@@ -7,6 +7,7 @@ elixir(function (mix) {
       '../vendor/jquery/dist/jquery.js',
       '../vendor/bootstrap-sass/assets/javascripts/bootstrap.js',
       '../vendor/google-code-prettify/src/run_prettify.js',
+      '../vendor/select2/dist/js/select2.js',
       'app.js'
     ], 'public/js/app.js')
     .version([
