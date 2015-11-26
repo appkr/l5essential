@@ -17,6 +17,12 @@
             {!! icon('check') !!} {{ trans('forum.solved') }}
           </span>
         @endif
+
+        @if ($attachmentsCount = $article->attachments->count())
+          <span class="badge pull-right">
+            {!! icon('clip') !!} {{ $attachmentsCount }}
+          </span>
+        @endif
       </a>
     </h4>
 

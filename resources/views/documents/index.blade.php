@@ -3,8 +3,9 @@
 @section('content')
   <div class="page-header">
     <h4>
+      {!! icon('book', null, 'margin-right:1rem') !!}
       <a href="{{ route('documents.show') }}">
-        {!! icon('book', null, 'margin-right:1rem') !!} {{ trans('documents.title_documents') }}
+        {{ trans('documents.title_documents') }}
       </a>
     </h4>
   </div>

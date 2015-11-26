@@ -6,6 +6,7 @@ Homestead.json
 .idea
 git_*
 .DS_Store
+/resources/assets/css
 /resources/assets/vendor
 /public/css
 /public/js

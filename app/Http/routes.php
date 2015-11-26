@@ -35,6 +35,9 @@ Route::get('tags/{id}/articles', [
 ]);
 Route::resource('articles', 'ArticlesController');
 
+/* Attachments */
+Route::resource('files', 'AttachmentsController', ['only' => ['store', 'destroy']]);
+
 /* User Registration */
 Route::group(['prefix' => 'auth', 'as' => 'user.'], function () {
     Route::get('register', [
