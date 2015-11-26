@@ -18,5 +18,7 @@ return [
     'reset'       => 'fa fa-refresh',
     'pencil'      => 'fa fa-pencil',
     'delete'      => 'fa fa-trash-o',
+    'clip'        => 'fa fa-paperclip',
+    'download'    => 'fa fa-cloud-download',
 
 ];

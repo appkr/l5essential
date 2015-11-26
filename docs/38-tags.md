@@ -28,7 +28,15 @@
 
 ![](38-tags-img-01.png)
 
-**`참고`** [Laravel Collective의 Form Helper](http://laravelcollective.com/docs/5.1/html#drop-down-lists)를 이용하면, 복잡한 `<select>` 박스를 좀 더 쉽게 쓸 수 있다. `{!! Form::select("tags[{$tag->id}]", old("tags[{$tag->id}]", $tag->id), old("tags[{$tag->id}]") ? true : false)}}` 처럼... 여전히 복잡하긴 하지만, 그래도 5줄이던 것을 1줄로 줄였다.
+**`참고`** [Laravel Collective의 Form Helper](http://laravelcollective.com/docs/5.1/html#drop-down-lists)를 이용하면, 복잡한 `<select>` 박스를 좀 더 쉽게 쓸 수 있다. 바로 아래 코드 블럭을 보면, 여전히 복잡하긴 하지만, 그래도 코드랴을 상당히 줄일 수 있다는 것을 알 수 있다. 
+
+```html
+<div class="form-group">
+  {!! Form::label('tags', trans('forum.tags')) !!}
+  {!! Form::select('tags', $allTags, old('tags', $article->tags->lists('id')->toArray()), ['multiple' => 'multiple', 'class' => 'form-control'])}}
+  {!! $errors->first('tags', '<span class="form-error">:message</span>') !!}
+</div>
+```
 
 ### 컨트롤러 구현
 
@@ -61,10 +69,10 @@ public function store(ArticlesRequest $request)
 }
 ```
 
-`dd()` Helper 로 확인해 보면 아래와 같이 찍힌다. 코드를 찾아보면, 'articles' 테이블 마이그레이션에서 `$table->boolean('notification')->default(1);` 처럼 정의했었다. "on" 과 같은 string 값을 받을 수 없고, 0|1 만 입력할 수 있다.
+`dd()` Helper 로 확인해 보면 아래와 같이 찍힌다. 코드를 찾아보면, 'articles' 테이블 마이그레이션에서 `$table->boolean('notification')->default(1);` 처럼 정의했었다. "on" 과 같은 string 값을 받을 수 없고, 0|1 만 받을 수 있다.
 
 ```php
-array:5 [▼
+array:4 [▼
   "_token" => "QCfBxat0DDhVi06rb3aMmaTRfz6uxnvm1Dbp6i0v"
   "title" => "..."
   "content" => "..."
@@ -115,7 +123,7 @@ public function update(ArticlesRequest $request, $id)
 
 ### 미려한 UI
 
-좀 Off Topic 이긴하지만, 좀 더 나이스한 태그 선택을 위해, [select2 jQuery 플러그인](https://select2.github.io/)을 설치하고 사용할 것이다.
+좀 Off Topic 이긴하지만, 나이스한 태그 선택 UI를 위해, [select2 jQuery 플러그인](https://select2.github.io/)을 설치하고 사용할 것이다.
 
 ```bash
 $ bower install select2 --save-dev
@@ -126,12 +134,12 @@ $ bower install select2 --save-dev
 ```css
 /* resources/assets/sass/app.scss */
 
-@import "../vendor/font-awesome/scss/font-awesome"
+@import "../vendor/font-awesome/scss/font-awesome";
 @import "../vendor/select2/src/scss/core";
 // ...
 ```
 
-Gulp 태스크를 수정한다.
+Gulp 빌드 태스크에 select2 의 JS 파일을 포함한다.
 
 ```javascript
 // gulpfile.js
@@ -139,11 +147,11 @@ Gulp 태스크를 수정한다.
 elixir(function (mix) {
   mix
     .scripts([
-      // Other Scripts...
+      // Other Files...
       '../vendor/select2/dist/js/select2.js',
       'app.js'
     ], 'public/js/app.js')
-    // ...
+    // Other Scripts...
 });
 ```
 
@@ -153,7 +161,7 @@ elixir(function (mix) {
 $ gulp # 또는 gulp --production
 ```
 
-이제 `layouts.master` 를 상속하는 모든 뷰에서 select2 JS 인스턴스에 접근할 수 있다. 우리는 포럼 쓰기, 수정 폼에서만 사용할 것이고, 폼은 공용으로 빼 놓았고, 그 폼은 다시 tagselector.blade.php 를 `@import` 하므로.. 한 곳에서만 select2 를 활성화 시키는 스크립트를 쓰면 된다. 
+이제 `layouts.master` 를 상속하는 모든 뷰에서 select2 JS 인스턴스에 접근할 수 있다. 우리는 포럼 쓰기, 수정 폼에서만 사용할 것이고, 폼은 공용으로 빼 놓았고, 그 폼은 다시 tagselector.blade.php 를 `@import` 하므로.. 한 곳에서만, 즉 'tagselector.blade.php' 에서만 select2 를 활성화 시키는 스크립트를 쓰면 된다. 
 
 ```html
 <!-- resources/views/articles/partial/tagselector.blade.php -->
@@ -163,7 +171,7 @@ $ gulp # 또는 gulp --production
 @section('script')
   <script>
     $("select#tags").select2({
-      placeholder: "Chose tags (max to 3)",
+      placeholder: "{{ trans('forum.tags_help') }}",
       maximumSelectionLength: 3
     });
   </script>
@@ -178,7 +186,7 @@ $ gulp # 또는 gulp --production
 
 #### Route 정의
 
-'GET /tags/1/articles' 와 같은 Url 요청이 들어오면 Tag 1번에 연결된 Article 목록을 보여줄 것이다.
+포럼 목록 보기에서 왼쪽의 태그 리스트에서 태그 이름을 누르면, 해당 태그에 속하는 포럼 글 목록만 보여 주게 할 것이다. 'GET /tags/1/articles' 와 같은 Url 요청이 들어오면 Tag 1번에 연결된 Article 목록을 보여줄 것이다.
 
 ```php
 // app/Http/routes.php
@@ -192,7 +200,7 @@ Route::resource('articles', 'ArticlesController');
 
 #### 컨트롤러 작성
 
-기존에 만든 `ArticlesController@index` 를 사용할 것이므로, 약간의 분기가 필요하다. 'GET /tags/{id}/articles' 에서는 id 파라미터가 있고, 'GET /articles' 에서는 없다는 것에 착안하자.
+기존에 만든 `ArticlesController@index` 를 사용할 것이므로, 약간의 분기가 필요하다. 'GET /tags/{id}/articles' 에서는 id 파라미터가 있고, 'GET /articles' 에서는 없다는 것에 착안하자. (또는 Route 이름으로 분기할 수도 있을 것이다.)
 
 ```php
 // app/Http/Controllers/ArticlesController.php

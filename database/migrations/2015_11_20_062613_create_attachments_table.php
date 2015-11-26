@@ -18,7 +18,7 @@ class CreateAttachmentsTable extends Migration
             $table->string('name');
             $table->timestamps();
 
-            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+//            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });
     }
 

@@ -4,6 +4,7 @@
     "bootstrap-sass": "~3.3.5",
     "font-awesome": "~4.4.0",
     "google-code-prettify": "~1.0.4",
-    "select2": "~4.0.0"
+    "select2": "~4.0.0",
+    "dropzone": "~4.2.0"
   }
 }

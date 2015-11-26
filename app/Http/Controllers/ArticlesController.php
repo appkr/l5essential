@@ -62,6 +62,15 @@ class ArticlesController extends Controller
 
         $article = $request->user()->articles()->create($payload);
         $article->tags()->sync($request->input('tags'));
+
+        if ($request->has('attachments')) {
+            $attachments = \App\Attachment::whereIn('id', $request->input('attachments'))->get();
+            $attachments->each(function($attachment) use($article) {
+                $attachment->article()->associate($article);
+                $attachment->save();
+            });
+        }
+
         flash()->success(trans('forum.created'));
 
         return redirect(route('articles.index'));
@@ -122,7 +131,15 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        Article::findOrFail($id)->delete();
+        $article = Article::with('attachments')->findOrFail($id);
+
+        foreach($article->attachments as $attachment) {
+            \File::delete(attachment_path($attachment->name));
+            $attachment->delete();
+        }
+
+        $article->delete();
+
         flash()->success(trans('forum.deleted'));
 
         return redirect(route('articles.index'));

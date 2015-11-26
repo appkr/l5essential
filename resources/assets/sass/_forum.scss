@@ -31,6 +31,17 @@
     }
   }
 
+  img {
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    padding: 4px;
+    margin: 0 auto;
+    line-height: 1rem;
+    background-color: #fff;
+    transition: all .2s ease-in-out
+  }
+
   pre.prettyprint {
     padding: 1rem !important;
     background-color: $color-background;
