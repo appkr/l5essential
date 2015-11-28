@@ -409,4 +409,5 @@ public function destroy($id)
 
 - [목록으로 돌아가기](../readme.md)
 - [38강 - Tag 기능 구현](38-tags.md)
+- [32/33 보충 - 인증 리팩토링](32n33-auth-refactoring.md)
 - [40강 - Comment 기능 구현](40-comments.md)

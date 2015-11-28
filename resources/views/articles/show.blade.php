@@ -34,7 +34,7 @@
 
         <div class="divider">&nbsp;</div>
 
-        @if (auth()->user()->isAdmin() or $article->isAuthor())
+        @if ($currentUser and ($currentUser->isAdmin() or $article->isAuthor()))
         <div class="text-center">
           <form action="{{ route('articles.destroy', $article->id) }}" method="post">
             {!! csrf_field() !!}
