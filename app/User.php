@@ -55,6 +55,12 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(Comment::class, 'author_id');
     }
 
+    /* Query Scopes */
+    public function scopeNoPassword($query)
+    {
+        return $query->whereNull('password');
+    }
+
     /* Helpers */
     public function isAdmin()
     {
