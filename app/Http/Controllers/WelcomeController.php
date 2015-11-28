@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-
 class WelcomeController extends Controller
 {
     /**
@@ -48,6 +46,6 @@ class WelcomeController extends Controller
 
         return ($return = request('return'))
             ? redirect(urldecode($return))->withCookie($cookie)
-            : redirect(route('home'))->withCookie($cookie);
+            : redirect(\Auth::check() ? route('home') : route('index'))->withCookie($cookie);
     }
 }

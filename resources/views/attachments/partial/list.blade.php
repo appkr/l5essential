@@ -4,7 +4,7 @@
       <li class="label label-default">
         {!! icon('download') !!}
         <a href="/attachments/{{ $attachment->name }}">{{ $attachment->name }}</a>
-        @if (auth()->user()->isAdmin() or $article->isAuthor())
+        @if ($currentUser and ($currentUser->isAdmin() or $article->isAuthor()))
           <form action="{{ route('files.destroy', $attachment->id) }}" method="post" style="display: inline;">
             {!! csrf_field() !!}
             {!! method_field('DELETE') !!}

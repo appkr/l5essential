@@ -1,14 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-  <form action="{{ route('user.store') }}" method="POST" role="form" class="form-auth">
+  <form action="{{ route('users.store') }}" method="POST" role="form" class="form-auth">
 
     {!! csrf_field() !!}
 
     <div class="page-header">
       <h4>{{ trans('auth.title_signup') }}</h4>
       <p class="text-muted">
-        {!!  trans('auth.title_signup_help', ['url' => route('session.create')]) !!}
+        {!!  trans('auth.title_signup_help', ['url' => route('sessions.create')]) !!}
       </p>
     </div>
 

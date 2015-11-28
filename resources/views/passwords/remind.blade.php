@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-  <form action="{{ route('reminder.store') }}" method="POST" role="form" class="form-auth">
+  <form action="{{ route('remind.store') }}" method="POST" role="form" class="form-auth">
 
     {!! csrf_field() !!}
 

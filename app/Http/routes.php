@@ -39,59 +39,49 @@ Route::resource('articles', 'ArticlesController');
 Route::resource('files', 'AttachmentsController', ['only' => ['store', 'destroy']]);
 
 /* User Registration */
-Route::group(['prefix' => 'auth', 'as' => 'user.'], function () {
-    Route::get('register', [
-        'as'   => 'create',
-        'uses' => 'Auth\AuthController@getRegister',
-    ]);
-    Route::post('register', [
-        'as'   => 'store',
-        'uses' => 'Auth\AuthController@postRegister',
-    ]);
-});
+Route::get('auth/register', [
+    'as'   => 'users.create',
+    'uses' => 'UsersController@create'
+]);
+Route::post('auth/register', [
+    'as'   => 'users.store',
+    'uses' => 'UsersController@store'
+]);
+
+/* Social Login */
+Route::get('social/{provider}', [
+    'as'   => 'social.login',
+    'uses' => 'SocialController@execute',
+]);
 
 /* Session */
-Route::group(['prefix' => 'auth', 'as' => 'session.'], function () {
-    Route::get('login', [
-        'as'   => 'create',
-        'uses' => 'Auth\AuthController@getLogin',
-    ]);
-    Route::post('login', [
-        'as'   => 'store',
-        'uses' => 'Auth\AuthController@postLogin',
-    ]);
-    Route::get('logout', [
-        'as'   => 'destroy',
-        'uses' => 'Auth\AuthController@getLogout',
-    ]);
-
-    /* Social Login */
-    Route::get('github', [
-        'as'   => 'github.login',
-        'uses' => 'Auth\AuthController@redirectToProvider',
-    ]);
-    Route::get('github/callback', [
-        'as'   => 'github.callback',
-        'uses' => 'Auth\AuthController@handleProviderCallback',
-    ]);
-});
+Route::get('auth/login', [
+    'as'   => 'sessions.create',
+    'uses' => 'SessionsController@create'
+]);
+Route::post('auth/login', [
+    'as'   => 'sessions.store',
+    'uses' => 'SessionsController@store'
+]);
+Route::get('auth/logout', [
+    'as'   => 'sessions.destroy',
+    'uses' => 'SessionsController@destroy'
+]);
 
 /* Password Reminder */
-Route::group(['prefix' => 'auth'], function () {
-    Route::get('remind', [
-        'as'   => 'reminder.create',
-        'uses' => 'Auth\PasswordController@getEmail',
-    ]);
-    Route::post('remind', [
-        'as'   => 'reminder.store',
-        'uses' => 'Auth\PasswordController@postEmail',
-    ]);
-    Route::get('reset/{token}', [
-        'as'   => 'reset.create',
-        'uses' => 'Auth\PasswordController@getReset',
-    ]);
-    Route::post('reset', [
-        'as'   => 'reset.store',
-        'uses' => 'Auth\PasswordController@postReset',
-    ]);
-});
+Route::get('auth/remind', [
+    'as'   => 'remind.create',
+    'uses' => 'PasswordsController@getRemind',
+]);
+Route::post('auth/remind', [
+    'as'   => 'remind.store',
+    'uses' => 'PasswordsController@postRemind',
+]);
+Route::get('auth/reset/{token}', [
+    'as'   => 'reset.create',
+    'uses' => 'PasswordsController@getReset',
+]);
+Route::post('auth/reset', [
+    'as'   => 'reset.store',
+    'uses' => 'PasswordsController@postReset',
+]);

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'mailgun' => [
+    'mailgun'  => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
     ],
@@ -23,22 +23,22 @@ return [
         'secret' => env('MANDRILL_SECRET'),
     ],
 
-    'ses' => [
+    'ses'      => [
         'key'    => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
         'region' => 'us-east-1',
     ],
 
-    'stripe' => [
+    'stripe'   => [
         'model'  => App\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'github' => [
-        'client_id' => '복사한 Client ID',
-        'client_secret' => '복사한 Client Secret',
-        'redirect' => 'http://localhost:8000/auth/github/callback',
+    'github'   => [
+        'client_id'     => env('GITHUB_ID'),
+        'client_secret' => env('GITHUB_SECRET'),
+        'redirect'      => 'http://localhost:8000/social/github',
     ],
 
 ];

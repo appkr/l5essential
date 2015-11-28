@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a href="{{ route('home') }}" class="navbar-brand">
+      <a href="{{ $currentUser ? route('home') : route('index') }}" class="navbar-brand">
         <img src="/images/laravel_logo.png" style="display: inline-block; height: 30px;"/>
       </a>
     </div>
@@ -29,12 +29,12 @@
 
         @if(! auth()->check())
           <li>
-            <a href="{{ route('session.create') }}">
+            <a href="{{ route('sessions.create', ['return' => urlencode($currentUrl)]) }}">
               {!! icon('login') !!} {{ trans('auth.title_login') }}
             </a>
           </li>
           <li>
-            <a href="{{ route('user.create') }}">
+            <a href="{{ route('users.create', ['return' => urlencode($currentUrl)]) }}">
               {!! icon('certificate') !!} {{ trans('auth.title_signup') }}
             </a>
           </li>
@@ -45,7 +45,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="{{ route('session.destroy') }}">
+                <a href="{{ route('sessions.destroy') }}">
                   {!! icon('logout') !!} {{ trans('auth.title_logout') }}
                 </a>
               </li>

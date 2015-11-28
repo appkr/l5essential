@@ -31,7 +31,7 @@
 @stop
 
 @section('content')
-  <form action="{{ route('session.store') }}" method="POST" role="form" class="form-auth">
+  <form action="{{ route('sessions.store') }}" method="POST" role="form" class="form-auth">
 
     {!! csrf_field() !!}
 
@@ -43,7 +43,7 @@
     </div>
 
     <div class="form-group">
-      <a class="btn btn-default btn-lg btn-block" href="{{ route('session.github.login') }}">
+      <a class="btn btn-default btn-lg btn-block" href="{{ route('social.login', ['github']) }}">
         <strong>{!! icon('github') !!} {{ trans('auth.login_with_github') }}</strong>
       </a>
     </div>
@@ -81,12 +81,12 @@
     <div class="description">
       <p>&nbsp;</p>
       <p class="text-center">{{ trans('auth.recommend_signup') }}
-        <a href="{{ route('user.create') }}">
+        <a href="{{ route('users.create', ['return' => urlencode($currentUrl)]) }}">
           {{ trans('auth.button_signup') }}
         </a>
       </p>
       <p class="text-center">
-        <a href="{{ route('reminder.create')}}">
+        <a href="{{ route('remind.create')}}">
           {{ trans('auth.button_remind_password') }}
         </a>
         <br>
