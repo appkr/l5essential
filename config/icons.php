@@ -20,5 +20,8 @@ return [
     'delete'      => 'fa fa-trash-o',
     'clip'        => 'fa fa-paperclip',
     'download'    => 'fa fa-cloud-download',
+    'dropdown'    => 'fa fa-chevron-down',
+    'update'      => 'fa fa-paragraph',
+    'reply'       => 'fa fa-reply',
 
 ];

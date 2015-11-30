@@ -14,6 +14,8 @@ return [
     'updated'      => '수정 되었습니다.',
     'deleted'      => '삭제 되었습니다.',
     'tags_help'    => '태그를 선택하세요 (최대 3개)',
-
+    'comment_add'  => '댓글이 작성되었습니다.',
+    'comment_edit' => '댓글이 수정되었습니다.',
+    'title_comments' => '댓글',
 
 ];

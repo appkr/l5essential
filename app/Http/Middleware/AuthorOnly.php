@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
-class CanAccessArticle
+class AuthorOnly
 {
     /**
      * Handle an incoming request.
@@ -13,12 +14,13 @@ class CanAccessArticle
      * @param  \Closure                 $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next, $param)
     {
         $user = $request->user();
-        $articleId = $request->route('articles');
+        $model = '\\App\\' . ucfirst($param);
+        $modelId = $request->route(str_plural($param));
 
-        if (! \App\Article::whereId($articleId)->whereAuthorId($user->id)->exists() and ! $user->isAdmin()) {
+        if (! $model::whereId($modelId)->whereAuthorId($user->id)->exists() and ! $user->isAdmin()) {
             flash()->error(trans('errors.forbidden') . ' : ' . trans('errors.forbidden_description'));
 
             return back();

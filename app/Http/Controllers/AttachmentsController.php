@@ -42,10 +42,11 @@ class AttachmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param  int                     $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $attachment = \App\Attachment::findOrFail($id);
 
@@ -56,8 +57,8 @@ class AttachmentsController extends Controller
 
         $attachment->delete();
 
-        if (\Request::ajax()) {
-            return response()->json(['status' => 'ok']);
+        if ($request->ajax()) {
+            return response()->json('', 204);
         }
 
         flash()->success(trans('forum.deleted'));
