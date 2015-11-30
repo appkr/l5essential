@@ -43,4 +43,11 @@ class Comment extends Model
     {
         return $this->belongsTo(Comment::class, 'id', 'parent_id');
     }
+
+    /* Helpers */
+
+    public function isAuthor()
+    {
+        return $this->author->id == auth()->user()->id;
+    }
 }

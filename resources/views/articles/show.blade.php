@@ -52,9 +52,11 @@
 
       <hr class="divider"/>
 
-      <article>
-        Comment here
-      </article>
+      @if ($article->comments->count())
+        <article>
+          @include('comments.index')
+        </article>
+      @endif
     </div>
   </div>
 @stop

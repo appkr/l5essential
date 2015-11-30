@@ -98,11 +98,10 @@
         type: "POST",
         url: "/files/" + file._id,
         data: {
-          _method: "DELETE",
-          _token: $('meta[name="csrf-token"]').attr('content')
+          _method: "DELETE"
         }
-      }).success(function(data) {
-        console.log(data);
+      }).success(function() {
+        console.log('deleted');
       })
     });
   </script>

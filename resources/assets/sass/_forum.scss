@@ -42,6 +42,31 @@
     transition: all .2s ease-in-out
   }
 
+  table {
+    width: 100%;
+    max-width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    border-radius: 2px;
+    background-color: transparent;
+    margin: $baseline auto;
+
+    & > thead > tr > th,
+    & > tbody > tr > th,
+    & > tfoot > tr > th,
+    & > thead > tr > td,
+    & > tbody > tr > td,
+    & > tfoot > tr > td {
+      padding: 0.5rem;
+      border-top: 1px solid #eee;
+    }
+
+    & > tbody > tr:nth-child(odd) > td,
+    & > tbody > tr:nth-child(odd) > th {
+      background-color: #efefef;
+    }
+  }
+
   pre.prettyprint {
     padding: 1rem !important;
     background-color: $color-background;

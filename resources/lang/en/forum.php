@@ -14,5 +14,8 @@ return [
     'updated'      => 'Forum article updated !',
     'deleted'      => 'Deleted !',
     'tags_help'    => 'Choose tags (max to 3)',
+    'comment_add'  => 'Your comment attached !',
+    'comment_edit' => 'Your comment updated !',
+    'title_comments' => 'Comments',
 
 ];

@@ -172,6 +172,8 @@ class SocialController extends Controller
 
 Route 가 바뀌었으므로, [Github Developer Applications Console](https://github.com/settings/developers)를 방문하여 Authorization callback URL 을 'http://localhost:8000/social/github' 로 변경하여야 한다.
 
+**`참고`** `handleProviderCallback()` 에서 보통은 Github 에서 받은 사용자 정보로 폼을 포함한 뷰를 한번 더 사용자에게 보여주며, 다른 이메일, 비밀번호, 사용자 이름 등을 더 받아 `App\User` 모델로 저장하는 것이 정석이다. 이렇게 구현하면, 위에서 언급한 복잡한 Sync 과정이 불필요하다.
+
 #### UsersController(가입) 구현
 
 기존 대비 특별히 달라진 부분들만 살펴보도록 하자.

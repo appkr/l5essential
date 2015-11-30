@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use Cache;
-use Image;
 use Request;
 
 class DocumentsController extends Controller

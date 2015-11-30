@@ -38,6 +38,9 @@ Route::resource('articles', 'ArticlesController');
 /* Attachments */
 Route::resource('files', 'AttachmentsController', ['only' => ['store', 'destroy']]);
 
+/* Comments */
+Route::resource('comments', 'CommentsController', ['only' => ['store', 'update', 'destroy']]);
+
 /* User Registration */
 Route::get('auth/register', [
     'as'   => 'users.create',
