@@ -1,18 +1,16 @@
 @extends('layouts.master')
 
 @section('content')
-  <header class="page-header">
-    <div class="page-header">
-      <h4>
-        {!! icon('forum', null, 'margin-right:1rem') !!}
-        <a href="{{ route('articles.index') }}">
-          {{ trans('forum.title_forum') }}
-        </a>
-        <small> / </small>
-        {{ $article->title }}
-      </h4>
-    </div>
-  </header>
+  <div class="page-header">
+    <h4>
+      {!! icon('forum', null, 'margin-right:1rem') !!}
+      <a href="{{ route('articles.index') }}">
+        {{ trans('forum.title_forum') }}
+      </a>
+      <small> / </small>
+      {{ $article->title }}
+    </h4>
+  </div>
 
   <div class="row container__forum">
     <div class="col-md-3 sidebar__forum">
@@ -52,11 +50,11 @@
 
       <hr class="divider"/>
 
-      @if ($article->comments->count())
-        <article>
-          @include('comments.index')
-        </article>
-      @endif
+      <article>
+        @include('comments.index')
+      </article>
     </div>
+
+    @include('layouts.partial.markdown')
   </div>
 @stop

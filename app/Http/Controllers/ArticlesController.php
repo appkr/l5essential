@@ -28,7 +28,7 @@ class ArticlesController extends Controller
     public function index($id = null)
     {
         $query = $id
-            ? Tag::find($id)->articles()
+            ? Tag::findOrFail($id)->articles()
             : new Article;
 
         $articles = $query->with('comments', 'author', 'tags')->latest()->paginate(10);

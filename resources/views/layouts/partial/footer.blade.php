@@ -14,3 +14,9 @@
     &copy; {{ date('Y') }} &nbsp; <a href="https://github.com/appkr/l5essential">Laravel 5 Essential</a>
   </div>
 </footer>
+
+<div>
+  <a id="back-to-top" href="#" class="btn btn-sm btn-danger back-to-top" role="button" title="Top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>

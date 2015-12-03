@@ -37,7 +37,7 @@
 
   </div>
 
-  <!--div class="nav_documents">
+  <div class="nav__forum">
     <a type="button" role="button" class="btn btn-sm btn-danger">{{ trans('forum.button_toc') }}</a>
-  </div-->
+  </div>
 @stop

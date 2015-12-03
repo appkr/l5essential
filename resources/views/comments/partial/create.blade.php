@@ -1,4 +1,4 @@
-<div class="media media__create">
+<div class="media media__create" style="{{ isset($parentId) ? 'display:none;' : 'display:block;' }}">
 
   @include('users.partial.avatar', ['user' => $currentUser])
 
@@ -12,8 +12,9 @@
       @endif
 
       <div class="form-group" style="width:100%; margin: auto;">
-        <textarea name="content" class="form-control" style="width:100%; padding:1rem;">{{ old('content') }}</textarea>
+        <textarea name="content" class="form-control forum__content">{{ old('content') }}</textarea>
         {!! $errors->first('content', '<span class="form-error">:message</span>') !!}
+        <div class="preview__forum">{{ markdown(old('content', 'Preview will be shown here...')) }}</div>
       </div>
 
       <p class="text-right" style="margin:0;">

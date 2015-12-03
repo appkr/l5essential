@@ -51,7 +51,9 @@ class SessionsController extends Controller
 
         flash(trans('auth.welcome', ['name' => \Auth::user()->name]));
 
-        return redirect(route('home'));
+        return ($return = $request->input('return'))
+            ? redirect($return)
+            : redirect()->intended();;
     }
 
     /**

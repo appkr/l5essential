@@ -54,6 +54,18 @@ hr {
   padding: 0;
 }
 
+::selection {
+  background: $color-selection;
+  color: $color-text1;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: $color-selection;
+  color: $color-text1;
+  text-shadow: none;
+}
+
 body>div.container {
   margin-top: 5rem;
 }
@@ -121,4 +133,13 @@ span.form-error {
   display: block;
   margin: 1rem auto;
   width: 100%;
+}
+
+.back-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 1px;
+  right: 1px;
+  display: none;
+  z-index: 9998;
 }

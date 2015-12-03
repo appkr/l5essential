@@ -2295,7 +2295,7 @@ output {
   line-height: 1.428571429;
   color: #555555; }
 
-.form-control {
+.form-control, div.preview__forum, div.dropzone {
   display: block;
   width: 100%;
   height: 34px;
@@ -2309,23 +2309,27 @@ output {
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
-  .form-control:focus {
+  .form-control:focus, div.preview__forum:focus, div.dropzone:focus {
     border-color: #66afe9;
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
-  .form-control::-moz-placeholder {
+  .form-control::-moz-placeholder, div.preview__forum::-moz-placeholder, div.dropzone::-moz-placeholder {
     color: #999;
     opacity: 1; }
-  .form-control:-ms-input-placeholder {
+  .form-control:-ms-input-placeholder, div.preview__forum:-ms-input-placeholder, div.dropzone:-ms-input-placeholder {
     color: #999; }
-  .form-control::-webkit-input-placeholder {
+  .form-control::-webkit-input-placeholder, div.preview__forum::-webkit-input-placeholder, div.dropzone::-webkit-input-placeholder {
     color: #999; }
-  .form-control[disabled], .form-control[readonly],
-  fieldset[disabled] .form-control {
+  .form-control[disabled], div[disabled].preview__forum, div[disabled].dropzone, .form-control[readonly], div[readonly].preview__forum, div[readonly].dropzone,
+  fieldset[disabled] .form-control,
+  fieldset[disabled] div.preview__forum,
+  fieldset[disabled] div.dropzone {
     background-color: #eeeeee;
     opacity: 1; }
-  .form-control[disabled],
-  fieldset[disabled] .form-control {
+  .form-control[disabled], div[disabled].preview__forum, div[disabled].dropzone,
+  fieldset[disabled] .form-control,
+  fieldset[disabled] div.preview__forum,
+  fieldset[disabled] div.dropzone {
     cursor: not-allowed; }
 
 textarea.form-control {
@@ -2458,15 +2462,15 @@ fieldset[disabled]
   padding-bottom: 7px;
   margin-bottom: 0;
   min-height: 34px; }
-  .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control,
+  .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, .input-group-lg > div.form-control-static.preview__forum, .input-group-lg > div.form-control-static.dropzone,
   .input-group-lg > .form-control-static.input-group-addon,
-  .input-group-lg > .input-group-btn > .form-control-static.btn, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control,
+  .input-group-lg > .input-group-btn > .form-control-static.btn, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, .input-group-sm > div.form-control-static.preview__forum, .input-group-sm > div.form-control-static.dropzone,
   .input-group-sm > .form-control-static.input-group-addon,
   .input-group-sm > .input-group-btn > .form-control-static.btn {
     padding-left: 0;
     padding-right: 0; }
 
-.input-sm, .input-group-sm > .form-control,
+.input-sm, .input-group-sm > .form-control, .input-group-sm > div.preview__forum, .input-group-sm > div.dropzone,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
   height: 30px;
@@ -2490,7 +2494,7 @@ select[multiple].input-sm,
 .input-group-sm > .input-group-btn > select[multiple].btn {
   height: auto; }
 
-.form-group-sm .form-control {
+.form-group-sm .form-control, .form-group-sm div.preview__forum, .form-group-sm div.dropzone {
   height: 30px;
   padding: 5px 10px;
   font-size: 12px;
@@ -2512,7 +2516,7 @@ select[multiple].input-sm,
   font-size: 12px;
   line-height: 1.5; }
 
-.input-lg, .input-group-lg > .form-control,
+.input-lg, .input-group-lg > .form-control, .input-group-lg > div.preview__forum, .input-group-lg > div.dropzone,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
   height: 46px;
@@ -2536,7 +2540,7 @@ select[multiple].input-lg,
 .input-group-lg > .input-group-btn > select[multiple].btn {
   height: auto; }
 
-.form-group-lg .form-control {
+.form-group-lg .form-control, .form-group-lg div.preview__forum, .form-group-lg div.dropzone {
   height: 46px;
   padding: 10px 16px;
   font-size: 18px;
@@ -2560,7 +2564,7 @@ select[multiple].input-lg,
 
 .has-feedback {
   position: relative; }
-  .has-feedback .form-control {
+  .has-feedback .form-control, .has-feedback div.preview__forum, .has-feedback div.dropzone {
     padding-right: 42.5px; }
 
 .form-control-feedback {
@@ -2575,20 +2579,24 @@ select[multiple].input-lg,
   text-align: center;
   pointer-events: none; }
 
-.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback,
+.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, .input-group-lg > div.preview__forum + .form-control-feedback, .input-group-lg > div.dropzone + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
-.form-group-lg .form-control + .form-control-feedback {
+.form-group-lg .form-control + .form-control-feedback,
+.form-group-lg div.preview__forum + .form-control-feedback,
+.form-group-lg div.dropzone + .form-control-feedback {
   width: 46px;
   height: 46px;
   line-height: 46px; }
 
-.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback,
+.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, .input-group-sm > div.preview__forum + .form-control-feedback, .input-group-sm > div.dropzone + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
-.form-group-sm .form-control + .form-control-feedback {
+.form-group-sm .form-control + .form-control-feedback,
+.form-group-sm div.preview__forum + .form-control-feedback,
+.form-group-sm div.dropzone + .form-control-feedback {
   width: 30px;
   height: 30px;
   line-height: 30px; }
@@ -2605,10 +2613,10 @@ select[multiple].input-lg,
 .has-success.checkbox-inline label {
   color: #3c763d; }
 
-.has-success .form-control {
+.has-success .form-control, .has-success div.preview__forum, .has-success div.dropzone {
   border-color: #3c763d;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-success .form-control:focus {
+  .has-success .form-control:focus, .has-success div.preview__forum:focus, .has-success div.dropzone:focus {
     border-color: #2b542c;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168; }
 
@@ -2632,10 +2640,10 @@ select[multiple].input-lg,
 .has-warning.checkbox-inline label {
   color: #8a6d3b; }
 
-.has-warning .form-control {
+.has-warning .form-control, .has-warning div.preview__forum, .has-warning div.dropzone {
   border-color: #8a6d3b;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-warning .form-control:focus {
+  .has-warning .form-control:focus, .has-warning div.preview__forum:focus, .has-warning div.dropzone:focus {
     border-color: #66512c;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b; }
 
@@ -2659,10 +2667,10 @@ select[multiple].input-lg,
 .has-error.checkbox-inline label {
   color: #a94442; }
 
-.has-error .form-control {
+.has-error .form-control, .has-error div.preview__forum, .has-error div.dropzone {
   border-color: #a94442;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-error .form-control:focus {
+  .has-error .form-control:focus, .has-error div.preview__forum:focus, .has-error div.dropzone:focus {
     border-color: #843534;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483; }
 
@@ -2691,7 +2699,7 @@ select[multiple].input-lg,
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle; }
-  .form-inline .form-control {
+  .form-inline .form-control, .form-inline div.preview__forum, .form-inline div.dropzone {
     display: inline-block;
     width: auto;
     vertical-align: middle; }
@@ -2702,9 +2710,11 @@ select[multiple].input-lg,
     vertical-align: middle; }
     .form-inline .input-group .input-group-addon,
     .form-inline .input-group .input-group-btn,
-    .form-inline .input-group .form-control {
+    .form-inline .input-group .form-control,
+    .form-inline .input-group div.preview__forum,
+    .form-inline .input-group div.dropzone {
       width: auto; }
-  .form-inline .input-group > .form-control {
+  .form-inline .input-group > .form-control, .form-inline .input-group > div.preview__forum, .form-inline .input-group > div.dropzone {
     width: 100%; }
   .form-inline .control-label {
     margin-bottom: 0;
@@ -3427,7 +3437,7 @@ tbody.collapse.in {
     float: none;
     padding-left: 0;
     padding-right: 0; }
-  .input-group .form-control {
+  .input-group .form-control, .input-group div.preview__forum, .input-group div.dropzone {
     position: relative;
     z-index: 2;
     float: left;
@@ -3436,11 +3446,15 @@ tbody.collapse.in {
 
 .input-group-addon,
 .input-group-btn,
-.input-group .form-control {
+.input-group .form-control,
+.input-group div.preview__forum,
+.input-group div.dropzone {
   display: table-cell; }
   .input-group-addon:not(:first-child):not(:last-child),
   .input-group-btn:not(:first-child):not(:last-child),
-  .input-group .form-control:not(:first-child):not(:last-child) {
+  .input-group .form-control:not(:first-child):not(:last-child),
+  .input-group div.preview__forum:not(:first-child):not(:last-child),
+  .input-group div.dropzone:not(:first-child):not(:last-child) {
     border-radius: 0; }
 
 .input-group-addon,
@@ -3475,7 +3489,7 @@ tbody.collapse.in {
   .input-group-addon input[type="checkbox"] {
     margin-top: 0; }
 
-.input-group .form-control:first-child,
+.input-group .form-control:first-child, .input-group div.preview__forum:first-child, .input-group div.dropzone:first-child,
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
 .input-group-btn:first-child > .btn-group > .btn,
@@ -3488,7 +3502,7 @@ tbody.collapse.in {
 .input-group-addon:first-child {
   border-right: 0; }
 
-.input-group .form-control:last-child,
+.input-group .form-control:last-child, .input-group div.preview__forum:last-child, .input-group div.dropzone:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
 .input-group-btn:last-child > .btn-group > .btn,
@@ -3828,7 +3842,7 @@ tbody.collapse.in {
       display: inline-block;
       margin-bottom: 0;
       vertical-align: middle; }
-    .navbar-form .form-control {
+    .navbar-form .form-control, .navbar-form div.preview__forum, .navbar-form div.dropzone {
       display: inline-block;
       width: auto;
       vertical-align: middle; }
@@ -3839,9 +3853,11 @@ tbody.collapse.in {
       vertical-align: middle; }
       .navbar-form .input-group .input-group-addon,
       .navbar-form .input-group .input-group-btn,
-      .navbar-form .input-group .form-control {
+      .navbar-form .input-group .form-control,
+      .navbar-form .input-group div.preview__forum,
+      .navbar-form .input-group div.dropzone {
         width: auto; }
-    .navbar-form .input-group > .form-control {
+    .navbar-form .input-group > .form-control, .navbar-form .input-group > div.preview__forum, .navbar-form .input-group > div.dropzone {
       width: 100%; }
     .navbar-form .control-label {
       margin-bottom: 0;
@@ -8265,6 +8281,21 @@ hr {
   margin: 1em 0;
   padding: 0; }
 
+::-moz-selection {
+  background: #fff7a8;
+  color: #444;
+  text-shadow: none; }
+
+::selection {
+  background: #fff7a8;
+  color: #444;
+  text-shadow: none; }
+
+::-moz-selection {
+  background: #fff7a8;
+  color: #444;
+  text-shadow: none; }
+
 body > div.container {
   margin-top: 5rem; }
 
@@ -8319,6 +8350,14 @@ span.form-error {
   margin: 1rem auto;
   width: 100%; }
 
+.back-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 1px;
+  right: 1px;
+  display: none;
+  z-index: 9998; }
+
 .form-auth {
   max-width: 330px;
   width: 100%;
@@ -8329,12 +8368,12 @@ span.form-error {
     margin-bottom: 1rem; }
   .form-auth .checkbox {
     font-weight: normal; }
-  .form-auth .form-control {
+  .form-auth .form-control, .form-auth div.preview__forum, .form-auth div.dropzone {
     position: relative;
     height: auto;
     box-sizing: border-box;
     padding: 0.6rem; }
-  .form-auth .form-control:focus {
+  .form-auth .form-control:focus, .form-auth div.preview__forum:focus, .form-auth div.dropzone:focus {
     z-index: 2; }
   .form-auth input {
     margin-bottom: 10px; }
@@ -8570,21 +8609,49 @@ span.form-error {
     background-color: #e9e9e9;
     color: #444; }
 
+div.preview__forum {
+  display: none;
+  margin-top: 24px;
+  height: auto; }
+
+div.dropzone {
+  display: none;
+  height: auto; }
+
+textarea.forum__content {
+  width: 100%;
+  padding: 1rem; }
+
+pre {
+  padding: 0;
+  border: none;
+  border-radius: 0; }
+  pre > code.hljs {
+    padding: 1rem; }
+
 /* media queries */
 @media screen and (max-width: 991px) {
   /* MD 991px */
   .sidebar__documents,
-  .sidebar__fodum {
+  .sidebar__forum {
     display: none;
     overflow: hidden;
     margin-bottom: 24px; }
     .sidebar__documents li a,
-    .sidebar__fodum li a {
+    .sidebar__forum li a {
       display: block; }
     .sidebar__documents li a:hover,
-    .sidebar__fodum li a:hover {
+    .sidebar__forum li a:hover {
       background-color: #29ABE0;
-      color: #fff; } }
+      color: #fff; }
+  div.nav__forum,
+  div.nav__documents {
+    position: fixed;
+    bottom: 1px;
+    left: 1px;
+    z-index: 9999;
+    display: block;
+    transition: all 0.5s ease-in-out; } }
 
 @media screen and (max-width: 480px) {
   /* Phone Device */
@@ -8984,5 +9051,150 @@ span.form-error {
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-bottom: 6px solid #be2626; }
+
+.hljs {
+  display: block; padding: 0.5em;
+  background: #12100f; color: #EBD1B7;
+}
+
+.hljs-comment,
+.hljs-template_comment,
+.hljs-javadoc {
+  color: #7A7267;
+}
+
+.hljs-keyword,
+.ruby .hljs-function .hljs-keyword,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title {
+  color: #DB784D;
+}
+
+.hljs-function .hljs-keyword,
+.hljs-sub .hljs-keyword,
+.method,
+.hljs-list .hljs-title {
+  color: #60A365;
+}
+
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-cdata,
+.hljs-filter .hljs-argument,
+.hljs-attr_selector,
+.apache .hljs-cbracket,
+.hljs-date,
+.tex .hljs-command,
+.coffeescript .hljs-attribute {
+  color: #F8BB39;
+}
+
+.hljs-subst {
+  color: #DAEFA3;
+}
+
+.hljs-regexp {
+  color: #E9C062;
+}
+
+.hljs-title,
+.hljs-sub .hljs-identifier,
+.hljs-pi,
+.hljs-tag,
+.hljs-tag .hljs-keyword,
+.hljs-decorator,
+.hljs-shebang,
+.hljs-prompt {
+  color: #DB784D;
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.hljs-number {
+  color: #F8BB39;
+}
+
+.hljs-params,
+.hljs-variable,
+.clojure .hljs-attribute {
+  color: #95CC5E;
+}
+
+.css .hljs-tag,
+.hljs-rules .hljs-property,
+.hljs-pseudo,
+.tex .hljs-special {
+  color: #DB784D;
+}
+
+.css .hljs-class {
+  color: #95CC5E;
+}
+
+.hljs-rules .hljs-keyword {
+  color: #95CC5E;
+}
+
+.hljs-rules .hljs-value {
+  color: #DB784D;
+}
+
+.css .hljs-id {
+  color: #8B98AB;
+}
+
+.hljs-annotation,
+.apache .hljs-sqbracket,
+.nginx .hljs-built_in {
+  color: #9B859D;
+}
+
+.hljs-preprocessor,
+.hljs-pragma {
+  color: #8996A8;
+}
+
+.hljs-hexcolor,
+.css .hljs-value .hljs-number {
+  color: #DD7B3B;
+}
+
+.css .hljs-function {
+  color: #DAD085;
+}
+
+.diff .hljs-header,
+.hljs-chunk,
+.tex .hljs-formula {
+  background-color: #0E2231;
+  color: #F8F8F8;
+  font-style: italic;
+}
+
+.diff .hljs-change {
+  background-color: #4A410D;
+  color: #F8F8F8;
+}
+
+.hljs-addition {
+  background-color: #253B22;
+  color: #F8F8F8;
+}
+
+.hljs-deletion {
+  background-color: #420E09;
+  color: #F8F8F8;
+}
+
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata {
+  opacity: 0.5;
+}
 
 /*# sourceMappingURL=app.css.map */
