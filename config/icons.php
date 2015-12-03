@@ -23,5 +23,8 @@ return [
     'dropdown'    => 'fa fa-chevron-down',
     'update'      => 'fa fa-paragraph',
     'reply'       => 'fa fa-reply',
+    'preview'     => 'fa fa-code',
+    'up'          => 'fa fa-chevron-up',
+    'down'        => 'fa fa-chevron-down',
 
 ];

@@ -128,3 +128,30 @@
     color: $color-text1;
   }
 }
+
+div.preview__forum {
+  display: none;
+  @extend .form-control;
+  margin-top: $baseline;
+  height: auto;
+}
+
+div.dropzone {
+  @extend .form-control;
+  display: none;
+  height: auto;
+}
+
+textarea.forum__content {
+  width: 100%;
+  padding: 1rem;
+}
+
+pre {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  &>code.hljs {
+    padding: 1rem;
+  }
+}

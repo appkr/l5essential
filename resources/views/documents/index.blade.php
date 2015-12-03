@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <!--div class="nav_documents">
+  <div class="nav__documents">
     <a type="button" role="button" class="btn btn-sm btn-danger">{{ trans('documents.button_toc') }}</a>
-  </div-->
+  </div>
 @stop

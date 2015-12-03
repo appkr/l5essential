@@ -1,4 +1,7 @@
 <div class="container__forum">
+  <a href="#" class="help-block pull-right hidden-xs" id="md-caller">
+    <small>{!! icon('preview') !!} Markdown Cheatsheet</small>
+  </a>
   <h4>{!! icon('comments') !!} {{ trans('forum.title_comments') }}</h4>
 
   @if($currentUser)
@@ -23,6 +26,7 @@
 @section('script')
   <script>
     $("button.btn__reply").on("click", function(e) {
+      // Toggle reply form
       var el__create = $(this).closest(".media__item").find(".media__create").first(),
           el__edit = $(this).closest(".media__item").find(".media__edit").first();
 
@@ -31,6 +35,7 @@
     });
 
     $("a.btn__edit").on("click", function(e) {
+      // Toggle edit form
       var el__create = $(this).closest(".media__item").find(".media__create").first(),
           el__edit = $(this).closest(".media__item").find(".media__edit").first();
 
@@ -39,6 +44,7 @@
     });
 
     $("a.btn__delete").on("click", function(e) {
+      // Make a delete request to the server
       var commentId = $(this).closest(".media__item").data("id");
 
       if (confirm("Are you sure to delete this comment?")) {
@@ -53,6 +59,13 @@
           reload(3000);
         })
       }
+    });
+
+    $("#md-modal").on("click", function(e) {
+      // Make an overlay, explaining markdown syntax
+      e.preventDefault();
+      $("#md-modal").modal();
+      return false;
     });
   </script>
 @stop

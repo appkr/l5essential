@@ -2,7 +2,7 @@
 @media screen and (max-width: $screen-sm-max) {
   /* MD 991px */
   .sidebar__documents,
-  .sidebar__fodum {
+  .sidebar__forum {
     display: none;
     overflow: hidden;
     margin-bottom: $baseline;
@@ -15,6 +15,15 @@
       background-color: $brand-info;
       color: $color-text2;
     }
+  }
+  div.nav__forum,
+  div.nav__documents {
+    position: fixed;
+    bottom: 1px;
+    left: 1px;
+    z-index: 9999;
+    display: block;
+    transition: all 0.5s ease-in-out;
   }
 }
 
