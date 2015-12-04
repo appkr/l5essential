@@ -136,7 +136,7 @@ class ArticlesController extends Controller
 
 `$tagCount = $tag->articles->count()` 로 각 Tag 에 해당하는 Article 의 갯수를 구하고, 태그 이름 옆에 숫자로 표시하였다. `ArticlesController::__construct()` 에서 `$allTags` 변수에서 Eager Loading 을 한 이유가, 여기서 N + 1 쿼리 문제를 피하기 위해서였다.
  
- **`참고`** 태그 리스트를 포함한 왼쪽 영역은 여러 뷰에서 사용하므로, [뷰 컴포저](http://laravel.com/docs/5.1/views#view-composers)로 구성하면 더 깔끔하다. 이 코스 수준을 넘어서는 내용으로 각자 공부해서 적용해 보자. 
+ **`참고`** 태그 리스트를 포함한 왼쪽 영역은 여러 뷰에서 사용하므로, [뷰 컴포저](http://laravel.com/docs/views#view-composers)로 구성하면 더 깔끔하다. 이 코스 수준을 넘어서는 내용으로 각자 공부해서 적용해 보자. 
 
 ```html
 <!-- resources/views/articles/partial/article.blade.php -->
@@ -399,7 +399,7 @@ public function create()
 
 #### 저장 로직 구현
 
-기본기 강좌의 [23강 - 입력 값 유효성 검사](23-validation.md)에서는 다루지 않았는데, 여기서는 [Form Request](http://laravel.com/docs/5.1/validation#form-request-validation) 를 사용하여 사용자의 입력값 유효성 검사를 할 것이다.
+기본기 강좌의 [23강 - 입력 값 유효성 검사](23-validation.md)에서는 다루지 않았는데, 여기서는 [Form Request](http://laravel.com/docs/validation#form-request-validation) 를 사용하여 사용자의 입력값 유효성 검사를 할 것이다.
 
 ```bash
 $ php artisan make:request ArticlesRequest
@@ -644,7 +644,7 @@ class CanAccessArticle
 
 `Illuminate\Http\Request` 인스턴스에서는 `user()` 메소드를 사용할 수 있으며, `auth()->user()` 와 동일한 결과를 얻을 수있다. 로그인한 사용자 id와 Route 파라미터로 넘겨 받은 Article id로 Article 모델을 검색하여 레코드가 있으면, 작성자이므로 통과시켜 주는 식이다.
 
-**`참고`** 미들웨어에서 Route를 통해 사용자로부터 넘겨 받은 파라미터를 이용할 수 있다. [미들웨어 파라미터](http://laravel.com/docs/5.1/middleware#middleware-parameters)를 잘 이용하면, Article 모델 뿐 아니라 여러 모델에 적용할 수 있는 미들웨어를 만들수 있을 것이다.
+**`참고`** 미들웨어에서 Route를 통해 사용자로부터 넘겨 받은 파라미터를 이용할 수 있다. [미들웨어 파라미터](http://laravel.com/docs/middleware#middleware-parameters)를 잘 이용하면, Article 모델 뿐 아니라 여러 모델에 적용할 수 있는 미들웨어를 만들수 있을 것이다.
 
 ```php
 // app/Http/Kernel.php

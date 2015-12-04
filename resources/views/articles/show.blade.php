@@ -15,13 +15,13 @@
   <div class="row container__forum">
     <div class="col-md-3 sidebar__forum">
       <aside>
-        @include('layouts.partial.search')
+        @include('articles.partial.search')
         @include('tags.partial.index')
       </aside>
     </div>
 
     <div class="col-md-9">
-      <article>
+      <article id="article__article" data-id="{{ $article->id }}">
         @include('articles.partial.article', ['article' => $article])
 
         @include('attachments.partial.list', ['attachments' => $article->attachments])
@@ -32,12 +32,13 @@
 
         <div class="divider">&nbsp;</div>
 
+        @if ($article->solution)
+          @include('comments.partial.best', ['comment' => $article->solution])
+        @endif
+
         @if ($currentUser and ($currentUser->isAdmin() or $article->isAuthor()))
         <div class="text-center">
-          <form action="{{ route('articles.destroy', $article->id) }}" method="post">
-            {!! csrf_field() !!}
-            {!! method_field('DELETE') !!}
-            <button type="submit" class="btn btn-danger">
+            <button type="button" class="btn btn-danger btn__delete">
               {!! icon('delete') !!} Delete
             </button>
             <a href="{{route('articles.edit', $article->id)}}" class="btn btn-info">
@@ -51,10 +52,37 @@
       <hr class="divider"/>
 
       <article>
-        @include('comments.index')
+        @include('comments.index', [
+          'solved' => $article->solution,
+          'articleOwner' => $currentUser && $article->isAuthor()
+        ])
       </article>
     </div>
 
     @include('layouts.partial.markdown')
   </div>
+@stop
+
+@section('script')
+  <script>
+    $("button.btn__delete").on("click", function(e) {
+      var articleId = $("#article__article").data("id");
+
+      if (confirm("Are you sure to delete this article?")) {
+        $.ajax({
+          type: "POST",
+          url: "/articles/" + articleId,
+          data: {
+            _method: "DELETE"
+          }
+        }).success(function() {
+          flash('success', 'Deleted ! The page will reload in 3 secs.', 2500);
+
+          var timer = setTimeout(function () {
+            window.location.href = '/articles';
+          }, 3000);
+        });
+      }
+    });
+  </script>
 @stop

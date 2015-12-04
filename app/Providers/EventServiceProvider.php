@@ -13,9 +13,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        \App\Events\ModelChanged::class => [
+            \App\Listeners\CacheHandler::class
         ],
+        \App\Events\ArticleConsumed::class => [
+            \App\Listeners\ViewCountHandler::class
+        ]
     ];
 
     /**
@@ -28,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        $events->listen('comments.*', \App\Listeners\CommentsHandler::class);
+        $events->subscribe(\App\Listeners\UserEventsHandler::class);
     }
 }

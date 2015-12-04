@@ -48,13 +48,6 @@
   dd {
     padding: 0.5rem;
   }
-
-  pre.prettyprint {
-    padding: 1rem !important;
-    background-color: $color-background;
-    border: 1px solid $color-background !important;
-    border-radius: 2px;
-  }
 }
 
 .tags__documents {
@@ -216,4 +209,8 @@
       background-color: #efefef;
     }
   }
+}
+
+div.nav__documents {
+  display: none;
 }

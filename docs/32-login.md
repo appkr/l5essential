@@ -179,7 +179,7 @@ $ composer require "laracasts/flash:1.3.*"
 </html>
 ```
 
-`@include` 로 하위 뷰들을 포함하고 있다. `<meta name="csrf-token" content="{{ csrf_token() }}" />`는 자바스크립트에서 XHR 요청을 할 때 사용하기 위해 포함시켜 놓은 것이다 ([공식 문서 참고](http://laravel.com/docs/5.1/routing#csrf-protection)). 
+`@include` 로 하위 뷰들을 포함하고 있다. `<meta name="csrf-token" content="{{ csrf_token() }}" />`는 자바스크립트에서 XHR 요청을 할 때 사용하기 위해 포함시켜 놓은 것이다 ([공식 문서 참고](http://laravel.com/docs/routing#csrf-protection)). 
 
 ```html
 <!-- resources/views/layouts/navigation.blade.php -->

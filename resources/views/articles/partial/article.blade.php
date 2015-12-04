@@ -13,8 +13,8 @@
         @endif
 
         @if ($article->solution_id)
-          <span class="badge pull-right">
-            {!! icon('check') !!} {{ trans('forum.solved') }}
+          <span class="badge pull-right" title="{{ trans('forum.solved') }}">
+            {!! icon('check', false) !!}
           </span>
         @endif
 
@@ -31,7 +31,13 @@
         {!! icon('user') !!} {{ $article->author->name }}
       </a>
 
-      {!! icon('clock') !!} {{ $article->created_at->diffForHumans() }}
+      <span style="margin-right: 1rem;">
+        {!! icon('clock') !!} {{ $article->created_at->diffForHumans() }}
+      </span>
+
+      <span style="margin-right: 1rem;">
+        {!! icon('view_count') !!} {{ number_format($article->view_count) }}
+      </span>
     </p>
 
     @include('tags.partial.list', ['tags' => $article->tags])

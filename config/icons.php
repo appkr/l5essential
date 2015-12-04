@@ -26,5 +26,12 @@ return [
     'preview'     => 'fa fa-code',
     'up'          => 'fa fa-chevron-up',
     'down'        => 'fa fa-chevron-down',
+    'filter'      => 'fa fa-filter',
+    'pick'        => 'fa fa-thumbs-o-up',
+    'view_count'  => 'fa fa-eye',
+    'sort'        => 'fa fa-sort',
+    'desc'        => 'fa fa-sort-alpha-desc',
+    'asc'         => 'fa fa-sort-alpha-asc',
+    'new'         => 'fa fa-plus-circle',
 
 ];

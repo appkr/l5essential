@@ -98,7 +98,7 @@ elixir(function (mix) {
 });
 ```
 
-Elixir의 Javascript API 들은 대부분 관례로 정해진 상대 경로를 기준으로 하므로, [문서](http://laravel.com/docs/5.1/elixir)를 잘 살펴보고 이용해야 한다. 필자가 아는 관례들은 아래에 정리해 두었다.
+Elixir의 Javascript API 들은 대부분 관례로 정해진 상대 경로를 기준으로 하므로, [문서](http://laravel.com/docs/elixir)를 잘 살펴보고 이용해야 한다. 필자가 아는 관례들은 아래에 정리해 두었다.
 
 API|Base Directory|Description
 ---|---|---
@@ -166,7 +166,7 @@ Cache Busting을 사용할 수 있도록 resources/views/master.blade.php 를 �
 
 **`참고`** 28강에서 우리가 캐시 기능을 추가했던 것을 기억하는가? 스타일시트나 뷰를 변경한 후, `$ php artisan cache:clear`를 해서 기존 캐시를 지워주어야 변경된 내용을 확인할 수 있다. 개발기간 중에는 불편할 수 있으니, 컨트롤러에서 캐시 기능을 주석처리해 놓는 것도 좋다. 다만, 버전 컨트롤에 업로드하기 전에 반드시 주석을 풀어줘야 한다.
 
-**`참고`** Elixir 에는 liveReload 유사 기능을 내장하고 있다. 파일이 변경되면 브라우저에 바로 반영해 주는 기능이다. `browserSync()` 기능을 사용하려면, [공식문서](http://laravel.com/docs/5.1/elixir#browser-sync)를 확인해 보자.
+**`참고`** Elixir 에는 liveReload 유사 기능을 내장하고 있다. 파일이 변경되면 브라우저에 바로 반영해 주는 기능이다. `browserSync()` 기능을 사용하려면, [공식문서](http://laravel.com/docs/elixir#browser-sync)를 확인해 보자.
 
 ### production 빌드
 

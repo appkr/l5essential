@@ -33,6 +33,7 @@ Route::get('tags/{id}/articles', [
     'as'   => 'tags.articles.index',
     'uses' => 'ArticlesController@index'
 ]);
+Route::put('articles/{id}/pick', 'ArticlesController@pickBest');
 Route::resource('articles', 'ArticlesController');
 
 /* Attachments */
@@ -88,3 +89,7 @@ Route::post('auth/reset', [
     'as'   => 'reset.store',
     'uses' => 'PasswordsController@postReset',
 ]);
+
+//DB::listen(function($sql, $bindings, $time){
+//    var_dump($sql);
+//});

@@ -285,7 +285,7 @@ class CommentsController extends Controller
 
 #### 미들웨어 수정
 
-위 절의 `CommentsController::__construct()` 에서 `ArticlesController::__construct()` 에서 썼던 `CanAccessArticle (별칭 'accessible')` 미들웨어를 썼다. 권한에 맞게 생성, 수정, 삭제 UI를 뷰에서 숨겼다고는 하나, ArticlesController 에서와 마찬가지로 HTTP Client 를 이용하여 직접 요청하는 경우에 대해서도 방어해야 하기에... [미들웨어 파라미터](http://laravel.com/docs/5.1/middleware#middleware-parameters) 기능을 이용해서 여러 컨트롤러에서 사용할 수 있도록 기존 미들웨어를 수정해 보자.
+위 절의 `CommentsController::__construct()` 에서 `ArticlesController::__construct()` 에서 썼던 `CanAccessArticle (별칭 'accessible')` 미들웨어를 썼다. 권한에 맞게 생성, 수정, 삭제 UI를 뷰에서 숨겼다고는 하나, ArticlesController 에서와 마찬가지로 HTTP Client 를 이용하여 직접 요청하는 경우에 대해서도 방어해야 하기에... [미들웨어 파라미터](http://laravel.com/docs/middleware#middleware-parameters) 기능을 이용해서 여러 컨트롤러에서 사용할 수 있도록 기존 미들웨어를 수정해 보자.
 
 네이밍은 항상 힘들다. 'CanAccessArticle' 에서 좀 더 일반적인 'AuthorOnly' 로, 그리고 별칭은 'author' 로 수정했다.
 

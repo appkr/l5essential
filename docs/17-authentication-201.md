@@ -38,7 +38,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 ## Views
 
-뷰는 라라벨에 기본 포함되어 있지 않다. [공식 문서](http://laravel.com/docs/5.1/authentication#included-views)를 참조해서 뷰를 만들자.
+뷰는 라라벨에 기본 포함되어 있지 않다. [공식 문서](http://laravel.com/docs/authentication#included-views)를 참조해서 뷰를 만들자.
 
 ### 로그인 폼 - resources/views/auth/login.blade.php
 

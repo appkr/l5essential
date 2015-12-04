@@ -24,6 +24,7 @@
 @stop
 
 @section('script')
+  @parent
   <script>
     $("button.btn__reply").on("click", function(e) {
       // Toggle reply form
@@ -57,7 +58,27 @@
         }).success(function() {
           flash('success', 'Deleted ! The page will reload in 3 secs.', 2500);
           reload(3000);
-        })
+        });
+      }
+    });
+
+    $("button.btn__pick").on("click", function(e) {
+      // Update Best Answer against the Article model
+      var articleId = $("#article__article").data("id"),
+          commentId = $(this).closest(".media__item").data("id");
+
+      if (confirm("Are you sure to select this comment as the 'Best'?")) {
+        $.ajax({
+          type: "POST",
+          url: "/articles/" + articleId + "/pick",
+          data: {
+            _method: "PUT",
+            solution_id: commentId
+          }
+        }).success(function() {
+          flash('success', 'Updated ! The page will reload in 3 secs.', 2500);
+          reload(3000);
+        });
       }
     });
 

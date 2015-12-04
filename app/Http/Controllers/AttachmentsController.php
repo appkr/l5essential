@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ModelChanged;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -31,6 +32,8 @@ class AttachmentsController extends Controller
             ? \App\Article::findOrFail($articleId)->attachments()->create(['name' => $name])
             : \App\Attachment::create(['name' => $name]);
 
+        event(new ModelChanged('attachments'));
+
         return response()->json([
             'id'   => $attachment->id,
             'name' => $name,
@@ -56,6 +59,7 @@ class AttachmentsController extends Controller
         }
 
         $attachment->delete();
+        event(new ModelChanged('attachments'));
 
         if ($request->ajax()) {
             return response()->json('', 204);

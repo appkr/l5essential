@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Events\ModelChanged;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -29,13 +30,15 @@ class CommentsController extends Controller
         ]);
 
         $parentModel = "\\" . $request->input('commentable_type');
-        $parentModel::find($request->input('commentable_id'))
+        $comment = $parentModel::find($request->input('commentable_id'))
             ->comments()->create([
                 'author_id' => \Auth::user()->id,
                 'parent_id' => $request->input('parent_id', null),
                 'content'   => $request->input('content')
             ]);
 
+        event('comments.created', [$comment]);
+        event(new ModelChanged('comments'));
         flash()->success(trans('forum.comment_add'));
 
         return back();
@@ -52,7 +55,11 @@ class CommentsController extends Controller
     {
         $this->validate($request, ['content' => 'required']);
 
-        Comment::findOrFail($id)->update($request->only('content'));
+        $comment = Comment::findOrFail($id);
+        $comment->update($request->only('content'));
+
+        event('comments.updated', [$comment]);
+        event(new ModelChanged('comments'));
         flash()->success(trans('forum.comment_edit'));
 
         return back();
@@ -69,6 +76,8 @@ class CommentsController extends Controller
     {
         $comment = Comment::find($id);
         $this->recursiveDestroy($comment);
+
+        event(new ModelChanged('comments'));
 
         if ($request->ajax()) {
             return response()->json('', 204);

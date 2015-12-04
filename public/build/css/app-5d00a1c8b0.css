@@ -8356,7 +8356,9 @@ span.form-error {
   bottom: 1px;
   right: 1px;
   display: none;
-  z-index: 9998; }
+  z-index: 9998;
+  transition: all 0.5s ease-in-out;
+  padding: 8px 10px; }
 
 .form-auth {
   max-width: 330px;
@@ -8406,11 +8408,6 @@ span.form-error {
   .container__documents dt,
   .container__documents dd {
     padding: 0.5rem; }
-  .container__documents pre.prettyprint {
-    padding: 1rem !important;
-    background-color: #f5f5f5;
-    border: 1px solid #f5f5f5 !important;
-    border-radius: 2px; }
 
 .tags__documents {
   display: inline-block;
@@ -8520,6 +8517,9 @@ span.form-error {
     .article__documents article table > tbody > tr:nth-child(odd) > th {
       background-color: #efefef; }
 
+div.nav__documents {
+  display: none; }
+
 /* forum */
 .container__forum {
   margin-top: 1rem; }
@@ -8566,17 +8566,13 @@ span.form-error {
     .container__forum table > tbody > tr:nth-child(odd) > td,
     .container__forum table > tbody > tr:nth-child(odd) > th {
       background-color: #efefef; }
-  .container__forum pre.prettyprint {
-    padding: 1rem !important;
-    background-color: #f5f5f5;
-    border: 1px solid #f5f5f5 !important;
-    border-radius: 2px; }
 
 .sidebar__forum aside > ul > li {
   margin-bottom: 1rem; }
 
 .sidebar__forum aside form {
-  padding-left: 1rem; }
+  padding-left: 1rem;
+  margin-bottom: 1rem; }
 
 .sidebar__forum aside p.lead {
   margin: 0;
@@ -8629,6 +8625,9 @@ pre {
   pre > code.hljs {
     padding: 1rem; }
 
+div.nav__forum {
+  display: none; }
+
 /* media queries */
 @media screen and (max-width: 991px) {
   /* MD 991px */
@@ -8644,6 +8643,8 @@ pre {
     .sidebar__forum li a:hover {
       background-color: #29ABE0;
       color: #fff; }
+  div.sort__forum {
+    display: none; }
   div.nav__forum,
   div.nav__documents {
     position: fixed;

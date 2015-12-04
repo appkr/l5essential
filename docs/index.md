@@ -1,4 +1,4 @@
--   **기본기 익히기**
+-   **입문코스-기본기**
     -   [1강 - 처음 만나는 라라벨](/docs/01-welcome.md)
     -   [2강 - 라라벨 5 설치하기](/docs/02-hello-laravel.md)
     -   [3강 - 글로벌 설정 살펴보기](/docs/03-configuration.md)
@@ -26,9 +26,25 @@
     -   [24강 - 예외 처리](/docs/24-exception-handling.md)
     -   [25강 - 컴포저](/docs/25-composer.md)
     
--   **중급 실전 강좌**
+-   **중급코스1-Markdown Viewer**
+
     -   [26강 - Document 모델](/docs/26-document-model.md)
     -   [27강 - Document 컨트롤러](/docs/27-document-controller.md)
     -   [28강 - Cache](/docs/28-cache.md)
     -   [29강 - Elixir, 만병통치약?](/docs/29-elixir.md)
     -   [30강 - Debug & Final Touch](/docs/30-final-touch.md)
+    
+    -   **중급코스2-Forum**
+    -   [31강 - 포럼 요구사항 기획](/docs/31-forum-features.md)
+    -   [32강 - 사용자 로그인](/docs/32-login.md)
+    -   [33강 - 소셜 로그인](/docs/33-social-login.md)
+    -   [34강 - 사용자 역할](/docs/34-role.md)
+    -   [35강 - 다국어 지원](/docs/35-locale.md)
+    -   [36강 - 마이그레이션과 모델](/docs/36-models.md)
+    -   [37강 - Article 기능 구현](/docs/37-articles.md)
+    -   [38강 - Tag 기능 구현](/docs/38-tags.md)
+    -   [39강 - Attachment 기능 구현](/docs/39-attachments.md)
+    -   [32/33 보충 - 인증 리팩토링](/docs/32n33-auth-refactoring.md)
+    -   [40강 - Comment 기능 구현](/docs/40-comments.md)
+    -   [41강 - UI 개선](/docs/41-ui-makeup.md)
+    -   [42강 - 서버 사이드 개선](/docs/42-be-makeup.md)

@@ -5,13 +5,15 @@
 
 ### [이 코스에서 사용] 로컬 개발 환경
 
-Windows 사용자에게도 2가지 옵션이 있다. 로컬 PC를 개발 머신으로 쓰거나, 다음 절에 설명하는 "Homestead"를 쓰는 방법이다. 이 코스에서는 **로컬 PC를 개발환경으로 쓰는 것을 가정하고 설명**한다. [로컬 PC에 php, mySql 이 설치되어 있지 않다면 설치하자](http://autoset.net/xe/).
+Windows 사용자에게도 2가지 옵션이 있다. 로컬 PC를 개발 머신으로 쓰거나, 다음 절에 설명하는 "Homestead"를 쓰는 방법이다. 이 코스에서는 **로컬 PC를 개발환경으로 쓰는 것을 가정하고 설명**한다. [로컬 PC에 php, mySql 이 설치되어 있지 않다면 조연웅님의 AutoSet 을 설치하자](http://sourceforge.net/projects/project-autoset/).
+
+그리고, 코맨드 프롬프트 대체 프로그램인 [Git Bash](https://git-for-windows.github.io/) 설치를 권장한다.
 
 ## **[OPTIONAL]** 공짜로 쓰는 개발 서버 "Homestead"
 
 Virtualbox[https://www.virtualbox.org/]와 Vargrant[https://www.vagrantup.com/]가 필요하다. 개발팀 간에 동일한 개발 환경을 가지기 위해서, 또는 Production과 유사한 환경에서 개발하기 위해서 Homestead 사용을 권장한다. Homestead는 위에서 언급한 필요 확장 모듈이 기본 설치되어 있다.
 
-설정법은 꽤나 까다로우니 [공식 문서](http://laravel.com/docs/5.1/homestead)를 참고하자.
+설정법은 꽤나 까다로우니 [공식 문서](http://laravel.com/docs/homestead)를 참고하자.
 
 ## 라라벨이 동작하기 위한 php 버전 및 필요 모듈 조건 확인
 

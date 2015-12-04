@@ -9,7 +9,7 @@ if (!function_exists('markdown')) {
      */
     function markdown($text)
     {
-        return app(ParsedownExtra::class)->text($text);
+        return app(App\Services\Markdown::class)->text($text);
     }
 }
 
@@ -67,5 +67,55 @@ if (!function_exists('gravatar_url')) {
     function gravatar_url($email, $size = 72)
     {
         return sprintf("//www.gravatar.com/avatar/%s?s=%s", md5($email), $size);
+    }
+}
+
+if (!function_exists('taggable')) {
+    /**
+     * Determine if the current cache driver has cacheTags() method
+     *
+     * @return bool
+     */
+    function taggable()
+    {
+        return !in_array(config('cache.default'), ['file', 'database']);
+    }
+}
+
+if (!function_exists('link_for_sort')) {
+    /**
+     * Build HTML anchor tag for sorting
+     *
+     * @param string $column
+     * @param string $text
+     * @param array  $params
+     * @return string
+     */
+    function link_for_sort($column, $text, $params = [])
+    {
+        $direction = Request::input('d');
+        $reverse = ($direction == 'asc') ? 'desc' : 'asc';
+
+        if (Request::input('s') == $column) {
+            // Update passed $text var, only if it is active sort
+            $text = sprintf(
+                "%s %s",
+                $direction == 'asc' ? icon('asc') : icon('desc'),
+                $text
+            );
+        }
+
+        $queryString = http_build_query(array_merge(
+            Input::except(['page', 's', 'd']),
+            ['s' => $column, 'd' => $reverse],
+            $params
+        ));
+
+        return sprintf(
+            '<a href="%s?%s">%s</a>',
+            urldecode(Request::url()),
+            $queryString,
+            $text
+        );
     }
 }
