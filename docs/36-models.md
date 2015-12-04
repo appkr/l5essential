@@ -26,7 +26,7 @@
 - Attachment 모델
     - Attachment 인스턴스는 하나의 Article에 소속된다.
     
-가령, 우리 프로젝트에 Post, Application과 같은 모델이 더 있고, 모든 모델들은 모두 댓글 기능이 있다고 가정해 보자. 이 때, ArticleComment, PostComment, ApplicationComment로 총 3개의 모델을 만들고 각각 관계를 연결하는 것이 아니라, [**Polymorphic Many to Many**](http://laravel.com/docs/5.1/eloquent-relationships#many-to-many-polymorphic-relations) 관계를 이용할 수 있다. Comment 모델 하나로, Article의 Comment로도, Post의 Comment로도 쓸 수 있는 것이다. 
+가령, 우리 프로젝트에 Post, Application과 같은 모델이 더 있고, 모든 모델들은 모두 댓글 기능이 있다고 가정해 보자. 이 때, ArticleComment, PostComment, ApplicationComment로 총 3개의 모델을 만들고 각각 관계를 연결하는 것이 아니라, [**Polymorphic Many to Many**](http://laravel.com/docs/eloquent-relationships#many-to-many-polymorphic-relations) 관계를 이용할 수 있다. Comment 모델 하나로, Article의 Comment로도, Post의 Comment로도 쓸 수 있는 것이다. 
 
 Article과 Tag는 Many to Many 관계를 가지고, 이를 위해 article_tag란 피봇테이블을 도입했다. Role과 User간의 Many to Many 관계 연결을 위한 role_user 피봇테이블은 [34강 - 사용자 역할](34-role.md)을 진행하는 과정에서 'bican/role' 패키지를 설치하는 과정에 생성된 것이다.
 

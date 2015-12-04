@@ -119,7 +119,7 @@ public function update(ArticlesRequest $request, $id)
 
 `$request->has(string $key)` 는 폼 데이터에 '$key' 값이 있는 기 검사한 후, true/false 를 반환한다. 2 개의 메소드에 중복된 부분들이 많이 보이지만, 설명의 복잡성을 피하기 위해 손대지 않았다.
 
-**`참고`** 엘로퀀트 모델에서 [Mutator](http://laravel.com/docs/5.1/eloquent-mutators#accessors-and-mutators) 를 쓸 수 있다. 이를 이용하면 컨트롤러에서 `'notification' => $request->has('notification')` 와 같이 데이터 변환을 하지 않아도, 모델이 생성되는 시점에서 `Article::$notification` 속성 값을 boolean 으로 바꾸어 놓을 수 있다.
+**`참고`** 엘로퀀트 모델에서 [Mutator](http://laravel.com/docs/eloquent-mutators#accessors-and-mutators) 를 쓸 수 있다. 이를 이용하면 컨트롤러에서 `'notification' => $request->has('notification')` 와 같이 데이터 변환을 하지 않아도, 모델이 생성되는 시점에서 `Article::$notification` 속성 값을 boolean 으로 바꾸어 놓을 수 있다.
 
 ### 미려한 UI
 

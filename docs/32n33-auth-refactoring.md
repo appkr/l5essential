@@ -178,7 +178,7 @@ Route 가 바뀌었으므로, [Github Developer Applications Console](https://gi
 
 기존 대비 특별히 달라진 부분들만 살펴보도록 하자.
 
-`store()` 메소드에서는, 먼저 `App\User` 모델에 새로 정의한 `noPassword() (== whereNull('password'))` 란 [쿼리스코프](http://laravel.com/docs/5.1/eloquent#query-scopes)를 이용하여 회원 가입 요청에서 사용자가 제출한 'email' 값과 일치하고, 'password' 가 `null` 인 사용자를 찾는다. 이는 소셜로 로그인하면서 생성된 계정을 의미한다. 소셜로 생성된 계정이면 `syncAccountInfo()` 메소드로 처리 로직을 위임하고, 소셜 로그인 이력이 없는 회원 가입 요청이면 `createAccount()` 메소드로 위임했다.
+`store()` 메소드에서는, 먼저 `App\User` 모델에 새로 정의한 `noPassword() (== whereNull('password'))` 란 [쿼리스코프](http://laravel.com/docs/eloquent#query-scopes)를 이용하여 회원 가입 요청에서 사용자가 제출한 'email' 값과 일치하고, 'password' 가 `null` 인 사용자를 찾는다. 이는 소셜로 로그인하면서 생성된 계정을 의미한다. 소셜로 생성된 계정이면 `syncAccountInfo()` 메소드로 처리 로직을 위임하고, 소셜 로그인 이력이 없는 회원 가입 요청이면 `createAccount()` 메소드로 위임했다.
 
 `syncAccountInfo()` 메소드에서는, 사용자가 회원 가입 폼에 입력한 값들에 대한 유효성 검사를 수행하고, 통과하면 폼에서 넘겨 받은 'password' 값으로 기존에 `null` 이던 값을 대체하였다. Github 사용자 이름과, myProject 에서 사용하는 이름이 다를 수 있으므로, 'name' 필드도 넘겨 받은 값으로 업데이트하였다. 여기서 주목할 점은 `createAccount()` 메소드와 폼 데이터에 대한 유효성 검사 규칙이 약간 다르다는 것이다. 소셜 로그인으로 이미 사용자는 생성된 상태이므로, 'email' 필드 검사 규칙에서 'unique:users' 규칙이 빠졌다.
 

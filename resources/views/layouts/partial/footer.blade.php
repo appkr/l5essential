@@ -16,7 +16,7 @@
 </footer>
 
 <div>
-  <a id="back-to-top" href="#" class="btn btn-sm btn-danger back-to-top" role="button" title="Top">
+  <a type="button" id="back-to-top" href="#" class="btn btn-sm btn-danger back-to-top" title="Top">
     <i class="fa fa-chevron-up"></i>
   </a>
 </div>

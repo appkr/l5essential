@@ -2,15 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Article extends Model
 {
     protected $fillable = [
         'author_id',
         'title',
         'content',
-        'notification'
+        'notification',
+        'solution_id'
     ];
 
     protected $hidden = [
@@ -44,6 +43,18 @@ class Article extends Model
     public function attachments()
     {
         return $this->hasMany(Attachment::class);
+    }
+
+    /* Query Scope */
+
+    public function scopeNoComment($query)
+    {
+        return $query->has('comments', '<', 1);
+    }
+
+    public function scopeNotSolved($query)
+    {
+        return $query->whereNull('solution_id');
     }
 
     /* Helpers */

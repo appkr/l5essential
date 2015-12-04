@@ -78,7 +78,7 @@ window.addEventListener('load', function() {
 }, false);
 
 /* Set Ajax request header.
- Document can be found at http://laravel.com/docs/5.1/routing#csrf-x-csrf-token */
+ Document can be found at http://laravel.com/docs/routing#csrf-x-csrf-token */
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': csrfToken
@@ -152,7 +152,7 @@ div.preview__forum {
 }
 ```
 
-'div.preview__forum' 이란 요소를 추가하고, 처음 로드될 때 상태를 'display:none;' 로 지정하였다. 
+'div.preview__forum' 이란 요소를 추가하고, 처음 로드될 때 상태를 `display:none;` 로 지정하였다. 
 
 유효성 검사 에러가 발생할 경우를 대비해, `{{ markdown(old('content', '...')) }}` 라고 쓴 것도 놓치지 말자. 포럼/댓글 작성/수정 폼 전송시에는 컴파일되지 않은 Raw 상태로 `*Controller::store()` 메소드에 전달되고, 유효성 검사에서 튕길 경우, `withInput()` 에 의해서 사용자가 작성한 폼 값들을 세션에 구워서 폼을 전송했던 뷰로 되돌려 보낸다. 이 때 서버는 뷰를 응답하기 전에, `markdown()` Helper 를 이용해서 미리 HTML 로 컴파일 된 내용을 'div.preview__forum' 요소에 넣어 놓는 부분이다. 당연히 textarea 요소에는 컴파일되지 않은 Raw 상태를 그대로 뿌리게 된다.
 
@@ -197,13 +197,13 @@ if (textAreas.length) {
 }
 ```
 
-먼저 textarea 가 커서가 들어가면 (== 'focus' 이벤트), jQuery의 `show()` 메소드를 이용하여 'div.preview__forum' 요소를 'display: block;' 상태로 변경시켰다.
+먼저 textarea 에 커서가 들어가면 (== 'focus' 이벤트), jQuery의 `show()` 메소드를 이용하여 'div.preview__forum' 요소를 `display: block;` 상태로 변경시켰다.
 
 그 다음은 textarea 에 'keyup' 이벤트가 발생했을 때 이다. textarea 에 입력한 내용을 읽어오고, 미리보기를 표시할 요소를 잡아 `content`, `previewEl` 변수가 각각 담았다.
 
 `marked()` 메소드를 이용해서 `content` 를 컴파일하여 `compiled` 변수에 담은 후, `previewEl` 의 내용을 `compiled` 로 채워 넣었다.
 
-앞서 설명했듯이, Highlightjs 가 페이지 로드 이후에 동적으로 DOM 에 추가된 코드블럭에 대해서는 동작을 못하기 때문에, 이 부분을 처리하는 코드를 추가하였다.
+앞서 설명했듯이, Highlightjs 가 페이지 로드 이후에 동적으로 DOM 에 추가된 코드블럭에 대해서는 동작을 못하기 때문에, 이 부분을 처리하는 코드도 추가하였다.
 
 ![](41-ui-makeup-img-03.png)
 
@@ -312,7 +312,7 @@ Bootstrap 에는 Modal 요소를 포함하고 있다. 이를 활용하자.
 
 ![](41-ui-makeup-img-05.png)
 
-### 그 외 추가된 장식품들
+### 그 외 추가된 장식들
 
 - Back to top 버튼이 추가되었다. 페이지 스크롤이 발생했을 때 버튼이 표시되며, 누르면 페이지의 맨 위로 이동하는 그거다. (resources/views/layouts/partial/footer.blade.php, resources/assets/js/app.js)
 - 모바일에서 Forum, Documents 를 열었을 때 좌측에 표시되던 태그, 문서목록을 숨기도록 하였다. 그리고 뷰 하단에 작은 버튼을 두어 누르면, 목록이 열리도록 하였다. (resources/assets/sass/\_mediaqueries.scss, resources/assets/js/app.js)

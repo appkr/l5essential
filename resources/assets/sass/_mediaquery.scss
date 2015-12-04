@@ -16,6 +16,11 @@
       color: $color-text2;
     }
   }
+
+  div.sort__forum {
+    display: none;
+  }
+
   div.nav__forum,
   div.nav__documents {
     position: fixed;

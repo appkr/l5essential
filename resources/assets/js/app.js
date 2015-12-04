@@ -28,7 +28,13 @@ if (textAreas.length) {
 
   textAreas.on("focus", function (e) {
     // Show preview pane when a textarea is in focus
-    $(this).siblings("div.preview__forum").first().show();
+    var el = $(this).siblings("div.preview__forum").first();
+
+    if (! el.html().length) {
+      el.html("Preview will be shown here...");
+    }
+
+    el.show();
   });
 
   textAreas.on("keyup", function(e) {

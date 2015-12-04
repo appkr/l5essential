@@ -6,7 +6,7 @@
 
 ### 패키지 설치
 
-사용자에게 역할을 부여하기 위해 bican/roles 패키지를 이용할 것이다. 라라벨에도 [Authorization](http://laravel.com/docs/5.1/authorization) 기능을 지원하고 있으나, 필자에겐 사용법이 너무 어려웠다.
+사용자에게 역할을 부여하기 위해 bican/roles 패키지를 이용할 것이다. 라라벨에도 [Authorization](http://laravel.com/docs/authorization) 기능을 지원하고 있으나, 필자에겐 사용법이 너무 어려웠다.
  
 ```bash
 $ composer require "bican/roles: 2.1.*"

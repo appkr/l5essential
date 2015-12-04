@@ -18,9 +18,9 @@
 이 강좌를 통해 소개되는 기본적인 기능외에도 라라벨 5 에는 많은 기능이 포함되어 있다.
 
 - 웹 서비스를 위해 필요한 Cache, Queue, Mail, ...
-- [Service Container](http://laravel.com/docs/5.1/container)를 이용한 의존성 자동 주입
-- [Cron 자동화](http://laravel.com/docs/5.1/scheduling)
-- [Elixir](http://laravel.com/docs/5.1/elixir)를 이용한 CSS/Sass/Less, JS/Coffee 등 Frontend 워크플로우 자동화
+- [Service Container](http://laravel.com/docs/container)를 이용한 의존성 자동 주입
+- [Cron 자동화](http://laravel.com/docs/scheduling)
+- [Elixir](http://laravel.com/docs/elixir)를 이용한 CSS/Sass/Less, JS/Coffee 등 Frontend 워크플로우 자동화
 - ... 
 
 ## 확장 기능 (Free)

@@ -1,10 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
-  <div class="page-header">
+  <div class="page-header clearfix">
     <a class="btn btn-primary pull-right" href="{{ route('articles.create') }}">
-      {!! icon('forum') !!} {{ trans('forum.create') }}
+      {!! icon('new') !!} {{ trans('forum.create') }}
     </a>
+
+    <div class="btn-group pull-right sort__forum">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        {!! icon('sort') !!} Sort by <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        @foreach(['created_at' => 'Age', 'view_count' => 'View'] as $column => $name)
+          <li class="{{ Request::input('s') == $column ? 'active' : '' }}">{!! link_for_sort($column, $name) !!}</li>
+        @endforeach
+      </ul>
+    </div>
+
     <h4>
       {!! icon('forum', null, 'margin-right:1rem') !!}
       <a href="{{ route('articles.index') }}">
@@ -16,7 +28,7 @@
   <div class="row container__forum">
     <div class="col-md-3 sidebar__forum">
       <aside>
-        @include('layouts.partial.search')
+        @include('articles.partial.search')
         @include('tags.partial.index')
       </aside>
     </div>

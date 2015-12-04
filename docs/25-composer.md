@@ -71,7 +71,7 @@ EOT;
 
 설치한 `erusev/parsedown`의 [Github 페이지](https://github.com/erusev/parsedown)를 참고하여 사용법을 익혔다. 이 패키지는 `namespace`를 쓰지 않아 Root 네임스페이스에 존재한다. 인스턴스를 생성하고, `text()` 메소드에 컴파일할 문자열들을 넘겨 주었다. 실전에서는 컴파일 된 결과를 뷰의 데이터로 바인딩하거나, `markdown()`과 같은 커스텀 Helper Function을 만들어 뷰에서 직접사용하면 된다.
 
-여기서 주목할 만한 것은, `app()` 이란 Helper Function의 등장이다. 이는 `new ParsedownExtra()`와 같은 역할을 한다고 보면 된다. `app()` 을 쓰는 것이 `new` 키워드를 쓰는 것 보다 더 좋은 점은 `ParsedownExtra` 클래스의 생성자에 주입되는 다른 인스턴스가 있다면(의존성 주입), `app()`의 경우 자동으로 주입을 해 준다. 다시 설명하면, `new` 키워드를 썼을 때에 꼭 해야 하는, 아래 예와 같이 복잡한 의존성 주입이 필요없다는 얘기다. 이는 라라벨의 Service Container 의 기능인데, 이 코스의 범위를 벗어난다 생각되므로, [공식 문서](http://laravel.com/docs/5.1/container)를 참조하기 바란다.
+여기서 주목할 만한 것은, `app()` 이란 Helper Function의 등장이다. 이는 `new ParsedownExtra()`와 같은 역할을 한다고 보면 된다. `app()` 을 쓰는 것이 `new` 키워드를 쓰는 것 보다 더 좋은 점은 `ParsedownExtra` 클래스의 생성자에 주입되는 다른 인스턴스가 있다면(의존성 주입), `app()`의 경우 자동으로 주입을 해 준다. 다시 설명하면, `new` 키워드를 썼을 때에 꼭 해야 하는, 아래 예와 같이 복잡한 의존성 주입이 필요없다는 얘기다. 이는 라라벨의 Service Container 의 기능인데, 이 코스의 범위를 벗어난다 생각되므로, [공식 문서](http://laravel.com/docs/container)를 참조하기 바란다.
 
 ```php
 $sb = new SkateBoard(new Roller(new Wheel, new Joint), new Plate);

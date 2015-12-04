@@ -46,7 +46,7 @@ $ mysql --version # 5.5.xx
 
 Virtualbox[https://www.virtualbox.org/]와 Vargrant[https://www.vagrantup.com/]가 필요하다. 개발팀 간에 동일한 개발 환경을 가지기 위해서, 또는 Production과 유사한 환경에서 개발하기 위해서 Homestead를 사용한다. Homestead는 위에서 언급한 필요 확장 모듈이 기본 설치되어 있다.
 
-설정법은 꽤나 까다로우니 [공식 문서](http://laravel.com/docs/5.1/homestead)를 참고하자.
+설정법은 꽤나 까다로우니 [공식 문서](http://laravel.com/docs/homestead)를 참고하자.
 
 ## 라라벨이 동작하기 위한 php 버전 및 필요 모듈 조건 확인
 

@@ -142,4 +142,6 @@ span.form-error {
   right: 1px;
   display: none;
   z-index: 9998;
+  transition: all 0.5s ease-in-out;
+  padding: 8px 10px;
 }

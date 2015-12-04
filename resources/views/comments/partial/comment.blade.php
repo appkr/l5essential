@@ -20,8 +20,13 @@
     <p>{!! markdown($comment->content) !!}</p>
 
     @if ($currentUser)
-    <p class="text-right">
-      <button type="button" class="btn btn-info btn-sm btn__reply" style="margin-top: 1rem;">
+    <p class="text-right" style="margin-top: 1rem;">
+      @if (! $solved && $articleOwner)
+        <button type="button" class="btn btn-default btn-sm btn__pick" title="Pick as the Best Answer">
+          {!! icon('pick', false) !!}
+        </button>
+      @endif
+      <button type="button" class="btn btn-info btn-sm btn__reply">
         {!! icon('reply') !!} Reply
       </button>
     </p>

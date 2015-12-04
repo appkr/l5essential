@@ -49,6 +49,7 @@ class SessionsController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
+        event('users.login', [\Auth::user()]);
         flash(trans('auth.welcome', ['name' => \Auth::user()->name]));
 
         return ($return = $request->input('return'))

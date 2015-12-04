@@ -4,7 +4,7 @@
  
 ## 라라벨이 지원하는 유효성 검사 규칙
 
-이 예제에서 사용하는 `required`, `min` 뿐 아니라, `string`, `confirmed`, `exists`, `required_if`, 등등등 굉장히 많다. [공식 문서](http://laravel.com/docs/5.1/validation#available-validation-rules)를 참고하자.
+이 예제에서 사용하는 `required`, `min` 뿐 아니라, `string`, `confirmed`, `exists`, `required_if`, 등등등 굉장히 많다. [공식 문서](http://laravel.com/docs/validation#available-validation-rules)를 참고하자.
 
 ## 유효성 검사 레이어를 만들어 보자.
 
@@ -79,7 +79,7 @@ resources/views/posts/create.blade.php 를 만들어 보자.
 
 ## 다양한 폼 유효성 검사 방법
 
-[공식문서](http://laravel.com/docs/5.1/validation)를 보면 크게 3가지 유효성 검사 방법을 설명하고 있다.
+[공식문서](http://laravel.com/docs/validation)를 보면 크게 3가지 유효성 검사 방법을 설명하고 있다.
  
 1. `Validator` 인스턴스를 직접 만드는 방법
 2. 컨트롤러에서 기본으로 사용할 수 잇는 `validate()` 메소드를 이용하는 방법
@@ -119,7 +119,7 @@ class PostsController extends Controller
 }
 ```
 
-3 번 Form Request를 이용하는 방법이 가장 깔끔하긴 하다. [공식 문서](http://laravel.com/docs/5.1/validation#form-request-validation)를 참고하자.
+3 번 Form Request를 이용하는 방법이 가장 깔끔하긴 하다. [공식 문서](http://laravel.com/docs/validation#form-request-validation)를 참고하자.
 
 ---
 
