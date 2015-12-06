@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Bican\Roles\Models\Role;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -66,9 +67,11 @@ class UsersController extends Controller
         }
 
         $user->update([
-            'name' => $request->input('name'),
-            'password' => bcrypt($request->input('password'))
+            'name'     => $request->input('name'),
+            'password' => bcrypt($request->input('password')),
         ]);
+
+        $this->addMemberRole($user);
 
         \Auth::login($user);
         flash(trans('auth.welcome', ['name' => $user->name]));
@@ -95,11 +98,28 @@ class UsersController extends Controller
             return back()->withInput()->withErrors($validator);
         }
 
-        $user = User::create($request->except('_token'));
+        $user = User::create([
+            'name'     => $request->input('name'),
+            'email'    => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        $this->addMemberRole($user);
 
         \Auth::login($user);
         flash(trans('auth.welcome', ['name' => $user->name]));
 
         return redirect(route('home'));
+    }
+
+    /**
+     * Attach Role to the user
+     *
+     * @param \App\User $user
+     * @return array
+     */
+    protected function addMemberRole(User $user)
+    {
+        // 1 is admin, 2 is member
+        return $user->roles()->sync([2]);
     }
 }

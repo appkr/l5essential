@@ -54,7 +54,7 @@
       <article>
         @include('comments.index', [
           'solved' => $article->solution,
-          'articleOwner' => $currentUser && $article->isAuthor()
+          'owner'  => $currentUser && $article->isAuthor()
         ])
       </article>
     </div>

@@ -13,13 +13,22 @@
   <div class="row container__documents">
     <div class="col-md-3 sidebar__documents">
       <aside>
-        {!! $index !!}
+        {!! markdown($index->content) !!}
       </aside>
     </div>
 
     <div class="col-md-9 article__documents">
       <article>
-        {!! $content !!}
+        {!! markdown($document->content) !!}
+      </article>
+
+      <hr class="divider"/>
+
+      <article>
+        @include('comments.index', [
+          'solved' => false,
+          'owner'  => $currentUser && $document->isAuthor()
+        ])
       </article>
     </div>
   </div>
@@ -27,4 +36,6 @@
   <div class="nav__documents">
     <a type="button" role="button" class="btn btn-sm btn-danger">{{ trans('documents.button_toc') }}</a>
   </div>
+
+  @include('layouts.partial.markdown')
 @stop

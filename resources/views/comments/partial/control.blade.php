@@ -1,4 +1,4 @@
-<div class="dropdown pull-right hidden-xs hidden-sm">
+<div class="dropdown pull-right">
   <span class="dropdown-toggle btn btn-default btn-xs" type="button" data-toggle="dropdown">
     {!! icon('dropdown', null) !!}
   </span>

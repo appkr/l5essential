@@ -4,6 +4,9 @@
   <form action="{{ route('users.store') }}" method="POST" role="form" class="form-auth">
 
     {!! csrf_field() !!}
+    @if ($return = Request::input('return'))
+      <input type="hidden" name="return" value="{{ $return }}">
+    @endif
 
     <div class="page-header">
       <h4>{{ trans('auth.title_signup') }}</h4>

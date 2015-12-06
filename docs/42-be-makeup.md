@@ -542,7 +542,7 @@ class Markdown extends ParsedownExtra {
 
 포럼 상세 보기 본문에 베스트 답글(== 댓글)이 있으면, 표시하도록 하였다.
 
-또, 댓글 뷰를 `@include` 할 때, `$solved`, `$articleOwner` 란 새로운 변수도 넘겨 주도록 하였다.
+또, 댓글 뷰를 `@include` 할 때, `$solved`, `$owner` 란 새로운 변수도 넘겨 주도록 하였다.
 
 ```html
 <!-- resources/views/articles/show.blade.php -->
@@ -558,7 +558,7 @@ class Markdown extends ParsedownExtra {
   <article>
     @include('comments.index', [
       'solved' => $article->solution,
-      'articleOwner' => $currentUser && $article->isAuthor()
+      'owner'  => $currentUser && $article->isAuthor()
     ])
   </article>
 </div>
@@ -566,7 +566,7 @@ class Markdown extends ParsedownExtra {
 
 'comments.partial.best' 뷰는 특별한 내용이 없으므로 생략한다.
  
-포럼 글에 대해서 베스트 댓글이 없으면, 포럼 글 작성자가 베스트를 선택할 수 있도록 UI를 제공해야 한다. 'articles.show' 뷰에서 넘겨 받은, `$solved`, `$articleOwner` 변수를 활용하고 있는 것을 확인할 수 있다.
+포럼 글에 대해서 베스트 댓글이 없으면, 포럼 글 작성자가 베스트를 선택할 수 있도록 UI를 제공해야 한다. 'articles.show' 뷰에서 넘겨 받은, `$solved`, `$owner` 변수를 활용하고 있는 것을 확인할 수 있다.
 
 아래에서 `@parent` 란 블레이드 문법에 주목하자. 이는 부모 뷰에 동일한 이름의 `@section` 정의가 있으면, 둘을 합쳐서 `@yield` 할 수 있게 해 준다. 가령, 'comments.partial.commnet' 뷰에 `@section('script')` 가 있고, 부모 뷰인 'comments.index' 에도 `@section('script')` 가 있다면, `@parent` 키워드를 포함하지 않으면, 일반적인 클래스 상속과 동일하게 자식뷰의 섹션이 부모뷰를 오버라이드해 버린다.
 
@@ -575,7 +575,7 @@ class Markdown extends ParsedownExtra {
 
 @if ($currentUser)
 <p class="text-right" style="margin-top: 1rem;">
-  @if (! $solved && $articleOwner)
+  @if (! $solved && $owner)
     <button type="button" class="btn btn-default btn-sm btn__pick" title="Pick as the Best Answer">
       {!! icon('pick', false) !!}
     </button>

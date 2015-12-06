@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\DocumentRepository;
 use Cache;
 use Request;
 
@@ -10,19 +11,20 @@ class DocumentsController extends Controller
 {
 
     /**
-     * @var \App\Document
+     * @var \App\DocumentRepository
      */
     protected $document;
 
     /**
      * Constructor.
      *
-     * @param \App\Document $document
+     * @param \App\DocumentRepository $repo
      */
-    public function __construct(Document $document)
+    public function __construct(DocumentRepository $repo)
     {
-        $this->document = $document;
         parent::__construct();
+
+        $this->document = $repo;
     }
 
     /**
@@ -33,15 +35,23 @@ class DocumentsController extends Controller
      */
     public function show($file = '01-welcome.md')
     {
+        // Index does not change frequently.
         $index = Cache::remember('documents.index', 120, function () {
-            return markdown($this->document->get());
+            return $this->document->index();
         });
 
-        $content = Cache::remember("documents.{$file}", 120, function () use ($file) {
-            return markdown($this->document->get($file));
-        });
+        $document = $this->document->find($file);
 
-        return view('documents.index', compact('index', 'content'));
+        $commentsCollection = $document->comments()->with('replies')
+            ->withTrashed()->whereNull('parent_id')->latest()->get();
+
+        return view('documents.show', [
+            'index'           => $index,
+            'document'        => $document,
+            'comments'        => $commentsCollection,
+            'commentableType' => Document::class,
+            'commentableId'   => $document->id,
+        ]);
     }
 
     /**

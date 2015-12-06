@@ -2,8 +2,18 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Article extends Model
 {
+    use SoftDeletes;
+    use AuthorTrait;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'author_id',
         'title',
@@ -12,10 +22,25 @@ class Article extends Model
         'solution_id'
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'author_id',
         'solution_id',
-        'notification'
+        'notification',
+        'deleted_at',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at'
     ];
 
     /* Relationships */
@@ -55,12 +80,5 @@ class Article extends Model
     public function scopeNotSolved($query)
     {
         return $query->whereNull('solution_id');
-    }
-
-    /* Helpers */
-
-    public function isAuthor()
-    {
-        return $this->author->id == auth()->user()->id;
     }
 }

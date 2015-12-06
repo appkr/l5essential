@@ -6,7 +6,7 @@
 
 <div class="form-group">
   <label for="tags">{{ trans('forum.tags') }}</label>
-  <select class="form-control" name="tags[]" id="tags" multiple="multiple">
+  <select class="form-control select2-multiple" name="tags[]" id="tags" multiple="multiple">
     @foreach($allTags as $tag)
       <option value="{{ $tag->id }}" {{ in_array($tag->id, $article->tags->lists('id')->toArray()) ? 'selected="selected"' : '' }}>{{ $tag->name }}</option>
     @endforeach
@@ -19,7 +19,7 @@
     <small>{!! icon('preview') !!} Markdown Cheatsheet</small>
   </a>
   <label for="content">{{ trans('forum.content') }}</label>
-  <textarea name="content" class="form-control forum__content" rows="10">{{ old('content', $article->content) }}</textarea>
+  <textarea name="content" id="content" class="form-control forum__content" rows="10">{{ old('content', $article->content) }}</textarea>
   {!! $errors->first('content', '<span class="form-error">:message</span>') !!}
   <div class="preview__forum">{{ markdown(old('content', 'Preview will be shown here...')) }}</div>
 </div>
@@ -51,8 +51,8 @@
 @section('script')
   <script>
     var form = $("form.form__forum").first(),
-      dropzone  = $("div.dropzone"),
-      dzControl = $("label[for=my-dropzone]>small");
+        dropzone  = $("div.dropzone"),
+        dzControl = $("label[for=my-dropzone]>small");
 
     dzControl.on("click", function(e) {
       dropzone.fadeToggle(0);
@@ -62,7 +62,8 @@
     /* Activate select2 for a nicer tag selector UI */
     $("select#tags").select2({
       placeholder: "{{ trans('forum.tags_help') }}",
-      maximumSelectionLength: 3
+      maximumSelectionLength: 3,
+      theme: "bootstrap"
     });
 
     /* Dropzone Related */

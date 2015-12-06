@@ -15,7 +15,7 @@ class ArticlesController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('author:article', ['except' => ['index', 'show', 'create']]);
+        $this->middleware('author:article', ['only' => ['update', 'destroy', 'pickBest']]);
 
         $allTags = taggable()
             ? Tag::with('articles')->remember(5)->cacheTags('tags')->get()
@@ -130,7 +130,8 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::with('comments', 'author', 'tags', 'attachments', 'solution')->findOrFail($id);
-        $commentsCollection = $article->comments()->with('replies', 'author')->whereNull('parent_id')->latest()->get();
+        $commentsCollection = $article->comments()->with('replies')
+            ->withTrashed()->whereNull('parent_id')->latest()->get();
 
         event(new ArticleConsumed($article));
 
@@ -187,6 +188,7 @@ class ArticlesController extends Controller
         Article::findOrFail($id)->update([
             'solution_id' => $request->input('solution_id')
         ]);
+
 
         return response()->json('', 204);
     }

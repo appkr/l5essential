@@ -7,7 +7,7 @@ use ParsedownExtra;
 class Markdown extends ParsedownExtra {
 
     // Pattern to search for 'article#000, ArTicle#00, A#0, a#00, ...' mention
-    const PATTERN_ARTICLE = '/(article|a)\#(?P<id>\d+)/i';
+    const PATTERN_ARTICLE = '/(article|a)(\#|\@|\:\:)(?P<id>\d+)/i';
 
     /**
      * Add link to another articles

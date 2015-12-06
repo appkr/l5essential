@@ -2,8 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Comment extends Model
 {
+    use SoftDeletes;
+    use AuthorTrait;
+
     protected $fillable = [
         'commentable_type',
         'commentable_id',
@@ -17,8 +22,35 @@ class Comment extends Model
         'author_id',
         'commentable_type',
         'commentable_id',
-        'parent_id'
+        'parent_id',
+        'deleted_at',
     ];
+
+    protected $dates = [
+        'deleted_at'
+    ];
+
+    protected $with = [
+        'author',
+        'votes',
+    ];
+
+    protected $appends = [
+        'up_count',
+        'down_count'
+    ];
+
+    /* Accessors */
+
+    public function getUpCountAttribute()
+    {
+        return (int) static::votes()->sum('up');
+    }
+
+    public function getDownCountAttribute()
+    {
+        return (int) static::votes()->sum('down');
+    }
 
     /* Relationships */
 
@@ -42,10 +74,8 @@ class Comment extends Model
         return $this->belongsTo(Comment::class, 'id', 'parent_id');
     }
 
-    /* Helpers */
-
-    public function isAuthor()
+    public function votes()
     {
-        return $this->author->id == auth()->user()->id;
+        return $this->hasMany(Vote::class);
     }
 }

@@ -6,10 +6,17 @@
 
   @if($currentUser)
     @include('comments.partial.create')
+  @else
+    @include('comments.partial.login')
   @endif
 
   @forelse($comments as $comment)
-    @include('comments.partial.comment', ['parentId' => $comment->id])
+    @include('comments.partial.comment', [
+      'parentId'  => $comment->id,
+      'isReply'   => false,
+      'hasChild'  => count($comment->replies),
+      'isTrashed' => $comment->trashed()
+    ])
   @empty
   @endforelse
 </div>
@@ -60,6 +67,25 @@
           reload(3000);
         });
       }
+    });
+
+    $("button.btn__vote").on("click", function(e) {
+      var self = $(this),
+          commentId = $(this).closest(".media__item").data("id");
+
+      $.ajax({
+        type: "POST",
+        url: "/comments/" + commentId + "/vote",
+        data: {
+          vote: self.data("vote")
+        }
+      }).success(function(data) {
+        self.find("span").html(data.value);
+        self.attr("disabled", "disabled");
+        self.siblings().attr("disabled", "disabled");
+      }).error(function() {
+        flash('danger', 'Whoops! What is happening here?', 2500);
+      });
     });
 
     $("button.btn__pick").on("click", function(e) {

@@ -11,10 +11,9 @@ elixir(function (mix) {
     .scripts([
       '../vendor/jquery/dist/jquery.js',
       '../vendor/bootstrap-sass/assets/javascripts/bootstrap.js',
+      '../vendor/fastclick/lib/fastclick.js',
       '../vendor/select2/dist/js/select2.js',
       '../vendor/dropzone/dist/dropzone.js',
-      '../vendor/fastclick/lib/fastclick.js',
-      '../vendor/fastclick/lib/fastclick.js',
       '../vendor/tabby/jquery.textarea.js',
       '../vendor/autosize/dist/autosize.js',
       '../vendor/highlightjs/highlight.pack.js',

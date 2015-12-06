@@ -23,7 +23,7 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'commentable_type' => 'required|in:App\Article',
+            'commentable_type' => 'required|in:App\Article,App\Document',
             'commentable_id'   => 'required|numeric',
             'parent_id'        => 'numeric|exists:comments,id',
             'content'          => 'required',
@@ -66,6 +66,35 @@ class CommentsController extends Controller
     }
 
     /**
+     * Vote up or down for the given comment.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param                          $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function vote(Request $request, $id)
+    {
+        $this->validate($request, [
+            'vote'       => 'required|in:up,down',
+        ]);
+
+        $comment = Comment::findOrFail($id);
+
+        $up = $request->input('vote') == 'up' ? true : false;
+
+        $comment->votes()->create([
+            'user_id' => $request->user()->id,
+            'up'      => $up ? 1 : null,
+            'down'    => $up ? null : 1,
+        ]);
+
+        return response()->json([
+            'voted' => $request->input('vote'),
+            'value' => $comment->votes()->sum($request->input('vote'))
+        ]);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -74,8 +103,18 @@ class CommentsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $comment = Comment::find($id);
-        $this->recursiveDestroy($comment);
+        $comment = Comment::with('replies')->find($id);
+
+        // Do not recursively destroy children comments.
+        // Because 1. Soft delete feature was adopted,
+        // and 2. it's not just pleasant for authors of children comments to being deleted by the parent author.
+        if ($comment->replies->count() > 0) {
+            $comment->delete();
+        } else {
+            $comment->forceDelete();
+        }
+
+        // $this->recursiveDestroy($comment);
 
         event(new ModelChanged('comments'));
 

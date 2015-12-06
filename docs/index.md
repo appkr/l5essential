@@ -25,16 +25,13 @@
     -   [23강 - 입력 값 유효성 검사](/docs/23-validation.md)
     -   [24강 - 예외 처리](/docs/24-exception-handling.md)
     -   [25강 - 컴포저](/docs/25-composer.md)
-    
 -   **중급코스1-Markdown Viewer**
-
     -   [26강 - Document 모델](/docs/26-document-model.md)
     -   [27강 - Document 컨트롤러](/docs/27-document-controller.md)
     -   [28강 - Cache](/docs/28-cache.md)
     -   [29강 - Elixir, 만병통치약?](/docs/29-elixir.md)
     -   [30강 - Debug & Final Touch](/docs/30-final-touch.md)
-    
-    -   **중급코스2-Forum**
+-   **중급코스2-Forum**
     -   [31강 - 포럼 요구사항 기획](/docs/31-forum-features.md)
     -   [32강 - 사용자 로그인](/docs/32-login.md)
     -   [33강 - 소셜 로그인](/docs/33-social-login.md)

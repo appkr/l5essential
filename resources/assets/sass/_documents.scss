@@ -102,7 +102,7 @@
 }
 
 /* markdown styling */
-.article__documents article {
+.article__documents article:first-child {
   line-height: 1.6rem;
 
   li {

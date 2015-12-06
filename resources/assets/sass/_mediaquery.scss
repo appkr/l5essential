@@ -30,6 +30,13 @@
     display: block;
     transition: all 0.5s ease-in-out;
   }
+
+  .border__item {
+    width: 100%;
+    &:before {
+      content: none;
+    }
+  }
 }
 
 @media screen and (max-width: $screen-xs) {

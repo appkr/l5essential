@@ -6,7 +6,7 @@
       {!! icon('new') !!} {{ trans('forum.create') }}
     </a>
 
-    <div class="btn-group pull-right sort__forum">
+    <div class="btn-group pull-right sort__forum hidden-xs">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         {!! icon('sort') !!} Sort by <span class="caret"></span>
       </button>
