@@ -65,7 +65,7 @@ class AttachmentsController extends Controller
             return response()->json('', 204);
         }
 
-        flash()->success(trans('forum.deleted'));
+        flash()->success(trans('common.deleted'));
 
         return back();
     }

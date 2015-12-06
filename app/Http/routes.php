@@ -1,7 +1,6 @@
 <?php
 
-Route::pattern('image', '(?P<parent>[0-9]{2}-[\pL-\pN\._-]+)-(?P<suffix>img-[0-9]{2}.png)');
-
+/* Landing page */
 Route::get('/', [
     'as'   => 'index',
     'uses' => 'WelcomeController@index',
@@ -17,29 +16,44 @@ Route::get('locale', [
     'uses' => 'WelcomeController@locale',
 ]);
 
+/* Mailing list */
+//Route::post('mail-list/subscribe', [
+//    'as'   => 'mail-list.subscribe',
+//    'uses' => 'MailListController@subscribe',
+//]);
+//
+//Route::delete('mail-list/unsubscribe', [
+//    'as'   => 'mail-list.unsubscribe',
+//    'uses' => 'MailListController@unsubscribe',
+//]);
+
 /* Documents */
-Route::get('docs/{image}', [
-    'as'   => 'documents.image',
-    'uses' => 'DocumentsController@image',
+Route::get('lessons/{image}', [
+    'as'   => 'lessons.image',
+    'uses' => 'LessonsController@image',
 ]);
 
-Route::get('docs/{file?}', [
-    'as'   => 'documents.show',
-    'uses' => 'DocumentsController@show',
+Route::get('lessons/{file?}', [
+    'as'   => 'lessons.show',
+    'uses' => 'LessonsController@show',
 ]);
 
 /* Forum */
-Route::get('tags/{id}/articles', [
+Route::get('tags/{slug}/articles', [
     'as'   => 'tags.articles.index',
     'uses' => 'ArticlesController@index'
 ]);
-Route::put('articles/{id}/pick', 'ArticlesController@pickBest');
+Route::put('articles/{articles}/pick', [
+    'as'   => 'articles.pick-best-comment',
+    'uses' => 'ArticlesController@pickBest'
+]);
 Route::resource('articles', 'ArticlesController');
 
 /* Attachments */
 Route::resource('files', 'AttachmentsController', ['only' => ['store', 'destroy']]);
 
 /* Comments */
+Route::post('comments/{id}/vote', 'CommentsController@vote');
 Route::resource('comments', 'CommentsController', ['only' => ['store', 'update', 'destroy']]);
 
 /* User Registration */
@@ -92,4 +106,6 @@ Route::post('auth/reset', [
 
 //DB::listen(function($sql, $bindings, $time){
 //    var_dump($sql);
+//    var_dump($bindings);
+//    //var_dump($time);
 //});

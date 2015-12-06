@@ -64,7 +64,7 @@ if (!function_exists('gravatar_url')) {
      * @param  integer $size
      * @return string
      */
-    function gravatar_url($email, $size = 72)
+    function gravatar_url($email, $size = 48)
     {
         return sprintf("//www.gravatar.com/avatar/%s?s=%s", md5($email), $size);
     }
@@ -106,7 +106,7 @@ if (!function_exists('link_for_sort')) {
         }
 
         $queryString = http_build_query(array_merge(
-            Input::except(['page', 's', 'd']),
+            Request::except(['page', 's', 'd']),
             ['s' => $column, 'd' => $reverse],
             $params
         ));
@@ -116,6 +116,25 @@ if (!function_exists('link_for_sort')) {
             urldecode(Request::url()),
             $queryString,
             $text
+        );
+    }
+}
+
+if (! function_exists('current_url')) {
+    /**
+     * Build current url string, without return param.
+     *
+     * @return string
+     */
+    function current_url() {
+        if (! Request::has('return')) {
+            return Request::fullUrl();
+        }
+
+        return sprintf(
+            '%s?%s',
+            Request::url(),
+            http_build_query(Request::except('return'))
         );
     }
 }

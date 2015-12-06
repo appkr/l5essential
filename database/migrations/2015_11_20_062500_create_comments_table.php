@@ -21,9 +21,10 @@ class CreateCommentsTable extends Migration
             $table->string('title')->nullable();
             $table->text('content');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('parent_id')->references('id')->on('comments')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('comments');
         });
     }
 

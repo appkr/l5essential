@@ -5,7 +5,7 @@ Homestead.yaml
 Homestead.json
 .env
 .idea
-aws-credentials
+aws-credentials*
 git_*
 .DS_Store
 .phpstorm.meta.php

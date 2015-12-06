@@ -11,15 +11,15 @@
         <input type="hidden" name="parent_id" value="{{ $parentId }}">
       @endif
 
-      <div class="form-group" style="width:100%; margin: auto;">
+      <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}" style="width:100%; margin: auto;">
         <textarea name="content" class="form-control forum__content">{{ old('content') }}</textarea>
         {!! $errors->first('content', '<span class="form-error">:message</span>') !!}
-        <div class="preview__forum">{{ markdown(old('content', 'Preview will be shown here...')) }}</div>
+        <div class="preview__forum">{{ markdown(old('content', trans('common.markdown_preview'))) }}</div>
       </div>
 
       <p class="text-right" style="margin:0;">
         <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 1rem;">
-          {!! icon('plane') !!} Post
+          {!! icon('plane') !!} {{ trans('common.post') }}
         </button>
       </p>
     </form>

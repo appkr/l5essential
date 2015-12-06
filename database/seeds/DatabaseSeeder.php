@@ -91,11 +91,39 @@ class DatabaseSeeder extends Seeder
          */
         App\Tag::truncate();
         DB::table('article_tag')->truncate();
-        $articles->each(function($article) use($faker) {
-            $article->tags()->save(
-                factory(App\Tag::class)->make()
+        $rawTags = [
+            'General',
+            'Laravel',
+            'Lumen',
+            'Eloquent',
+            'Servers',
+            'Tips',
+            'Lesson Feedback',
+        ];
+
+        foreach($rawTags as $tag) {
+            App\Tag::create([
+                'name' => $tag,
+                'slug' => str_slug($tag)
+            ]);
+        }
+
+        $tags = App\Tag::all();
+
+        foreach($articles as $article) {
+            $article->tags()->attach(
+                $faker->randomElements(
+                    $tags->lists('id')->toArray(),
+                    $faker->randomElement([1,2,3])
+                )
             );
-        });
+        }
+
+//        $articles->each(function($article) use($faker) {
+//            $article->tags()->save(
+//                factory(App\Tag::class)->make()
+//            );
+//        });
         $this->command->info('tags table seeded');
 
         /*

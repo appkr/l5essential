@@ -70,6 +70,7 @@ class SocialController extends Controller
             ]);
 
         \Auth::login($user, true);
+        event('users.login', [\Auth::user()]);
         flash(trans('auth.welcome', ['name' => $user->name]));
 
         return redirect(route('home'));

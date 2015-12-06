@@ -16,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
         if ($locale = request()->cookie('locale__myProject')) {
             app()->setLocale(\Crypt::decrypt($locale));
         }
+
+        \Carbon\Carbon::setLocale(app()->getLocale());
     }
 
     /**

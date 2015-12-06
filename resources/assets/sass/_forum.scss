@@ -153,3 +153,35 @@ pre {
 div.nav__forum {
   display: none;
 }
+
+.login__forum {
+  padding: 1rem;
+  border-radius: 3px;
+  border: 1px solid $color-hr;
+  width: 100%;
+}
+
+.border__item {
+  padding: 1rem;
+  border-radius: 3px;
+  position: relative;
+  overflow: visible;
+  float: right;
+  width: calc(100% - 80px);
+  border: 1px solid $color-hr;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 21px;
+    left: -6px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-left: 1px solid $color-hr;
+    border-top: 1px solid $color-hr;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+}

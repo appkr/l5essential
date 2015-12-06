@@ -14,6 +14,6 @@
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
-    Some errors found in the form. Please review and correct them and retry !
+    {{ trans('errors.msg_form_error') }}
   </div>
 @endif

@@ -1,15 +1,22 @@
 <div class="container__forum">
   <a href="#" class="help-block pull-right hidden-xs" id="md-caller">
-    <small>{!! icon('preview') !!} Markdown Cheatsheet</small>
+    <small>{!! icon('preview') !!} {{ trans('common.cheat_sheet') }}</small>
   </a>
   <h4>{!! icon('comments') !!} {{ trans('forum.title_comments') }}</h4>
 
   @if($currentUser)
     @include('comments.partial.create')
+  @else
+    @include('comments.partial.login')
   @endif
 
   @forelse($comments as $comment)
-    @include('comments.partial.comment', ['parentId' => $comment->id])
+    @include('comments.partial.comment', [
+      'parentId'  => $comment->id,
+      'isReply'   => false,
+      'hasChild'  => count($comment->replies),
+      'isTrashed' => $comment->trashed()
+    ])
   @empty
   @endforelse
 </div>
@@ -48,7 +55,7 @@
       // Make a delete request to the server
       var commentId = $(this).closest(".media__item").data("id");
 
-      if (confirm("Are you sure to delete this comment?")) {
+      if (confirm("{{ trans('forum.msg_delete_comment') }}")) {
         $.ajax({
           type: "POST",
           url: "/comments/" + commentId,
@@ -56,10 +63,29 @@
             _method: "DELETE"
           }
         }).success(function() {
-          flash('success', 'Deleted ! The page will reload in 3 secs.', 2500);
-          reload(3000);
+          flash("success", "{{ trans('common.deleted') }} {{ trans('common.msg_reload') }}", 1500);
+          reload(2000);
         });
       }
+    });
+
+    $("button.btn__vote").on("click", function(e) {
+      var self = $(this),
+          commentId = $(this).closest(".media__item").data("id");
+
+      $.ajax({
+        type: "POST",
+        url: "/comments/" + commentId + "/vote",
+        data: {
+          vote: self.data("vote")
+        }
+      }).success(function(data) {
+        self.find("span").html(data.value);
+        self.attr("disabled", "disabled");
+        self.siblings().attr("disabled", "disabled");
+      }).error(function() {
+        flash("danger", "{{ trans('common.msg_whoops') }}", 2500);
+      });
     });
 
     $("button.btn__pick").on("click", function(e) {
@@ -67,7 +93,7 @@
       var articleId = $("#article__article").data("id"),
           commentId = $(this).closest(".media__item").data("id");
 
-      if (confirm("Are you sure to select this comment as the 'Best'?")) {
+      if (confirm("{{ trans('forum.msg_pick_best') }}")) {
         $.ajax({
           type: "POST",
           url: "/articles/" + articleId + "/pick",
@@ -76,8 +102,8 @@
             solution_id: commentId
           }
         }).success(function() {
-          flash('success', 'Updated ! The page will reload in 3 secs.', 2500);
-          reload(3000);
+          flash("success", "{{ trans('common.updated') }} {{ trans('common.msg_reload') }}", 1500);
+          reload(2000);
         });
       }
     });

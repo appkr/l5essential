@@ -6,6 +6,8 @@ use App\Comment;
 
 class CommentsHandler
 {
+    protected $to = [];
+
     /**
      * Handle the event.
      *
@@ -13,17 +15,36 @@ class CommentsHandler
      */
     public function handle(Comment $comment)
     {
-        $to[] = $comment->commentable->author->email;
-
-        if ($comment->parent) {
-            $to[] = $comment->parent->author->email;
+        if ($comment->commentable->notification) {
+            // get the Article author's email and append to the recipients array.
+            $this->to[] = $comment->commentable->author->email;
         }
 
-        $to = array_unique($to);
+        // get email address lists from the comments and append to the recipients array.
+        $this->findEmail($comment);
+
+        // Remove duplicate email address.
+        $to = array_unique($this->to);
         $subject = 'New comment';
 
         return \Mail::send('emails.new-comment', compact('comment'), function($m) use($to, $subject) {
-            $m->to($to)->subject($subject);
+            return $m->to($to)->subject($subject);
         });
+    }
+
+    /**
+     * Recursively find email address from the comments and push them to recipients list.
+     *
+     * @param \App\Comment $comment
+     */
+    protected function findEmail(Comment $comment)
+    {
+        if ($comment->parent) {
+            $this->to[] = $comment->parent->author->email;
+
+            return $this->findEmail($comment->parent);
+        }
+
+        return;
     }
 }

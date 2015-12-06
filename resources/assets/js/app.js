@@ -74,7 +74,7 @@ if($(".flash-message")) {
 }
 
 /* Center image in the html which was compiled from markdown */
-$(".container__forum article>p>img, .container__documents article>p>img").closest("p").addClass("text-center");
+$(".container__forum article>p>img, .container__lessons article>p>img").closest("p").addClass("text-center");
 
 /* Decorations */
 
@@ -102,6 +102,13 @@ $("#md-caller").on("click", function(e) {
   return false;
 });
 
+/* Random background image for landing page to give fun to visitors */
+//var images = ["459033.jpg", "378663.jpg", "413890.jpg", "419042.jpg", "510930.jpg"],
+//    randomIndex = Math.floor(Math.random() * images.length),
+//    pickedImage = images[randomIndex];
+//$("#laracroft").css({"background-image": "url(/images/" + pickedImage + ")"});
+//$(".credit").find("a").first().attr("href", "http://wall.alphacoders.com/big.php?i=" + pickedImage.substring(0, 6));
+
 /* Helper Functions */
 
 /* Generate flash message from javascript */
@@ -128,11 +135,10 @@ $("div.nav__forum > a").on("click", function() {
   $('body,html').animate({ scrollTop: 0 }, "fast");
 });
 
-$("div.nav__documents > a").on("click", function() {
-  $(".sidebar__documents").slideToggle("fast");
+$("div.nav__lessons > a").on("click", function() {
+  $(".sidebar__lessons").slideToggle("fast");
   $('body,html').animate({ scrollTop: 0 }, "fast");
 });
-
 
 /* Reload page */
 function reload(interval) {

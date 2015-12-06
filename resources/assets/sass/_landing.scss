@@ -1,0 +1,88 @@
+.landing {
+  hr {
+    margin: 4rem;
+  }
+
+  #laracroft {
+    background-color: $color-background;
+    background: url("/images/459033.jpg") 50% 0 no-repeat fixed;
+    background-position: center 50px;
+    background-size: cover;
+    transition: all 0.5s ease;
+
+    .container-fluid {
+      color: $color-text2;
+      padding: 23rem 0;
+
+      .row {
+        background: rgba(0,0,0,0.5);
+        text-align: center;
+        padding-bottom: 20px;
+      }
+    }
+
+    margin-bottom: 5rem;
+
+    span.selection {
+      background: $color-selection;
+      color: $color-text1;
+      text-shadow: none;
+    }
+
+    .credit {
+      position: absolute;
+      right: 7rem;
+      bottom: 1rem;
+      color: $color-text2;
+      font-weight: bold;
+      font-size: 0.8rem;
+      a {
+        color: $color-text2;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  #story,
+  #feature {
+    h1 {
+      margin-bottom: 2rem;
+    }
+  }
+
+  #story blockquote,
+  #feature blockquote {
+    margin: 2rem auto;
+  }
+
+  #feature pre {
+    width: 95%;
+    margin: 2rem auto;
+  }
+
+  #courses {
+    img {
+      width: 8rem;
+      max-width: 50%;
+      display: block;
+      margin: 2rem auto;
+    }
+
+    h1,h2,h3,h4,p {
+      margin: 1rem auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 1rem auto;
+    }
+  }
+
+  #mailing-list {
+    form {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

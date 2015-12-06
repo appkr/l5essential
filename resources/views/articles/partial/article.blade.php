@@ -1,8 +1,14 @@
 <div class="media">
-  @include('users.partial.avatar', ['user' => $article->author])
+  @include('users.partial.avatar', ['user' => $article->author, 'size' => 64])
 
   <div class="media-body">
     <h4 class="media-heading">
+      @if ($article->isNotice())
+        <span style="margin-right: 1rem;" title="{{ trans('common.notice') }}">
+          {!! icon('pin', false) !!}
+        </span>
+      @endif
+
       <a href="{{ route('articles.show', $article->id) }}">
         {{ $article->title }}
 

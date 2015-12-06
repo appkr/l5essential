@@ -24,10 +24,10 @@
       <div class="form-group">
         <p class="text-center">
           <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-default">
-            {!! icon('reset') !!} Reset
+            {!! icon('reset') !!} {{ trans('common.reset') }}
           </a>
           <button type="submit" class="btn btn-primary">
-            {!! icon('plane') !!} Edit
+            {!! icon('plane') !!} {{ trans('common.edit') }}
           </button>
         </p>
       </div>
