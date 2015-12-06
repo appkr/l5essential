@@ -25,6 +25,7 @@ abstract class Controller extends BaseController
         view()->share('currentLocale', app()->getLocale());
         view()->share('currentUser', auth()->user());
         view()->share('currentRouteName', \Route::currentRouteName());
-        view()->share('currentUrl', \Request::fullUrl());
+        view()->share('currentUrl', current_url());
+        view()->share('isLandingPage', in_array(\Route::currentRouteName(), ['home', 'index']));
     }
 }

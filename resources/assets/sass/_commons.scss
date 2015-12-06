@@ -66,7 +66,7 @@ hr {
   text-shadow: none;
 }
 
-body>div.container {
+body>div.container{
   margin-top: 5rem;
 }
 
@@ -145,3 +145,52 @@ span.form-error {
   transition: all 0.5s ease-in-out;
   padding: 8px 10px;
 }
+
+/*
+.btn-default,
+.badge-default {
+  color: $color_text1;
+  background-color: $color_text2;
+  border-color: $color_hr !important;
+
+  &:hover,
+  &:focus,
+  &:active,
+  .active {
+    color: $color_text1;
+    background-color: $color_hr;
+    border-color: $color_text2;
+  }
+
+  &:active,
+  .active {
+    background-image: none;
+  }
+
+  .badge {
+    color: $color_text1;
+    background-color: $color_text2;
+  }
+
+  .disabled {
+    &:hover,
+    &:focus,
+    &:active,
+    .active {
+      background-color: $color_text2;
+      border-color: $color_text1;
+    }
+  }
+
+  &[disabled]{
+    &:hover,
+    &:focus,
+    &:active,
+    .active,
+    {
+      background-color: $color_text2;
+      border-color: $color_text1;
+    }
+  }
+}
+*/

@@ -15,7 +15,7 @@ class ArticlesController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('author:article', ['except' => ['index', 'show', 'create']]);
+        $this->middleware('author:article', ['only' => ['update', 'destroy', 'pickBest']]);
 
         $allTags = taggable()
             ? Tag::with('articles')->remember(5)->cacheTags('tags')->get()
@@ -30,13 +30,13 @@ class ArticlesController extends Controller
      * Display a listing of the resource.
      *
      * @param \App\Http\Requests\FilterArticlesRequest $request
-     * @param int|null                                 $id
+     * @param string|null                              $slug
      * @return \Illuminate\Http\Response
      */
-    public function index(FilterArticlesRequest $request, $id = null)
+    public function index(FilterArticlesRequest $request, $slug = null)
     {
-        $query = $id
-            ? Tag::findOrFail($id)->articles()
+        $query = $slug
+            ? Tag::whereSlug($slug)->firstOrFail()->articles()
             : new Article;
 
         // If you are relying on 'file' or 'database' cache, cacheTags() methods is not available
@@ -77,7 +77,7 @@ class ArticlesController extends Controller
         $sort = $request->input('s', 'created_at');
         $direction = $request->input('d', 'desc');
 
-        return $query->orderBy($sort, $direction);
+        return $query->orderBy('pin', 'desc')->orderBy($sort, $direction);
     }
 
     /**
@@ -116,7 +116,7 @@ class ArticlesController extends Controller
         }
 
         event(new ModelChanged(['articles', 'tags']));
-        flash()->success(trans('forum.created'));
+        flash()->success(trans('common.created'));
 
         return redirect(route('articles.index'));
     }
@@ -129,8 +129,9 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article = Article::with('comments', 'author', 'tags', 'attachments', 'solution')->findOrFail($id);
-        $commentsCollection = $article->comments()->with('replies', 'author')->whereNull('parent_id')->latest()->get();
+        $article = Article::with('comments', 'tags', 'attachments', 'solution')->findOrFail($id);
+        $commentsCollection = $article->comments()->with('replies')
+            ->withTrashed()->whereNull('parent_id')->latest()->get();
 
         event(new ArticleConsumed($article));
 
@@ -173,20 +174,21 @@ class ArticlesController extends Controller
         $article->tags()->sync($request->input('tags'));
 
         event(new ModelChanged(['articles', 'tags']));
-        flash()->success(trans('forum.updated'));
+        flash()->success(trans('common.updated'));
 
-        return redirect(route('articles.index'));
+        return redirect(route('articles.show', $id));
     }
 
     public function pickBest(Request $request, $id)
     {
         $this->validate($request, [
-            'solution_id' => 'required|numeric|exists:comments,id'
+            'solution_id' => 'required|numeric|exists:comments,id',
         ]);
 
         Article::findOrFail($id)->update([
-            'solution_id' => $request->input('solution_id')
+            'solution_id' => $request->input('solution_id'),
         ]);
+
 
         return response()->json('', 204);
     }
@@ -208,8 +210,8 @@ class ArticlesController extends Controller
         }
 
         $article->attachments()->delete();
-        $article->comments->each(function ($comment) {
-            app(\App\Http\Controllers\CommentsController::class)->recursiveDestroy($comment);
+        $article->comments->each(function ($comment) use ($request) {
+            app(\App\Http\Controllers\CommentsController::class)->destroy($request, $comment->id);
         });
         $article->delete();
 
@@ -219,7 +221,7 @@ class ArticlesController extends Controller
             return response()->json('', 204);
         }
 
-        flash()->success(trans('forum.deleted'));
+        flash()->success(trans('common.deleted'));
 
         return redirect(route('articles.index'));
     }

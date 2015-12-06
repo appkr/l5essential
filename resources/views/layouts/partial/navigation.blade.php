@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-fixed-top {{ $isLandingPage ? 'transparent navbar-inverse' : 'navbar-default' }}" role="navigation">
 
   <div class="container-fluid">
     <div class="navbar-header">
@@ -10,15 +10,15 @@
       </button>
 
       <a href="{{ $currentUser ? route('home') : route('index') }}" class="navbar-brand">
-        <img src="/images/laravel_logo.png" style="display: inline-block; height: 30px;"/>
+        <img src="/images/logo_laravel.png" style="display: inline-block; height: 30px;"/>
       </a>
     </div>
 
     <div class="collapse navbar-collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="{{ route('documents.show') }}">
-            {!! icon('book') !!} {{ trans('documents.title_documents') }}
+          <a href="{{ route('lessons.show') }}">
+            {!! icon('book') !!} {{ trans('lessons.title_lessons') }}
           </a>
         </li>
         <li>

@@ -1,7 +1,23 @@
 /* media queries */
 @media screen and (max-width: $screen-sm-max) {
   /* MD 991px */
-  .sidebar__documents,
+  .landing {
+    h1 {
+      font-size: ceil(($font-size-base * 2));
+    }
+    h2 {
+      font-size: ceil(($font-size-base * 1.6));
+    }
+    p.lead {
+      font-size: $font-size-base;
+    }
+
+    hr {
+      margin: 2rem auto;
+    }
+  }
+
+  .sidebar__lessons,
   .sidebar__forum {
     display: none;
     overflow: hidden;
@@ -22,7 +38,7 @@
   }
 
   div.nav__forum,
-  div.nav__documents {
+  div.nav__lessons {
     position: fixed;
     bottom: 1px;
     left: 1px;
@@ -30,10 +46,84 @@
     display: block;
     transition: all 0.5s ease-in-out;
   }
+
+  .border__item {
+    width: 100%;
+    &:before {
+      content: none;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-xs-max) {
+  .landing {
+    margin-top: 50px;
+
+    h1 {
+      font-size: ceil(($font-size-base * 1.8));
+    }
+    h2 {
+      font-size: ceil(($font-size-base * 1.4));
+    }
+    p.lead {
+      font-size: ceil(($font-size-base * 0.8));
+    }
+
+    #laracroft {
+      //background-image: none;
+      background-size: contain;
+
+      .container-fluid {
+        padding: 4rem 0;
+      }
+    }
+
+    .credit {
+      display: none;
+    }
+
+    button {
+      white-space: normal !important;
+      word-wrap: break-word !important;
+      padding: 6px 12px !important;
+      line-height: 1.42 !important;
+      border-radius: 4px !important;
+    }
+
+    #feature pre {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .landing {
+    #laracroft {
+      background-size: 540px 342px;
+    }
+  }
 }
 
 @media screen and (max-width: $screen-xs) {
   /* Phone Device */
+  .landing {
+    margin-top: 50px;
+
+    h1 {
+      font-size: ceil(($font-size-base * 1.6));
+    }
+    h2 {
+      font-size: ceil(($font-size-base * 1.2));
+    }
+    p.lead {
+      font-size: ceil(($font-size-base * 0.7));
+    }
+
+    #laracroft {
+      background-size: 480px 300px;
+    }
+  }
+
   article {
     img {
       display: block;

@@ -7,5 +7,6 @@ return [
     'forbidden'             => 'Forbidden',
     'forbidden_description' => 'Sorry, you are not allowed to access this resource.',
     'server_error'          => 'Server Error',
+    'msg_form_error'        => 'Some errors found in the form. Please review and correct them and retry !',
 
 ];

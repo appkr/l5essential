@@ -1,9 +1,11 @@
 @import "../vendor/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../vendor/font-awesome/scss/font-awesome";
 @import "../vendor/select2/src/scss/core";
+@import "../vendor/select2-bootstrap-theme/src/select2-bootstrap";
 
 @import "commons";
+@import "landing";
 @import "auth";
-@import "documents";
+@import "lessons";
 @import "forum";
 @import "mediaquery";

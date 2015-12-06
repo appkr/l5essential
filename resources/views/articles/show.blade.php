@@ -39,10 +39,10 @@
         @if ($currentUser and ($currentUser->isAdmin() or $article->isAuthor()))
         <div class="text-center">
             <button type="button" class="btn btn-danger btn__delete">
-              {!! icon('delete') !!} Delete
+              {!! icon('delete') !!} {{ trans('common.delete') }}
             </button>
             <a href="{{route('articles.edit', $article->id)}}" class="btn btn-info">
-              {!! icon('pencil') !!} Edit
+              {!! icon('pencil') !!} {{ trans('common.edit') }}
             </a>
           </form>
         </div>
@@ -54,7 +54,7 @@
       <article>
         @include('comments.index', [
           'solved' => $article->solution,
-          'articleOwner' => $currentUser && $article->isAuthor()
+          'owner'  => $currentUser && $article->isAuthor()
         ])
       </article>
     </div>
@@ -68,7 +68,7 @@
     $("button.btn__delete").on("click", function(e) {
       var articleId = $("#article__article").data("id");
 
-      if (confirm("Are you sure to delete this article?")) {
+      if (confirm("{{ trans('common.confirm_delete') }}")) {
         $.ajax({
           type: "POST",
           url: "/articles/" + articleId,
@@ -76,11 +76,11 @@
             _method: "DELETE"
           }
         }).success(function() {
-          flash('success', 'Deleted ! The page will reload in 3 secs.', 2500);
+          flash("success", "{{ trans('common.deleted') }} {{ trans('common.msg_reload') }}", 1500);
 
           var timer = setTimeout(function () {
             window.location.href = '/articles';
-          }, 3000);
+          }, 2000);
         });
       }
     });

@@ -18,8 +18,8 @@
 
 <ul class="list-unstyled">
   @foreach($allTags as $tag)
-    <li class="{{ (Route::current()->parameter('id') == $tag->id) ? 'active' : '' }}">
-      <a href="{{ route('tags.articles.index', $tag->id) }}">
+    <li class="{{ (Route::current()->parameter('slug') == $tag->slug) ? 'active' : '' }}">
+      <a href="{{ route('tags.articles.index', $tag->slug) }}">
         {{ $tag->name }}
         @if ($tagCount = $tag->articles->count())
           <span class="badge badge-default">{{ $tagCount }}</span>

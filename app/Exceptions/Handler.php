@@ -18,6 +18,7 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         HttpException::class,
         ModelNotFoundException::class,
+        NotFoundHttpException::class,
     ];
 
     /**
@@ -30,6 +31,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        if ($this->shouldReport($e) and app()->environment('production')) {
+            app(\App\Reporters\Slack::class)->send($e);
+        }
+
         return parent::report($e);
     }
 
@@ -42,11 +47,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-//        if ($e instanceof ModelNotFoundException) {
-//            $e = new NotFoundHttpException($e->getMessage(), $e);
-//        }
-
-        if ($e instanceof ModelNotFoundException or $e instanceof NotFoundHttpException) {
+        if (app()->environment('production') and
+            ($e instanceof ModelNotFoundException
+                or $e instanceof NotFoundHttpException)) {
             return response(view('errors.notice', [
                 'title'       => trans('errors.not_found'),
                 'description' => trans('errors.not_found_description')

@@ -10,6 +10,7 @@ class WelcomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['home']]);
+
         parent::__construct();
     }
 
@@ -20,7 +21,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('home');
     }
 
     /**

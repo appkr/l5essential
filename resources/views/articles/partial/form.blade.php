@@ -1,12 +1,12 @@
-<div class="form-group">
+<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
   <label for="title">{{ trans('forum.title') }}</label>
   <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $article->title) }}"/>
   {!! $errors->first('title', '<span class="form-error">:message</span>') !!}
 </div>
 
-<div class="form-group">
+<div class="form-group {{ $errors->has('tags') ? 'has-error' : '' }}">
   <label for="tags">{{ trans('forum.tags') }}</label>
-  <select class="form-control" name="tags[]" id="tags" multiple="multiple">
+  <select class="form-control select2-multiple" name="tags[]" id="tags" multiple="multiple">
     @foreach($allTags as $tag)
       <option value="{{ $tag->id }}" {{ in_array($tag->id, $article->tags->lists('id')->toArray()) ? 'selected="selected"' : '' }}>{{ $tag->name }}</option>
     @endforeach
@@ -14,14 +14,14 @@
   {!! $errors->first('tags', '<span class="form-error">:message</span>') !!}
 </div>
 
-<div class="form-group">
+<div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
   <a href="#" class="help-block pull-right hidden-xs" id="md-caller">
-    <small>{!! icon('preview') !!} Markdown Cheatsheet</small>
+    <small>{!! icon('preview') !!} {{ trans('common.cheat_sheet') }}</small>
   </a>
   <label for="content">{{ trans('forum.content') }}</label>
-  <textarea name="content" class="form-control forum__content" rows="10">{{ old('content', $article->content) }}</textarea>
+  <textarea name="content" id="content" class="form-control forum__content" rows="10">{{ old('content', $article->content) }}</textarea>
   {!! $errors->first('content', '<span class="form-error">:message</span>') !!}
-  <div class="preview__forum">{{ markdown(old('content', 'Preview will be shown here...')) }}</div>
+  <div class="preview__forum">{{ markdown(old('content', trans('common.markdown_preview'))) }}</div>
 </div>
 
 <div class="form-group">
@@ -40,19 +40,30 @@
 <div class="form-group">
   <div class="checkbox">
     <label>
-      <input type="checkbox" name="notification" checked="{{ $article->notification ?: 'checked' }}">
+      <input type="checkbox" name="notification" {{ $article->notification ? 'checked="checked"': ''}}>
       {{ trans('forum.notification') }}
     </label>
   </div>
 </div>
+
+@if ($currentUser and $currentUser->isAdmin())
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="pin" {{ $article->pin ? 'checked="checked"': ''}}>
+        {{ trans('forum.pin') }}
+      </label>
+    </div>
+  </div>
+@endif
 
 @include('layouts.partial.markdown')
 
 @section('script')
   <script>
     var form = $("form.form__forum").first(),
-      dropzone  = $("div.dropzone"),
-      dzControl = $("label[for=my-dropzone]>small");
+        dropzone  = $("div.dropzone"),
+        dzControl = $("label[for=my-dropzone]>small");
 
     dzControl.on("click", function(e) {
       dropzone.fadeToggle(0);
@@ -62,7 +73,8 @@
     /* Activate select2 for a nicer tag selector UI */
     $("select#tags").select2({
       placeholder: "{{ trans('forum.tags_help') }}",
-      maximumSelectionLength: 3
+      maximumSelectionLength: 3,
+      theme: "bootstrap"
     });
 
     /* Dropzone Related */
@@ -76,8 +88,8 @@
         articleId: "{{ $article->id }}"
       },
       dictDefaultMessage: "<div class=\"text-center text-muted\">" +
-      "<h2>Drop files to upload !</h2>" +
-      "<p>(or Click to choose...)</p></div>",
+      "<h2>{{ trans('forum.msg_dropfile') }}</h2>" +
+      "<p>{{ trans('forum.msg_dropfile_sub') }}</p></div>",
       addRemoveLinks: true
     });
 

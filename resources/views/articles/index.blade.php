@@ -6,13 +6,15 @@
       {!! icon('new') !!} {{ trans('forum.create') }}
     </a>
 
-    <div class="btn-group pull-right sort__forum">
+    <div class="btn-group pull-right sort__forum hidden-xs">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        {!! icon('sort') !!} Sort by <span class="caret"></span>
+        {!! icon('sort') !!} {{ trans('common.sort_by') }} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        @foreach(['created_at' => 'Age', 'view_count' => 'View'] as $column => $name)
-          <li class="{{ Request::input('s') == $column ? 'active' : '' }}">{!! link_for_sort($column, $name) !!}</li>
+        @foreach(['created_at' => trans('forum.age'), 'view_count' => trans('forum.view_count')] as $column => $name)
+          <li class="{{ Request::input('s') == $column ? 'active' : '' }}">
+            {!! link_for_sort($column, $name) !!}
+          </li>
         @endforeach
       </ul>
     </div>

@@ -35,7 +35,7 @@ return [
     'button_send_reminder'        => 'Send reminder',
 
     'title_signup'                => 'Sign Up',
-    'title_signup_help'           => 'We love Github ^^/. Please <a href=":url">login via Github</a> if you have an account, otherwise proceed the following~',
+    'title_signup_help'           => 'We love Github ^^/. Please <a href=":url">login via Github</a> if you have an account. Otherwise proceed the following~',
     'name'                        => 'Full name',
     'password_confirmation'       => 'Confirm password',
     'button_signup'               => 'Sign me up~',

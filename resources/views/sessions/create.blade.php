@@ -34,6 +34,9 @@
   <form action="{{ route('sessions.store') }}" method="POST" role="form" class="form-auth">
 
     {!! csrf_field() !!}
+    @if ($return = Request::input('return'))
+      <input type="hidden" name="return" value="{{ $return }}">
+    @endif
 
     <div class="page-header">
       <h4>{{ trans('auth.title_login') }}</h4>
@@ -53,12 +56,12 @@
       <span class="span-or">or</span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
       <input type="email" name="email" class="form-control" placeholder="{{ trans('auth.email_address') }}" value="{{ old('email') }}" autofocus/>
       {!! $errors->first('email', '<span class="form-error">:message</span>') !!}
     </div>
 
-    <div class="form-group">
+    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
       <input type="password" name="password" class="form-control" placeholder="{{ trans('auth.password') }}">
       {!! $errors->first('password', '<span class="form-error">:message</span>')!!}
     </div>
