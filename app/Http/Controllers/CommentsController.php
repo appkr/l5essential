@@ -11,7 +11,7 @@ class CommentsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('author:comment', ['except' => ['store']]);
+        $this->middleware('author:comment', ['except' => ['store', 'vote']]);
     }
 
     /**
