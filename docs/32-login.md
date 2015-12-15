@@ -50,7 +50,7 @@ Route::group(['prefix' => 'auth', 'as' => 'session.'], function () {
 });
 
 /* Password Reminder */
-Route::group(['prefix' => 'password'], function () {
+Route::group(['prefix' => 'auth'], function () {
     Route::get('remind', [
         'as'   => 'reminder.create',
         'uses' => 'Auth\PasswordController@getEmail'
