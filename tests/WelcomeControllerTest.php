@@ -13,6 +13,6 @@ class WelcomeControllerTest extends TestCase
     public function it_redirect_to_login_page_without_login()
     {
         $this->visit(route('home'))
-            ->seePageIs(route('sessions.create'));
+            ->seePageIs(\Request::fullUrl());
     }
 }

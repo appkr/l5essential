@@ -104,8 +104,8 @@ Route::post('auth/reset', [
     'uses' => 'PasswordsController@postReset',
 ]);
 
-//DB::listen(function($sql, $bindings, $time){
-//    var_dump($sql);
-//    var_dump($bindings);
-//    //var_dump($time);
+//DB::listen(function($event){
+//    var_dump($event->sql);
+//    var_dump($event->bindings);
+//    //var_dump($event->time);
 //});
