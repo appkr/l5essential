@@ -14,3 +14,4 @@ _ide_helper.php
 /resources/assets/vendor
 /public/css
 /public/js
+envoy.config.php

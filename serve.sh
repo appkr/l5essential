@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
 
+#--------------------------------------------------------------------------
 # Before run this script...
+#--------------------------------------------------------------------------
 #
 # Get sudo permission
 # $ sudo -s
+#
+# Run.
+# # ./serve.sh example.com /path/to/document-root
+#
+# TROUBLESHOOTING.
+#
+# If you encounter error message like "sudo: no tty present
+# and no askpass program specified ...", you can work around this error
+# by adding the following line on your production server's /etc/sudoers.
+#
+# $ sudo visudo
+#
+# deployer ALL=(ALL:ALL) NOPASSWD: ALL
+# %www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/service php5-fpm restart
+#
 
 mkdir /etc/nginx/ssl 2>/dev/null
 
@@ -22,19 +39,30 @@ fi
 block="server {
     listen ${3:-80};
     listen ${4:-443} ssl;
+
     server_name $1;
+
     root \"$2\";
+
     index index.html index.htm index.php;
+
     charset utf-8;
+
     location / {
         try_files \$uri \$uri/ /index.php?\$query_string;
     }
+
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }
+
     access_log off;
+
     error_log  /var/log/nginx/$1-error.log error;
+
     sendfile off;
+
     client_max_body_size 100m;
+
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php5-fpm.sock;
@@ -48,9 +76,11 @@ block="server {
         fastcgi_send_timeout 300;
         fastcgi_read_timeout 300;
     }
+
     location ~ /\.ht {
         deny all;
     }
+
     ssl_certificate     /etc/nginx/ssl/$1.crt;
     ssl_certificate_key /etc/nginx/ssl/$1.key;
 }

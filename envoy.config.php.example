@@ -1,0 +1,49 @@
+<?php
+
+$configurations = [
+    'server'  => [
+        'user'   => 'username', // 배포 및 서비스용 계정
+        'group'  => 'www-data',
+        'host'   => 'your_host_name',
+        'domain' => 'your_domain_name',
+    ],
+    'path'    => [
+        'home'    => '/home/username',
+        'web'     => '/home/username/www',
+        'base'    => '/home/username/www/your_domain_name',
+        'shared'  => '/home/username/www/shared',
+        'release' => '/home/username/www/releases',
+    ],
+    'release' => [
+        'name' => 'release_' . date('YmdHis'),
+        'keep' => 3, // 지우지 않고 유지할 이전 릴리즈 갯수
+    ],
+    'git'     => [
+        'repo'  => 'your_github_repository_path',
+        // 참고 https://github.com/settings/tokens
+        // $ composer install 중에 Rate Limit 걸리지 않으려면 꼭 필요함.
+        'token'  => 'your_github_personal_access_token',
+    ],
+];
+
+$GLOBALS['config'] = dot($configurations);
+
+function dot($array, $prepend = '')
+{
+    $results = [];
+
+    foreach ($array as $key => $value) {
+        if (is_array($value)) {
+            $results = array_merge($results, dot($value, $prepend . $key . '.'));
+        } else {
+            $results[$prepend . $key] = $value;
+        }
+    }
+
+    return $results;
+}
+
+function config($key)
+{
+    return $GLOBALS['config'][$key];
+}

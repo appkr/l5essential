@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\UpdateLessonsTable::class,
         \App\Console\Commands\BackupDb::class,
         \App\Console\Commands\ClearLog::class,
+        \App\Console\Commands\PruneRelease::class,
     ];
 
     /**

@@ -805,7 +805,7 @@ $ composer global require "laravel/envoy=~1.0"
 ```
 
 ```bash
-# 사용하는 Shell 에 따라 Profile 파일 이름은 다를 수 있다. 필자는 Zshell 을 쓰므로, .zshrc 이다.
+# 사용하는 Shell 에 따라 Profile 파일 이름은 다를 수 있다. 필자는 Zshell 을 쓰므로, .zshrc 이다. e.g. .profile, .bashrc
 $ nano ~/.zshrc
 
 # composer global 로 설치한 패키지들의 실행파일을 경로에 넣어 준다.
