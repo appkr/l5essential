@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost:8000',
+    'url' => env('APP_URL', 'http://localhost:8000'),
 
     /*
     |--------------------------------------------------------------------------
@@ -164,6 +164,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
+        Maknz\Slack\SlackServiceProvider::class,
 
     ],
 
@@ -220,6 +221,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Slack' => Maknz\Slack\Facades\Slack::class,
+
     ],
 
 ];

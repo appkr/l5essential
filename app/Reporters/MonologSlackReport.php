@@ -2,7 +2,7 @@
 
 namespace App\Reporters;
 
-class Slack
+class MonologSlackReport
 {
     /**
      * @var \Monolog\Logger
