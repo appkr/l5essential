@@ -48,3 +48,5 @@
     -   [41강 - UI 개선](/lessons/41-ui-makeup.md)
     -   [42강 - 서버 사이드 개선](/lessons/42-be-makeup.md)
     -   [43강 - 변경 사항 알림](/lessons/43-change-note.md)
+-   **중급코스3-RESTFul API**
+    -   [44강 - API 기본기 및 기획](/lessons/44-api-basic.md)

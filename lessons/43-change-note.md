@@ -858,7 +858,7 @@ class Handler extends ExceptionHandler
     public function report(Exception $e)
     {
         if ($this->shouldReport($e) and app()->environment('production')) {
-            app(\App\Reporters\Slack::class)->send($e);
+            app(\App\Reporters\ErrorReport::class, [$e])->send();
         }
         
         //...
@@ -866,57 +866,70 @@ class Handler extends ExceptionHandler
 }
 ```
 
-그 다음은 \# slack 메시지를 보내는 방법을 찾아야 하는데, [maknz/slack](https://github.com/maknz/slack) 와 같은 외부 라이브러리를 이용하는 방법과, 라라벨에 기본 내장된 [monolog/monolog](https://github.com/Seldaek/monolog) 를 이용하는 방법이 있다. 여기서는 monolog 를 이용했다.
+그 다음은 \# slack 메시지를 보내는 방법을 찾아야 하는데, [maknz/slack](https://github.com/maknz/slack) 와 같은 외부 라이브러리를 이용하는 방법과, 라라벨에 기본 내장된 [monolog/monolog](https://github.com/Seldaek/monolog) 를 이용하는 방법이 있다. 여기서는 maknz/slack 을 이용했다. monolog 를 이용한 구현도 'app/Reporters/MonologSlackReport.php' 에 있다.
 
-위 'Handler.php' 코드에서 본 바와 같이 `Slack` 이란 클래스를 만들고, 거기에 `send(\Exception $e)` 라는 API 를 정의한 것을 알 수 있다. monolog 를 이용하는 `Slack` 클래스를 만들자.
+```bash
+$ composer require "maknz/slack:1.*"
+
+# ServiceProvider, Facade, config 등은 패키지의 문서를 참고하자.
+```
+
+위 'Handler.php' 코드에서 본 바와 같이 `ErrorReport` 란 클래스를 만들고, 거기에 `send()` 라는 API 를 정의한 것을 알 수 있다.
  
 ```php
-// app/Reporters/Slack.php
+// app/Reporters/ErrorReport.php
 
 <?php
 
 namespace App\Reporters;
 
-class Slack
+use ...
+
+class ErrorReport
 {
-    protected $logger;
+    private $client;
 
-    public function __construct()
+    private $primitive;
+
+    public function __construct(\Exception $e, $webhook = '', $settings = [])
     {
-        $this->createLogger();
+        $this->primitive = $e;
+        $webhook = $webhook ?: env('SLACK_WEBHOOK');
+        $this->createClient($webhook, $settings);
     }
 
-    public function send(\Exception $e)
+    public function send()
     {
-        return $this->logger->error(
-            $e->getMessage() ?: "Something broken :(",
-            $this->buildPayload($e)
-        );
+        return $this->client->createMessage()->attach($this->buildPayload())->send();
     }
 
-    protected function buildPayload(\Exception $e)
+    protected function buildPayload()
     {
-        return [
-            'username'  => auth()->check() ? auth()->user()->email : 'Unknown',
-            'route'     => \Route::currentRouteName(),
-            'localtime' => \Carbon\Carbon::now('Asia/Seoul')->toDateTimeString(),
-            'exception' => [
-                'class'   => get_class($e),
+        return new Attachment([
+            'fallback' => 'Error Report',
+            'text'     => $this->primitive->getMessage() ?: "Something broken :(",
+            'color'    => 'danger',
+            'fields'   => [
+                new AttachmentField([
+                    'title' => 'localtime',
+                    'value' => Carbon::now('Asia/Seoul')->toDateTimeString(),
+                ]),
                 // ...
             ],
-        ];
+        ]);
     }
 
-    protected function createLogger()
+    protected function createClient($webhook, $overrides = [])
     {
-        $logger = \Log::getMonolog();
+        $settings = array_merge([
+            'channel'                 => '#l5essential',
+            'username'                => 'aws-demo',
+            'link_names'              => true,
+            'unfurl_links'            => true,
+            'markdown_in_attachments' => ['title', 'text', 'fields'],
+        ], $overrides);
 
-        $logger->pushHandler(
-            (new \Monolog\Handler\SlackHandler(env('SLACK_TOKEN'), '#l5essential', 'aws-demo'))
-                ->setLevel(\Monolog\Logger::ERROR)
-        );
-
-        return $this->logger = $logger;
+        return $this->client = new Client($webhook, $settings);
     }
 }
 ```
@@ -924,8 +937,6 @@ class Slack
 테스트를 위해 'Handler.php' 에서 `APP_ENV == 'production'` 일 때만 리포팅 하도록 한 `if ($this->shouldReport($e) and app()->environment('production')) {` 부분을 잠깐 주석 처리 하고, `App\Http\Controllers\WelcomeController::index()` 메소드에서 없는 뷰를 반환하도록 하고 홈 페이지를 방문하였다. 결과는 아래 그림과 같다.
 
 ![](43-change-note-img-06.png)
-
-**`참고`** 몇 일 써 본 결과 [monolog/monolog](https://github.com/Seldaek/monolog) 를 이용한 슬랙메시지 발송은 payload 로 넘긴 모든 데이터가 전달되지 않는 것으로 보인다. [maknz/slack](https://github.com/maknz/slack) 쓸 것을 추천한다.
 
 <!--@start-->
 ---

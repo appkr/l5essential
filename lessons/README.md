@@ -1,10 +1,10 @@
 # 라라벨 5 입문 강좌
 
-## 데모 사이트
+## Github
 
-아래 주소를 방문하면 이 강좌에서 개발한 결과물을 볼 수 있다.
+이 강좌의 코드는 아래 저장소에서 확인할 수 있다.
 
-[http://l5.appkr.kr/](http://l5.appkr.kr/)
+[https://github.com/appkr/l5essential](https://github.com/appkr/l5essential)
 
 ## 목적
 
@@ -72,6 +72,7 @@
 -   [30강 - Debug & Final Touch](30-final-touch.md)
 
 #### 2. Forum
+
 StackOverflow 처럼 댓글이 가능한 간단한 포럼을 구현해 본다. 이를 통해 HTTP Request &amp; Response 에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.
 
 -   [31강 - 포럼 요구사항 기획](31-forum-features.md)
@@ -90,13 +91,14 @@ StackOverflow 처럼 댓글이 가능한 간단한 포럼을 구현해 본다. �
 -   [43강 - 변경 사항 알림](43-change-note.md)
 
 #### 3. RESTful API
+
 Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있도록 만들어 본다. 실험을 위해 프론트엔드 프레임웍을 이용 간단한 모바일 앱을 만들어 볼 예정이다. 
+
+-   [44강 - API 기본기 및 기획](44-api-basic.md)
 
 ## 이 강좌를 보는 방법
 
-강좌들은 Markdown 문법으로 작성되어 있으므로, Github에서 보는 것이 좋다. 
-
-각 강좌의 소스코드는 tag로 저장되어 있다. 먼저 이 프로젝트를 클론하고, 원하는 강좌로 체크아웃하자. **이미 만들어진 소스코드를 눈으로 읽는 것 보다, 한 단락 한 문장 따라하면서 실제 실습해 볼 것을 권장한다.** 따라해 보실 분은 아래 코맨드를 수행하지 마시길...
+각 강좌의 [소스코드](https://github.com/appkr/l5essential) 는 tag로 저장되어 있다. 먼저 이 프로젝트를 클론하고, 원하는 강좌로 체크아웃하자. **이미 만들어진 소스코드를 눈으로 읽는 것 보다, 한 단락 한 문장 따라하면서 실제 실습해 볼 것을 권장한다.** 따라해 보실 분은 아래 코맨드를 수행하지 마시길...
 
 ```bash
 $ git clone git@github.com:appkr/l5essential.git myProject

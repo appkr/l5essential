@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Bican\Roles\Models\Role;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller

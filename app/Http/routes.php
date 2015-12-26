@@ -1,5 +1,61 @@
 <?php
 
+$domain = env('API_DOMAIN', 'api.myproject.dev');
+
+Route::group(['domain' => $domain, 'namespace' => 'Api'], function() {
+    /* Landing page */
+    Route::get('/', [
+        'as'   => 'api.index',
+        'uses' => 'WelcomeController@index'
+    ]);
+
+    /* User Registration */
+    Route::post('auth/register', [
+        'as'   => 'api.users.store',
+        'uses' => 'UsersController@store'
+    ]);
+
+    /* Social Login */
+    Route::get('social/{provider}', [
+        'as'   => 'api.social.login',
+        'uses' => 'SocialController@execute',
+    ]);
+
+    /* Session */
+    Route::post('auth/login', [
+        'as'   => 'api.sessions.store',
+        'uses' => 'SessionsController@store'
+    ]);
+    Route::get('auth/logout', [
+        'as'   => 'api.sessions.destroy',
+        'uses' => 'SessionsController@destroy'
+    ]);
+
+    /* Password Reminder.
+     * Password reset is possible only through the web page.
+     * For api client, remind email endpoint is available.
+     */
+    Route::post('auth/remind', [
+        'as'   => 'api.remind.store',
+        'uses' => 'PasswordsController@postRemind',
+    ]);
+
+    /* api.v1 */
+    Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function() {
+        /* Landing page */
+        Route::get('/', [
+            'as'   => 'api.v1.index',
+            'uses' => 'WelcomeController@index'
+        ]);
+
+        /* Api documents */
+        Route::get('docs', [
+            'as'   => 'api.v1.docs',
+            'uses' => 'DocumentsController@show'
+        ]);
+    });
+});
+
 /* Landing page */
 Route::get('/', [
     'as'   => 'index',
@@ -104,6 +160,7 @@ Route::post('auth/reset', [
     'uses' => 'PasswordsController@postReset',
 ]);
 
+/* From Laravel 5.2 all built-in events are fired in the form of Object */
 //DB::listen(function($event){
 //    var_dump($event->sql);
 //    var_dump($event->bindings);

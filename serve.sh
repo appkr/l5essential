@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# This script references
+# https://github.com/laravel/homestead/blob/master/scripts/serve-laravel.sh
+#
 #--------------------------------------------------------------------------
 # Before run this script...
 #--------------------------------------------------------------------------

@@ -72,6 +72,7 @@
 -   [30강 - Debug & Final Touch](lessons/30-final-touch.md)
 
 #### 2. Forum
+
 StackOverflow 처럼 댓글이 가능한 간단한 포럼을 구현해 본다. 이를 통해 HTTP Request &amp; Response 에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.
 
 -   [31강 - 포럼 요구사항 기획](lessons/31-forum-features.md)
@@ -90,7 +91,10 @@ StackOverflow 처럼 댓글이 가능한 간단한 포럼을 구현해 본다. �
 -   [43강 - 변경 사항 알림](lessons/43-change-note.md)
 
 #### 3. RESTful API
-Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있도록 만들어 본다. 실험을 위해 프론트엔드 프레임웍을 이용 간단한 모바일 앱을 만들어 볼 예정이다. 
+
+Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있도록 만들어 본다. 실험을 위해 프론트엔드 프레임웍을 이용 간단한 모바일 앱을 만들어 볼 예정이다.
+ 
+-   [44강 - API 기본기 및 기획](lessons/44-api-basic.md)
 
 ## 이 강좌를 보는 방법
 

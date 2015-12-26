@@ -15,7 +15,9 @@ abstract class Controller extends BaseController
      * Constructor
      */
     public function __construct() {
-        $this->setSharedVariables();
+        if (! starts_with(\Request::getHttpHost(), env('API_DOMAIN'))) {
+            $this->setSharedVariables();
+        }
     }
 
     /**

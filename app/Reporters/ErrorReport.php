@@ -14,41 +14,52 @@ class ErrorReport
     /**
      * @var \Maknz\Slack\Client
      */
-    protected $client;
+    private $client;
 
-    public function __construct()
+    /**
+     * @var \Exception
+     */
+    private $primitive;
+
+    /**
+     * @param \Exception $e
+     * @param string     $webhook
+     * @param array      $settings
+     */
+    public function __construct(\Exception $e, $webhook = '', $settings = [])
     {
-        $this->createClient();
+        $this->primitive = $e;
+        $webhook = $webhook ?: env('SLACK_WEBHOOK');
+        $this->createClient($webhook, $settings);
     }
 
     /**
      * Send slack report.
      *
-     * @param \Exception $e
      * @return mixed
      */
-    public function send(\Exception $e)
+    public function send()
     {
-        return $this->client->createMessage()->attach($this->buildPayload($e))->send();
+        return $this->client->createMessage()->attach($this->buildPayload())->send();
     }
 
     /**
      * Build Slack Attachment array based on given Exception object.
+     *
      * @see https://api.slack.com/docs/attachments
      *
-     * @param \Exception $e
      * @return array
      */
-    protected function buildPayload(\Exception $e)
+    protected function buildPayload()
     {
         return new Attachment([
             'fallback' => 'Error Report',
-            'text' => $e->getMessage() ?: "Something broken :(",
-            'color' => 'danger',
-            'fields' => [
+            'text'     => $this->primitive->getMessage() ?: "Something broken :(",
+            'color'    => 'danger',
+            'fields'   => [
                 new AttachmentField([
                     'title' => 'localtime',
-                    'value' => Carbon::now('Asia/Seoul')->toDateTimeString()
+                    'value' => Carbon::now('Asia/Seoul')->toDateTimeString(),
                 ]),
                 new AttachmentField([
                     'title' => 'username',
@@ -62,41 +73,41 @@ class ErrorReport
                             ' (%s %s)',
                             Request::method(),
                             Request::fullUrl()
-                        ) ,
+                        ),
                 ]),
                 new AttachmentField([
                     'title' => 'description',
                     'value' => sprintf(
                         '%s in %s line %d',
-                        get_class($e),
-                        pathinfo($e->getFile(), PATHINFO_BASENAME),
-                        $e->getLine()
+                        get_class($this->primitive),
+                        pathinfo($this->primitive->getFile(), PATHINFO_BASENAME),
+                        $this->primitive->getLine()
                     ),
                 ]),
                 new AttachmentField([
                     'title' => 'trace',
-                    'value' => $e->getTraceAsString()
+                    'value' => $this->primitive->getTraceAsString(),
                 ]),
-            ]
+            ],
         ]);
     }
 
     /**
      * Factory - Create HTTP API Client for Slack
+     *
+     * @param array $overrides
+     * @return \Maknz\Slack\Client
      */
-    protected function createClient()
+    protected function createClient($webhook, $overrides = [])
     {
-        $settings = [
-            'channel'      => '#l5essential',
-            'username'     => 'aws-demo',
-            'link_names'   => true,
-            'unfurl_links' => true,
-            'markdown_in_attachments' => ['title', 'text', 'fields', 'value']
-        ];
+        $settings = array_merge([
+            'channel'                 => '#l5essential',
+            'username'                => 'aws-demo',
+            'link_names'              => true,
+            'unfurl_links'            => true,
+            'markdown_in_attachments' => ['title', 'text', 'fields'],
+        ], $overrides);
 
-        return $this->client = new Client(
-            env('SLACK_WEBHOOK'),
-            $settings
-        );
+        return $this->client = new Client($webhook, $settings);
     }
 }
