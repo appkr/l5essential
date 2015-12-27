@@ -30,7 +30,7 @@ class ErrorReport
     {
         $this->primitive = $e;
         $webhook = $webhook ?: env('SLACK_WEBHOOK');
-        $this->createClient($webhook, $settings);
+        $this->client = $this->createClient($webhook, $settings);
     }
 
     /**
@@ -108,6 +108,6 @@ class ErrorReport
             'markdown_in_attachments' => ['title', 'text', 'fields'],
         ], $overrides);
 
-        return $this->client = new Client($webhook, $settings);
+        return new Client($webhook, $settings);
     }
 }

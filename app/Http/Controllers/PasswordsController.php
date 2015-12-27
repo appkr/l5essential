@@ -40,9 +40,9 @@ class PasswordsController extends Controller
 
         if (User::whereEmail($request->input('email'))->noPassword()->first()) {
             // Notify the user if he/she is a social login user.
-            flash()->errors(sprintf("%s %s", trans('auth.social_olny'), trans('auth.no_password')));
+            $message = sprintf("%s %s", trans('auth.social_olny'), trans('auth.no_password'));
 
-            return back();
+            return $this->respondError($message);
         }
 
         $response = Password::sendResetLink($request->only('email'), function ($m) {
@@ -51,12 +51,10 @@ class PasswordsController extends Controller
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                flash(trans($response));
-                return back();
+                return $this->respondSuccess(trans($response));
 
             case Password::INVALID_USER:
-                flash()->error(trans($response));
-                return back()->withInput();
+                return $this->respondError(trans($response));
         }
     }
 
@@ -116,5 +114,31 @@ class PasswordsController extends Controller
                 return back()
                     ->withInput($request->only('email'));
         }
+    }
+
+    /**
+     * Make an error response.
+     *
+     * @param $message
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function respondError($message)
+    {
+        flash()->errors($message);
+
+        return back()->withInput();
+    }
+
+    /**
+     * Make a success response.
+     *
+     * @param $message
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function respondSuccess($message)
+    {
+        flash($message);
+
+        return back();
     }
 }

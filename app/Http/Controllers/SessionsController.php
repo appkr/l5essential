@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 
 class SessionsController extends Controller
@@ -40,21 +42,20 @@ class SessionsController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return $this->respondValidationError($validator);
         }
 
-        if (! \Auth::attempt($request->only('email', 'password'), $request->has('remember'))) {
-            flash()->error(trans('auth.failed'));
+        $valid = is_api_request()
+            ? Auth::once($request->only('email', 'password'))
+            : Auth::attempt($request->only('email', 'password'), $request->has('remember'));
 
-            return back()->withErrors($validator)->withInput();
+        if (! $valid) {
+            return $this->respondLoginFailed(trans('auth.failed'));
         }
 
-        event('users.login', [\Auth::user()]);
-        flash(trans('auth.welcome', ['name' => \Auth::user()->name]));
+        event('users.login', [Auth::user()]);
 
-        return ($return = $request->input('return'))
-            ? redirect(urldecode($return))
-            : redirect()->intended();;
+        return $this->respondCreated($request->input('return'));
     }
 
     /**
@@ -64,9 +65,48 @@ class SessionsController extends Controller
      */
     public function destroy()
     {
-        \Auth::logout();
+        Auth::logout();
         flash(trans('auth.goodbye'));
 
         return redirect(route('index'));
+    }
+
+    /**
+     * Make validation error response.
+     *
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function respondValidationError(Validator $validator)
+    {
+        return back()->withInput()->withErrors($validator);
+    }
+
+    /**
+     * Make login failed response.
+     *
+     * @param string $message
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function respondLoginFailed($message)
+    {
+        flash()->error($message);
+
+        return back()->withInput();
+    }
+
+    /**
+     * Make a success response.
+     *
+     * @param string $return
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function respondCreated($return = '')
+    {
+        flash(trans('auth.welcome', ['name' => Auth::user()->name]));
+
+        return ($return)
+            ? redirect(urldecode($return))
+            : redirect()->intended();
     }
 }

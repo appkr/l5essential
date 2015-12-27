@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 
@@ -63,14 +64,26 @@ class SocialController extends Controller
     {
         $user = $this->socialite->driver($provider)->user();
 
-        $user = (\App\User::whereEmail($user->getEmail())->first())
-            ?: \App\User::create([
+        $user = (User::whereEmail($user->getEmail())->first())
+            ?: User::create([
                 'name'  => $user->getName(),
                 'email' => $user->getEmail(),
             ]);
 
-        \Auth::login($user, true);
         event('users.login', [\Auth::user()]);
+
+        return $this->respondCreated($user);
+    }
+
+    /**
+     * Make a success response.
+     *
+     * @param $user
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function respondCreated(User $user)
+    {
+        \Auth::login($user, true);
         flash(trans('auth.welcome', ['name' => $user->name]));
 
         return redirect(route('home'));

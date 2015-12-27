@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -62,7 +63,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withInput()->withErrors($validator);
+            return $this->respondValidationError($validator);
         }
 
         $user->update([
@@ -72,10 +73,7 @@ class UsersController extends Controller
 
         $this->addMemberRole($user);
 
-        \Auth::login($user);
-        flash(trans('auth.welcome', ['name' => $user->name]));
-
-        return redirect(route('home'));
+        return $this->respondCreated($user);
     }
 
     /**
@@ -94,7 +92,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withInput()->withErrors($validator);
+            return $this->respondValidationError($validator);
         }
 
         $user = User::create([
@@ -104,10 +102,7 @@ class UsersController extends Controller
         ]);
         $this->addMemberRole($user);
 
-        \Auth::login($user);
-        flash(trans('auth.welcome', ['name' => $user->name]));
-
-        return redirect(route('home'));
+        return $this->respondCreated($user);
     }
 
     /**
@@ -120,5 +115,30 @@ class UsersController extends Controller
     {
         // 1 is admin, 2 is member
         return $user->roles()->sync([2]);
+    }
+
+    /**
+     * Make validation error response.
+     *
+     * @param $validator
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function respondValidationError(Validator $validator)
+    {
+        return back()->withInput()->withErrors($validator);
+    }
+
+    /**
+     * Make a success response.
+     *
+     * @param \App\User $user
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function respondCreated(User $user)
+    {
+        \Auth::login($user);
+        flash(trans('auth.welcome', ['name' => $user->name]));
+
+        return redirect(route('home'));
     }
 }

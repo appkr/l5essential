@@ -87,7 +87,7 @@ class PostsController extends Controller
 }
 ```
 
-테스트를 위해 [PostMan 크롬 플러그인](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)을 사용할 것을 권장한다. 이 문서의 표 대로 하나씩 대입해 보자. PostMan에서 GET을 선택하고 http://localhost:8000/posts, http://localhost:8000/posts/1, http://localhost:8000/posts/1/edit.
+테스트를 위해 [PostMan 크롬 확장 프로그램](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)을 사용할 것을 권장한다. 이 문서의 표 대로 하나씩 대입해 보자. PostMan에서 GET을 선택하고 http://localhost:8000/posts, http://localhost:8000/posts/1, http://localhost:8000/posts/1/edit.
 
 ![](./13-restful-resource-controller-img-01.png)
 

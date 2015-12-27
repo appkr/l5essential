@@ -50,3 +50,4 @@
     -   [43강 - 변경 사항 알림](/lessons/43-change-note.md)
 -   **중급코스3-RESTFul API**
     -   [44강 - API 기본기 및 기획](/lessons/44-api-basic.md)
+    -   [45강 - 기본 구조 잡기](/lessons/45-api-big-picture.md)

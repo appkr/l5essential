@@ -9,7 +9,7 @@ class WelcomeController extends Controller
     /**
      * Get the index page
      *
-     * @return \Illuminate\Contracts\View\Factory
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {

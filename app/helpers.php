@@ -126,7 +126,8 @@ if (! function_exists('current_url')) {
      *
      * @return string
      */
-    function current_url() {
+    function current_url()
+    {
         if (! Request::has('return')) {
             return Request::fullUrl();
         }
@@ -136,5 +137,17 @@ if (! function_exists('current_url')) {
             Request::url(),
             http_build_query(Request::except('return'))
         );
+    }
+}
+
+if (! function_exists('is_api_request')) {
+    /**
+     * Determine if the current request is for HTTP api.
+     *
+     * @return bool
+     */
+    function is_api_request()
+    {
+        return starts_with(Request::getHttpHost(), env('API_DOMAIN'));
     }
 }

@@ -1,27 +1,29 @@
 # 실전 프로젝트 3 - RESTful API
 
-"실전 프로젝트 2 - Forum" 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 외부 앱들이 Forum 서비스와 상호 작용할 수 있는 서비스를 만들어 보자.
+**"실전 프로젝트 2 - Forum"** 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 다양한 앱에서 "포럼" 을 이용할 수 있도록 서비스를 확장해 보자.
 
 ## 44강 - API 기본기 및 기획
 
-독자들이 RESTful API 의 이론에 대해 이해해야 강좌를 따라올 수 있을 것 같다.
+RESTful API 의 이론에 대해 이해하는 시간을 가져보자.
 
 ### RESTful API
 
-먼저 REST 가 무엇인지 알아보자.
+#### 먼저 REST 가 무엇인지 알아보자.
 
 - **RE**presentational **S**tate **T**ransfer. 대응되는 한국말 번역이 없어, 대부분 "레스트" 라 그냥 읽는다.
-- HTTP 의 특성을 잘 살려서 HTTP 를 사용하는 방법에 대해, HTTP 의 창시자들이 제안한 이종(異種, heterogeneous) 시스템간의 네트워크 통신 구조다. 엄격하게 지켜야 하는 스펙은 아니지만, 남들, 특히 이름만 대면 아는 웹 거물들은 모두 쓰므로 꼭 써야 한다.
+- HTTP 의 특성을 잘 살려서 사용하는 방법에 대해, 그 창시자들이 제안한 **"이종(異種, heterogeneous) 시스템간의 네트워크 통신 구조"**다. 엄격하게 지켜야 하는 스펙은 아니지만, 남들, 특히 이름만 대면 아는 웹 거물들은 모두 쓰므로 꼭 써야 한다.
 - RESTful, "레스트" 스러운 HTTP 사용법은 [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller) 를 필두로 앞선 실전 프로젝트에서도 계속 사용했었다. 이 강좌를 잘 따라오신 분이라면 알게 모르게 쓰고 있었고 이미 알고 있는 개념이다.
-- REST 는 1) Command (==Method. HEAD/GET, POST, PUT, ...), 2) Things (==Resource. articles, comments, ...), 3) Response (==Message. 200, 422 등의 HTTP 상태 코드와 text/html, application/json 등의 메시지 본문), 총 세 가지 큰 덩어리로 구성된다. 
+- REST 는 **1) Command** *(==Method. HEAD/GET, POST, PUT, ...)*, **2) Things** *(==Resource. articles, comments, ...)*, **3) Response** *(==Message. 200, 422 등의 HTTP 상태 코드와 text/html, application/json 등의 메시지 본문)*, 총 세 가지 큰 덩어리로 구성된다. 
 
-(HTTP) API 가 무엇인지 알아보자.
+#### (HTTP) API 가 무엇인지 알아보자.
 
 - API 는 시스템간의 커뮤니케이션에 사용된다. 가령, 우리가 만든 앱/서비스는 Laravel 에서 제공하는 API (e.g. `Route::resource()`) 를 이용해서 상호동작한다.
 - 이종(異種) 시스템, 가령 Ruby 로 작성된 라이브러리(==API)를 PHP 에서 쓰려면, 양쪽 언어를 다 아는 번역사, 즉 Wrapping 이 필요하다. 사람 세상이랑 참 비슷하다.
 - HTTP API 는 서로 다른 시스템간에도 커뮤니케이션을 할 수 있게 한다. 가령, iOS, Android, PC 등 다양한 플랫폼에서 다양한 언어로 구현된 클라이언트가 우리 API 와 데이터를 주고 받을 수 있다. 
 
-영어가 공용어인것 처럼, HTTP 가 워낙 많이 쓰이기 때문에 거의 공용어 처럼 통한다라고 보면 된다. 모두 종합해 보면, **"서로 다른 시스템간에 네트워크를 경유해서 데이터를 교환할 때 HTTP API 라는 것을 이용하는데, 아무렇게나 짜는 게 아니라, 기계 뿐 아니라 사람이 이해하기 쉽도록, 모두가 사용하고 권장하는 형태인 REST 원칙을 따르도록 짠 API"** 가 **"RESTful API"** 인 것이다.
+#### 종합해 보면. 
+
+영어가 공용어인것 처럼, HTTP 가 다양한 시스템에서 워낙 많이 쓰이기 때문에 거의 공용어 처럼 통한다라고 보면 된다. 모두 종합해 보면, **"서로 다른 시스템간에 네트워크를 경유해서 데이터를 교환할 때 HTTP API 라는 것을 이용하는데, 아무렇게나 짜는 게 아니라, 기계 뿐 아니라 사람이 이해하기 쉽도록, 모두가 사용하고 권장하는 형태인 REST 원칙을 따르도록 짠 API"** 가 **"RESTful API"** 인 것이다.
 
 ### RESTful API 베스트 프랙티스
 
@@ -38,7 +40,7 @@
     
     **`참고`** API 에서는 HTML 뷰를 응답하는 경우가 없으므로, 'GET /articles/create', 'GET /articles/{id}/edit', 2 개의 Endpoint 는 필요 없다.
     
-    **`ANTI-PATTERN`** 동사를 쓰면 이렇게 된다.
+    **`ANTI-PATTERN`** Rosource 이름 (==Endpoint) 에 동사를 쓰지 않는 것이 좋다.
     
     ```
     GET /getAllArticles
@@ -52,23 +54,24 @@
 
     Resource 의 상태를 변경할 때는 `POST`, `PUT`, `DELETE` 메소드를 사용한다.
      
-    **`ANTI-PATTERN`** GET 메소드를 이용하여 Resource 생성, 수정, 삭제를 한다면...
+    **`ANTI-PATTERN`** 잘못된 메소드 사용이 불러올 재앙.
      
     > My favorite WTF story is using a GET verb to delete resources. Which was interesting when Google crawled the API. <small>by Jamie Hannaford</small><br>
     > 리소스 삭제를 위한 API Endpoint 를 DELETE 대신 GET 메소드로 정의했다. 구글 검색엔진 크롤러가 방문할 때 마다, 서비스는 안드로메다로 간다.
      
-3. Resource 는 복수를 추천하고, 일관된 대소문자 규칙을 적용할 것을 권장한다.
+3. Resource 이름은 복수를 사용하고, 일관된 대소문자 규칙을 적용할 것을 권장한다.
  
-    1 번의 예에서 article 보다는 articles 가 더 낫다. Resource 이름 뿐 아니라, 필드명에서도 Snake case (e.g. snake_case), Camel case (e.g. camelCase), Dash case (e.g. dash-case) 를 혼용해서 사용하지 말고 일관되게 사용하자. 
+    1 번의 예에서 article 보다는 articles 가 더 낫다. Resource 이름 뿐 아니라, 필드명에서도 Snake case (e.g. snake_case), Camel case (e.g. camelCase), Dash case (e.g. dash-case) 를 일관되게 사용하자. 
     
     ```
     /article 보다는 /articles
     /comment 보다는 /comments
     ```
     
-    **`ANTI-PATTERN`** 대소문자 혼용 사례
+    **`ANTI-PATTERN`** 대소문자 혼용 사례.
     
     ```javascript
+    // GET /push_messages
     {
       "total": 1540,
       "perPage": 10,
@@ -88,13 +91,13 @@
     -   필터
         
         ```
-        GET /articles?f=notsolved
+        GET /articles?filter=notsolved
         ```
         
     -   정렬
     
         ```
-        GET /articles?s=view_count&d=asc
+        GET /articles?sort=view_count&direction=asc
         ```
         
     -   페이징
@@ -128,11 +131,11 @@
     Content-Type: application/json
     ```
     
-    **`참고`** Ruby on Rails 에서도 HTTP 헤더를 이용하는 것을 더 권장하지만... Resource 이름 뒤에 확장자를 붙이는 것도 허용 한다 (e.g. /articles.json). Anti-pattern 이라고는 할 수 없지만, 이 경우 API Endpoint 자체가 플랫폼/프레임웍에 의존성을 가지게 된다. 가령 /articles.json 을 그대로 두고 프레임웍을 RoR 이 아닌 다른 것으로 변경하고자 한다면, 확장자에 따른 Content Negotiation 로직을 별도로 구현해 주어야 한다. 
+    **`참고`** Resource 이름 뒤에 확장자를 붙여 Content Negotiation 을 하는 프레임웍도 있다 (e.g. /articles.json, /articles.xml). Anti-pattern 이라고는 할 수 없지만, 이 경우 API Endpoint 자체가 프레임웍에 의존성을 가지게 된다. 가령 /articles.json 을 그대로 두고, 백엔드 프레임웍을 다른 것으로 변경하고자 한다면, 확장자에 따른 Content Negotiation 로직을 별도로 구현해 주어야 한다. 
     
 7.  하위 또는 관련 리소스를 쉽게 찾을 수 있는 링크를 제공한다. (==HATEOAS)
     
-    HTML 의 경우 메뉴나 링크로 다른 페이지로 이동할 수 있는 방법을 제공하고 있다. 반면에, API 는 달랑 데이터만 제공하기 때문에, API 를 사용하는 사람이나 기계가 문서를 완벽히 이해하지 않고서야 다음에 무엇을 해야 하고, 어디로 가야할 지 전혀 알 수가 없다. 이를 해결하기 위한 방안으로 제시된 것이 HATEOAS (Hypermedia as the Engine of Application State) 이다.
+    HTML 의 경우 메뉴나 링크로 다른 페이지로 이동할 수 있는 방법을 제공하고 있다. 반면에, API 는 달랑 데이터만 제공하기 때문에, API 를 사용하는 사람이나 기계가 다음에 무엇을 해야 하고, 어디로 가야할 지 전혀 알 수가 없다. 이를 해결하기 위한 방안으로 제시된 것이 HATEOAS (Hypermedia as the Engine of Application State) 이다.
     
     ```javascript
     // GET /articles
@@ -161,7 +164,7 @@
 
 8.  API 버전
     
-    HTML 페이지의 경우에는 코드 배포만 하면, 사용자는 언제든지 최신 코드를 이용하게 된다. 반면, API 의 경우에는 클라이언트와 서버가 완전히 분리 (==Decoupling) 된다. 즉, 서버 사이드에서 API 를 변경하더라도, 클라이언트는 여전히 *정상적인 동작을 기대하면서* 변경 전의 API 를 이용할 수 있다는 의미이다. 점진적 마이그레이션을 위해서 API 버저닝은 꼭 필요하고, 처음에 '/articles' 로 Endpoint 를 만든후, 변경되면 '/v2/articles' 로 가지 말고, 반드시 처음 부터 '/v1/articles' 로 만들 것을 권장한다.
+    HTML 페이지의 경우에는 코드 배포만 하면, 사용자는 언제든지 최신 코드를 이용하게 된다. 반면, API 의 경우에는 클라이언트와 서버가 완전히 분리 (==Decoupling) 된다. 즉, 서버 사이드에서 API 를 변경하더라도, 클라이언트는 여전히 **정상적인 동작을 기대하면서** 변경 전 API 를 이용할 수 있다는 의미이다. 점진적 마이그레이션을 위해서 API 버저닝은 꼭 필요하고, 처음에 '/articles' 로 Endpoint 를 만든후, 변경되면 '/v2/articles' 로 가지 말고, 반드시 처음 부터 '/v1/articles' 로 만들 것을 권장한다.
        
     ```
     GET http://api.example.com/v1/articles
@@ -198,14 +201,14 @@
         "message": [
           "title": "The title filed is required" 
         ]
-        "dict": http://api.example.com/v1/api/docs#errors422
+        "dict": http://api.example.com/v1/docs#errors422
       }
     }
     ```
 
 10. HTTP 메소드 오버라이드
     
-    [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller) 에서 이미 설명한 바 있는 내용이다. 모던 브라우저 또는 네트워크 프록시 들이 GET, POST 메소드만 이해하기 때문에 PUT, DELETE 메소드를 사용할 때는 `_method=put` 과 같이 사용해야 한다고.. 라라벨은 `X-HTTP-Method-Override` HTTP 헤더를 이용한 메소드 오버라이드도 지원한다.
+    [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller) 에서 이미 설명한 바 있는 내용이다. 모던 브라우저 또는 네트워크 프록시들이 GET, POST 메소드만 이해하기 때문에 PUT, DELETE 메소드를 사용할 때는 `_method=put` 과 같이 사용해야 한다고.. 라라벨은 `X-HTTP-Method-Override` HTTP 헤더를 이용한 메소드 오버라이드도 지원한다.
     
     ```
     POST /articles
