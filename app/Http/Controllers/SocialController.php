@@ -70,8 +70,6 @@ class SocialController extends Controller
                 'email' => $user->getEmail(),
             ]);
 
-        event('users.login', [\Auth::user()]);
-
         return $this->respondCreated($user);
     }
 
@@ -84,6 +82,7 @@ class SocialController extends Controller
     protected function respondCreated(User $user)
     {
         \Auth::login($user, true);
+        event('users.login', [\Auth::user()]);
         flash(trans('auth.welcome', ['name' => $user->name]));
 
         return redirect(route('home'));

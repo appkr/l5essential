@@ -16,6 +16,7 @@ class SocialController extends ParentController
     protected function respondCreated(User $user)
     {
         // Todo Attach JWT.
+        // Todo Fire event('users.login', [$user])
 
         return response()->json([
             'code' => 201,
