@@ -45,17 +45,17 @@ class SessionsController extends Controller
             return $this->respondValidationError($validator);
         }
 
-        $valid = is_api_request()
-            ? Auth::once($request->only('email', 'password'))
+        $token = is_api_request()
+            ? \JWTAuth::attempt($request->only('email', 'password'))
             : Auth::attempt($request->only('email', 'password'), $request->has('remember'));
 
-        if (! $valid) {
-            return $this->respondLoginFailed(trans('auth.failed'));
+        if (! $token) {
+            return $this->respondLoginFailed();
         }
 
         event('users.login', [Auth::user()]);
 
-        return $this->respondCreated($request->input('return'));
+        return $this->respondCreated($request->input('return'), $token);
     }
 
     /**
@@ -85,12 +85,11 @@ class SessionsController extends Controller
     /**
      * Make login failed response.
      *
-     * @param string $message
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function respondLoginFailed($message)
+    protected function respondLoginFailed()
     {
-        flash()->error($message);
+        flash()->error(trans('auth.failed'));
 
         return back()->withInput();
     }
@@ -99,9 +98,10 @@ class SessionsController extends Controller
      * Make a success response.
      *
      * @param string $return
+     * @param string $token
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    protected function respondCreated($return = '')
+    protected function respondCreated($return = '', $token = '')
     {
         flash(trans('auth.welcome', ['name' => Auth::user()->name]));
 

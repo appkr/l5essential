@@ -70,19 +70,8 @@ class SocialController extends Controller
                 'email' => $user->getEmail(),
             ]);
 
-        return $this->respondCreated($user);
-    }
-
-    /**
-     * Make a success response.
-     *
-     * @param $user
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    protected function respondCreated(User $user)
-    {
         \Auth::login($user, true);
-        event('users.login', [\Auth::user()]);
+        event('users.login', [$user]);
         flash(trans('auth.welcome', ['name' => $user->name]));
 
         return redirect(route('home'));

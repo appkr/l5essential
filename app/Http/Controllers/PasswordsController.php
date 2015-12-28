@@ -42,7 +42,7 @@ class PasswordsController extends Controller
             // Notify the user if he/she is a social login user.
             $message = sprintf("%s %s", trans('auth.social_olny'), trans('auth.no_password'));
 
-            return $this->respondError($message);
+            return $this->respondError($message, 400);
         }
 
         $response = Password::sendResetLink($request->only('email'), function ($m) {
@@ -54,7 +54,7 @@ class PasswordsController extends Controller
                 return $this->respondSuccess(trans($response));
 
             case Password::INVALID_USER:
-                return $this->respondError(trans($response));
+                return $this->respondError(trans($response), 404);
         }
     }
 
@@ -119,10 +119,11 @@ class PasswordsController extends Controller
     /**
      * Make an error response.
      *
-     * @param $message
+     * @param     $message
+     * @param int $statusCode
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function respondError($message)
+    protected function respondError($message, $statusCode = 400)
     {
         flash()->errors($message);
 

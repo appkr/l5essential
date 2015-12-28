@@ -6,18 +6,27 @@ use App\Http\Controllers\PasswordsController as ParentController;
 
 class PasswordsController extends ParentController
 {
+    public function __construct()
+    {
+        // Kill middleware defined by ParentController.
+        $this->middleware = [];
+
+        parent::__construct();
+    }
+
     /**
      * Make an error response.
      *
-     * @param $message
+     * @param     $message
+     * @param int $statusCode
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondError($message)
+    protected function respondError($message, $statusCode = 400)
     {
         return response()->json([
-            'code' => 400,
+            'code' => $statusCode,
             'errors' => $message
-        ], 422);
+        ], $statusCode);
     }
 
     /**

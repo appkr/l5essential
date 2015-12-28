@@ -7,16 +7,12 @@ use Illuminate\Contracts\Validation\Validator;
 
 class SessionsController extends ParentController
 {
-    /**
-     * Log the user out of the application.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy()
+    public function __construct()
     {
-        // Todo Destroy the JWT of the current User.
+        // Kill middleware defined by ParentController.
+        $this->middleware = [];
 
-        return response()->json([], 204);
+        parent::__construct();
     }
 
     /**
@@ -36,14 +32,13 @@ class SessionsController extends ParentController
     /**
      * Make login failed response.
      *
-     * @param string $message
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondLoginFailed($message)
+    protected function respondLoginFailed()
     {
         return response()->json([
             'code' => 401,
-            'errors' => $message
+            'errors' => 'invalid_credentials',
         ], 401);
     }
 
@@ -51,16 +46,15 @@ class SessionsController extends ParentController
      * Make a success response.
      *
      * @param string $return
+     * @param string $token
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondCreated($return = '')
+    protected function respondCreated($return = '', $token = '')
     {
-        // Todo Attach JWT.
-
         return response()->json([
             'code' => 201,
             'message' => 'success',
-            'token' => 'token here',
+            'token' => $token,
         ], 201);
     }
 }

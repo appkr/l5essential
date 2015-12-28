@@ -8,6 +8,14 @@ use Illuminate\Contracts\Validation\Validator;
 
 class UsersController extends ParentController
 {
+    public function __construct()
+    {
+        // Kill middleware defined by ParentController.
+        $this->middleware = [];
+
+        parent::__construct();
+    }
+
     /**
      * Make validation error response.
      *
@@ -30,12 +38,10 @@ class UsersController extends ParentController
      */
     protected function respondCreated(User $user)
     {
-        // Todo Attach JWT.
-
         return response()->json([
             'code' => 201,
             'message' => 'success',
-            'token' => 'token here',
+            'token' => \JWTAuth::fromUser($user),
         ], 201);
     }
 }

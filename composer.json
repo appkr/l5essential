@@ -18,7 +18,8 @@
     "laravel/socialite": "2.0.*",
     "bican/roles": " 2.1.*",
     "watson/rememberable": "^1.0",
-    "maknz/slack": "1.*"
+    "maknz/slack": "1.*",
+    "tymon/jwt-auth": "0.5.*"
   },
   "require-dev": {
     "symfony/dom-crawler": "~3.0",

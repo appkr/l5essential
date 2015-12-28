@@ -2,41 +2,41 @@
 
 $domain = env('API_DOMAIN', 'api.myproject.dev');
 
-Route::group(['domain' => $domain, 'namespace' => 'Api'], function() {
+Route::group(['domain' => $domain, 'as' => 'api.', 'namespace' => 'Api'], function() {
     /* Landing page */
     Route::get('/', [
-        'as'   => 'api.index',
+        'as'   => 'index',
         'uses' => 'WelcomeController@index'
     ]);
 
     /* User Registration */
     Route::post('auth/register', [
-        'as'   => 'api.users.store',
+        'as'   => 'users.store',
         'uses' => 'UsersController@store'
     ]);
 
-    /* Social Login */
-    Route::get('social/{provider}', [
-        'as'   => 'api.social.login',
-        'uses' => 'SocialController@execute',
-    ]);
-
-    /* Session */
+    /* Session.
+     * In API, logout path is not required. Because,
+     * when token is expired, any API request will not be validated.
+     */
     Route::post('auth/login', [
-        'as'   => 'api.sessions.store',
+        'as'   => 'sessions.store',
         'uses' => 'SessionsController@store'
     ]);
-    Route::get('auth/logout', [
-        'as'   => 'api.sessions.destroy',
-        'uses' => 'SessionsController@destroy'
-    ]);
+
+    /* Social Login
+     * In API, social login is not provided.
+     * Each client has to integrate an Oauth library, and
+     * call 'POST auth/register' route in a onOauthLoginSuccessCallback.
+     */
 
     /* Password Reminder.
      * Password reset is possible only through the web page.
-     * For api client, remind email endpoint is available.
+     * For api client, this endpoint will accept user's email address
+     * and send the user email which contains password reset token.
      */
     Route::post('auth/remind', [
-        'as'   => 'api.remind.store',
+        'as'   => 'remind.store',
         'uses' => 'PasswordsController@postRemind',
     ]);
 
@@ -44,15 +44,17 @@ Route::group(['domain' => $domain, 'namespace' => 'Api'], function() {
     Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function() {
         /* Landing page */
         Route::get('/', [
-            'as'   => 'api.v1.index',
+            'as'   => 'v1.index',
             'uses' => 'WelcomeController@index'
         ]);
 
         /* Api documents */
         Route::get('docs', [
-            'as'   => 'api.v1.docs',
+            'as'   => 'v1.docs',
             'uses' => 'DocumentsController@show'
         ]);
+
+        Route::resource('articles', 'ArticlesController', ['only' => ['index']]);
     });
 });
 
