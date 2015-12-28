@@ -384,6 +384,18 @@ token 없이 'GET /v1/articles' 요청을 하거나, token 이 틀리면 아래�
 
 인증이 완료되었으니, 다음 강좌에서는 지저분한 코드들을 좀 정리하도록 하자.
 
+**`주의`** Apache 웹 서버를 사용한다면 `tymon/jwt-auth` 패키지의 가이드 대로 아래 내용을 꼭 추가하자. 필자의 라이브 데모 서버에서도 방금 겪은 문제이다.
+ 
+```apache
+<IfModule mod_rewrite.c>
+    # ...
+
+    # Handle Authorization Header...
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+</IfModule>
+```
+
 <!--@start-->
 ---
 
