@@ -1,5 +1,19 @@
 <?php
 
+Route::group(['domain' => 'ec2-52-193-67-224.ap-northeast-1.compute.amazonaws.com'], function() {
+    flash()->overlay(
+        '<strong class="text-muted"> ec2-52-193-67-224.ap-northeast-1.compute.amazonaws.com </strong> 도메인은 사용하지 않습니다. <strong class="text-primary"> l5.appkr.kr </strong> 를 이용해 주세요.',
+        '도메인 이전 안내'
+    );
+
+    $domain = starts_with(Request::getHttpHost(), 'api')
+        ? env('API_DOMAIN') : env('APP_DOMAIN');
+
+    $path = sprintf('//%s%s', $domain, Request::getRequestUri());
+
+    return redirect()->away($path);
+});
+
 $domain = env('API_DOMAIN', 'api.myproject.dev');
 
 Route::group(['domain' => $domain, 'as' => 'api.', 'namespace' => 'Api'], function() {

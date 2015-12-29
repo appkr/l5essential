@@ -11,7 +11,7 @@
   <meta name="google-site-verification" content="VwIUcuPRo2jMuV269tve2tZo3jI-JCnrdkR57RzzxrM" />
   <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
   <meta property="og:site_name" content="Laravel 5 Essential" />
-  <meta property="og:image" content="//ec2-52-193-67-224.ap-northeast-1.compute.amazonaws.com/images/logo_laravel.png" />
+  <meta property="og:image" content="//{{ env('APP_DOMAIN') }}/images/logo_laravel.png" />
   <meta property="og:type" content="Website" />
   <meta property="article:author" content="appkr (juwonkim@me.com)" />
 

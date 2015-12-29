@@ -73,6 +73,10 @@ if($(".flash-message")) {
   $(".flash-message").delay(5000).fadeOut();
 }
 
+if ($("#flash-overlay-modal")) {
+  $("#flash-overlay-modal").modal();
+}
+
 /* Center image in the html which was compiled from markdown */
 $(".container__forum article>p>img, .container__lessons article>p>img").closest("p").addClass("text-center");
 

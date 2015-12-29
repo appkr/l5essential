@@ -805,14 +805,18 @@ $ composer global require "laravel/envoy=~1.0"
 ```
 
 ```bash
-# 사용하는 Shell 에 따라 Profile 파일 이름은 다를 수 있다. 필자는 Zshell 을 쓰므로, .zshrc 이다. e.g. .profile, .bashrc
+# 사용하는 Shell 에 따라 Profile 파일 이름은 다를 수 있다. 
+# 필자는 Zshell 을 쓰므로, .zshrc 이다. e.g. .profile, .bashrc
 $ nano ~/.zshrc
 
 # composer global 로 설치한 패키지들의 실행파일을 경로에 넣어 준다.
 # 이 과정이 없다면 $ ~/.composer/vendor/bin/envoy 와 같이 전체 경로를 써주어야 한다.
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
-# 수정했다면 ctrl + X, "Y" 를 눌러 변경 내용을 저장하고, 엔터를 한번 더 눌러 기존 파일을 덮어 쓴다. 
+# 수정했다면 ctrl + X, "Y" 를 눌러 변경 내용을 저장하고, 엔터를 한번 더 눌러 기존 파일을 덮어 쓴다.
+ 
+# 그리고, 수정 내용을 현재 콘솔에 적용해 준다. 콘솔을 껐다가 다시 실행해도 된다.
+$ source ~/.zshrc
 ```
 
 로컬에 설치된 Ubuntu VM을 원격 서버라 가정하고, 여기에 접속해서 터미널에서 'hello' 를 찍는 간단한 스크립트만 짜 볼 것이다. 독자들께서는 사용하시는 원격 서버의 정보를 직접 입력하여 테스트해 보시기 바란다. 여기서 재밌는 부분은 블레이드와 유사한 문법을 이용할 수 있다는 점이다.

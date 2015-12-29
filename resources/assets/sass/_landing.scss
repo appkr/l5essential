@@ -8,6 +8,7 @@
     background: url("/images/459033.jpg") 50% 0 no-repeat fixed;
     background-position: center 50px;
     background-size: cover;
+    position: relative;
     transition: all 0.5s ease;
 
     .container-fluid {
@@ -31,7 +32,7 @@
 
     .credit {
       position: absolute;
-      right: 7rem;
+      right: 2rem;
       bottom: 1rem;
       color: $color-text2;
       font-weight: bold;

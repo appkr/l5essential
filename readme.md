@@ -98,6 +98,10 @@ Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 
 -   [45강 - 기본 구조 잡기](lessons/45-api-big-picture.md)
 -   [46강 - JWT 를 이용한 인증](lessons/46-jwt.md)
 
+#### 번외. 기타 잡다한 것들
+
+-   [Homestead 설치 (on Mac)](lessons/02-install-homestead-osx.md)
+
 ## 이 강좌를 보는 방법
 
 강좌들은 Markdown 문법으로 작성되어 있으므로, Github에서 보는 것이 좋다. 
