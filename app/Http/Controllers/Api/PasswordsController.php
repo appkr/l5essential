@@ -23,10 +23,7 @@ class PasswordsController extends ParentController
      */
     protected function respondError($message, $statusCode = 400)
     {
-        return response()->json([
-            'code' => $statusCode,
-            'errors' => $message
-        ], $statusCode);
+        return json()->setStatusCode($statusCode)->error('not_found');
     }
 
     /**
@@ -37,9 +34,6 @@ class PasswordsController extends ParentController
      */
     protected function respondSuccess($message)
     {
-        return response()->json([
-            'code' => 200,
-            'message' => $message,
-        ]);
+        return json()->success();
     }
 }

@@ -38,7 +38,7 @@ Request A 와 B 가 같은 클라이언트라는 것을 서버에게 말하는 �
 
 2.  Oauth 인증
 
-    조대협님의 [REST API 의 이해와 설계 #3 API 보안](http://bcho.tistory.com/955) 편을 읽어 보자. 이 강좌에서 소셜 인증에 사용하는 기술이 Oauth2 이다. API 사용자 인증을 위해 자체 Oauth 인증 서버를 구축하고자 한다면 [`league/oauth2-server`](https://github.com/thephpleague/oauth2-server) 를 이용하자. 단점은 복잡하고 무겁다는 점이다. 이름만 대면 아는 대형 서비스들은 대부분 Oauth 를 이용한다는 점을 기억하자. 사용자가 많아 지면, 1 번이나 3 번으로 부터 적절한 시기에 Oauth 로 마이그레이션을 해야 한다.
+    조대협님의 [REST API 의 이해와 설계 #3 API 보안](http://bcho.tistory.com/955) 편을 읽어 보자. 이 강좌에서 Github 를 이용한 소셜 인증에 적용된 기술이 Oauth2 이다. API 사용자 인증을 위해 자체 Oauth 인증 서버를 구축하고자 한다면 [`league/oauth2-server`](https://github.com/thephpleague/oauth2-server) 를 이용하자. 단점은 복잡하고 무겁다는 점이다. 이름만 대면 아는 대형 서비스들은 대부분 Oauth 를 이용한다는 점을 기억하자. 사용자가 많아 지면, 1 번이나 3 번으로 부터 적절한 시기에 Oauth 로 마이그레이션을 해야 한다.
 
 
 3.  JWT 인증
@@ -301,6 +301,10 @@ class Handler extends ExceptionHandler
         // ...
         
         if (is_api_request()) {
+            $code = method_exists($e, 'getStatusCode')
+                ? $e->getStatusCode()
+                : $e->getCode();
+        
             // Exception 별로 메시지를 다르게 처리한다.
             // 특히, 같은 400, 401 이라도 클라이언트가 이해하고 다음 액션을 취할 수 있는
             // 메시지를 주는 것이 중요하다. 해서 xxx_yyy 식의 영어 메시지를 쓰고 있다.
@@ -310,13 +314,11 @@ class Handler extends ExceptionHandler
                 $message = 'token_invalid';
             } else if ($e instanceof JWTException) {
                 $message = $e->getMessage() ?: 'could_not_create_token';
+            } else if ($e instanceof NotFoundHttpException) {
+                $message = $e->getMessage() ?: 'not_found';
             } else if ($e instanceof Exception){
                 $message = $e->getMessage() ?: 'Something broken :(';
             }
-
-            $code = method_exists($e, 'getStatusCode')
-                ? $e->getStatusCode()
-                : $e->getCode();
 
             return response()->json([
                 'code' => $code ?: 400,

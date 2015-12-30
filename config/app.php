@@ -166,6 +166,7 @@ return [
         Bican\Roles\RolesServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Appkr\Fractal\ApiServiceProvider::class,
 
     ],
 

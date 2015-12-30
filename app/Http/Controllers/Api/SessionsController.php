@@ -23,10 +23,7 @@ class SessionsController extends ParentController
      */
     protected function respondValidationError(Validator $validator)
     {
-        return response()->json([
-            'code' => 422,
-            'errors' => $validator->errors()->all()
-        ], 422);
+        return json()->unprocessableError($validator->errors()->all());
     }
 
     /**
@@ -36,10 +33,7 @@ class SessionsController extends ParentController
      */
     protected function respondLoginFailed()
     {
-        return response()->json([
-            'code' => 401,
-            'errors' => 'invalid_credentials',
-        ], 401);
+        return json()->unauthorizedError('invalid_credentials');
     }
 
     /**
@@ -51,10 +45,6 @@ class SessionsController extends ParentController
      */
     protected function respondCreated($return = '', $token = '')
     {
-        return response()->json([
-            'code' => 201,
-            'message' => 'success',
-            'token' => $token,
-        ], 201);
+        return json()->setMeta(['token' => $token])->created();
     }
 }

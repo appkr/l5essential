@@ -110,7 +110,6 @@ $ homestead edit
 ```
 
 ```yml
----
 ip: "192.168.10.10" # homestead VM 이 사용할 ip 주소
 memory: 2048
 cpus: 1

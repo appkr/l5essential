@@ -1,4 +1,6 @@
 .landing {
+  margin-top: 50px;
+
   hr {
     margin: 4rem;
   }
@@ -13,7 +15,7 @@
 
     .container-fluid {
       color: $color-text2;
-      padding: 23rem 0;
+      padding: calc(100% / 4 - 125px) 0;
 
       .row {
         background: rgba(0,0,0,0.5);

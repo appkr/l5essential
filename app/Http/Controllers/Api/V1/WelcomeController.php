@@ -13,7 +13,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        return response()->json([
+        return json([
             'name'    => 'myProject Api',
             'message' => 'Welcome to myProject Api. This is a base endpoint of version 1.',
             'version' => 'v1',

@@ -24,10 +24,7 @@ class UsersController extends ParentController
      */
     protected function respondValidationError(Validator $validator)
     {
-        return response()->json([
-            'code' => 422,
-            'errors' => $validator->errors()->all()
-        ], 422);
+        return json()->unprocessableError($validator->errors()->all());
     }
 
     /**
@@ -38,10 +35,6 @@ class UsersController extends ParentController
      */
     protected function respondCreated(User $user)
     {
-        return response()->json([
-            'code' => 201,
-            'message' => 'success',
-            'token' => \JWTAuth::fromUser($user),
-        ], 201);
+        return json()->setMeta(['token' => \JWTAuth::fromUser($user)])->created();
     }
 }

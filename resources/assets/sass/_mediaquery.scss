@@ -57,8 +57,6 @@
 
 @media screen and (max-width: $screen-xs-max) {
   .landing {
-    margin-top: 50px;
-
     h1 {
       font-size: ceil(($font-size-base * 1.8));
     }
@@ -76,10 +74,6 @@
       .container-fluid {
         padding: 4rem 0;
       }
-    }
-
-    .credit {
-      display: none;
     }
 
     button {
@@ -107,8 +101,6 @@
 @media screen and (max-width: $screen-xs) {
   /* Phone Device */
   .landing {
-    margin-top: 50px;
-
     h1 {
       font-size: ceil(($font-size-base * 1.6));
     }

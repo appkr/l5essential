@@ -12,7 +12,7 @@
 
 ### 도메인 설정
 
-앞서 얘기했듯이 `myproject.dev` 와 `api.myproject.dev` 란 도x메인을 만들어 보자. 실제로 도메인 서비스에 등록하는 것은 아니고, 로컬에서 'hosts' 파일을 변경하도록 하자. 
+앞서 얘기했듯이 `myproject.dev` 와 `api.myproject.dev` 란 도메인을 만들어 보자. 실제로 도메인 서비스에 등록하는 것은 아니고, 로컬에서 'hosts' 파일을 변경하도록 하자. 
 
 **`참고`** 운영체제에 포함된 'hosts' 파일은 DNS 로 api.myproject.dev 또는 myproject.dev 에 대한 ip 주소 Resolution 요청이 나가기 전에 요청을 낚아 채서, 'hosts' 파일 안에서 찾는다. 사용자가 요청한 도메인에 해당하는 레코드가 있으면 지정된 ip 주소로 이동할 것이다. 쓸데 없는 얘기긴한데... 보통 인터넷을 통해 라이센스 인증을 받는 상용소프트웨어의 경우, 이 hosts 파일을 이용해서 인증 서버에 해당하는 도메인을 로컬 주소로 바꾸고, 로컬 서버에서 인증된 것 처럼 꾸며 어둠의 소프트웨어를 사용할 수 있게 한다.
 
@@ -46,16 +46,14 @@ $ php artisan serve --host=myproject.dev
 
 도메인이 만들어 졌으니 신나게 Routing 을 정의해 보자. `Route::group()` 의 첫번째 배열 인자 안에 `domain`, `namespace`, `as` 를 썼다. `domain` 에 매칭되는 요청이 들어오면 이 Routing 블럭이 응답하게 된다. `Route::group()` 내부에서 컨트롤러를 연결시킬 때 매번 `'Api\WelcomeController@index'` 식으로 네임스페이스를 붙여주어야 하는 번거로움을 덜기 위해, `namespace` 라는 키워드를 사용한다. `'as' => 'api.'` 은 Route 이름 앞에 'api.' 을 붙이기 위해 사용하였다.
 
-`$domain` 이란 변수를 사용하고, 도메인 이름을 '.env' 파일의 `API_DOMAIN` 값으로 지정했는데, 이는 프로덕션으로 배포할 때마다 Route 파일을 고쳐서 배포해야 하는 번거로움을 피하기 위해서다.
+도메인 이름을 '.env' 파일의 `API_DOMAIN` 값으로 지정했는데, 이는 프로덕션으로 배포할 때마다 Route 파일을 고쳐서 배포해야 하는 번거로움을 피하기 위해서다.
 
 `Route::group()` 안에 또 다른 `Route::group()` 이 중첩되어 있다. 두번 째 `Route::group()` 은 'http://api.myproject.dev:8000/v1' 요청에 응답하기 위한 것이다. 그래서 `'prefix' => 'v1'`, `'namespace' => 'V1'` 을 정의하고 있다.
 
 ```php
 // app/Http/routes.php
 
-$domain = env('API_DOMAIN', 'api.myproject.dev');
-
-Route::group(['domain' => $domain, 'as' => 'api.', namespace' => 'Api'], function() {
+Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', namespace' => 'Api'], function() {
     Route::get('/', [
         'as'   => 'index',
         'uses' => 'WelcomeController@index'
@@ -71,10 +69,12 @@ Route::group(['domain' => $domain, 'as' => 'api.', namespace' => 'Api'], functio
 }
 
 // 기존 Routing ...
-Route::get('/', [
-    'as'   => 'index',
-    'uses' => 'WelcomeController@index',
-]);
+Route::group(['domain' => env('APP_DOMAIN')], function() {
+    Route::get('/', [
+        'as'   => 'index',
+        'uses' => 'WelcomeController@index',
+    ]);
+});
 ```
 
 사용자 인증을 위한 Routing 들인, 'auth/register', 'auth/login', 'auth/remind' 들도 정의하도록 하자. 유의할 점은 API 클라이언트와 데이터만으로 통신을 하기 때문에, 뷰를 반환하는 Route 는 필요없다는 점이다. 그리고, 비밀번호 초기화 기능에서는 사용자의 이메일 주소를 받아서 Reset 토큰을 메일로 보내는 Route 만 제공하고, 그 이후 프로세스는 API 클라이언트와 분리된 메일 클라이언트에서 이루어 지므로 Route 를 제외 했다.
@@ -320,7 +320,7 @@ class SessionsController extends ParentController
 
 대충 보기에도, `respondValidationError()`, `respondCreated()` 등등 엄청난 중복이 보인다. 앞으로 진행될 강좌에서 중복들은 제거할 것이다. 
 
-**`참고`** API 클라이언트에서 소셜 로그인은 각 클라이언트 플랫폼에 맞는 SDK 를 이용해야 한다. 가령, Android 에서 Github 로그인을 지원한다면 [`wuman/android-oauth-client`](https://github.com/wuman/android-oauth-client) 와 같은 라이브러리를 이용하여 소셜 로그인을 구현한다. 그리고, OauthCallback 을 받는 부분에서 UI를 띄워서 비밀번호를 받고 'POST /auth/register' Route 를 호출하여 사용자를 등록하면 된다. 어쩌면, 서버 측에서 이를 위한 새로운 Route 를 제공해야 할 수도 있을 것 같다. 진행하면서 같이 고민해 보자.
+**`참고`** API 클라이언트에서 소셜 로그인은 각 클라이언트 플랫폼에 맞는 SDK 를 이용해야 한다. 가령, Android 에서 Github 로그인을 지원한다면 [`wuman/android-oauth-client`](https://github.com/wuman/android-oauth-client) 와 같은 라이브러리를 이용하여 소셜 로그인을 구현한다. 그런데, Github 에서 받은 Oauth access_token 으로 Github 리소스에 접근하는 것이 아니다. 즉, 소셜 로그인은 소위 말하는 실명 확인 정도, 사용자 등록에 대한 거부감을 좀 덜어 주는 정도의 용도로만 사용하고 있다. 우리 서버의 리소스에 접근하기 위해서는 우리 서버에서 클라이언트 요청의 유효성을 인증 받을 수 있는 방법이 있어야 한다. Android Native SDK 를 이용한 소셜 인증은 받되, 가령 `onSuccess` Callback 을 받는 부분에서 서버와 인터랙션을 해야 할 것으로 생각된다. 어쩌면, 서버 측에서 이를 위한 새로운 Route 를 제공해야 할 수도 있을 것 같다. 진행하면서 같이 고민해 보자.
  
 **`참고`** `logout()` 메소드/기능은 API 클라이언트에서는 필요하지 않다. 정당한 사용자로 부터의 API 요청인지를 서버 사이드에서 인증하는 방법으로 Oauth 또는 JWT 를 주로 사용하는데, 두 방법 모두 token 을 HTTP 요청에 포함해서 보낸다. token 이 없으면 로그인 과정을 거치지 않은 것으로 간주되고, token 이 만료되면 역시 로그인하지 않은 것으로 간주되므로 로그아웃이 필요하지 않다는 의미이다. 물론, `logout()` 기능을 제공하고, 정해진 토큰 만료 시간 이전에 토근을 강제로 삭제하거나 블랙리스트에 넣어 놓는 방법이 있기는 하지만, 필자 생각에 지금 당장은 필요성을 못 느끼겠다.  
 
