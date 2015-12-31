@@ -55,3 +55,4 @@
     -   [47강 - 중복 제거 리팩토링](/lessons/47-dry-refactoring.md)
 -   **번외-기타 잡다한 것들**
     -   [Homestead 설치 (on Mac)](/lessons/02-install-homestead-osx.md)
+    -   [Homestead 설치 (on Windows)](/lessons/02-install-homestead-windows.md)

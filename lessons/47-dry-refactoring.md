@@ -8,7 +8,7 @@
 
 API Response 에서 중복을 피하고 Response Payload 를 좀 더 편리하게 만들 수 있는, 이 실전 프로젝트 규모에 적절한 패키지를 찾아 봤지만.. 못 찾았다. `App\Http\Controllers\Controller` 나 별도 Trait 로 API Response 를 위한 공용 메소드를 정의하는 방법이 있기도 하지만, 필자가 [Packagist](https://packagist.org/) 에 올려 놓은 [`appkr/fractal`](https://github.com/appkr/fractal) 패키지를 이용하도록 하자. 
 
-**`참고`** Laravel/Luman 월드에서 API 관련한 패키지 중에서는 [`dingo/api`](https://github.com/dingo/api) 가 갑 (甲) 인데, 라라벨의 네이티브 클래스들을 꽤 많이 오버라이드해서 사용법을 다시 익혀야 하는 단점이 있다. [45강 - 기본 구조 잡기](45-api-big-picture.md) 서두에서 같이 고민했던 "단일 서버 vs. 복수 서버" 섹션을 기억할 것이다. `dingo/api` API 전용 독립 서버, 즉 복수 서버 구조에 더 적합하다고 생각된다. 거의 라라벨 프레임웍 수준의 큰 프로젝트로 API 관련 a-Z 를 모두 담고 있고, 베스트 프랙티스를 실천하고 있으므로 꼭 한번 설치해서 사용해 보기 바란다.
+**`참고`** Laravel/Lumen 월드에서 API 관련 패키지 중에서는 [`dingo/api`](https://github.com/dingo/api) 가 갑 (甲) 인데, 라라벨의 네이티브 클래스들을 꽤 많이 오버라이드하고 있어서 사용법을 다시 익혀야 하는 단점이 있다. [45강 - 기본 구조 잡기](45-api-big-picture.md) 서두에서 같이 고민했던 "단일 서버 vs. 복수 서버" 섹션을 기억할 것이다. `dingo/api` API 전용 독립 서버, 즉 복수 서버 구조에 더 적합하다고 생각된다. 거의 라라벨 프레임웍 수준의 큰 프로젝트로 API 관련 a-Z 를 모두 담고 있고, 베스트 프랙티스를 실천하고 있으므로 꼭 한번 설치해서 사용해 보기 바란다.
 
 #### 설치
 
@@ -16,7 +16,7 @@ API Response 에서 중복을 피하고 Response Payload 를 좀 더 편리하�
 $ composer require "appkr/fractal:0.6.*"
 ```
 
-ServiceProvider 를 설치하고 설정 파일을 우리 프로젝트 안으로 끌고 오자. 
+ServiceProvider 를 설정하고 config 파일을 우리 프로젝트 안으로 끌고 오자. 
 
 ```php
 // config/app.php
@@ -61,7 +61,7 @@ return [
 ```
 
 `pattern`, `domain`
-:   이 패키지에서도 `is_api_request()` 란 Helper 를 포함하고 있다. 이 Helper 에서 사용하는 설정 값들이다. 주의할 점은 이 패키지가 먼저 로드되고 난후, 우리가 정의한 Helper 가 로드되는데, 이 때 `function_exists()` 에 걸려서 우리 Helper 가 로드되지 않고,이 패키지의 `is_api_request()` 가 동작하게 된다는 점이다. PHP 네임스페이스가 꼭 필요한 이유다.
+:   이 패키지에서도 `is_api_request()` 란 Helper 를 포함하고 있는데, 이 Helper 에서 사용하는 설정 값들이다. 주의할 점은 이 패키지가 먼저 로드되고 난후, 우리가 정의한 Helper 가 로드되는데, 이 때 `function_exists()` 에 걸려서 우리 Helper 가 로드되지 않고,이 패키지의 `is_api_request()` 가 동작하게 된다는 점이다. PHP 네임스페이스가 필요한 이유를 방금 봤다.
     
 `successFormat`
 :   200 번 대의 성공 응답을 할 때, 이 포맷이 사용된다. `:code`, `:message` 는 `Appkr\Fractal\Response` 클래스의 HTTP 응답 메소드에서 HTTP Status Code 와 메소드에 넘긴 메시지로 치환된다.
@@ -71,7 +71,7 @@ return [
 
 ### 리팩토링
 
-방금 끌어온 `appkr/fractal` 패키지에서는 `json(array $payload)` Helper 를 제공한다. 또, 인자 없이 호출할 때는 `Appkr\Fractal\Response` 인스턴스를 리턴하기 때문에, 해당 클래스에 정의된 
+방금 끌어온 `appkr/fractal` 패키지에서는 `json(array $payload)` Helper 를 제공한다. 또, `json()` Helper 는 인자 없이 호출할 때는 `Appkr\Fractal\Response` 인스턴스를 리턴하기 때문에, 해당 클래스에 정의된 
 
 - `success(string $message)`
 - `error(string|array|\Exception $message)`
@@ -80,7 +80,7 @@ return [
 - `setMeta(array $meta)` 
 - `...`
 
-등 다양한 메소드를 체인해서 사용할 수 있다.
+등 다양한 메소드를 `json()->success()` 처럼 체인해서 사용할 수 있다. `set*()` 메소드는 다른 응답 메소드보다 먼저 체인되어야 한다는 점을 주의하자. 
 
 #### 컨트롤러
 

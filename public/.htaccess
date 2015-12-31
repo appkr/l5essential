@@ -6,9 +6,8 @@
     RewriteEngine On
 
     # Redirect to new domain
-    RewriteCond "%{HTTP_HOST}"   "!^l5\.appkr\.kr" [NC]
-    RewriteCond "%{HTTP_HOST}"   "!^$"
-    RewriteRule "^/?(.*)"        "http://l5.appkr.kr/$1" [L,R,NE]
+    RewriteCond "%{HTTP_HOST}"   "^ec2-52-193-67-224\.ap-northeast-1\.compute\.amazonaws\.com$"
+    RewriteRule "^/?(.*)"        "http://l5.appkr.kr/$1"
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,11 +1,5 @@
 # Homestead 설치 (on Mac)
 
-Windows 를 위한 Homestead 설치 매뉴얼도 곧 쓸 것이긴 한데... 가능하면 Mac 을 쓸 것을 권장한다. 필자는 10년도 훨씬 전에 Windows Server 2000 트랙에서 [MCSE](https://www.microsoft.com/en-us/learning/mcse-certification.aspx) 였었다. 무려 6 주에 걸쳐 매주 한 과목씩 총 6 과목을 시험을 봐야 했었다. 예전엔 Windows 밖엔 쓸 줄 몰랐단 얘기다. 
-
-어쨌든 시간이 지나면서 여러 OS 를 경험하고 난 후 필자가 느낀 바는 Windows 는 개인용 PC 운영체제로 나쁘지 않다는 점이다. 서버 운영체제로 쓸 때도 나쁘지 않다. 헌데 **개발자 용으로 쓸 때 Windows 는 Mac 대비 생산성 측면에서 아주아주아주 별로다**. 특히, 콘솔. 아래 그림은 캘리포니아의 어느 개발자 컨퍼런스 모습인데.. 아마 Windows 가 대세인 한국에서 다양한 개발 생산성 도구들을 개발했다면 아래 그림은 완전 역전되었을 것이다.  
-
-![](http://i2.wp.com/www.dailycal.org/assets/uploads/2013/11/look-at-them-apples.jpg)
-
 ## 사전 요구 사항
 
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 와 [Vagrant](http://www.vagrantup.com/downloads.html) 설치가 필요하다. 인스톨러 화면에서 "Next" 만 계속 눌러서 쉽게 설치할 수 있다.
@@ -106,10 +100,12 @@ Homestead 설정을 우리 프로젝트에 맞게 수정하자.
 $ homestead edit
 
 # 로컬에 Sublime Text 가 설치되어 있지 않다면..
-# ~/.homestead/Homestead.yml 을 편집기로 직접 열면 된다.
+# ~/.homestead/Homestead.yaml 을 편집기로 직접 열면 된다.
 ```
 
-```yml
+```bash
+# ~/.homestead/Homestead.yaml
+
 ip: "192.168.10.10" # homestead VM 이 사용할 ip 주소
 memory: 2048
 cpus: 1
@@ -158,7 +154,7 @@ $ sudo nano /etc/hosts
 
 ## Homestead 실행
 
-실행해 보자. 처음 실행할 때는 시간이 좀 걸리는데, 이유는 앞에서 Homestead.yml 에 설정한, ip 주소, public key 복사, 공유 폴더 설정 등을 하기 때문이다.
+실행해 보자. 처음 실행할 때는 시간이 좀 걸리는데, 이유는 앞에서 Homestead.yaml 에 설정한, ip 주소, public key 복사, 공유 폴더 설정 등을 하기 때문이다.
 
 ```bash
 $ homestead up
@@ -167,7 +163,7 @@ $ homestead up
 # 완전히 끌 때는 $ homestead suspend
 ```
 
-VM 에 로그인하고 Homestead.yml 설정이 잘 먹었나 확인해 보자.
+VM 에 로그인하고 Homestead.yaml 설정이 잘 먹었나 확인해 보자.
 
 ```bash
 $ homestead ssh
@@ -193,7 +189,7 @@ Host `127.0.0.1`, Port `33060`, Username `homestead`, Password `secret` 로 접�
 
 ## 웹 서버 접속
 
-Homestead 에는 Nginx 가 기본으로 탑재되어 있고, Homestead.yml 의 sites 섹션에서 설정한대로 이미 서비스가 돌고 있는 상태이다.
+Homestead 에는 Nginx 가 기본으로 탑재되어 있고, Homestead.yaml 의 sites 섹션에서 설정한대로 이미 서비스가 돌고 있는 상태이다.
 
 브라우저에서 'http://myproject.dev' 로 접속해 보자. 테스트용으로 쓸 수 있는 self-signed 인증서가 설치되어 있기 때문에 'https:://myproject.dev' 도 사용할 수 있다.
 

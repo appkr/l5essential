@@ -102,6 +102,7 @@ Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 
 #### 번외. 기타 잡다한 것들
 
 -   [Homestead 설치 (on Mac)](lessons/02-install-homestead-osx.md)
+-   [Homestead 설치 (on Windows)](lessons/02-install-homestead-windows.md)
 
 ## 이 강좌를 보는 방법
 

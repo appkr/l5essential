@@ -2,20 +2,20 @@
 
 ## 윈도우즈 사용자라면
 
-[여기를 참고](02-install-on-windows.md)하자. 장기적으로 보고 Mac이나 Linux로 전환할 것을 권장한다. 윈도우즈는 코맨드 프롬프트(콘솔)에서 명령어 사용이 불편해서 금방 한계에 달하게 된다.
+[여기를 참고](02-install-on-windows.md)하자. 장기적으로 보고 Mac 이나 Linux 로 전환할 것을 권장한다. 윈도우즈는 코맨드 프롬프트(콘솔)에서 명령어 사용이 불편해서 생산성이 떨어진다.
 
 ## 터미널에 익숙해 지자.
 
-기본 내장 터미널(=='콘솔') 소프트웨어를 사용하지 말고, [iTerm2](https://www.iterm2.com/)(Free)와 [Oh My Zshell](https://github.com/robbyrussell/oh-my-zsh)(Free)을 쓸 것을 권장한다. iTerm2는 Mac 내장 콘솔의 대체 앱이며, Oh My Zshell은 콘솔의 기능을 더 편리하게 해 주는 플러그인이라 생각하면 된다.
+기본 내장 터미널 (=='콘솔') 소프트웨어를 사용하지 말고, [iTerm2](https://www.iterm2.com/)(Free) 와 [Oh My Zshell](https://github.com/robbyrussell/oh-my-zsh)(Free) 을 쓸 것을 권장한다. iTerm2 는 Mac 내장 콘솔의 대체 앱이며, Oh My Zshell 은 콘솔의 기능을 더 편리하게 해 주는 플러그인이라 생각하면 된다.
 
 ```bash
 $ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-Mac용 패키지 매니저인 [Homebrew](http://brew.sh/)(Free) 도 반드시 설치해 놓자! Homebrew 는 Mac 용 apt-get 이라 이해하면 된다.
+Mac 용 패키지 매니저인 [Homebrew](http://brew.sh/)(Free) 도 반드시 설치해 놓자! `Homebrew` 는 Mac 용 `apt-get` 이라 이해하면 된다.
  
  ```bash
- $ ruby --version # ruby 2.0.0p645 (2015-04-13 revision 50299) [universal.x86_64-darwin15]
+ $ ruby --version # ruby 2.x
  $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
  ```
 
@@ -23,7 +23,9 @@ Mac용 패키지 매니저인 [Homebrew](http://brew.sh/)(Free) 도 반드시 �
 
 ### [이 코스에서 사용] 로컬 개발 환경
 
-Mac 사용자라면 2가지 옵션이 있다. 로컬 Mac을 개발 머신으로 쓰거나, 다음 절에 설명하는 "Homestead"를 쓰는 방법이다. 이 코스에서는 **로컬 Mac을 개발환경으로 쓰는 것을 가정하고 설명**한다. 로컬 Mac에 php, mySql 이 설치되어 있지 않다면 Homebrew를 이용해 설치하자.
+Mac 사용자라면 2가지 옵션이 있다. 로컬 Mac 을 개발 머신으로 쓰거나, 다음 절에 설명하는 Homestead 를 쓰는 방법이다. 
+
+이 코스에서는 **로컬 Mac을 개발환경으로 쓰는 것을 가정하고 설명**한다. 로컬 Mac에 php, mySql 이 설치되어 있지 않다면 Homebrew 를 이용해 설치하자.
 
 ```bash
 $ brew search php56 # Homebrew 설정에 따라 php56 또는 homebrew/php/php56이 출력될 것이다.
@@ -44,11 +46,11 @@ $ mysql --version # 5.5.xx
 
 ### **[OPTIONAL]** 공짜로 쓰는 개발 서버 "Homestead"
 
-Virtualbox[https://www.virtualbox.org/]와 Vargrant[https://www.vagrantup.com/]가 필요하다. 개발팀 간에 동일한 개발 환경을 가지기 위해서, 또는 Production과 유사한 환경에서 개발하기 위해서 Homestead를 사용한다. Homestead는 위에서 언급한 필요 확장 모듈이 기본 설치되어 있다.
+개발팀 구성원들이 동일한 개발 환경을 가지기 위해서, 또는 Production 과 유사한 환경에서 개발하기 위해서 Homestead 사용을 권장한다. Homestead 는 위에서 언급한 필요 확장 모듈이 기본 설치되어 있다.
 
-설정법은 꽤나 까다로우니 [공식 문서](http://laravel.com/docs/homestead)를 참고하자.
+설정법은 꽤나 까다로우니 [Homestead 설치 (on Mac)](02-install-homestead-osx.md) 를 참고하자.
 
-## 라라벨이 동작하기 위한 php 버전 및 필요 모듈 조건 확인
+## 라라벨이 동작하기 위한 PHP 버전 및 필요 모듈 조건 확인
 
 라라벨을 설치하려는 개발환경 또는 서버가 아래 필요사항을 충족하는 지 확인한다.
 - php 5.5.9 이상
@@ -63,13 +65,13 @@ $ php --version # PHP 5.6.xx
 $ php -m | grep 'openssl\|pdo\|mbstring\|tokenizer'
 ```
 
-Homebrew를 통해 설치했다면 기본적으로 모든 모듈이 설치되어 있을 것이다. 하나라도 빠진게 있다면 설치하자~
+Homebrew 를 통해 설치했다면 기본적으로 모든 모듈이 설치되어 있을 것이다. 하나라도 빠진게 있다면 구글링해서 설치하자~
 
 ## 이제 라라벨을 설치해 보자.
 
-라라벨 인스톨러를 사용할 것을 권장한다. 왜냐하면 Composer를 이용해 설치하는 것 보다 훨~씬 빠르니까...
+라라벨 인스톨러를 사용할 것을 권장한다. 왜냐하면 Composer 를 이용해 설치하는 것 보다 훨~씬 빠르니까...
 
-먼저, Composer 가 필요하다. 왜냐하면, 라라벨 인스톨러가 Composer를 통해 배포되기 때문이다.
+먼저, Composer 가 필요하다. 왜냐하면, 라라벨 인스톨러가 Composer 를 통해 배포되기 때문이다.
 
 ```bash
 $ curl -sS https://getcomposer.org/installer | php
@@ -77,7 +79,7 @@ $ mv composer.phar /usr/local/bin/composer
 $ composer --version # Composer version 1.xx
 ```
 
-이제 Composer를 이용해서 라라벨 인스톨러를 설치한다.
+이제 Composer 를 이용해서 라라벨 인스톨러를 설치한다.
 
 ```bash
 $ composer global require "laravel/installer=~1.1"
@@ -105,7 +107,7 @@ alias artisan="php artisan"
 $ source ~/.zshrc
 
 # laravel 코맨드의 경로가 잘 설정되었는지 확인해 보자.
-$ laravel --version # Laravel Installer version 1.2.1
+$ laravel --version # Laravel Installer version 1.x
 ```
 
 휴~, 이제 설치를 위한 준비가 완료되었다. 라라벨 인스톨러로 라라벨 5를 설치하자.
@@ -113,7 +115,7 @@ $ laravel --version # Laravel Installer version 1.2.1
 ```bash
 $ laravel new myProject
 $ cd myProject
-$ php artisan --version # Laravel Framework version 5.1.22 (LTS)
+$ php artisan --version # Laravel Framework version 5.x
 $ chmod -R 777 storage bootstrap/cache
 ```
 
@@ -122,18 +124,14 @@ $ chmod -R 777 storage bootstrap/cache
 ```bash
 # 로컬 서버를 부트한다.
 $ php artisan serve # 종료하려면 ctrl+c
-$ open http://localhost:8000
-
-# Homestead를 설치/셋팅한 분이 있다면, 로컬 서버 부트 대신 homestead VM를 부트한다.
-$ homestead up # 종료하기 homestead suspend
-$ open http://localhost:8000
+# Laravel development server started on http://localhost:8000/
 ```
 
-Laravel 5 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한 것이다. 라라벨 개발자가 되신 것을 축하드린다.
+브라우저에서 `http://localhost:8000` 페이지를 방문해서 'Laravel 5' 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한 것이다.
 
 ![](./02-hello-laravel-img-02.png)
 
-**`참고`** `artisan`은 라라벨의 코맨드 라인 툴이다. `$ php artisan`을 실행한 후, 설명을 쭈욱~ 한번 살펴보자. 개발 중에 코드에디터와 콘솔을 오가면서, `artisan` 코맨드를 많이 사용하게 될 것이다.
+**`참고`** `artisan` 은 라라벨의 코맨드 라인 툴이다. `$ php artisan` 을 실행한 후, 설명을 쭈욱~ 한번 살펴보자. 개발 중에 코드에디터와 콘솔을 오가면서, `artisan` 코맨드를 많이 사용하게 될 것이다.
 
 ## 라라벨의 폴더 구조를 살펴 보자.
 
@@ -191,6 +189,7 @@ Laravel 5 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한
 역시 마찬가지다. 지금은 몰라도 된다. 나중에 한번 돌아와서 다시 보게 된다면, 아~ 하고 이해될 것이다.
 
 ![](./02-hello-laravel-img-01.png)
+
 <!--@start-->
 ---
 
