@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function(Faker\Generator $faker) {
     return [
         'name'           => $faker->name,
         'email'          => $faker->safeEmail,
@@ -20,21 +20,23 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Article::class, function (Faker\Generator $faker) {
+$factory->define(App\Article::class, function(Faker\Generator $faker) {
+    $date = $faker->dateTimeBetween($startDate = '-1 month', $endDate = 'now');
     return [
-        'title'   => $faker->sentence(),
-        'content' => $faker->paragraph(),
+        'title'      => $faker->sentence(),
+        'content'    => $faker->paragraph(),
+        'created_at' => $date,
+        'updated_at' => $date,
     ];
 });
 
-$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+$factory->define(App\Comment::class, function(Faker\Generator $faker) {
     return [
-//        'title'   => $faker->sentence,
         'content' => $faker->paragraph,
     ];
 });
 
-$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+$factory->define(App\Tag::class, function(Faker\Generator $faker) {
     $name = ucfirst($faker->optional(0.9, 'Laravel')->word);
 
     return [
@@ -43,7 +45,7 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Attachment::class, function (Faker\Generator $faker) {
+$factory->define(App\Attachment::class, function(Faker\Generator $faker) {
     return [
         'name' => sprintf("%s.%s", str_random(), $faker->randomElement(['png', 'jpg'])),
     ];

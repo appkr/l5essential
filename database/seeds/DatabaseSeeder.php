@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
          * Prepare seeding
          */
         $faker = Faker::create();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if (! app()->environment('testing')) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
         Model::unguard();
 
         /*
@@ -156,6 +158,8 @@ class DatabaseSeeder extends Seeder
          * Close seeding
          */
         Model::reguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        if (! app()->environment('testing')) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 }

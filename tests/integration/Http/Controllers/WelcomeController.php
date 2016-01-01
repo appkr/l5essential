@@ -1,6 +1,8 @@
 <?php
 
-class WelcomeControllerTest extends TestCase
+namespace Test\Http\Controllers;
+
+class WelcomeController extends \TestCase
 {
     /** @test */
     public function it_loads_welcome_page()

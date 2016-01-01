@@ -28,7 +28,9 @@ class CreateArticlesTable extends Migration
             $table->foreign('solution_id')->references('id')->on('comments');
         });
 
-        DB::statement('ALTER TABLE articles ADD FULLTEXT search(title, content)');
+        if (! app()->environment('testing')) {
+            DB::statement('ALTER TABLE articles ADD FULLTEXT search(title, content)');
+        }
     }
 
     /**

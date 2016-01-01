@@ -44,8 +44,11 @@
   },
   "autoload-dev": {
     "classmap": [
-      "tests"
-    ]
+      "tests/TestCase.php"
+    ],
+    "psr-4": {
+      "Test\\": "tests/integration/"
+    }
   },
   "scripts": {
     "post-install-cmd": [

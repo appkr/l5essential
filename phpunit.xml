@@ -9,8 +9,10 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Application Test Suite">
-            <directory>./tests/</directory>
+        <testsuite name="Integration Test Suite">
+            <directory suffix=".php">./tests/integration/</directory>
+            <exclude>./tests/integration/Http/Controllers/AuthTest.php</exclude>
+            <exclude>./tests/integration/Http/Controllers/Api/ApiTest.php</exclude>
         </testsuite>
     </testsuites>
     <filter>
@@ -23,5 +25,6 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
     </php>
 </phpunit>

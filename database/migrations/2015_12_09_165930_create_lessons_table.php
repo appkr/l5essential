@@ -22,7 +22,9 @@ class CreateLessonsTable extends Migration
             $table->foreign('author_id')->references('id')->on('users');
         });
 
-        DB::statement('ALTER TABLE lessons ADD FULLTEXT docs(name, content)');
+        if (! app()->environment('testing')) {
+            DB::statement('ALTER TABLE lessons ADD FULLTEXT docs(name, content)');
+        }
     }
 
     /**
