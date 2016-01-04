@@ -66,7 +66,7 @@ class SocialController extends Controller
 
         $user = (User::whereEmail($user->getEmail())->first())
             ?: User::create([
-                'name'  => $user->getName(),
+                'name'  => $user->getName() ?: 'unknown',
                 'email' => $user->getEmail(),
             ]);
 

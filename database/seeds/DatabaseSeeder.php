@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
          * Prepare seeding
          */
         $faker = Faker::create();
-        if (! app()->environment('testing')) {
+        if (config('database.default') != 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=0');
         }
         Model::unguard();
@@ -121,11 +121,6 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-//        $articles->each(function($article) use($faker) {
-//            $article->tags()->save(
-//                factory(App\Tag::class)->make()
-//            );
-//        });
         $this->command->info('tags table seeded');
 
         /*
@@ -158,7 +153,7 @@ class DatabaseSeeder extends Seeder
          * Close seeding
          */
         Model::reguard();
-        if (! app()->environment('testing')) {
+        if (config('database.default') != 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1');
         }
     }

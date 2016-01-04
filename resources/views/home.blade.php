@@ -11,7 +11,7 @@
 
 @section('content')
   <section id="laracroft">
-    <div class="container-fluid">
+    <div class="container-fluid box__landing">
       <div class="row">
         <h1>
           <strong>라라벨</strong>

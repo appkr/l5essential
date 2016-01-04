@@ -38,6 +38,9 @@ Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api
         'uses' => 'PasswordsController@postRemind',
     ]);
 
+    /* User */
+    Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+
     /* api.v1 */
     Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function() {
         /* Landing page */
@@ -52,7 +55,13 @@ Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api
             'uses' => 'DocumentsController@show'
         ]);
 
-        Route::resource('articles', 'ArticlesController', ['only' => ['index']]);
+        /* Forum */
+        Route::get('tags/{slug}/articles', [
+            'as'   => 'v1.tags.articles.index',
+            'uses' => 'ArticlesController@index'
+        ]);
+        Route::resource('articles', 'ArticlesController', ['except' => ['create', 'edit']]);
+        Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
     });
 });
 

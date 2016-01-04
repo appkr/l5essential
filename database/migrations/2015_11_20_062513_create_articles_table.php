@@ -28,7 +28,7 @@ class CreateArticlesTable extends Migration
             $table->foreign('solution_id')->references('id')->on('comments');
         });
 
-        if (! app()->environment('testing')) {
+        if (config('database.default') != 'sqlite') {
             DB::statement('ALTER TABLE articles ADD FULLTEXT search(title, content)');
         }
     }

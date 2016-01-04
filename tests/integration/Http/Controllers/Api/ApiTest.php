@@ -183,7 +183,4 @@ class ApiTest extends \TestCase
     {
         return ['HTTP_Authorization' => 'Bearer ' . $this->jwtToken];
     }
-
-    /** @test */
-    public function it_is_dummy() {}
 }

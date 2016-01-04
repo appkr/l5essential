@@ -41,7 +41,7 @@ class ArticlesController extends Controller
 
         // If you are relying on 'file' or 'database' cache, cacheTags() methods is not available
         $query = taggable()
-            ? $query->with('comments', 'author', 'tags', 'attachments')->remember(5)->cacheTags('articles')
+            ? $query->with('comments', 'author', 'tags', 'solution', 'attachments')->remember(5)->cacheTags('articles')
             : $query->with('comments', 'author', 'tags', 'solution', 'attachments')->remember(5);
 
         $articles = $this->filter($request, $query)->paginate(10);

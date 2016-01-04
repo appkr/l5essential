@@ -21,7 +21,7 @@ $factory->define(App\User::class, function(Faker\Generator $faker) {
 });
 
 $factory->define(App\Article::class, function(Faker\Generator $faker) {
-    $date = $faker->dateTimeBetween($startDate = '-1 month', $endDate = 'now');
+    $date = $faker->dateTimeThisMonth;
     return [
         'title'      => $faker->sentence(),
         'content'    => $faker->paragraph(),

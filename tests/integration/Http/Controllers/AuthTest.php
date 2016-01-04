@@ -145,7 +145,4 @@ class AuthTest extends \TestCase
             factory(Attachment::class)->make()
         );
     }
-
-    /** @test */
-    public function it_is_dummy() {}
 }

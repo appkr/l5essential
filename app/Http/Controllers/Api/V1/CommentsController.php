@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Transformers\ArticleTransformer;
+use App\Transformers\CommentTransformer;
 
-class ArticlesController extends Controller
+class CommentsController extends Controller
 {
     public function __construct()
     {
@@ -20,8 +20,8 @@ class ArticlesController extends Controller
     public function index()
     {
         return json()->withPagination(
-            \App\Article::paginate(5),
-            new ArticleTransformer
+            \App\Comment::paginate(5),
+            new CommentTransformer
         );
     }
 
@@ -33,11 +33,11 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article = \App\Article::with('comments', 'tags', 'attachments')->findOrFail($id);
+        $article = \App\Comment::findOrFail($id);
 
         return json()->withItem(
             $article,
-            new ArticleTransformer
+            new CommentTransformer
         );
     }
 }

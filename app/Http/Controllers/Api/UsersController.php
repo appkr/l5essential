@@ -17,6 +17,20 @@ class UsersController extends ParentController
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id)
+    {
+        return json()->withItem(
+            \App\User::with('articles', 'comments')->findOrFail($id),
+            new \App\Transformers\UserTransformer
+        );
+    }
+
+    /**
      * Make validation error response.
      *
      * @param \Illuminate\Contracts\Validation\Validator $validator
