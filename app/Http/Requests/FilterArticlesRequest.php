@@ -23,6 +23,7 @@ class FilterArticlesRequest extends Request
     {
         return [
             'f' => 'in:nocomment,notsolved',   // filter
+            'pp' => 'size:1,10',               // PerPage
             's' => 'in:created_at,view_count', // Sort: Age(created_at), View(view_count)
             'd' => 'in:asc,desc',              // Direction: Ascending or Descending
             'q' => 'alpha_dash',               // Search query

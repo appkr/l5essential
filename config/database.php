@@ -46,6 +46,11 @@ return [
 
     'connections' => [
 
+        'testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+        ],
+
         'sqlite' => [
             'driver'   => 'sqlite',
             'database' => base_path('tests/database.sqlite'),

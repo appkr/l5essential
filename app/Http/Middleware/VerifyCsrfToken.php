@@ -20,7 +20,7 @@ class VerifyCsrfToken extends BaseVerifier
     public function handle($request, Closure $next)
     {
         if (is_api_request()) {
-            return $this->addCookieToResponse($request, $next($request));
+            return $next($request);
         }
 
         return parent::handle($request, $next);

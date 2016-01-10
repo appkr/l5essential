@@ -2,42 +2,77 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
+use App\Article;
 use App\Transformers\ArticleTransformer;
+use App\Http\Controllers\ArticlesController as ParentController;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-class ArticlesController extends Controller
+class ArticlesController extends ParentController
 {
     public function __construct()
     {
-//        $this->middleware('jwt.auth');
+        $this->middleware('jwt.auth', ['except' => ['index', 'show']]);
 
         parent::__construct();
     }
 
     /**
-     * Display a listing of the resource.
+     * Respond Article collection in JSON.
+     *
+     * @param \Illuminate\Pagination\LengthAwarePaginator $articles
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    protected function respondCollection(LengthAwarePaginator $articles)
     {
         return json()->withPagination(
-            \App\Article::paginate(5),
+            $articles,
             new ArticleTransformer
         );
     }
 
     /**
-     * Display the specified resource.
+     * Respond 201 in JSON.
      *
-     * @param  int $id
+     * @param \App\Article $article
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    protected function respondCreated(Article $article)
     {
-        $article = \App\Article::with('comments', 'tags', 'attachments')->findOrFail($id);
+        return json()->created();
+    }
 
-        return json()->withItem(
-            $article,
-            new ArticleTransformer
-        );
+    /**
+     * Respond single Article item in JSON.
+     *
+     * @param \App\Article                                  $article
+     * @param \Illuminate\Database\Eloquent\Collection|null $commentsCollection
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondItem(Article $article, Collection $commentsCollection = null)
+    {
+        return json()->withItem($article, new ArticleTransformer);
+    }
+
+    /**
+     * Respond Updated in JSON.
+     *
+     * @param \App\Article $article
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondUpdated(Article $article)
+    {
+        return json()->success('Updated');
+    }
+
+    /**
+     * Respond 204 Deleted.
+     *
+     * @param \App\Article $article
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondDeleted(Article $article)
+    {
+        return json()->noContent();
     }
 }

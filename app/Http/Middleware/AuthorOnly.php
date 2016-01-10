@@ -21,6 +21,10 @@ class AuthorOnly
         $modelId = $request->route($param == 'id' ? 'id' : str_plural($param));
 
         if (! $model::whereId($modelId)->whereAuthorId($user->id)->exists() and ! $user->isAdmin()) {
+            if (is_api_request()) {
+                return json()->forbiddenError();
+            }
+
             flash()->error(trans('errors.forbidden') . ' : ' . trans('errors.forbidden_description'));
 
             return back();

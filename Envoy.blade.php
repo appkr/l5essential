@@ -3,165 +3,169 @@
 # e.g. envoy run hello
 #--------------------------------------------------------------------------
 #
-# hello             Check ssh connection
-# deploy            Publish new release
-# rollback          TODO - Rollback to previous release
-# provision         Prepare a server
-# migration         Run database migration
+# hello     Check ssh connection
+# release   Publish new release
+# list      Show list of releases
+# checkout  Checkout to the given release (must provide --release=/path/to/release)
+# prune     Purge old releases (must provide --keep=n, where n is a number)
 #
 
-# @include not work! So resorted back to traditional way~.
-<?php include(__DIR__ . '/./envoy.config.php'); ?>
+
+@servers(['web' => 'aws-seoul-deploy'])
 
 
-@servers(['aws-demo' => 'l5.appkr.kr', 'barebone' => 'barebone.vm'])
+@setup
+  $path = [
+    'base' => '/home/deployer/www',
+    'docroot' => '/home/deployer/www/l5.appkr.kr',
+    'shared' => '/home/deployer/www/shared',
+    'release' => '/home/deployer/www/releases',
+  ];
+
+  $required_dirs = [
+    $path['base'],
+    $path['shared'],
+    $path['release'],
+  ];
+
+  $shared_item = [
+    '/home/deployer/www/shared/.env' => '.env',
+    '/home/deployer/www/shared/storage' => 'storage',
+    '/home/deployer/www/shared/cache' => 'bootstrap/cache',
+    '/home/deployer/www/shared/attachments' => 'public/attachments',
+  ];
+
+  $distribution = [
+    'name' => 'release_' . date('YmdHis'),
+  ];
+
+  $git = [
+    'repo' => 'git@github.com:appkr/l5essential.git',
+  ];
+@endsetup
 
 
-@task('hello', ['on' => ['aws-demo', 'barebone']])
+@task('hello', ['on' => ['web']])
   HOSTNAME=$(hostname);
   echo "Hello Envoy! Responding from $HOSTNAME";
 @endtask
 
 
-@macro('deploy', ['on' => 'barebone', 'confirm' => true])
-  prepare_path
-  fetch_repo
-  update_symlinks
-  update_permissions
-  run_composer
-  prune_release
-@endmacro
-
-
-@task('prepare_path', ['on' => 'barebone'])
-  paths=("{{ config('path.web') }}" "{{ config('path.shared') }}" "{{ config('path.shared') }}/attachments" "{{ config('path.shared') }}/backup" "{{ config('path.shared') }}/logs" "{{ config('path.release') }}");
-
-  for path in "${paths[@]}"; do
-    if [ ! -d $path ]; then
-      mkdir $path;
-      sudo chown -R {{ config('server.user') }}:www-data $path;
+@task('release', ['on' => ['web']])
+  {{--Create directories if not exists--}}
+  @foreach ($required_dirs as $dir)
+    if [ ! -d {{ $dir }} ]; then
+      mkdir {{ $dir }};
+      chgrp -h -R www-data {{ $dir }};
     fi;
-  done;
-@endtask
+  @endforeach
 
+  {{--Download book keeping officer--}}
+  if [ ! -f {{ $path['base'] }}/officer.php ]; then
+    wget https://raw.githubusercontent.com/appkr/envoy/master/scripts/officer.php -O {{ $path['base'] }}/officer.php;
+  fi;
 
-@task('fetch_repo', ['on' => 'barebone'])
-  cd {{ config('path.release') }};
-  git clone -b master {{ config('git.repo') }} {{ config('release.name') }};
-@endtask
+  {{--Fetch code from git--}}
+  cd {{ $path['release'] }};
+  git clone -b master {{ $git['repo'] }} {{ $distribution['name'] }};
 
+  {{--Symlink shared directory to current release.--}}
+  {{--e.g. storage, .env, user uploaded file storage, ...--}}
+  cd {{ $path['release'] }}/{{ $distribution['name'] }};
+  @foreach($shared_item as $global => $local)
+    [ -f {{ $local }} ] && rm {{ $local }};
+    [ -d {{ $local }} ] && rm -rf {{ $local }};
+    ln -nfs {{ $global }} {{ $local }};
+    chgrp -h -R www-data {{ $local }};
+  @endforeach
 
-@task('update_permissions', ['on' => 'barebone'])
-  cd {{ config('path.release') }};
-  chgrp -R www-data {{ config('release.name') }};
-  # chmod -R ug+rwx {{ config('release.name') }};
-
-  cd {{ config('path.release') }}/{{ config('release.name') }};
-  chmod -R 777 storage bootstrap/cache public/attachments;
-@endtask
-
-
-@task('update_symlinks', ['on' => 'barebone'])
-  # Symlink global .env to current release.
-
-  cd {{ config('path.release') }}/{{ config('release.name') }};
-  ln -nfs {{ config('path.shared') }}/.env .env;
-  chgrp -h www-data .env;
-
-  # Symlink global laravel.logs to current release.
-
-  rm -r {{ config('path.release') }}/{{ config('release.name') }}/storage/logs;
-  cd {{ config('path.release') }}/{{ config('release.name') }}/storage;
-  ln -nfs {{ config('path.shared') }}/logs logs;
-  chgrp -h www-data logs;
-
-  # Symlink global backup dir to current release.
-
-  rm -r {{ config('path.release') }}/{{ config('release.name') }}/storage/backup;
-  cd {{ config('path.release') }}/{{ config('release.name') }}/storage;
-  ln -nfs {{ config('path.shared') }}/backup backup;
-  chgrp -h www-data backup;
-
-  # Symlink global attachments path to current release.
-
-  rm -r {{ config('path.release') }}/{{ config('release.name') }}/public/attachments;
-  cd {{ config('path.release') }}/{{ config('release.name') }}/public;
-  ln -nfs {{ config('path.shared') }}/attachments attachments;
-  chgrp -h www-data attachments;
-
-  # Symlink current release to service directory.
-
-  ln -nfs {{ config('path.release') }}/{{ config('release.name') }} {{ config('path.base') }};
-  chgrp -h www-data {{ config('path.base') }};
-@endtask
-
-
-@task('run_composer', ['on' => 'barebone'])
-  cd {{ config('path.release') }}/{{ config('release.name') }};
+  {{--Run composer install--}}
   composer install --prefer-dist --no-scripts;
+  php artisan clear-compiled;
+  php artisan optimize;
+  php artisan cache:clear;
+  php artisan my:update-lesson;
 
-  php artisan clear-compiled --env=production;
-  php artisan optimize --env=production;
-  php artisan cache:clear --env=production;
-  # php artisan my:update-lessons;
+  {{--Symlink current release to service directory.--}}
+  ln -nfs {{ $path['release'] }}/{{ $distribution['name'] }} {{ $path['docroot'] }};
+  chgrp -h -R www-data {{ $path['docroot'] }};
 
-  service nginx restart;
-  service php5-fpm restart;
+  {{--Set permission and change owner. Do one final more for safety.--}}
+  chgrp -h -R www-data {{ $path['release'] }}/{{ $distribution['name'] }};
+
+  {{--Book keeping--}}
+  php {{ $path['base'] }}/officer.php deploy {{ $path['release'] }}/{{ $distribution['name'] }};
+
+  {{--Restart web server.--}}
+  {{--service nginx restart;--}}
+  {{--service php5-fpm restart;--}}
 @endtask
 
 
-@task('prune_release', ['on' => 'barebone'])
-  php {{ config('path.base') }}/artisan my:prune-release {{ config('path.release') }} --keep={{ config('release.keep') }};
+@task('prune', ['on' => 'web'])
+  if [ ! -f {{ $path['base'] }}/officer.php ]; then
+    echo '"officer.php" script not found.';
+    echo '\$ envoy run hire_officer';
+    exit 1;
+  fi;
+
+  @if (isset($keep) and $keep > 0)
+    php {{ $path['base'] }}/officer.php prune {{ $keep }};
+  @else
+    echo 'Must provide --keep=n, where n is a number.';
+  @endif
 @endtask
 
 
-@task('provision', ['on' => 'barebone', 'confirm' => true])
-  #--------------------------------------------------------------------------
-  # Having problem? Look up a explanation in provision.sh and serve.sh
-  #--------------------------------------------------------------------------
-
-  echo 'Downloading required scripts.';
-
-  curl https://raw.githubusercontent.com/appkr/l5essential/master/provision.sh -O {{ config('path.home') }}/provision.sh;
-  curl https://raw.githubusercontent.com/appkr/l5essential/master/serve.sh -O {{ config('path.home') }}/serve.sh;
-
-  echo 'Preparing server (e.g. php, mysql, nginx, ...). This will take long...';
-
-  {{ config('path.home') }}/provision.sh {{ config('server.user') }};
-
-  echo 'Configuring web server.';
-
-  {{ config('path.home') }}/serve.sh {{ config('server.domain') }} {{ config('path.base') }}/public;
-
-  echo 'Registering crontab entry.';
-  cat << EOT | sudo tee -a /var/spool/cron/{{ config('server.user') }}
-* * * * * php {{ config('path.base') }}/artisan schedule:run 1>> /dev/null 2>&1
-EOT;
-
-  echo 'Installing github key.';
-  block="{
-  "github-oauth": {
-    "github.com": "{{ config('git.token') }}"
-  }
-}
-";
-  echo "$block" > "{{ config('path.home') }}/.composer/auth.json";
-
-  echo 'Done.';
-  echo '';
-  echo 'NOTICE:';
-  echo 'To deploy a code from the github,';
-  echo 'install your ssh key on {{ config('server.host') }} server.';
-  echo 'Then, run $ envoy run deploy on your local machine.';
+@task('hire_officer', ['on' => 'web'])
+  {{--Download "officer.php" to the server--}}
+  wget https://raw.githubusercontent.com/appkr/envoy/master/scripts/officer.php -O {{ $path['base'] }}/officer.php;
+  echo '"officer.php" is ready!';
 @endtask
 
 
-@task('migration', ['on' => 'barebone', 'confirm' => true])
-  #--------------------------------------------------------------------------
-  # Before run this command, confirm the database is ready.
-  #--------------------------------------------------------------------------
+@task('list', ['on' => 'web'])
+  {{--Show the list of release--}}
+  if [ ! -f {{ $path['base'] }}/officer.php ]; then
+    echo '"officer.php" script not found.';
+    echo '\$ envoy run hire_officer';
+    exit 1;
+  fi;
 
-  cd {{ config('path.base') }};
-  composer dumpautoload;
-  php artisan migrate --seed --force;
+  php {{ $path['base'] }}/officer.php list;
+@endtask
+
+
+@task('checkout', ['on' => 'web'])
+  {{--Checkout to the given release path--}}
+  if [ ! -f {{ $path['base'] }}/officer.php ]; then
+    echo '"officer.php" script not found.';
+    echo '\$ envoy run hire_officer';
+    exit 1;
+  fi;
+
+  @if (isset($release))
+    cd {{ $release }};
+
+    {{--Symlink shared directory to the given release.--}}
+    @foreach($shared_item as $global => $local)
+      [ -f {{ $local }} ] && rm {{ $local }};
+      [ -d {{ $local }} ] && rm -rf {{ $local }};
+      ln -nfs {{ $global }} {{ $local }};
+      chgrp -h -R www-data {{ $local }};
+    @endforeach
+
+    {{--Symlink the given release to service directory.--}}
+    ln -nfs {{ $release }} {{ $path['docroot'] }};
+    chgrp -h -R www-data {{ $path['docroot'] }};
+
+    {{--Book keeping--}}
+    php {{ $path['base'] }}/officer.php checkout {{ $release }};
+
+    {{--Restart web server.--}}
+    {{--service nginx restart;--}}
+    {{--service php5-fpm restart;--}}
+  @else
+    echo 'Must provide --release=/full/path/to/release.';
+  @endif
 @endtask

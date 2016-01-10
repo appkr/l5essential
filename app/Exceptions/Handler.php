@@ -7,6 +7,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Foundation\Validation\ValidationException;
+use Illuminate\Http\Exception\HttpResponseException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -68,25 +69,28 @@ class Handler extends ExceptionHandler
         }
 
         if (is_api_request()) {
-            $code = method_exists($e, 'getStatusCode')
+            $statusCode = method_exists($e, 'getStatusCode')
                 ? $e->getStatusCode()
                 : $e->getCode();
 
             if ($e instanceof TokenExpiredException) {
                 $message = 'token_expired';
-            } else if ($e instanceof TokenInvalidException) {
+            } elseif ($e instanceof TokenInvalidException) {
                 $message = 'token_invalid';
-            } else if ($e instanceof JWTException) {
+            } elseif ($e instanceof JWTException) {
                 $message = $e->getMessage() ?: 'could_not_create_token';
-            } else if ($e instanceof NotFoundHttpException) {
+            } elseif ($e instanceof NotFoundHttpException or $e instanceof ModelNotFoundException) {
+                $statusCode = 404;
                 $message = $e->getMessage() ?: 'not_found';
-            } else if ($e instanceof MethodNotAllowedHttpException) {
+            } elseif ($e instanceof MethodNotAllowedHttpException) {
                 $message = $e->getMessage() ?: 'not_allowed';
-            } else if ($e instanceof Exception){
+            } elseif ($e instanceof HttpResponseException){
+                return $e->getResponse();
+            } elseif ($e instanceof Exception){
                 $message = $e->getMessage() ?: 'Whoops~ Tell me what you did :(';
             }
 
-            return json()->setStatusCode($code ?: 400)->error($message);
+            return json()->setStatusCode($statusCode ?: 400)->error($message);
         }
 
         return parent::render($request, $e);

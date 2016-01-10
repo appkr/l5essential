@@ -28,7 +28,7 @@ class ArticleTransformer extends TransformerAbstract
         return [
             'id'           => (int) $article->id,
             'title'        => $article->title,
-            'content_raw'  => $article->content,
+            'content_raw'  => strip_tags($article->content),
             'contant_html' => markdown($article->content),
             'created'      => $article->created_at->toIso8601String(),
             'view_count'   => (int) $article->view_count,

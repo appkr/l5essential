@@ -26,7 +26,7 @@ class CommentTransformer extends TransformerAbstract
     {
         return [
             'id'           => (int) $comment->id,
-            'content_raw'  => $comment->content,
+            'content_raw'  => strip_tags($comment->content),
             'content_html' => markdown($comment->content),
             'created'      => $comment->created_at->toIso8601String(),
             'vote'         => ['up' => (int) $comment->up_count, 'down' => (int) $comment->down_count],

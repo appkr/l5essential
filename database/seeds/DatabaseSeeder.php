@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
         if (config('database.default') != 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=0');
         }
-        Model::unguard();
+
+//        Not required for Laravel 5.2
+//        @see https://laravel.com/docs/5.2/upgrade#upgrade-5.2.0
+//        Model::unguard();
 
         /*
          * Seeding users table
@@ -152,7 +155,9 @@ class DatabaseSeeder extends Seeder
         /**
          * Close seeding
          */
-        Model::reguard();
+//        Not required for Laravel 5.2
+//        @see https://laravel.com/docs/5.2/upgrade#upgrade-5.2.0
+//        Model::reguard();
         if (config('database.default') != 'sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1');
         }

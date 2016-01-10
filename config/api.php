@@ -12,7 +12,7 @@ return [
     */
     'endpoint' => [
         'pattern' => 'v1/*',
-        'domain'  => 'api.example.com',
+        'domain'  => 'api.myproject.dev',
     ],
 
     /*

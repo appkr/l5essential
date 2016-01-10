@@ -1,5 +1,10 @@
 <?php
+
+// Copied from https://github.com/laravel/laravel/blob/master/config/auth.php
+// while migrating to Laravel 5.2
+
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -10,10 +15,12 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
+
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -30,6 +37,7 @@ return [
     | Supported: "session", "token"
     |
     */
+
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -40,6 +48,7 @@ return [
             'provider' => 'users',
         ],
     ],
+
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -56,6 +65,7 @@ return [
     | Supported: "database", "eloquent"
     |
     */
+
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
@@ -66,6 +76,7 @@ return [
         //     'table' => 'users',
         // ],
     ],
+
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -84,6 +95,7 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
+
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -92,4 +104,5 @@ return [
             'expire' => 60,
         ],
     ],
+
 ];

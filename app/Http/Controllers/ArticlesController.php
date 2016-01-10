@@ -8,20 +8,25 @@ use App\Events\ModelChanged;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Requests\FilterArticlesRequest;
 use App\Tag;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticlesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('author:article', ['only' => ['update', 'destroy', 'pickBest']]);
 
-        $allTags = taggable()
-            ? Tag::with('articles')->remember(5)->cacheTags('tags')->get()
-            : Tag::with('articles')->remember(5)->get();
+        if (! is_api_request()) {
+            $this->middleware('auth', ['except' => ['index', 'show']]);
 
-        view()->share('allTags', $allTags);
+            $allTags = taggable()
+                ? Tag::with('articles')->remember(5)->cacheTags('tags')->get()
+                : Tag::with('articles')->remember(5)->get();
+
+            view()->share('allTags', $allTags);
+        }
 
         parent::__construct();
     }
@@ -44,9 +49,9 @@ class ArticlesController extends Controller
             ? $query->with('comments', 'author', 'tags', 'solution', 'attachments')->remember(5)->cacheTags('articles')
             : $query->with('comments', 'author', 'tags', 'solution', 'attachments')->remember(5);
 
-        $articles = $this->filter($request, $query)->paginate(10);
+        $articles = $this->filter($request, $query)->paginate($request->input('pp', 5));
 
-        return view('articles.index', compact('articles'));
+        return $this->respondCollection($articles);
     }
 
     /**
@@ -104,6 +109,9 @@ class ArticlesController extends Controller
             'notification' => $request->has('notification'),
         ]);
 
+        // for debug
+        \Log::info('reached');
+
         $article = $request->user()->articles()->create($payload);
         $article->tags()->sync($request->input('tags'));
 
@@ -116,9 +124,8 @@ class ArticlesController extends Controller
         }
 
         event(new ModelChanged(['articles', 'tags']));
-        flash()->success(trans('common.created'));
 
-        return redirect(route('articles.index'));
+        return $this->respondCreated($article);
     }
 
     /**
@@ -130,17 +137,13 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::with('comments', 'tags', 'attachments', 'solution')->findOrFail($id);
+
         $commentsCollection = $article->comments()->with('replies')
             ->withTrashed()->whereNull('parent_id')->latest()->get();
 
         event(new ArticleConsumed($article));
-
-        return view('articles.show', [
-            'article'         => $article,
-            'comments'        => $commentsCollection,
-            'commentableType' => Article::class,
-            'commentableId'   => $article->id,
-        ]);
+//        dd($article->comments->toArray());
+        return $this->respondItem($article, $commentsCollection);
     }
 
     /**
@@ -171,12 +174,14 @@ class ArticlesController extends Controller
 
         $article = Article::findOrFail($id);
         $article->update($payload);
-        $article->tags()->sync($request->input('tags'));
+
+        if ($request->has('tags')) {
+            $article->tags()->sync($request->input('tags'));
+        }
 
         event(new ModelChanged(['articles', 'tags']));
-        flash()->success(trans('common.updated'));
 
-        return redirect(route('articles.show', $id));
+        return $this->respondUpdated($article);
     }
 
     public function pickBest(Request $request, $id)
@@ -190,7 +195,7 @@ class ArticlesController extends Controller
         ]);
 
 
-        return response()->json('', 204);
+        return json()->noContent();
     }
 
     /**
@@ -221,6 +226,71 @@ class ArticlesController extends Controller
             return response()->json('', 204);
         }
 
+        return $this->respondDeleted($article);
+    }
+
+    /**
+     * Respond Article Collection.
+     *
+     * @param \Illuminate\Pagination\LengthAwarePaginator $articles
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function respondCollection(LengthAwarePaginator $articles)
+    {
+        return view('articles.index', compact('articles'));
+    }
+
+    /**
+     * Respond Created.
+     *
+     * @param \App\Article $article
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function respondCreated(Article $article)
+    {
+        flash()->success(trans('common.created'));
+
+        return redirect(route('articles.index'));
+    }
+
+    /**
+     * Respond single Article item with a corresponding Comment collection.
+     *
+     * @param \App\Article                                  $article
+     * @param \Illuminate\Database\Eloquent\Collection|null $commentsCollection
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function respondItem(Article $article, Collection $commentsCollection = null)
+    {
+        return view('articles.show', [
+            'article'         => $article,
+            'comments'        => $commentsCollection,
+            'commentableType' => Article::class,
+            'commentableId'   => $article->id,
+        ]);
+    }
+
+    /**
+     * Respond Updated.
+     *
+     * @param \App\Article $article
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function respondUpdated(Article $article)
+    {
+        flash()->success(trans('common.updated'));
+
+        return redirect(route('articles.show', $article->id));
+    }
+
+    /**
+     * Respond Deleted.
+     *
+     * @param \App\Article $article
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function respondDeleted(Article $article)
+    {
         flash()->success(trans('common.deleted'));
 
         return redirect(route('articles.index'));

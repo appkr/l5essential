@@ -21,10 +21,20 @@ class ArticlesRequest extends Request
      */
     public function rules()
     {
-        return [
-            'title'   => 'required',
-            'content' => 'required',
-            'tags'    => 'required|array'
-        ];
+        $rules = [];
+
+        if ($this->isDelete()) {
+            $rules = [];
+        } elseif ($this->isUpdate()) {
+            $rules = ['tags' => ['array']];
+        } else {
+            $rules = [
+                'title'   => 'required',
+                'content' => 'required',
+                'tags'    => 'required|array'
+            ];
+        }
+
+        return $rules;
     }
 }

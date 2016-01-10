@@ -1,5 +1,7 @@
 # 라라벨 5 입문 강좌
 
+[![Build Status](https://travis-ci.org/appkr/l5essential.svg)](https://travis-ci.org/appkr/l5essential)
+
 ## Github
 
 이 강좌의 코드는 아래 저장소에서 확인할 수 있다.

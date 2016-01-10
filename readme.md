@@ -1,5 +1,7 @@
 # 라라벨 5 입문 강좌
 
+[![Build Status](https://travis-ci.org/appkr/l5essential.svg)](https://travis-ci.org/appkr/l5essential)
+
 ## 데모 사이트
 
 아래 주소를 방문하면 이 강좌에서 개발한 결과물을 볼 수 있다.
@@ -98,7 +100,7 @@ Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 
 -   [45강 - 기본 구조 잡기](lessons/45-api-big-picture.md)
 -   [46강 - JWT 를 이용한 인증](lessons/46-jwt.md)
 -   [47강 - 중복 제거 리팩토링](lessons/47-dry-refactoring.md)
-<!-- -   [48강 - all() is bad](lessons/48-all-is-bad.md)-->
+-   [48강 - all() is bad](lessons/48-all-is-bad.md)
 
 #### 번외. 기타 잡다한 것들
 

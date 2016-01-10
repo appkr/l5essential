@@ -113,11 +113,12 @@ class ApiTest extends \TestCase
     }
 
     /**
-     * Stubbing test data.
+     * Create User.
      *
      * @param array $overrides
+     * @return $this
      */
-    protected function createTestStub($overrides = [])
+    protected function createUserStub($overrides = [])
     {
         $this->user = empty($overrides)
             ? factory(User::class)->create()
@@ -125,23 +126,89 @@ class ApiTest extends \TestCase
 
         $this->user->attachRole(Role::find(2));
 
-        $this->article = factory(Article::class)->create([
-            'title'     => 'title',
-            'author_id' => $this->user->id,
-            'content'   => 'description',
-        ]);
+        return $this;
+    }
 
-        $this->article->comments()->save(
+    /**
+     * Create Article.
+     *
+     * @param array $overrides
+     * @return $this
+     */
+    protected function createArticleStub($overrides = [])
+    {
+        $payload = array_merge([
+            'title'     => 'foo',
+            // user 1 is safe, because we already seeded.
+            'author_id' => is_null($this->user) ? 1 : $this->user->id,
+            'content'   => 'bar',
+        ], $overrides);
+
+        $this->article = factory(Article::class)->create($payload);
+
+        return $this;
+    }
+
+    /**
+     * Create Comment.
+     *
+     * @param array $overrides
+     * @return $this
+     */
+    protected function createCommentStub($overrides = [])
+    {
+        $article = is_null($this->article) ? $this->createArticleStub() : $this->article;
+
+        $article->comments()->save(
             factory(Comment::class)->make([
-                'author_id' => $this->user->id
+                'author_id' => is_null($this->user) ? 1 : $this->user->id,
             ])
         );
 
-        $this->article->tags()->attach(1);
+        return $this;
+    }
 
-        $this->article->attachments()->save(
-            factory(Attachment::class)->make()
-        );
+    /**
+     * Create Tag.
+     *
+     * @return $this
+     */
+    protected function createTagStub()
+    {
+        $article = is_null($this->article) ? $this->createArticleStub() : $this->article;
+        $article->tags()->attach(1);
+
+        return $this;
+    }
+
+    /**
+     * Create Attachment.
+     *
+     * @return $this
+     */
+    protected function createAttachmentStub()
+    {
+        $article = is_null($this->article) ? $this->createArticleStub() : $this->article;
+        $article->attachments()->save(factory(Attachment::class)->make());
+
+        return $this;
+    }
+
+    /**
+     * Stubbing all test data.
+     *
+     * @param array $userOverrides
+     * @param array $articleOverrides
+     * @param array $commentOverrides
+     * @return $this
+     */
+    protected function createTestStub($userOverrides = [], $articleOverrides = [], $commentOverrides = [])
+    {
+        return $this->createUserStub($userOverrides)
+            ->createArticleStub($articleOverrides)
+            ->createCommentStub($commentOverrides)
+            ->createTagStub()
+            ->createAttachmentStub();
     }
 
     /**
@@ -177,10 +244,12 @@ class ApiTest extends \TestCase
     /**
      * Build Authorization header with jwt token.
      *
+     * @param null $overrides
      * @return array
      */
-    protected function jwtHeader()
+    protected function jwtHeader($overrides = null)
     {
-        return ['HTTP_Authorization' => 'Bearer ' . $this->jwtToken];
+        $jwtToken = $overrides ?: $this->jwtToken;
+        return ['HTTP_Authorization' => 'Bearer ' . $jwtToken];
     }
 }

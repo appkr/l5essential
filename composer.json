@@ -20,7 +20,7 @@
     "watson/rememberable": "^1.0",
     "maknz/slack": "1.*",
     "tymon/jwt-auth": "0.5.*",
-    "appkr/api": "^0.1.0"
+    "appkr/api": "0.1.*"
   },
   "require-dev": {
     "symfony/dom-crawler": "~3.0",
