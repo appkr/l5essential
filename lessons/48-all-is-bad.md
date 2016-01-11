@@ -348,7 +348,7 @@ class ArticlesController extends Controller
 -   `noContent()`
     204 응답을 반환한다.
     
-```
+```php
 // app/Http/Controllers/Api/V1/ArticlesController.php
 
 class ArticlesController extends ParentController
@@ -448,7 +448,7 @@ Content-Disposition: form-data; name="tags[]"
 
 `App\Http\Controllers\ArticlesController::store()` 메소드에서 입력값 유효성 검사를 위해서 `App\Http\Requests\ArticlesRequest` 라는 [Form Request](https://laravel.com/docs/5.2/validation#form-request-validation) 인스턴스를 주입하고 있다 ([37강 - Article 기능 구현](37-articles.md)). 그런데, 이 Form Request 는 입력값 유효성 검사에 실패하면 422 JSON 응답을 반환하긴 하지만, 우리가 원하는 모양의 JOSN 포맷이 아니다. `App\Http\Requests\ArticlesRequest` 의 부모 클래스를 계속 따라가다 적절한 포인트를 찾아서 기존 응답 형식을 우리 형식에 맞도록 메소드 오버라이딩을 해 주자.
 
-```
+```php
 // app/Http/Requests/Reqeust.php
 
 abstract class Request extends FormRequest
