@@ -55,6 +55,7 @@
     -   [47강 - 중복 제거 리팩토링](/lessons/47-dry-refactoring.md)
     -   [48강 - all() is bad](/lessons/48-all-is-bad.md)
     -   [49강 - API Rate Limit](/lessons/49-rate-limit.md)
+    -   [50강 - 리소스 id 난독화](/lessons/50-id-obfuscation.md)
 -   **번외-기타 잡다한 것들**
     -   [Homestead 설치 (on Mac)](/lessons/02-install-homestead-osx.md)
     -   [Homestead 설치 (on Windows)](/lessons/02-install-homestead-windows.md)

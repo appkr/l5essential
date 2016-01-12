@@ -24,15 +24,16 @@ class CommentTransformer extends TransformerAbstract
      */
     public function transform(Comment $comment)
     {
+        $id = optimus((int) $comment->id);
         return [
-            'id'           => (int) $comment->id,
+            'id'           => $id,
             'content_raw'  => strip_tags($comment->content),
             'content_html' => markdown($comment->content),
             'created'      => $comment->created_at->toIso8601String(),
             'vote'         => ['up' => (int) $comment->up_count, 'down' => (int) $comment->down_count],
             'link'         => [
                 'rel'  => 'self',
-                'href' => route('api.v1.comments.show', $comment->id),
+                'href' => route('api.v1.comments.show', $id),
             ],
             'author'       => sprintf('%s <%s>', $comment->author->name, $comment->author->email),
         ];

@@ -10,15 +10,16 @@ class AuthorOnly
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param string|null              $param
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $param)
+    public function handle(Request $request, Closure $next, $param = null)
     {
         $user = $request->user();
         $model = '\\App\\' . ucfirst($param);
-        $modelId = $request->route($param == 'id' ? 'id' : str_plural($param));
+        $modelId = $request->route($param ? str_plural($param) : 'id');
 
         if (! $model::whereId($modelId)->whereAuthorId($user->id)->exists() and ! $user->isAdmin()) {
             if (is_api_request()) {

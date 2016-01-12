@@ -14,6 +14,7 @@ class ArticlesController extends ParentController
     {
         $this->middleware('jwt.auth', ['except' => ['index', 'show']]);
         $this->middleware('throttle.api:60,1');
+        $this->middleware('obfuscate:article');
 
         parent::__construct();
     }

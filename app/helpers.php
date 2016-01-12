@@ -151,3 +151,22 @@ if (! function_exists('is_api_request')) {
         return starts_with(Request::getHttpHost(), env('API_DOMAIN'));
     }
 }
+
+if (! function_exists('optimus')) {
+    /**
+     * Create Optimus instance.
+     *
+     * @param int|null $id
+     * @return int|\Jenssegers\Optimus\Optimus
+     */
+    function optimus($id = null)
+    {
+        $factory = app(\Jenssegers\Optimus\Optimus::class);
+
+        if (func_num_args() === 0) {
+            return $factory;
+        }
+
+        return $factory->encode($id);
+    }
+}

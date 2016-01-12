@@ -25,16 +25,18 @@ class ArticleTransformer extends TransformerAbstract
      */
     public function transform(Article $article)
     {
+        $id = optimus((int) $article->id);
+
         return [
-            'id'           => (int) $article->id,
+            'id'           => $id,
             'title'        => $article->title,
             'content_raw'  => strip_tags($article->content),
-            'contant_html' => markdown($article->content),
+            'content_html' => markdown($article->content),
             'created'      => $article->created_at->toIso8601String(),
             'view_count'   => (int) $article->view_count,
             'link'         => [
                 'rel'  => 'self',
-                'href' => route('api.v1.articles.show', $article->id),
+                'href' => route('api.v1.articles.show', $id),
             ],
             'comments'     => (int) $article->comments->count(),
             'author'       => sprintf('%s <%s>', $article->author->name, $article->author->email),

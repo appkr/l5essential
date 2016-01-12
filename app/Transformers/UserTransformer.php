@@ -25,14 +25,16 @@ class UserTransformer extends TransformerAbstract
      */
     public function transform(User $user)
     {
+        $id = optimus((int) $user->id);
+
         return [
-            'id'       => (int) $user->id,
+            'id'       => $id,
             'name'     => $user->name,
             'email'    => $user->email,
             'signup'   => $user->created_at->toIso8601String(),
             'link'     => [
                 'rel'  => 'self',
-                'href' => route('api.users.show', $user->id),
+                'href' => route('api.users.show', $id),
             ],
             'articles' => (int) $user->articles->count(),
             'comments' => (int) $user->comments->count(),

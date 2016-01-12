@@ -27,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(\Jenssegers\Optimus\Optimus::class, function () {
+            return new \Jenssegers\Optimus\Optimus(132961291, 1484265379, 37817169);
+        });
+
         if ($this->app->environment('local')) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }

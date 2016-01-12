@@ -48,5 +48,6 @@ class Kernel extends HttpKernel
         'author'      => \App\Http\Middleware\AuthorOnly::class,
         'jwt.auth'    => \App\Http\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \App\Http\Middleware\RefreshToken::class,
+        'obfuscate'   => \App\Http\Middleware\ObfuscateId::class,
     ];
 }

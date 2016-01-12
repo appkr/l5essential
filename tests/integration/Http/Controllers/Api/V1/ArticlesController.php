@@ -33,9 +33,12 @@ class ArticlesController extends ApiTest
     /** @test */
     public function it_fetches_single_article()
     {
+        // Create obfuscated id
+        $id = optimus(1);
+
         $this->get(
             // 1 is safe, because it's in the seeding
-                route('api.v1.articles.show', 1),
+                route('api.v1.articles.show', $id),
                 $this->httpHeaders()
             )
             ->seeStatusCode(StatusCode::OK)
@@ -112,7 +115,7 @@ class ArticlesController extends ApiTest
             ->login()
             ->createArticleStub(['title' => 'foo'])
             ->put(
-                route('api.v1.articles.update', $this->article->id),
+                route('api.v1.articles.update', optimus($this->article->id)),
                 ['title' => 'bar',],
                 $this->httpHeaders($this->jwtHeader())
             )
@@ -155,7 +158,7 @@ class ArticlesController extends ApiTest
             ->login()
             ->createArticleStub(['title' => 'foo'])
             ->delete(
-                route('api.v1.articles.destroy', $this->article->id),
+                route('api.v1.articles.destroy', optimus($this->article->id)),
                 [],
                 $this->httpHeaders($this->jwtHeader())
             )

@@ -16,7 +16,7 @@ class AttachmentTransformer extends TransformerAbstract
     public function transform(Attachment $attachment)
     {
         return [
-            'id'      => (int) $attachment->id,
+            'id'      => optimus((int) $attachment->id),
             'name'    => $attachment->name,
             'created' => $attachment->created_at->toIso8601String(),
             'link'    => [
