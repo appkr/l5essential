@@ -11,6 +11,7 @@ class SessionsController extends ParentController
     {
         // Kill middleware defined by ParentController.
         $this->middleware = [];
+        $this->middleware('throttle.api:10,1');
 
         parent::__construct();
     }

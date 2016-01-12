@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "appkr/api",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/appkr/api.git",
-                "reference": "23311f4358467c60fdfd91bb85f4637be6c8534a"
+                "reference": "6468d6b6105af4d83d167f3455d67f112a00347b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/appkr/api/zipball/23311f4358467c60fdfd91bb85f4637be6c8534a",
-                "reference": "23311f4358467c60fdfd91bb85f4637be6c8534a",
+                "url": "https://api.github.com/repos/appkr/api/zipball/6468d6b6105af4d83d167f3455d67f112a00347b",
+                "reference": "6468d6b6105af4d83d167f3455d67f112a00347b",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
                 "fractal",
                 "laravel"
             ],
-            "time": "2016-01-04 18:56:50"
+            "time": "2016-01-12 02:19:27"
         },
         {
             "name": "bican/roles",

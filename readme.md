@@ -101,6 +101,7 @@ Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 
 -   [46강 - JWT 를 이용한 인증](lessons/46-jwt.md)
 -   [47강 - 중복 제거 리팩토링](lessons/47-dry-refactoring.md)
 -   [48강 - all() is bad](lessons/48-all-is-bad.md)
+-   [49강 - API Rate Limit](lessons/49-rate-limit.md)
 
 #### 번외. 기타 잡다한 것들
 

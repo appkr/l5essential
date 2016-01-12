@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
         'auth.basic'  => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest'       => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'    => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'throttle.api'=> \App\Http\Middleware\ThrottleApiRequests::class,
         'role'        => \Bican\Roles\Middleware\VerifyRole::class,
         'author'      => \App\Http\Middleware\AuthorOnly::class,
         'jwt.auth'    => \App\Http\Middleware\GetUserFromToken::class,
