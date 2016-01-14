@@ -86,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
 내친 김에 `optimus()` Helper 도 만들자.
 
 ```php
-app/helpers.php
+// app/helpers.php
 
 function optimus($id = null)
 {

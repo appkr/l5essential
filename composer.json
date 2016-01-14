@@ -21,7 +21,9 @@
     "maknz/slack": "1.*",
     "tymon/jwt-auth": "0.5.*",
     "appkr/api": "0.1.*",
-    "jenssegers/optimus": "^0.2.0"
+    "jenssegers/optimus": "^0.2.0",
+    "asm89/stack-cors": "dev-master as 0.2.2",
+    "barryvdh/laravel-cors": "^0.7.3"
   },
   "require-dev": {
     "symfony/dom-crawler": "~3.0",

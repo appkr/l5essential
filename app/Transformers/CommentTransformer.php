@@ -35,7 +35,11 @@ class CommentTransformer extends TransformerAbstract
                 'rel'  => 'self',
                 'href' => route('api.v1.comments.show', $id),
             ],
-            'author'       => sprintf('%s <%s>', $comment->author->name, $comment->author->email),
+            'author'       => [
+                'name' => $comment->author->name,
+                'email' => $comment->author->email,
+                'avatar' => 'http:' . gravatar_profile_url($comment->author->email),
+            ],
         ];
     }
 

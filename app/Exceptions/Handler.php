@@ -59,13 +59,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if (app()->environment('production') and
-            ($e instanceof ModelNotFoundException
-                or $e instanceof NotFoundHttpException)) {
+        if (app()->environment('production')) {
+            $title = 'Error';
+            $description = 'Unknown error occurred :(';
+            $statusCode = 400;
+
+            if ($e instanceof ModelNotFoundException or $e instanceof NotFoundHttpException) {
+                $title = trans('errors.not_found');
+                $description = trans('errors.not_found_description');
+                $statusCode = 404;
+            }
+
             return response(view('errors.notice', [
-                'title'       => trans('errors.not_found'),
-                'description' => trans('errors.not_found_description')
-            ]), $e->getCode() ?: 404);
+                'title'       => $title,
+                'description' => $description
+            ]), $e->getCode() ?: $statusCode);
         }
 
         if (is_api_request()) {

@@ -39,7 +39,11 @@ class ArticleTransformer extends TransformerAbstract
                 'href' => route('api.v1.articles.show', $id),
             ],
             'comments'     => (int) $article->comments->count(),
-            'author'       => sprintf('%s <%s>', $article->author->name, $article->author->email),
+            'author'       => [
+                'name' => $article->author->name,
+                'email' => $article->author->email,
+                'avatar' => 'http:' . gravatar_profile_url($article->author->email),
+            ],
             'tags'         => $article->tags->pluck('slug'),
             'attachments'  => (int) $article->attachments->count(),
         ];

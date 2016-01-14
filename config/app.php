@@ -167,6 +167,7 @@ return [
         Maknz\Slack\SlackServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Appkr\Api\ApiServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
     ],
 

@@ -103,6 +103,7 @@ Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 
 -   [48강 - all() is bad](lessons/48-all-is-bad.md)
 -   [49강 - API Rate Limit](lessons/49-rate-limit.md)
 -   [50강 - 리소스 id 난독화](lessons/50-id-obfuscation.md)
+-   [51강 - CORS](lessons/51-cors.md)
 
 #### 번외. 기타 잡다한 것들
 

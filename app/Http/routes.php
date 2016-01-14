@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api'], function() {
+Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api', 'middleware' => 'cors'], function() {
     /* Landing page */
     Route::get('/', [
         'as'   => 'index',
