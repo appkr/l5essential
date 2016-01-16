@@ -171,25 +171,7 @@ Route::group(['domain' => env('APP_DOMAIN')], function() {
     ]);
 });
 
-/* Temporary route to redirect old domain to new one */
-//Route::group(['domain' => 'ec2-52-193-67-224.ap-northeast-1.compute.amazonaws.com'], function() {
-//    flash()->overlay(
-//        '<strong class="text-muted"> ec2-52-193-67-224.ap-northeast-1.compute.amazonaws.com </strong> 도메인은 사용하지 않습니다. <strong class="text-primary"> l5.appkr.kr </strong> 를 이용해 주세요.',
-//        '도메인 이전 안내'
-//    );
-//
-//    $domain = starts_with(Request::getHttpHost(), 'api')
-//        ? env('API_DOMAIN') : env('APP_DOMAIN');
-//
-//    $path = sprintf('//%s%s', $domain, Request::getRequestUri());
-//
-//    return redirect()->away($path);
-//});
-/* End of temporary route */
-
 /* From Laravel 5.2 all built-in events are fired in the form of Object */
 //DB::listen(function($event){
-//    var_dump($event->sql);
-//    var_dump($event->bindings);
-//    //var_dump($event->time);
+//    var_dump($event->sql/*, $event->bindings, $event->time*/);
 //});

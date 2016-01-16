@@ -23,11 +23,19 @@ class ArticlesController extends ParentController
      * Respond Article collection in JSON.
      *
      * @param \Illuminate\Pagination\LengthAwarePaginator $articles
+     * @param string|null                                 $cacheKey
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondCollection(LengthAwarePaginator $articles)
+    protected function respondCollection(LengthAwarePaginator $articles, $cacheKey = null)
     {
-        return json()->withPagination(
+        $reqEtag = request()->getETags();
+        $genEtag = $this->etags($articles, $cacheKey);
+
+        if (isset($reqEtag[0]) and $reqEtag[0] === $genEtag) {
+            return $this->respondNotModified();
+        }
+
+        return json()->setHeaders(['Etag' => $genEtag])->withPagination(
             $articles,
             new ArticleTransformer
         );
@@ -49,11 +57,19 @@ class ArticlesController extends ParentController
      *
      * @param \App\Article                                  $article
      * @param \Illuminate\Database\Eloquent\Collection|null $commentsCollection
+     * @param string|null                                   $cacheKey
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondItem(Article $article, Collection $commentsCollection = null)
+    protected function respondItem(Article $article, Collection $commentsCollection = null, $cacheKey = null)
     {
-        return json()->withItem($article, new ArticleTransformer);
+        $reqEtag = request()->getETags();
+        $genEtag = $article->etag($cacheKey);
+
+        if (isset($reqEtag[0]) and $reqEtag[0] === $genEtag) {
+            return $this->respondNotModified();
+        }
+
+        return json()->setHeaders(['Etag' => $genEtag])->withItem($article, new ArticleTransformer);
     }
 
     /**
@@ -76,5 +92,15 @@ class ArticlesController extends ParentController
     protected function respondDeleted(Article $article)
     {
         return json()->noContent();
+    }
+
+    /**
+     * Respond Not Modified;
+     *
+     * @return \Illuminate\Contracts\Http\Response
+     */
+    protected function respondNotModified()
+    {
+        return json()->notModified();
     }
 }

@@ -14,6 +14,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticlesController extends Controller
 {
+    protected $cache;
+
     public function __construct()
     {
         $this->middleware('author:article', ['only' => ['update', 'destroy', 'pickBest']]);
@@ -27,6 +29,10 @@ class ArticlesController extends Controller
 
             view()->share('allTags', $allTags);
         }
+
+        $this->cache = taggable()
+            ? app('cache')->tags('articles')
+            : app('cache');
 
         parent::__construct();
     }
@@ -44,26 +50,26 @@ class ArticlesController extends Controller
             ? Tag::whereSlug($slug)->firstOrFail()->articles()
             : new Article;
 
-        // If you are relying on 'file' or 'database' cache, cacheTags() methods is not available
-        $query = taggable()
-            ? $query->with('comments', 'author', 'tags', 'solution', 'attachments')->remember(5)->cacheTags('articles')
-            : $query->with('comments', 'author', 'tags', 'solution', 'attachments')->remember(5);
+        $cacheKey = cache_key('articles.index');
 
-        $articles = $this->filter($request, $query)->paginate($request->input('pp', 5));
+        $articles = $this->cache->remember($cacheKey, 5, function() use($query, $request) {
+            return $this->filter($query)->paginate($request->input('pp', 5));
+        });
 
-        return $this->respondCollection($articles);
+        return $this->respondCollection($articles, $cacheKey);
     }
 
     /**
      * Do the filter, search, and sorting job
      *
-     * @param $request
      * @param $query
      * @return mixed
      */
-    protected function filter($request, $query)
+    protected function filter($query)
     {
-        if ($filter = $request->input('f')) {
+        // Todo Bad design. Move this to a repository.
+        // Todo Abstract more to be able to be used with other models.
+        if ($filter = request()->input('f')) {
             switch ($filter) {
                 case 'nocomment':
                     $query->noComment();
@@ -74,13 +80,13 @@ class ArticlesController extends Controller
             }
         }
 
-        if ($keyword = $request->input('q')) {
+        if ($keyword = request()->input('q')) {
             $raw = 'MATCH(title,content) AGAINST(? IN BOOLEAN MODE)';
             $query->whereRaw($raw, [$keyword]);
         }
 
-        $sort = $request->input('s', 'created_at');
-        $direction = $request->input('d', 'desc');
+        $sort = request()->input('s', 'created_at');
+        $direction = request()->input('d', 'desc');
 
         return $query->orderBy('pin', 'desc')->orderBy($sort, $direction);
     }
@@ -109,9 +115,6 @@ class ArticlesController extends Controller
             'notification' => $request->has('notification'),
         ]);
 
-        // for debug
-        \Log::info('reached');
-
         $article = $request->user()->articles()->create($payload);
         $article->tags()->sync($request->input('tags'));
 
@@ -136,14 +139,22 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article = Article::with('comments', 'tags', 'attachments', 'solution')->findOrFail($id);
+        $cacheKey = cache_key("articles.show.{$id}");
+        $secondKey = cache_key("articles.show.{$id}.comments");
 
-        $commentsCollection = $article->comments()->with('replies')
-            ->withTrashed()->whereNull('parent_id')->latest()->get();
+        $article = $this->cache->remember($cacheKey, 5, function() use($id) {
+            return Article::with('comments', 'tags', 'attachments', 'solution')->findOrFail($id);
+        });
 
-        event(new ArticleConsumed($article));
-//        dd($article->comments->toArray());
-        return $this->respondItem($article, $commentsCollection);
+        $commentsCollection = $this->cache->remember($secondKey, 5, function() use($article){
+            return $article->comments()->with('replies')->withTrashed()->whereNull('parent_id')->latest()->get();
+        });
+
+        if (! is_api_request()) {
+            event(new ArticleConsumed($article));
+        }
+
+        return $this->respondItem($article, $commentsCollection, $cacheKey.$secondKey);
     }
 
     /**
@@ -233,9 +244,10 @@ class ArticlesController extends Controller
      * Respond Article Collection.
      *
      * @param \Illuminate\Pagination\LengthAwarePaginator $articles
+     * @param string|null                                 $cacheKey
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    protected function respondCollection(LengthAwarePaginator $articles)
+    protected function respondCollection(LengthAwarePaginator $articles, $cacheKey = null)
     {
         return view('articles.index', compact('articles'));
     }
@@ -258,9 +270,10 @@ class ArticlesController extends Controller
      *
      * @param \App\Article                                  $article
      * @param \Illuminate\Database\Eloquent\Collection|null $commentsCollection
+     * @param string|null                                    $cacheKey
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    protected function respondItem(Article $article, Collection $commentsCollection = null)
+    protected function respondItem(Article $article, Collection $commentsCollection = null, $cacheKey = null)
     {
         return view('articles.show', [
             'article'         => $article,
@@ -294,5 +307,15 @@ class ArticlesController extends Controller
         flash()->success(trans('common.deleted'));
 
         return redirect(route('articles.index'));
+    }
+
+    /**
+     * Respond Not Modified.
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    protected function respondNotModified()
+    {
+        return response('', 304);
     }
 }

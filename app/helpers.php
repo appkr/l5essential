@@ -170,3 +170,22 @@ if (! function_exists('optimus')) {
         return $factory->encode($id);
     }
 }
+
+if (! function_exists('cache_key')) {
+    /**
+     * Generate key for caching.
+     *
+     * Note. Even though the request endpoints are the same,
+     *       the response body should be different because of the query string.
+     *
+     * @param $base
+     * @return string
+     */
+    function cache_key($base) {
+        $key = ($uri = request()->fullUrl())
+            ? $base . '.' . urlencode($uri)
+            : $base;
+
+        return md5($key);
+    }
+}

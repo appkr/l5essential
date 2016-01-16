@@ -1,11 +1,10 @@
 .env
 .idea
 .DS_Store
-.phpstorm.meta.php
-_ide_helper.php
+.phpstorm*
+_ide_helper*
 git_*
-Homestead.yaml
-Homestead.json
+Homestead.*
 node_modules
 npm-debug.log
 /public/css
