@@ -23,9 +23,9 @@ class ArticlesController extends Controller
         if (! is_api_request()) {
             $this->middleware('auth', ['except' => ['index', 'show']]);
 
-            $allTags = taggable()
-                ? Tag::with('articles')->remember(5)->cacheTags('tags')->get()
-                : Tag::with('articles')->remember(5)->get();
+            $allTags = \Cache::remember('tags', 30, function() {
+                return Tag::with('articles')->get();
+            });
 
             view()->share('allTags', $allTags);
         }
