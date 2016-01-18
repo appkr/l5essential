@@ -2,11 +2,10 @@
 
 ## 사용할 테이블을 만들자
 
-[3강 - 글로벌 설정 살펴보기](03-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자. 가능하면 GUI 툴을 사용하자 (Sequel Pro 권장)
+[3강 - 글로벌 설정 살펴보기](03-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자.
 
 ```bash
-# homestead 사용자를 생성하고, myProject DB 에 권한을 부여하는 등이 CLI 툴로는 굉장히 복잡하다.
-# 아래 명령들은 이런 내용으로 만든다는 내용을 보여주기 위한 것이며 실제로는 GUI 툴로 할 것을 권장한다.
+# 아래 명령들은 이런 내용으로 만든다는 내용을 보여주기 위한 것이며 실제로는 GUI 툴을 사용해도 무방하다.
 
 $ mysql -uroot
 mysql > CREATE DATABASE myProject;
