@@ -130,7 +130,16 @@ $ git checkout 03(tab & enter)
 
 **`참고`** 학생들과 만나보면, 콘솔을 쓸 줄 모르는 분들이 많다. 문서에 나온 코드 블럭 중에서 `$` (윈도우즈의 경우 `\>`) 로 시작하는 명령들은 콘솔에서 실행하라는 의미이다. 가령, `$ ls -al` 이라 써 있으면, 콘솔에서 `ls -al (enter)` 를 하라는 의미이다. 콘솔 명령 블럭에서 `# ...` 은 주석이다.
 
-## LICENSE
+## 기여자
+
+-   dosirak 님 오자 신고
+-   [이현석 님](https://www.facebook.com/leehs) 오자 신고
+-   [이종웅 님](https://www.facebook.com/jongwoong.lee.71) 오자 신고, 검수
+-   [smartyunhui 님](https://github.com/smartyunhui) 오자 신고
+
+모두 모두 감사합니다.
+
+## 라이센스
 
 - 강좌에 사용된 코드는 [MIT](https://raw.githubusercontent.com/appkr/l5essential/master/LICENSE) 라이센스를 따른다.
 - 강좌 자체는 [CC BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) 라이센스를 따른다.

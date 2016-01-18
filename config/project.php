@@ -4,6 +4,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Enable or disable site-wide caching
+    |--------------------------------------------------------------------------
+    |
+    | If set to false, site-wide cache and etag/304 feature will be disabled.
+    | For production, for performance this should be set to true.
+    |
+    */
+    'cache' => ! env('APP_DEBUG', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Project identification
     |--------------------------------------------------------------------------
     |

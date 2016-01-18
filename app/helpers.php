@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('markdown')) {
+if (! function_exists('markdown')) {
     /**
      * Compile the given text to markdown document.
      *
@@ -13,7 +13,7 @@ if (!function_exists('markdown')) {
     }
 }
 
-if (!function_exists('icon')) {
+if (! function_exists('icon')) {
     /**
      * Generate FontAwesome icon tag
      *
@@ -31,7 +31,7 @@ if (!function_exists('icon')) {
     }
 }
 
-if (!function_exists('attachment_path')) {
+if (! function_exists('attachment_path')) {
     /**
      * @param string $path
      *
@@ -43,7 +43,7 @@ if (!function_exists('attachment_path')) {
     }
 }
 
-if (!function_exists('gravatar_profile_url')) {
+if (! function_exists('gravatar_profile_url')) {
     /**
      * Get gravatar profile page url
      *
@@ -56,7 +56,7 @@ if (!function_exists('gravatar_profile_url')) {
     }
 }
 
-if (!function_exists('gravatar_url')) {
+if (! function_exists('gravatar_url')) {
     /**
      * Get gravatar image url
      *
@@ -70,7 +70,7 @@ if (!function_exists('gravatar_url')) {
     }
 }
 
-if (!function_exists('taggable')) {
+if (! function_exists('taggable')) {
     /**
      * Determine if the current cache driver has cacheTags() method
      *
@@ -78,11 +78,11 @@ if (!function_exists('taggable')) {
      */
     function taggable()
     {
-        return !in_array(config('cache.default'), ['file', 'database']);
+        return ! in_array(config('cache.default'), ['file', 'database']);
     }
 }
 
-if (!function_exists('link_for_sort')) {
+if (! function_exists('link_for_sort')) {
     /**
      * Build HTML anchor tag for sorting
      *
@@ -93,10 +93,12 @@ if (!function_exists('link_for_sort')) {
      */
     function link_for_sort($column, $text, $params = [])
     {
-        $direction = Request::input('d');
+        $config = config('project.params');
+
+        $direction = request()->input($config['order']);
         $reverse = ($direction == 'asc') ? 'desc' : 'asc';
 
-        if (Request::input('s') == $column) {
+        if (request()->input($config['sort']) == $column) {
             // Update passed $text var, only if it is active sort
             $text = sprintf(
                 "%s %s",
@@ -106,14 +108,14 @@ if (!function_exists('link_for_sort')) {
         }
 
         $queryString = http_build_query(array_merge(
-            Request::except(['page', 's', 'd']),
-            ['s' => $column, 'd' => $reverse],
+            request()->except([$config['page'], $config['sort'], $config['order']]),
+            [$config['sort'] => $column, $config['order'] => $reverse],
             $params
         ));
 
         return sprintf(
             '<a href="%s?%s">%s</a>',
-            urldecode(Request::url()),
+            urldecode(request()->url()),
             $queryString,
             $text
         );
@@ -128,14 +130,14 @@ if (! function_exists('current_url')) {
      */
     function current_url()
     {
-        if (! Request::has('return')) {
-            return Request::fullUrl();
+        if (! request()->has('return')) {
+            return request()->fullUrl();
         }
 
         return sprintf(
             '%s?%s',
-            Request::url(),
-            http_build_query(Request::except('return'))
+            request()->url(),
+            http_build_query(request()->except('return'))
         );
     }
 }
@@ -148,7 +150,7 @@ if (! function_exists('is_api_request')) {
      */
     function is_api_request()
     {
-        return starts_with(Request::getHttpHost(), env('API_DOMAIN'));
+        return starts_with(request()->getHttpHost(), env('API_DOMAIN'));
     }
 }
 
@@ -181,7 +183,8 @@ if (! function_exists('cache_key')) {
      * @param $base
      * @return string
      */
-    function cache_key($base) {
+    function cache_key($base)
+    {
         $key = ($uri = request()->fullUrl())
             ? $base . '.' . urlencode($uri)
             : $base;

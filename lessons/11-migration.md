@@ -8,7 +8,7 @@
 
 ## Migration을 만들자.
 
-먼저 기존에 만든 posts, authors 테이블들을 삭제하자. 
+먼저 기존에 만든 posts, authors 테이블들을 삭제하자.
 
 ```bash
 $ mysql -u homestead -p
@@ -62,7 +62,7 @@ $ php artisan migrate
 # Migrated: 2015_11_10_080609_create_authors_table
 ```
 
-테이블이 정상적으로 생성되었는 지 확인하자. 
+테이블이 정상적으로 생성되었는 지 확인하자.
  
 ```bash
 $ mysql -u homestead -p

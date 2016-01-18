@@ -11,7 +11,7 @@ $ mysql -uhomestead -p
 mysql > CREATE TABLE authors(
     -> id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     -> email VARCHAR(255) NOT NULL,
-    -> password VARCHAR(60) NUT NULL
+    -> password VARCHAR(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 mysql > INSERT INTO authors(email, password) VALUES('john@example.com', 'password');
 ```

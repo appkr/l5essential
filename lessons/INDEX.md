@@ -58,6 +58,7 @@
     -   [50강 - 리소스 id 난독화](/lessons/50-id-obfuscation.md)
     -   [51강 - CORS](/lessons/51-cors.md)
     -   [52강 - Caching](/lessons/52-caching.md)
+    -   [53강 - Partial Response](/lessons/53-partial-response.md)
 -   **번외-기타 잡다한 것들**
     -   [Homestead 설치 (on Mac)](/lessons/02-install-homestead-osx.md)
     -   [Homestead 설치 (on Windows)](/lessons/02-install-homestead-windows.md)

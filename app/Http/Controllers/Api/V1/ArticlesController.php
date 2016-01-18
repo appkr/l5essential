@@ -31,7 +31,7 @@ class ArticlesController extends ParentController
         $reqEtag = request()->getETags();
         $genEtag = $this->etags($articles, $cacheKey);
 
-        if (isset($reqEtag[0]) and $reqEtag[0] === $genEtag) {
+        if (config('project.cache') === true and isset($reqEtag[0]) and $reqEtag[0] === $genEtag) {
             return $this->respondNotModified();
         }
 
@@ -65,7 +65,7 @@ class ArticlesController extends ParentController
         $reqEtag = request()->getETags();
         $genEtag = $article->etag($cacheKey);
 
-        if (isset($reqEtag[0]) and $reqEtag[0] === $genEtag) {
+        if (config('project.cache') === true and isset($reqEtag[0]) and $reqEtag[0] === $genEtag) {
             return $this->respondNotModified();
         }
 

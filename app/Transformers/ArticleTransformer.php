@@ -27,7 +27,7 @@ class ArticleTransformer extends TransformerAbstract
     {
         $id = optimus((int) $article->id);
 
-        return [
+        $payload = [
             'id'           => $id,
             'title'        => $article->title,
             'content_raw'  => strip_tags($article->content),
@@ -40,13 +40,19 @@ class ArticleTransformer extends TransformerAbstract
             ],
             'comments'     => (int) $article->comments->count(),
             'author'       => [
-                'name' => $article->author->name,
-                'email' => $article->author->email,
+                'name'   => $article->author->name,
+                'email'  => $article->author->email,
                 'avatar' => 'http:' . gravatar_profile_url($article->author->email),
             ],
             'tags'         => $article->tags->pluck('slug'),
             'attachments'  => (int) $article->attachments->count(),
         ];
+
+        if ($fields = $this->getPartialFields()) {
+            $payload = array_only($payload, $fields);
+        }
+
+        return $payload;
     }
 
     /**
@@ -59,22 +65,25 @@ class ArticleTransformer extends TransformerAbstract
      */
     public function includeComments(Article $article, ParamBag $params = null)
     {
-        list($limit, $offset, $orderCol, $orderBy) = $this->calculateParams($params);
+        $transformer = new \App\Transformers\CommentTransformer($params);
 
-        $comments = $article->comments()->limit($limit)->offset($offset)->orderBy($orderCol, $orderBy)->get();
+        $parsed = $this->getParsedParams();
 
-        return $this->collection($comments, new \App\Transformers\CommentTransformer);
+        $comments = $article->comments()->limit($parsed['limit'])->offset($parsed['offset'])->orderBy($parsed['sort'], $parsed['order'])->get();
+
+        return $this->collection($comments, $transformer);
     }
 
     /**
      * Include author.
      *
-     * @param  \App\Article $article
-     * @return  \League\Fractal\Resource\Item
+     * @param  \App\Article                 $article
+     * @param \League\Fractal\ParamBag|null $params
+     * @return \League\Fractal\Resource\Item
      */
-    public function includeAuthor(Article $article)
+    public function includeAuthor(Article $article, ParamBag $params = null)
     {
-        return $this->item($article->author, new \App\Transformers\UserTransformer);
+        return $this->item($article->author, new \App\Transformers\UserTransformer($params));
     }
 
     /**
@@ -87,11 +96,13 @@ class ArticleTransformer extends TransformerAbstract
      */
     public function includeTags(Article $article, ParamBag $params = null)
     {
-        list($limit, $offset, $orderCol, $orderBy) = $this->calculateParams($params);
+        $transformer = new \App\Transformers\TagTransformer($params);
 
-        $tags = $article->tags()->limit($limit)->offset($offset)->orderBy($orderCol, $orderBy)->get();
+        $parsed = $this->getParsedParams();
 
-        return $this->collection($tags, new \App\Transformers\TagTransformer);
+        $tags = $article->tags()->limit($parsed['limit'])->offset($parsed['offset'])->orderBy($parsed['sort'], $parsed['order'])->get();
+
+        return $this->collection($tags, $transformer);
     }
 
     /**
@@ -104,10 +115,12 @@ class ArticleTransformer extends TransformerAbstract
      */
     public function includeAttachments(Article $article, ParamBag $params = null)
     {
-        list($limit, $offset, $orderCol, $orderBy) = $this->calculateParams($params);
+        $transformer = new \App\Transformers\AttachmentTransformer($params);
 
-        $attachments = $article->attachments()->limit($limit)->offset($offset)->orderBy($orderCol, $orderBy)->get();
+        $parsed = $this->getParsedParams();
 
-        return $this->collection($attachments, new \App\Transformers\AttachmentTransformer);
+        $attachments = $article->attachments()->limit($parsed['limit'])->offset($parsed['offset'])->orderBy($parsed['sort'], $parsed['order'])->get();
+
+        return $this->collection($attachments, $transformer);
     }
 }

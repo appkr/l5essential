@@ -50,7 +50,8 @@ $ php artisan tinker
 => 1
 ```
 
-**`참고`** UUID 패키지, [`webpatser/laravel-uuid`](https://github.com/webpatser/laravel-uuid) 를 이용하는 것도 괜찮다. 다만 UUID 를 사용할 경우, 문자, 숫자, 대시가 포함된 36 Byte 가 id 값으로 사용되므로, 그에 맞게 `App\Providers\RouteServiceProviders` 에서 `$router->pattern()` 부분을 손 봐 주어야 한다.
+**`참고`** base62 를 이용한 [zackkitzmiller/tiny-php](https://github.com/zackkitzmiller/tiny-php) 난독화 패키지도 추천한다. 
+**`참고`** 또 하나의 옵션은 UUID 패키지, [`webpatser/laravel-uuid`](https://github.com/webpatser/laravel-uuid) 를 이용하는 것이다. 다만 UUID 를 사용할 경우, 문자, 숫자, 대시가 포함된 36 Byte 가 id 값으로 사용되므로, 그에 맞게 `App\Providers\RouteServiceProviders` 에서 `$router->pattern()` 부분을 손 봐 주어야 한다.
 
 ### 난독화 패키지 정합
 
@@ -150,7 +151,7 @@ $ php artisan make:middleware ObfuscateId
 
 [37강 - Article 기능 구현](37-articles.md) 에서 소유자가 아닌 경우, Article 모델을 변경하거나 삭제할 수 없도록 하기 위해서 미들웨어 파라미터를 받을 수 있는 `CanAccess` 미들웨어를 만든 기억을 더듬어 보자. `$ php artisan route:list` 로 봤을 때, `Route::resource()` 를 이용한 URL Endpoint 에서 Route Parameter 는 {id} 가 아니라, {articles} 와 같이 이름이 지어진다는 점을 확인할 수 있었다. 여기서도 미들웨어 파라미터 `$param` 으로 넘긴 값을 이용해서 Route Parameter 키 값을 계산하고 있다. 여기서 `$routeParamName = 'articles'` 가 된다.
  
- Route Parameter 가 {articles} 라는 것을 알았다면, 난독화된 값이 넘어 왔을 것이다. 이 값을 `optimus()` 로 해독하여, 기존 Route Parameter 값을 오버라이드하는 작업을 해 주어야 한다. 여기서 `$routeParamValue = 1026009865` 와 같은 값이고, `optimus()->decode(1026009865) = 8` 처럼 처리된다. `getParameter()`, `setParameter()` 는 Request 인스턴스에 바인딩되어 있는 Route 인스턴스의 메소들이다.
+ Route Parameter 가 {articles} 라는 것을 알았다. 값을 받아 보면 난독화되어 있을 것이다. 이 값을 `optimus()` 로 해독하여, 기존 Route Parameter 값을 오버라이드하는 작업을 해 주어야 한다. 여기서 `$routeParamValue = 1026009865` 와 같은 값이고, `optimus()->decode(1026009865) = 8` 처럼 처리된다. `getParameter()`, `setParameter()` 는 Request 인스턴스에 바인딩되어 있는 Route 인스턴스의 메소들이다.
 
 ```php
 // app/Http/Middleware/ObfuscateId.php

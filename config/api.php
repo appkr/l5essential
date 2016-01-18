@@ -3,6 +3,17 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | Debug
+    |--------------------------------------------------------------------------
+    |
+    | If set to true, debug information will be include in api response.
+    | Must set to false for production.
+    |
+    */
+    'debug' => env('APP_DEBUG', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | API Endpoint pattern
     |--------------------------------------------------------------------------
     |
@@ -36,10 +47,24 @@ return [
     */
     'include' => [
         'key' => 'include',
-        'params' => [
-            'limit' => [3, 0],
-            'order' => ['created_at', 'desc'],
+        'params' => [ // available modifier params and their default value
+            'limit' => [3, 0], // [limit, offset]
+            'sort' => ['created_at', 'desc'], // [sortKey, sortDirection]
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Partial response
+    |--------------------------------------------------------------------------
+    |
+    | API clients are allowed to select the response format using query string.
+    | This will help saving network bandwidth..
+    | e.g. /author?fields=id,title,link&include=books:fields(id|title|published_at)
+    |
+    */
+    'partial' => [
+        'key' => 'fields',
     ],
 
     /*
@@ -77,6 +102,16 @@ return [
     |
     */
     'defaultHeaders' => ['X-Powered-By' => 'appkr/api'],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Suppress HTTP status code
+    |--------------------------------------------------------------------------
+    |
+    | If set to true, the status code will be fixed to 200.
+    |
+    */
+    'suppress_response_code' => false,
 
     /*
     |--------------------------------------------------------------------------

@@ -7,6 +7,12 @@
     "lesson",
     "beginners"
   ],
+  "authors": [
+    {
+      "name": "appkr",
+      "email": "juwonkim@me.com"
+    }
+  ],
   "license": "MIT",
   "type": "project",
   "require": {
@@ -56,16 +62,14 @@
     "post-install-cmd": [
       "php artisan clear-compiled",
       "php artisan optimize",
-      "php artisan cache:clear",
-      "php artisan my:update-lessons"
+      "php artisan cache:clear"
     ],
     "pre-update-cmd": [
       "php artisan clear-compiled"
     ],
     "post-update-cmd": [
       "php artisan optimize",
-      "php artisan cache:clear",
-      "php artisan my:update-lessons"
+      "php artisan cache:clear"
     ],
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\""

@@ -3,9 +3,9 @@
 </p>
 
 <ul class="list-unstyled">
-  @foreach(['nocomment' => 'No Comment', 'notsolved' => 'Not Solved'] as $filter => $name)
-    <li class="{{ (Request::input('f') == $filter) ? 'active' : '' }}">
-      <a href="{{ route('articles.index', ['f' => $filter]) }}">
+  @foreach(config('project.filters.article') as $filter => $name)
+    <li class="{{ (Request::input(config('project.params.filter')) == $filter) ? 'active' : '' }}">
+      <a href="{{ route('articles.index', [config('project.params.filter') => $filter]) }}">
         {{ $name }}
       </a>
     </li>

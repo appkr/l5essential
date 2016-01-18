@@ -18,7 +18,7 @@ class TagTransformer extends TransformerAbstract
      */
     public function transform(Tag $tag)
     {
-        return [
+        $payload = [
             'id'       => optimus((int) $tag->id),
             'slug'     => $tag->slug,
             'created'  => $tag->created_at->toIso8601String(),
@@ -28,6 +28,12 @@ class TagTransformer extends TransformerAbstract
             ],
             'articles' => (int) $tag->articles->count(),
         ];
+
+        if ($fields = $this->getPartialFields()) {
+            $payload = array_only($payload, $fields);
+        }
+
+        return $payload;
     }
 
     /**
@@ -40,10 +46,12 @@ class TagTransformer extends TransformerAbstract
      */
     public function includeArticles(Tag $tag, ParamBag $params = null)
     {
-        list($limit, $offset, $orderCol, $orderBy) = $this->calculateParams($params);
+        $transformer = new \App\Transformers\ArticleTransformer($params);
 
-        $articles = $tag->articles()->limit($limit)->offset($offset)->orderBy($orderCol, $orderBy)->get();
+        $parsed = $this->getParsedParams();
 
-        return $this->collection($articles, new \App\Transformers\ArticleTransformer);
+        $articles = $tag->articles()->limit($parsed['limit'])->offset($parsed['offset'])->orderBy($parsed['sort'], $parsed['order'])->get();
+
+        return $this->collection($articles, $transformer);
     }
 }

@@ -24,7 +24,7 @@ class ArticlesController extends ApiTest
     public function it_fails_fetching_collection_when_querystrings_not_valid()
     {
         $this->get(
-                route('api.v1.articles.index', ['f' => 'abc']),
+                route('api.v1.articles.index', [config('project.params.filter') => 'abc']),
                 $this->httpHeaders()
             )
             ->seeStatusCode(StatusCode::UNPROCESSABLE_ENTITY);

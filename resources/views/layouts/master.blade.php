@@ -8,17 +8,17 @@
 
   <meta name="description" content="">
   <meta name="msapplication-tap-highlight" content="no">
-  <meta name="google-site-verification" content="VwIUcuPRo2jMuV269tve2tZo3jI-JCnrdkR57RzzxrM" />
-  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
-  <meta property="og:site_name" content="Laravel 5 Essential" />
+  <meta name="google-site-verification" content="{{ config('project.seo.google_site_key') }}" />
+  <meta name="naver-site-verification" content="{{ config('project.seo.naver_site_key') }}"/>
+  <meta property="og:site_name" content="{{ config('project.description') }}" />
   <meta property="og:image" content="//{{ env('APP_DOMAIN') }}/images/logo_laravel.png" />
   <meta property="og:type" content="Website" />
-  <meta property="article:author" content="appkr (juwonkim@me.com)" />
+  <meta property="article:author" content="{{ config('project.contacts.author.name') }} ({{ config('project.contacts.author.email') }})" />
 
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="route" content="{{ $currentRouteName }}" />
 
-  <title>Laravel 5 Essential</title>
+  <title>{{ config('project.description') }}</title>
 
   <link href="{{ elixir("css/app.css") }}" rel="stylesheet">
   @yield('style')

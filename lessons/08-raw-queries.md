@@ -2,15 +2,15 @@
 
 ## 사용할 테이블을 만들자
 
-[3강 - 글로벌 설정 살펴보기](03-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자.
+[3강 - 글로벌 설정 살펴보기](03-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자. 
 
 ```bash
-# 아래 명령들은 이런 내용으로 만든다는 내용을 보여주기 위한 것이며 실제로는 GUI 툴을 사용해도 무방하다.
+# 아래 명령들은 이런 내용으로 만든다는 내용을 보여주기 위한 것이며 실제로는 GUI 툴로 해도 무방하다.
 
 $ mysql -uroot
 mysql > CREATE DATABASE myProject;
-mysql > CREATE USER 'homestead@localhost' IDENTIFIED BY 'secret';
-mysql > GRANT ALTER, CREATE, INSERT, SELECT, DELETE, REFERENCES, UPDATE, DROP, EXECUTE, LOCK TABLES, INDEX ON myProject.* TO 'homestead@localhost';
+mysql > CREATE USER 'homestead' IDENTIFIED BY 'secret';
+mysql > GRANT ALTER, CREATE, INSERT, SELECT, DELETE, REFERENCES, UPDATE, DROP, EXECUTE, LOCK TABLES, INDEX ON myProject.* TO 'homestead';
 mysql > FLUSH PRIVILEGES;
 mysql > exit (enter)
 
@@ -24,7 +24,7 @@ mysql > INSERT INTO posts(title, body) VALUES('My Title', 'My Body');
 mysql > exit (enter)
 ```
 
-mySql에 root로 로그인하여 myProject DB를 만들고, homestead 사용자에 대해 myProject DB에 대한 접근 권한 부여를 반드시 해야 한다. 아래 그림은 Sequel Pro에서 권한 부여<kbd>Cmd</kbd> + <kbd>U</kbd>하는 과정이다.
+mySql에 root로 로그인하여 myProject DB를 만들고, homestead 사용자에 대해 myProject DB에 대한 접근 권한 부여를 반드시 해야 한다. 아래 그림은 Sequel Pro 에서 권한 부여<kbd>Cmd</kbd> + <kbd>U</kbd>하는 과정이다.
 
 ![](./08-raw-queries-img-01.png)
 
@@ -32,7 +32,7 @@ mySql에 root로 로그인하여 myProject DB를 만들고, homestead 사용자�
 
 **`참고`** 실제로 이렇게 사용하는 경우는 거의 없으니 참고만 하자.
 
-쿼리를 배우기 위해 라라벨에서 제공하는 REPL을 이용하자. tinker('어설프게 손보고 고치다' 라는 뜻)라고 불리는 artisan 코맨드인데, 라라벨의 모든 환경이 제공되기 때문에 여러가지 실험적인 시도들을 해보기 편리하다.
+쿼리를 배우기 위해 라라벨에서 제공하는 REPL 을 이용하자. tinker('어설프게 손보고 고치다' 라는 뜻)라고 불리는 artisan 코맨드인데, 라라벨의 모든 환경이 제공되기 때문에 여러가지 실험적인 시도들을 해보기 편리하다.
 
 ```bash
 $ php artisan tinker

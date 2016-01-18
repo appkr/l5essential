@@ -137,7 +137,7 @@ class ArticleTransformer extends TransformerAbstract
 
     public function transform(Article $article)
     {
-        return [
+        $payload = [
             'id'           => (int) $article->id, // 정수형으로 캐스팅
             'title'        => $article->title,
             'content_raw'  => strip_tags($article->content), // HTML 태그를 모두 제거 
@@ -153,6 +153,12 @@ class ArticleTransformer extends TransformerAbstract
             'tags'         => $article->tags->pluck('slug'), // ['laravel', 'eloquent', '...']
             'attachments'  => (int) $article->attachments->count(), // 첨부파일 수
         ];
+        
+        if ($fields = $this->getPartialFields()) {
+            $payload = array_only($payload, $fields);
+        }
+
+        return $payload;
     }
 
     // $availableIncludes 에 정의된 값들에 대응되는 includeXxx 이름의 메소드를 모두 정의해 주어야 한다.
@@ -164,39 +170,45 @@ class ArticleTransformer extends TransformerAbstract
     // Article 컨텍스트에서 Comment 는 항상 Collection 이 되어야 한다는 점을 상기하자.
     public function includeComments(Article $article, ParamBag $params = null)
     {
-        list($limit, $offset, $orderCol, $orderBy) = $this->calculateParams($params);
+        $transformer = new \App\Transformers\CommentTransformer($params);
 
-        $comments = $article->comments()->limit($limit)->offset($offset)->orderBy($orderCol, $orderBy)->get();
+        $parsed = $this->getParsedParams();
 
-        return $this->collection($comments, new \App\Transformers\CommentTransformer);
+        $comments = $article->comments()->limit($parsed['limit'])->offset($parsed['offset'])->orderBy($parsed['sort'], $parsed['order'])->get();
+
+        return $this->collection($comments, $transformer);
     }
 
     // 얘는 belongsTo() 관계라 Item 을 응답한다.
     // Simple Transformer 구현에서 봤던 내용과 크게 다르지 않다.
-    public function includeAuthor(Article $article)
+    public function includeAuthor(Article $article, ParamBag $params = null)
     {
-        return $this->item($article->author, new \App\Transformers\UserTransformer);
+        return $this->item($article->author, new \App\Transformers\UserTransformer($params));
     }
 
     // 역시 마찬가지. 위에서 Transform 한대로 배열 형태의 Tag Slug 들만 나가지만,
     // ?include=tags 이 있다면 Tag Collection 이 JSON 배열로 반환될 것이다.
     public function includeTags(Article $article, ParamBag $params = null)
     {
-        list($limit, $offset, $orderCol, $orderBy) = $this->calculateParams($params);
+        $transformer = new \App\Transformers\TagTransformer($params);
 
-        $tags = $article->tags()->limit($limit)->offset($offset)->orderBy($orderCol, $orderBy)->get();
+        $parsed = $this->getParsedParams();
 
-        return $this->collection($tags, new \App\Transformers\TagTransformer);
+        $tags = $article->tags()->limit($parsed['limit'])->offset($parsed['offset'])->orderBy($parsed['sort'], $parsed['order'])->get();
+
+        return $this->collection($tags, $transformer);
     }
 
     // Article 과 Attachment 는 hasMany 관계로 연결되어 있기 때문에 Collection 을 응답하는게 맞다. 
     public function includeAttachments(Article $article, ParamBag $params = null)
     {
-        list($limit, $offset, $orderCol, $orderBy) = $this->calculateParams($params);
+        $transformer = new \App\Transformers\AttachmentTransformer($params);
 
-        $attachments = $article->attachments()->limit($limit)->offset($offset)->orderBy($orderCol, $orderBy)->get();
+        $parsed = $this->getParsedParams();
 
-        return $this->collection($attachments, new \App\Transformers\AttachmentTransformer);
+        $attachments = $article->attachments()->limit($parsed['limit'])->offset($parsed['offset'])->orderBy($parsed['sort'], $parsed['order'])->get();
+
+        return $this->collection($attachments, $transformer);
     }
 }
 ```

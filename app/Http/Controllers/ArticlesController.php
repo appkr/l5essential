@@ -12,10 +12,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class ArticlesController extends Controller
+class ArticlesController extends Controller implements Cacheable
 {
-    protected $cache;
-
     public function __construct()
     {
         $this->middleware('author:article', ['only' => ['update', 'destroy', 'pickBest']]);
@@ -30,11 +28,12 @@ class ArticlesController extends Controller
             view()->share('allTags', $allTags);
         }
 
-        $this->cache = taggable()
-            ? app('cache')->tags('articles')
-            : app('cache');
-
         parent::__construct();
+    }
+
+    public function cacheKeys()
+    {
+        return 'articles';
     }
 
     /**
@@ -52,43 +51,12 @@ class ArticlesController extends Controller
 
         $cacheKey = cache_key('articles.index');
 
-        $articles = $this->cache->remember($cacheKey, 5, function() use($query, $request) {
-            return $this->filter($query)->paginate($request->input('pp', 5));
-        });
+        $query = $this->filter($query->orderBy('pin', 'desc'));
+        $args = $request->input(config('project.params.limit'), 5);
+
+        $articles = $this->cache($cacheKey, 5, $query, 'paginate', $args);
 
         return $this->respondCollection($articles, $cacheKey);
-    }
-
-    /**
-     * Do the filter, search, and sorting job
-     *
-     * @param $query
-     * @return mixed
-     */
-    protected function filter($query)
-    {
-        // Todo Bad design. Move this to a repository.
-        // Todo Abstract more to be able to be used with other models.
-        if ($filter = request()->input('f')) {
-            switch ($filter) {
-                case 'nocomment':
-                    $query->noComment();
-                    break;
-                case 'notsolved':
-                    $query->notSolved();
-                    break;
-            }
-        }
-
-        if ($keyword = request()->input('q')) {
-            $raw = 'MATCH(title,content) AGAINST(? IN BOOLEAN MODE)';
-            $query->whereRaw($raw, [$keyword]);
-        }
-
-        $sort = request()->input('s', 'created_at');
-        $direction = request()->input('d', 'desc');
-
-        return $query->orderBy('pin', 'desc')->orderBy($sort, $direction);
     }
 
     /**
@@ -142,13 +110,12 @@ class ArticlesController extends Controller
         $cacheKey = cache_key("articles.show.{$id}");
         $secondKey = cache_key("articles.show.{$id}.comments");
 
-        $article = $this->cache->remember($cacheKey, 5, function() use($id) {
-            return Article::with('comments', 'tags', 'attachments', 'solution')->findOrFail($id);
-        });
+        $query = Article::with('comments', 'tags', 'attachments', 'solution')->findOrFail($id);
+        $article = $this->cache($cacheKey, 5, $query, 'findOrFail', $id);
 
-        $commentsCollection = $this->cache->remember($secondKey, 5, function() use($article){
-            return $article->comments()->with('replies')->withTrashed()->whereNull('parent_id')->latest()->get();
-        });
+
+        $secondQuery = $article->comments()->with('replies')->withTrashed()->whereNull('parent_id')->latest();
+        $commentsCollection = $this->cache($secondKey, 5, $secondQuery, 'get');
 
         if (! is_api_request()) {
             event(new ArticleConsumed($article));

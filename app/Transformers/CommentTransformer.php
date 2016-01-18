@@ -5,6 +5,9 @@ namespace App\Transformers;
 use App\Comment;
 use Appkr\Api\TransformerAbstract;
 
+;
+use League\Fractal\ParamBag;
+
 class CommentTransformer extends TransformerAbstract
 {
     /**
@@ -25,7 +28,8 @@ class CommentTransformer extends TransformerAbstract
     public function transform(Comment $comment)
     {
         $id = optimus((int) $comment->id);
-        return [
+
+        $payload = [
             'id'           => $id,
             'content_raw'  => strip_tags($comment->content),
             'content_html' => markdown($comment->content),
@@ -36,21 +40,28 @@ class CommentTransformer extends TransformerAbstract
                 'href' => route('api.v1.comments.show', $id),
             ],
             'author'       => [
-                'name' => $comment->author->name,
-                'email' => $comment->author->email,
+                'name'   => $comment->author->name,
+                'email'  => $comment->author->email,
                 'avatar' => 'http:' . gravatar_profile_url($comment->author->email),
             ],
         ];
+
+        if ($fields = $this->getPartialFields()) {
+            $payload = array_only($payload, $fields);
+        }
+
+        return $payload;
     }
 
     /**
      * Include author.
      *
-     * @param  \App\Comment $comment
-     * @return  \League\Fractal\Resource\Item
+     * @param  \App\Comment                 $comment
+     * @param \League\Fractal\ParamBag|null $params
+     * @return \League\Fractal\Resource\Item
      */
-    public function includeAuthor(Comment $comment)
+    public function includeAuthor(Comment $comment, ParamBag $params = null)
     {
-        return $this->item($comment->author, new \App\Transformers\UserTransformer);
+        return $this->item($comment->author, new \App\Transformers\UserTransformer($params));
     }
 }

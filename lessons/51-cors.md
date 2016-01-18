@@ -10,13 +10,13 @@
 
 -   일단 CORS 이슈는 JavaScript 를 이용하는 API Client 에서만 발생한다. 
 
-    Android, iOS 에서는 신경쓸 필요가 없다. 왜냐하면, 브라우저를 통한 Ajax (== `XMLHttpRequest`) 요청을 할 때는, Same Origin Security Policy 가 적용되기 때문이다. XSS (== Cross Site Script) 공격을 방지하기 위해, W3C 와 브라우저 벤더들이 그렇게 하기로 오래전에 약속했다.
+    Android, iOS 에서는 신경쓸 필요가 없다. 왜냐하면, 브라우저를 통한 Ajax (== `XMLHttpRequest`) 요청을 할 때만, Same Origin Security Policy 가 적용되기 때문이다. XSS (== Cross Site Script) 공격을 방지하기 위해, W3C 와 브라우저 벤더들이 그렇게 하기로 오래전에 약속했다.
     
 -   Same Origin Security Policy (== 동일 출처 보안 정책) 란...
 
-    foo.com 에서 동작하는 JavaScript 가 bar.com 에 있는 API 서버에 Ajax 요청을 할 수 없다는 것이다. 심지어 http://foo.com -> https://foo.com 뿐 아니라, http://foo.com -> http://foo.com:8080 도 동작하지 않는다. 왜냐하면, JavaScript 는 태생적으로 클라이언트에 다운로드 되어 사용되는 프로그램이기 때문이다. 즉, foo.com 에서 제공한 JavaScript 코드를 사용자가 임의로 변경할 수 있기 때문이다. 
+    foo.com 에서 동작하는 JavaScript 가 bar.com 에 있는 API 서버에 Ajax 요청을 할 수 없다는 것이다. 심지어 http://foo.com -> https://foo.com 뿐 아니라, http://foo.com -> http://foo.com:8080 도 동작하지 않는다. 왜냐하면, JavaScript 는 태생적으로 클라이언트에 다운로드 되어 사용되는 프로그램이라, JavaScript 코드를 사용자가 임의로 변경할 수 있기 때문이다. 
 
-아래 그림은 이번 강좌를 위해 개발한 JavaScript 기반의 [`appkr/api-client-demo`](https://github.com/appkr/api-client-demo) 코드를 http://localhost:3000 에서 구동하고, http://api.myproject.dev:8000 API 서버에 리소소를 요청하는 그림이다. 
+아래는 이번 강좌를 위해 개발한 JavaScript 기반의 [`appkr/api-client-demo`](https://github.com/appkr/api-client-demo) 코드를 http://localhost:3000 에서 구동하고, http://api.myproject.dev:8000 API 서버에 리소소를 요청하는 그림이다. 
  
 ![](51-cors-img-01.png)
 
