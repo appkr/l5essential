@@ -7,6 +7,53 @@
 엘로퀀트는 기본적으로 자동 증가 ID 를 PRIMARY KEY 로 사용한다. 대부분의 서비스들이 아무런 문제없이 이렇게 사용한다. 그런데, 어떨 때는 PRIMARY KEY 가 예측이 불가능한 것이 더 나은 경우가 있다. 아래 예를 생각해 보자.
 
 예를 들어 식당을 예약하고 예약 내용을 얻어 오는 API 를 서비스한다고 가정하자. API 클라이언트가 예약 API 를 호출했고, 해당 클라이언트를 소유한 사용자의 예약 id 인 15 번을 담은 JSON 을 응답했다고 가정해 보자. 인증이나 권한 부여가 없는 API 서비스였다면... 이 클라이언트는 14 번 예약을 읽어 볼 수도 있고, 16 번 예약을 변경하거나 삭제할 수도 있게 된다.
+
+또 이건 어떤가? `$id++` 이용해서 API 데이터 전체를 훔칠 수 있다. 가령, `/users/{id}` 처럼 사용자 profile 에 대해 API 요청을 할 수 있다면 사용자 정보를 훔칠수도 있고, 경쟁자가 우리 서비스의 전체 사용자 수도 카운트할 수 있다. 대형 서비스에서 자동 증가 ID 를 절대 사용하면 안되는 이유이다. 
+
+```php
+class Scraper
+{
+    protected $base;
+    protected $client;
+    protected $failCount;
+
+    public function __construct($base)
+    {
+        $this->base = $base;
+        $this->client = new \GuzzleHttp\Client;
+    }
+
+    public function steal($id)
+    {
+        try {
+            $response = $this->client->get($this->base . DIRECTORY_SEPARATOR . $id);
+
+            if ($response->getStatusCode() !== 200) {
+                throw new \Exception('Failed');
+            }
+
+            $this->failCount = 0;
+
+            return \File::put(storage_path("stealed/{$id}.json"), $response->getBody()->getContents());
+        } catch (\Exception $e) {
+            $this->failCount++;
+
+            if ($this->failCount !== 0 and $this->failCount <= 3) {
+                $this->steal($id);
+            }
+
+            return false;
+        }
+    }
+}
+
+$scraper = new Scraper('http://your-api-host/articles');
+$id = 1;
+
+while ($scraper->steal($id) !== false) {
+    $i++;
+}
+```
  
 ### How?
 
@@ -51,7 +98,7 @@ $ php artisan tinker
 ```
 
 **`참고`** base62 를 이용한 [zackkitzmiller/tiny-php](https://github.com/zackkitzmiller/tiny-php) 난독화 패키지도 추천한다. 
-**`참고`** 또 하나의 옵션은 UUID 패키지, [`webpatser/laravel-uuid`](https://github.com/webpatser/laravel-uuid) 를 이용하는 것이다. 다만 UUID 를 사용할 경우, 문자, 숫자, 대시가 포함된 36 Byte 가 id 값으로 사용되므로, 그에 맞게 `App\Providers\RouteServiceProviders` 에서 `$router->pattern()` 부분을 손 봐 주어야 한다.
+**`참고`** 또 하나의 옵션은 UUID 패키지, [`ramsey/uuid`](https://github.com/ramsey/uuid), [`webpatser/laravel-uuid`](https://github.com/webpatser/laravel-uuid) 를 이용하는 것이다. 다만 UUID 를 사용할 경우, 문자, 숫자, 대시가 포함된 36 Byte 가 id 값으로 사용되므로, 그에 맞게 `App\Providers\RouteServiceProviders` 에서 `$router->pattern()` 부분을 손 봐 주어야 한다.
 
 ### 난독화 패키지 정합
 

@@ -227,7 +227,7 @@ public function show($id)
 ### 컨트롤러 구현
 
 ```bash
-$ php artisan make:controller CommentsController
+$ php artisan make:controller CommentsController --resource
 ```
 
 'index', 'create', '...' 뷰 요청하는 메소드는 필요없으므로 Route 정의에서 제외했다.

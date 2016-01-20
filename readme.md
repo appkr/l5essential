@@ -36,6 +36,7 @@
 
 -   [1강 - 처음 만나는 라라벨](lessons/01-welcome.md)
 -   [2강 - 라라벨 5 설치하기](lessons/02-hello-laravel.md)
+-   [2강 - 라라벨 5 설치하기 (on Windows)](lessons/02-install-on-windows.md)
 -   [3강 - 글로벌 설정 살펴보기](lessons/03-configuration.md)
 -   [4강 - Routing 기본기](lessons/04-routing-basics.md)
 -   [5강 - 뷰에 데이터 바인딩하기](lessons/05-pass-data-to-view.md)
@@ -108,6 +109,7 @@ Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 
 -   [51강 - CORS](lessons/51-cors.md)
 -   [52강 - Caching](lessons/52-caching.md)
 -   [53강 - Partial Response](lessons/53-partial-response.md)
+-   [54강 - API Documents](lessons/54-api-docs.md)
 
 #### 번외. 기타 알면 좋은 내용들
 
@@ -132,12 +134,20 @@ $ git checkout 03(tab & enter)
 
 ## 기여자
 
--   dosirak 님 오자 신고
--   [이현석 님](https://www.facebook.com/leehs) 오자 신고
--   [이종웅 님](https://www.facebook.com/jongwoong.lee.71) 오자 신고, 검수
--   [smartyunhui 님](https://github.com/smartyunhui) 오자 신고
+[기여 가이드](CONTRIBUTING.md) 를 따라 주세요.
+
+-   dosirak 님 - 오자 신고
+-   [이현석 님](https://www.facebook.com/leehs) - 오자 신고
+-   [이종웅 님](https://www.facebook.com/jongwoong.lee.71) - 오자 신고, 검수
+-   [smartyunhui 님](https://github.com/smartyunhui) - 오자 신고
+-   [Pull Request 를 통한 기여자분들](https://github.com/appkr/l5essential/graphs/contributors)
 
 모두 모두 감사합니다.
+
+## 도움 주신 분들 (Sponsor)
+
+-   [정광섭님](https://github.com/lesstif) - 라이브 데모 서버
+-   Be the second !!!
 
 ## 라이센스
 

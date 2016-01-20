@@ -12,8 +12,19 @@ class SessionsController extends ParentController
         // Kill middleware defined by ParentController.
         $this->middleware = [];
         $this->middleware('throttle.api:10,1');
+        $this->middleware('jwt.refresh', ['only' => 'refresh']);
 
         parent::__construct();
+    }
+
+    /**
+     * Blank method for token refresh.
+     *
+     * @return bool
+     */
+    public function refresh()
+    {
+        return true;
     }
 
     /**

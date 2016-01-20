@@ -15,7 +15,7 @@ Route::resource('articles', 'ArticlesController');
 ```
 
 ```bash
-$ php artisan make:controller ArticlesController
+$ php artisan make:controller ArticlesController --resource
 $ php artisan route:list
 ```
 
