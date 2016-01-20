@@ -14,10 +14,10 @@ HTTP GET / 요청이 들어오면, `IndexController`의 `index()` 메소드로 �
 
 ## Controller를 만들자.
 
-서버를 부트업하고, '/' 경로로 접근해 보자. `ReflectionException - Class App\Http\Controllers\IndexController does not exist` 란 메시지가 출력되었을 것이다. IndexController가 없기 때문이다. artisan CLI를 이용해서 만들자. `--plain` 옵션은 비어 있는 Controller를 만들겠다는 의미이다.
+서버를 부트업하고, '/' 경로로 접근해 보자. `ReflectionException - Class App\Http\Controllers\IndexController does not exist` 란 메시지가 출력되었을 것이다. IndexController가 없기 때문이다. artisan CLI를 이용해서 만들자.
 
 ```bash
-$ php artisan make:controller IndexController --plain
+$ php artisan make:controller IndexController
 ```
 
 app/Http/Controllers/IndexController 가 생성된 것을 확인하자. `index()` 메소드를 만들자.

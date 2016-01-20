@@ -88,4 +88,22 @@ return [
         ]
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Available/allowed tags for/associated with Article
+    |--------------------------------------------------------------------------
+    |
+    | Used in database/seeds/DatabaseSeeder.php
+    |
+    */
+    'tags' => [
+        'General',
+        'Laravel',
+        'Lumen',
+        'Eloquent',
+        'Servers',
+        'Tips',
+        'Lesson Feedback'
+    ],
+
 ];

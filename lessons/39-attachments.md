@@ -97,7 +97,7 @@ Route::resource('files', 'AttachmentsController', ['only' => ['store', 'destroy'
 RESTful 리소스 컨트롤러를 사용했는데, 세번째 인자로 'only' 키워드를 이용하여 `store()` 와 `destroy()` 메소드만 사용하는 것으로 정의했다. 특정 메소드만 제외하고 싶으면 `['except' => ['show']]` 처럼 'except' 키워드를 이용할 수 있다.
 
 ```bash
-$ php artisan make:controller AttachmentsController --plain
+$ php artisan make:controller AttachmentsController
 ```
 
 ```php

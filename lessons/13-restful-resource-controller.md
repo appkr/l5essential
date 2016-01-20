@@ -35,7 +35,7 @@ $ php artisan route:list
 artisan CLI 로 PostsController를 만들자. 이번엔 --plain 옵션이 빠진다.
 
 ```bash
-$ php artisan make:controller PostsController
+$ php artisan make:controller PostsController --resource
 
 # Route 목록을 다시 확인해 보자.
 $ php artisan route:list

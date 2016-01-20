@@ -93,7 +93,7 @@ class Handler extends ExceptionHandler
             } elseif ($e instanceof MethodNotAllowedHttpException) {
                 $message = $e->getMessage() ?: 'not_allowed';
             } elseif ($e instanceof HttpResponseException){
-                return $e->getResponse();
+                 return $e->getResponse();
             } elseif ($e instanceof Exception){
                 $message = $e->getMessage() ?: 'Whoops~ Tell me what you did :(';
             }

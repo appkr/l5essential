@@ -23,7 +23,7 @@ return [
     */
     'endpoint' => [
         'pattern' => 'v1/*',
-        'domain'  => 'api.myproject.dev',
+        'domain'  => env('API_DOMAIN', 'api.myproject.dev'),
     ],
 
     /*

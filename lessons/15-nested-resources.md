@@ -10,10 +10,10 @@ app/Http/routes.php에서 아래와 같이 작성해 보자.
 Route::resource('posts.comments', 'PostCommentController');
 ```
 
-artisan CLI로 PostCommentController를 만들자.
+artisan CLI 로 PostCommentController 를 만들자.
 
 ```bash
-$ php artisan make:controller PostCommentController
+$ php artisan make:controller PostCommentController --resource
 ```
 
 `$ php artisan route:list`로 확인해 보자. `posts/{posts}/comments/{comments}` 형태의 라우트를 얻을 수 있다.

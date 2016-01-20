@@ -23,8 +23,16 @@ class WelcomeController extends Controller
                     'href' => route(\Route::currentRouteName())
                 ],
                 [
+                    'rel'  => 'api.users.store',
+                    'href' => route('api.users.store')
+                ],
+                [
+                    'rel'  => 'api.sessions.store',
+                    'href' => route('api.sessions.store')
+                ],
+                [
                     'rel'  => 'api.v1.docs',
-                    'href' => route('api.v1.docs')
+                    'href' => 'http://docs.forumv1.apiary.io/'
                 ],
             ],
         ]);

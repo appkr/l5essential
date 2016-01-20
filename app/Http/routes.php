@@ -22,6 +22,11 @@ Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api
         'uses' => 'SessionsController@store'
     ]);
 
+    Route::post('auth/refresh', [
+        'as'   => 'sessions.refresh',
+        'uses' => 'SessionsController@refresh'
+    ]);
+
     /* Social Login
      * In API, social login is not provided.
      * Each client has to integrate an Oauth library, and
@@ -39,7 +44,7 @@ Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api
     ]);
 
     /* User */
-    Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+    Route::resource('users', 'UsersController', ['only' => ['show']]);
 
     /* api.v1 */
     Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function() {
@@ -47,12 +52,6 @@ Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api
         Route::get('/', [
             'as'   => 'v1.index',
             'uses' => 'WelcomeController@index'
-        ]);
-
-        /* Api documents */
-        Route::get('docs', [
-            'as'   => 'v1.docs',
-            'uses' => 'DocumentsController@show'
         ]);
 
         /* Forum */
