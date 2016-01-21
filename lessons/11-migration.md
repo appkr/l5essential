@@ -6,7 +6,7 @@
 
 라라벨에서는 데이터베이스 스키마를 코드로 생성하기 위한 `Blueprint` 클래스를 제공하고 있다. 
 
-## Migration을 만들자.
+## Migration 을 만들자.
 
 먼저 기존에 만든 posts, authors 테이블들을 삭제하자.
 
@@ -18,14 +18,14 @@ mysql> DROP TABLE authors;
 mysql> SET FOREIGN_KEY_CHECKS = 1;
 ```
 
-artisan CLI를 이용해 마이그레이션을 만들자.
+artisan CLI 를 이용해 마이그레이션을 만들자.
 
 ```bash
 $ php artisan make:migration create_posts_table
 $ php artisan make:migration create_authors_table
 ```
 
-database/migrations 디렉토리에 timestamp_create_xxx_table 이란 2개의 마이그레이션이 생성된 것을 확인하자. database/migrations/timestamp_create_posts_table을 열어보면 `up()`, `down()` 2개의 메소드가 생성된 것을 확인할 수 있다. `up()` 은 마이그레이션을 실행할 때 동작하는 메소드이고 (`$php artisan migrate`), `down()`은 직전 마이그레이션을 롤백 하기 위한 메소드이다 (`$ php artisan migrate:rollback`).
+database/migrations 디렉토리에 timestamp_create_xxx_table 이란 2개의 마이그레이션이 생성된 것을 확인하자. database/migrations/timestamp_create_posts_table 을 열어보면 `up()`, `down()` 2개의 메소드가 생성된 것을 확인할 수 있다. `up()` 은 마이그레이션을 실행할 때 동작하는 메소드이고 (`$php artisan migrate`), `down()`은 직전 마이그레이션을 롤백 하기 위한 메소드이다 (`$ php artisan migrate:rollback`).
  
 ```php
 // CreateAuthorsTable 도 작성하자.
@@ -49,7 +49,7 @@ class CreatePostsTable extends Migration
 }
 ```
 
-`up()` 에서는 `Schema` Facade의 `create()` 메소드를 이용하는데, 첫번째 인자는 테이블 이름, 두번째 인자는 콜백이다. 콜백은 `$table`이란 Blueprint 인스턴스를 주입하며, `string()`, `text()`, `integer()`, `timestamp()` 등 데이터베이스의 데이터 타입에 해당하는 다양한 메소드를 제공한다.
+`up()` 에서는 `Schema` Facade 의 `create()` 메소드를 이용하는데, 첫번째 인자는 테이블 이름, 두번째 인자는 콜백이다. 콜백은 `$table`이란 Blueprint 인스턴스를 주입하며, `string()`, `text()`, `integer()`, `timestamp()` 등 데이터베이스의 데이터 타입에 해당하는 다양한 메소드를 제공한다.
 
 마이그레이션을 실행해 보자.
 
@@ -91,6 +91,8 @@ $ php artisan make:migration add_name_to_authors_table
 ```
 
 ```php
+use Illuminate\Database\Schema\Blueprint;
+
 class AddNameToAuthorsTable extends Migration
 {
     public function up()
@@ -117,11 +119,13 @@ class AddNameToAuthorsTable extends Migration
 $ php artisan migrate
 ```
 
-**`팁`** 이번 마이그레이션에서는 Closure Function 인자에 Blueprint 라고 TypeHint를 썼다. TypeHint를 쓰면 코드 에디터에서 `->` 로 코드 힌트를 볼 수 있어서 편리하다.
+**`팁`** 이번 마이그레이션에서는 Closure Function 인자에 Blueprint 라고 TypeHint 를 썼다. TypeHint 를 쓰면 phpStorm 에서 `->` 로 코드 힌트를 볼 수 있어서 편리하다.
+**`참고`** `Blueprint` 의 풀 네임스페이스는 `\Illuminate\Database\Schema\Blueprint` 이다. 코드 내에 두 군데 이상 같은 클래스가 쓰인다면 `use` 키워드로 import 해 주어야 한다. phpStorm 은 Preference 셋팅에 따라 Blueprint 타이핑이 끝나고 나면 자동으로 import 를 해 주어 편리한데, 혹 자동 import 가 안되었다면 `Blueprint` 위에 커서를 놓고 <kbd>option</kdb> + <kbd>Enter</kbd> 을 눌러 컨텍스트 메뉴를 띄운 후 import 할 수도 있다.
 
 ## Reset & Refresh
 
 `migrate:rollback` 이 직전 마이그레이션만 롤백하는 반면 `migrate:reset` 는 모든 마이그레이션을 롤백하고 데이터베이스를 초기화 시킨다. `migrate:refresh` 는 리셋을 실행해서 데이터베이스를 청소한 후, 마이그레이션을 처음부터 다시 실행하는 코맨드이다.
+
 <!--@start-->
 ---
 

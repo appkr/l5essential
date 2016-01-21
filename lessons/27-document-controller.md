@@ -38,7 +38,7 @@ $ php artisan tinker
 ### Document 컨트롤러를 만들자.
 
 ```bash
-$ php artisan make:controller DocumentsController --plain
+$ php artisan make:controller DocumentsController
 ```
 
 잘 생각해 보면, DocumentsController도 마크다운으로 컴파일된 내용을 데이터로 하고 뷰를 리턴하는 `show()` 메소드 하나면 충분하다.

@@ -75,7 +75,7 @@ Route::group(['prefix' => 'password'], function () {
 app/Http/Controllers/WelcomeController.php 는 별도로 만들어 주고, Route 와 연결된 메소드를 써 주어야 한다.
 
 ```bash
-$ php artisan make:controller WelcomeController --plain
+$ php artisan make:controller WelcomeController
 ```
 
 ```php

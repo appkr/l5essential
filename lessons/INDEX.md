@@ -1,8 +1,7 @@
--   **개요**
-    -   [들어가며](/lessons/README.md)
 -   **입문코스-기본기**
     -   [1강 - 처음 만나는 라라벨](/lessons/01-welcome.md)
     -   [2강 - 라라벨 5 설치하기](/lessons/02-hello-laravel.md)
+    -   [2강 - 라라벨 5 설치하기 (on Windows)](/lessons/02-install-on-windows.md)
     -   [3강 - 글로벌 설정 살펴보기](/lessons/03-configuration.md)
     -   [4강 - Routing 기본기](/lessons/04-routing-basics.md)
     -   [5강 - 뷰에 데이터 바인딩하기](/lessons/05-pass-data-to-view.md)
@@ -59,6 +58,7 @@
     -   [51강 - CORS](/lessons/51-cors.md)
     -   [52강 - Caching](/lessons/52-caching.md)
     -   [53강 - Partial Response](/lessons/53-partial-response.md)
+    -   [54강 - API Documents](/lessons/54-api-docs.md)
 -   **번외-기타 잡다한 것들**
     -   [Homestead 설치 (on Mac)](/lessons/02-install-homestead-osx.md)
     -   [Homestead 설치 (on Windows)](/lessons/02-install-homestead-windows.md)

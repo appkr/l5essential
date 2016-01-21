@@ -96,15 +96,7 @@ class DatabaseSeeder extends Seeder
          */
         App\Tag::truncate();
         DB::table('article_tag')->truncate();
-        $rawTags = [
-            'General',
-            'Laravel',
-            'Lumen',
-            'Eloquent',
-            'Servers',
-            'Tips',
-            'Lesson Feedback',
-        ];
+        $rawTags = config('project.tags');
 
         foreach($rawTags as $tag) {
             App\Tag::create([
