@@ -34,7 +34,7 @@ class Document
 
     public function get($file = null)
     {
-	$file = is_null($file) ? 'index.md' : $file;
+        $file = is_null($file) ? 'index.md' : $file;
         if (! File::exists($this->getPath($file))) {
             abort(404, 'File not exist');
         }
