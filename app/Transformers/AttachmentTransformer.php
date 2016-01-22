@@ -22,7 +22,7 @@ class AttachmentTransformer extends TransformerAbstract
             'created' => $attachment->created_at->toIso8601String(),
             'link'    => [
                 'rel'  => 'self',
-                'href' => url(sprintf('http://%s:8000/attachments/%s', env('APP_DOMAIN'), $attachment->name)),
+                'href' => url(sprintf('http://%s:8000/attachments/%s', config('project.app_domain'), $attachment->name)),
             ],
         ];
 

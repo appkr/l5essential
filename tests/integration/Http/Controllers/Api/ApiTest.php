@@ -50,7 +50,7 @@ class ApiTest extends \TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->baseUrl = sprintf('http://' . env('API_DOMAIN'));
+        $this->baseUrl = 'http://' . config('project.api_domain');
     }
 
     /**

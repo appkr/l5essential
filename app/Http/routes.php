@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api', 'middleware' => 'cors'], function() {
+Route::group(['domain' => config('project.api_domain'), 'as' => 'api.', 'namespace' => 'Api', 'middleware' => 'cors'], function() {
     /* Landing page */
     Route::get('/', [
         'as'   => 'index',
@@ -64,7 +64,7 @@ Route::group(['domain' => env('API_DOMAIN'), 'as' => 'api.', 'namespace' => 'Api
     });
 });
 
-Route::group(['domain' => env('APP_DOMAIN')], function() {
+Route::group(['domain' => config('project.app_domain')], function() {
     /* Landing page */
     Route::get('/', [
         'as'   => 'index',

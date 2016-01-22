@@ -45,7 +45,7 @@ class AuthTest extends \TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->baseUrl = sprintf('http://' . env('APP_DOMAIN'));
+        $this->baseUrl = 'http://' . config('project.app_domain');
     }
 
     /**

@@ -21,6 +21,8 @@ return [
     */
     'name'        => 'l5essential',
     'description' => 'Laravel 5 입문 및 실전 강좌',
+    'app_domain'  => env('APP_DOMAIN', 'myproject.dev'),
+    'api_domain'  => env('API_DOMAIN', 'api.myproject.dev'),
 
     /*
     |--------------------------------------------------------------------------

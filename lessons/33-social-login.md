@@ -170,8 +170,8 @@ class AuthController extends Controller
 ---
 
 - [목록으로 돌아가기](../readme.md)
-- [32강 - 사용자 로그인](docs/32-login.md)
-- [34강 - 사용자 역할](docs/34-role.md)
+- [32강 - 사용자 로그인](32-login.md)
+- [34강 - 사용자 역할](34-role.md)
 <!--@end-->
 
  

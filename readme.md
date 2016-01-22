@@ -1,6 +1,8 @@
-# 라라벨 5 입문 및 실전 강좌
+# 라라벨 (Laravel) 5 입문 및 실전 강좌
 
 [![Build Status](https://travis-ci.org/appkr/l5essential.svg)](https://travis-ci.org/appkr/l5essential)
+
+라라벨은 PHP 언어로 개발된 풀스택 웹 어플리케이션 프레임웍이다.
 
 ## 라이브 데모 사이트
 

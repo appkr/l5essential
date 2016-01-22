@@ -11,7 +11,7 @@
   <meta name="google-site-verification" content="{{ config('project.seo.google_site_key') }}" />
   <meta name="naver-site-verification" content="{{ config('project.seo.naver_site_key') }}"/>
   <meta property="og:site_name" content="{{ config('project.description') }}" />
-  <meta property="og:image" content="//{{ env('APP_DOMAIN') }}/images/logo_laravel.png" />
+  <meta property="og:image" content="//{{ config('project.app_domain') }}/images/logo_laravel.png" />
   <meta property="og:type" content="Website" />
   <meta property="article:author" content="{{ config('project.contacts.author.name') }} ({{ config('project.contacts.author.email') }})" />
 

@@ -150,7 +150,7 @@ if (! function_exists('is_api_request')) {
      */
     function is_api_request()
     {
-        return starts_with(request()->getHttpHost(), env('API_DOMAIN'));
+        return starts_with(request()->getHttpHost(), config('project.api_domain'));
     }
 }
 
