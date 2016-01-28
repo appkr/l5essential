@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/appkr/l5essential.svg)](https://travis-ci.org/appkr/l5essential)
 
-라라벨은 PHP 언어로 개발된 풀스택 웹 어플리케이션 프레임웍이다.
+라라벨은 PHP 언어로 개발된 풀스택 MVC 웹 어플리케이션 프레임웍이다.
 
 ## 라이브 데모 사이트
 
@@ -134,22 +134,16 @@ $ git checkout 03(tab & enter)
 
 **`참고`** 학생들과 만나보면, 콘솔을 쓸 줄 모르는 분들이 많다. 문서에 나온 코드 블럭 중에서 `$` (윈도우즈의 경우 `\>`) 로 시작하는 명령들은 콘솔에서 실행하라는 의미이다. 가령, `$ ls -al` 이라 써 있으면, 콘솔에서 `ls -al (enter)` 를 하라는 의미이다. 콘솔 명령 블럭에서 `# ...` 은 주석이다.
 
-## 기여자
+## Contributors / Sponsors
 
 [기여 가이드](CONTRIBUTING.md) 를 따라 주세요.
 
--   dosirak 님 - 오자 신고
--   [이현석 님](https://www.facebook.com/leehs) - 오자 신고
--   [이종웅 님](https://www.facebook.com/jongwoong.lee.71) - 오자 신고, 검수
--   [smartyunhui 님](https://github.com/smartyunhui) - 오자 신고
--   [Pull Request 를 통한 기여자분들](https://github.com/appkr/l5essential/graphs/contributors)
-
-모두 모두 감사합니다.
-
-## 도움 주신 분들 (Sponsor)
-
+-   오탈자 신고 - dosirak 님, [이현석 님](https://www.facebook.com/leehs), [smartyunhui 님](https://github.com/smartyunhui), [찬스냅 님](https://www.facebook.com/chansnapit)
+-   감수 - [이종웅 님](https://www.facebook.com/jongwoong.lee.71)
+-   [Pull Request 를 통한 기여자 분들](https://github.com/appkr/l5essential/graphs/contributors)
 -   [정광섭님](https://github.com/lesstif) - 라이브 데모 서버
--   Be the second !!!
+
+"모두 모두 감사합니다."
 
 ## 라이센스
 
