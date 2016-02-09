@@ -17,7 +17,7 @@ class User extends Model implements ...
 }
 ```
 
-`$fillable` 속성을 통해 name, email, password 필드는 MassAssign이 가능하다는 것을 알 수 있다. `$hidden` 속성은 외부에 노출되지 않는 필드들을 정의한 것이다. 그럼, 사용자를 하나 만들어 보자.
+`$fillable` 속성을 통해 name, email, password 필드는 MassAssign 이 가능하다는 것을 알 수 있다. `$hidden` 속성은 외부에 노출되지 않는 필드들을 정의한 것이다. 그럼, 사용자를 하나 만들어 보자.
 
 ```bash
 $ php artisan tinker

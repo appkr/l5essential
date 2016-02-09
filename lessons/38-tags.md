@@ -28,7 +28,7 @@
 
 ![](38-tags-img-01.png)
 
-**`참고`** [Laravel Collective의 Form Helper](http://laravelcollective.com/docs/5.1/html#drop-down-lists)를 이용하면, 복잡한 `<select>` 박스를 좀 더 쉽게 쓸 수 있다. 바로 아래 코드 블럭을 보면, 여전히 복잡하긴 하지만, 그래도 코드랴을 상당히 줄일 수 있다는 것을 알 수 있다. 
+**`참고`** [Laravel Collective의 Form Helper](http://laravelcollective.com/docs/5.1/html#drop-down-lists)를 이용하면, 복잡한 `<select>` 박스를 좀 더 쉽게 쓸 수 있다. 바로 아래 코드 블럭을 보면, 여전히 복잡하긴 하지만, 그래도 코드량을 상당히 줄일 수 있다는 것을 알 수 있다. 
 
 ```html
 <div class="form-group">

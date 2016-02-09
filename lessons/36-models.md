@@ -6,7 +6,7 @@
 
 ### 테이블 설계
 
-[31강 - 포럼 개발 기획](31-forum-features)을 참고해서 articles, comments, tags, attachments 총 4개의 메인 테이블과 article_tag 란 피봇 테이블로 설계해 보았다. 
+[31강 - 포럼 개발 기획](31-forum-features.md)을 참고해서 articles, comments, tags, attachments 총 4개의 메인 테이블과 article_tag 란 피봇 테이블로 설계해 보았다. 
  
 ![](36-models-img-01.png)
 
