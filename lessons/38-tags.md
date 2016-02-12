@@ -256,4 +256,5 @@ Tag 와 관련된 뷰는 'resources/views/tags' 아래에 위치하고 있다. N
 - [목록으로 돌아가기](../readme.md)
 - [37강 - Article 기능 구현](37-articles.md)
 - [39강 - Attachment 기능 구현](39-attachments.md)
+
 <!--@end-->

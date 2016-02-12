@@ -572,4 +572,5 @@ $ php artisan tinker
 - [목록으로 돌아가기](../readme.md)
 - [35강 - 다국어 지원](35-locale.md)
 - [37강 - Article 기능 구현](37-articles.md)
+
 <!--@end-->

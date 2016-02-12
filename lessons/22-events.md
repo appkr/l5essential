@@ -149,4 +149,5 @@ $ php artisan tinker
 - [목록으로 돌아가기](../readme.md)
 - [21강 - 메일 보내기](21-mail.md)
 - [23강 - 입력 값 유효성 검사](23-validation.md)
+
 <!--@end-->

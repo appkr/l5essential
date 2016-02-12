@@ -50,4 +50,5 @@ class PostCommentController extends Controller
 - [목록으로 돌아가기](../readme.md)
 - [14강 - 이름 있는 Route](14-named-routes.md)
 - [16강 - 사용자 인증 기본기](16-authentication.md)
+
 <!--@end-->

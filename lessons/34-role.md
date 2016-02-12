@@ -129,5 +129,6 @@ $ php artisan tinker
 - [목록으로 돌아가기](../readme.md)
 - [33강 - 소셜 로그인](33-social-login.md)
 - [35강 - 다국어 지원](35-locale.md)
+
 <!--@end-->
 

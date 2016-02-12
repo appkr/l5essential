@@ -210,4 +210,5 @@ JavaScript 클라이언트에서 Ajax 요청을 할 때 `Origin` HTTP Header 를
 - [목록으로 돌아가기](../readme.md)
 - [50강 - 리소스 id 난독화](50-id-obfuscation.md)
 - [52강 - Caching](52-caching.md)
+
 <!--@end-->

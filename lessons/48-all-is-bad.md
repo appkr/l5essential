@@ -581,4 +581,5 @@ public function handle(Request $request, Closure $next, $param)
 - [목록으로 돌아가기](../readme.md)
 - [47강 - 중복 제거 리팩토링](47-dry-refactoring.md)
 - [49강 - API Rate Limit](49-rate-limit.md)
+
 <!--@end-->

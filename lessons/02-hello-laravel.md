@@ -196,4 +196,5 @@ $ php artisan serve # 종료하려면 ctrl+c
 - [목록으로 돌아가기](../readme.md)
 - [1강 - 처음 만나는 라라벨](01-welcome.md)
 - [3강 - 글로벌 설정 살펴보기](03-configuration.md)
+
 <!--@end-->

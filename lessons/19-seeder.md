@@ -142,4 +142,5 @@ Seeding이 잘 되었는 지, DB 테이블을 확인해 보자.
 - [목록으로 돌아가기](../readme.md)
 - [18강 - 모델간 관계 맺기](18-eloquent-relationships.md)
 - [20강 - Eager 로딩](20-eager-loading.md)
+
 <!--@end-->

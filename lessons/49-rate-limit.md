@@ -155,4 +155,5 @@ API 컨트롤러들, `SessionsController`, `UsersController`, `PasswordsControll
 - [목록으로 돌아가기](../readme.md)
 - [48강 - all() is bad](48-all-is-bad.md)
 - [50강 - 리소스 id 난독화](50-id-obfuscation.md)
+
 <!--@end-->

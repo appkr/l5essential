@@ -153,4 +153,5 @@ $ php artisan tinker
 - [목록으로 돌아가기](../readme.md)
 - [17강 - 라라벨에 내장된 사용자 인증](17-authentication-201.md)
 - [19강 - 데이터 심기](19-seeder.md)
+
 <!--@end-->
