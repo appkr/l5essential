@@ -351,6 +351,6 @@ class VerifyCsrfToken extends BaseVerifier
 
 - [목록으로 돌아가기](../readme.md)
 - [44강 - API 기본기 및 기획](44-api-basic.md)
-- [46강 - JSON Web Token 을 이용한 인증](44-jwt.md)
+- [46강 - JSON Web Token 을 이용한 인증](46-jwt.md)
 
 <!--@end-->
