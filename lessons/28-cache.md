@@ -92,6 +92,6 @@ file 캐시에서 했던 방법과 동일한 방법으로 캐시 기능이 잘 �
 
 - [목록으로 돌아가기](../readme.md)
 - [27강 - Document 컨트롤러](27-document-controller.md)
-- [29강 - Elixir, 만병통치약?](28-elixir.md)
+- [29강 - Elixir, 만병통치약?](29-elixir.md)
 
 <!--@end-->
