@@ -83,6 +83,7 @@ Route::get('posts', function() {
     return view('posts.index', compact('posts'));
 });
 ```
+
 <!--@start-->
 ---
 

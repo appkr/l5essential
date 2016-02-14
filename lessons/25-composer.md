@@ -90,6 +90,7 @@ $sb->run();
 > Could not fetch https://api.github.com/repos/sebastianbergmann/global-state/zipball/bc37d50fea7d017d3d340f230811c9f1d7280af4, please create a GitHub OAuth token to go over the API rate limit.  
 > Head to https://github.com/settings/tokens/new?scopes=repo&description=xxx to retrieve a token. It will be stored in "/home/vagrant/.composer/auth.json" for future use by Composer.  
 > Token (hidden):
+
 <!--@start-->
 ---
 

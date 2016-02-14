@@ -127,6 +127,7 @@ $ php artisan tinker
      id: 3,
    }
 ```
+
 <!--@start-->
 ---
 

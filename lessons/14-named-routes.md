@@ -65,6 +65,7 @@ $ php artisan tinker
 ```
 
 **`참고`** 중복된 Route의 경우, 항상 위에 정의된 것이 아래에 정의된 것을 오버라이드 한다. 가령 posts/count 라는 Route가 있다면 RESTful Resource 정의보다 먼저(== 위에) 정의하는게 안전하다.
+
 <!--@start-->
 ---
 

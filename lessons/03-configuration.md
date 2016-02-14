@@ -47,6 +47,7 @@ DB_PASSWORD=secret
 실제 DB 접속은 8강 부터 할 것이다. config 디렉토리 아래에 있는 다른 파일들도 살펴 보자.
 
 **`참고`** Homestead 에 설치된 mySQL에 접속하려면, port를 33060으로 설정해야 한다.
+
 <!--@start-->
 ---
 

@@ -79,6 +79,7 @@ Collection이 아니라 하나의 Instance만 얻으려면 어떻게 해야 할�
 >>> DB::update('update posts set title="Modified Title" where id = ?', [2]);
 => 1
 ```
+
 <!--@start-->
 ---
 

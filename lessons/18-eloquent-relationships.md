@@ -147,6 +147,7 @@ $ php artisan tinker
 ```
 
 **`참고`** 위 예에서 posts 테이블에 컬럼을 `user_id`로 하지 않았다면 어떻게 해야 하나? 이때는 관계를 설정할 때, `return $this->hasMany('App\Post', 'custom_field_name');`, `return $this->belongsTo('App\User', 'custom_foreign_key');` 처럼, 엘로퀀트에게 컬럼 이름을 알려 주어야 한다.
+
 <!--@start-->
 ---
 

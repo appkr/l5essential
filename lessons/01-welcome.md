@@ -55,6 +55,7 @@
 - [한국어 매뉴얼 (번역 by XE팀)](http://xpressengine.github.io/laravel-korean-docs/)
 - [라라벨 영상 강좌 (by XE팀)](https://www.xpressengine.com/learn/23061328)
 - [한국어 책 (by 정광섭님)](https://www.lesstif.com/pages/viewpage.action?pageId=28606603)
+
 <!--@start-->
 ---
 

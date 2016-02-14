@@ -136,6 +136,7 @@ $ php artisan db:seed
 ```
 
 Seeding이 잘 되었는 지, DB 테이블을 확인해 보자.
+
 <!--@start-->
 ---
 

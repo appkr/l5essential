@@ -113,6 +113,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 **`참고`** 라라벨에서 기본 제공하는 인증에서 패스워드는 최소 6자리 이상이어야 한다. `App\Http\Controllers\Auth\AuthController@validator` 메소드를 보면 `'password' => 'required|confirmed|min:6'` 라고 유효성 검사 규칙이 지정되어 있는 것을 확인할 수 있다. 유효성 검사, 뷰에 쓰인 `old()` 함수에 대해서는 뒤에서 다시 살펴보도록 하자.
 
 **`참고`** 다음으로 넘어가기 전에 로그인 뷰에서 소스보기를 해 보자. `<input type="hidden" name="_token" value="jPR...nO2">` 란 라인을 볼 수 있다. 바로 `csrf_field()` Helper Function이 CSRF 공격을 막기 위해 만든 토큰을 담은 숨은 입력 폼이다. 13강에서 공부한 내용이다. `{!!  !!}`은 '<', '>' 같은 특수문자의 '&lt;', '&gt;' Escaping 되는 것을 막기 위한 블레이드의 Interpolation 문법이다.
+
 <!--@start-->
 ---
 

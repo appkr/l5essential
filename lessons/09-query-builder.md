@@ -82,6 +82,7 @@ $ php artisan tinker
 - `limit(int $value)` // == `take(int $value)`
 - `orderBy(string $column, string $direction)`
 - `latest()` // == `orderBy('created_at', 'desc')`
+
 <!--@start-->
 ---
 

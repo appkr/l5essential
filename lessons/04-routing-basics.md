@@ -53,6 +53,7 @@ Route::get('/', function () {
 **`참고`** `view()`는 Helper Function 이다. `return View::make('welcome')`와 같이 라라벨이 제공하는 Facade('파사드' 또는 '빠사드'라 읽는다.)를 이용할 수도 있다. 필자는 `view()->`까지 입력했을 때 코드힌트가 나와서 Helper Function을 더 선호한다. 말 나온 김에, Facade는 Static Access 형태를 빌려 쓰고 있지만, 실제로 백그라운드에서는 Service Container에 의해서 새로운 instance를 생성하여 메소드에 접근하므로, Anti Pattern이 아니다.
 
 **`참고`** 방금 살펴본 resources/views/errors/503.blade.php 뷰는 라라벨 어플리케이션이 유지보수 모드에 들어갔을 때 사용자에게 보여주는 뷰이다. `$ php artisan down` 명령으로 유지보수 상태로 전환하고, `$ php artisan up` 으로 서비스 상태로 복귀할 수 있다. 유지보수 모드는 웹 서버를 중지 시킨 것은 아니다.
+
 <!--@start-->
 ---
 

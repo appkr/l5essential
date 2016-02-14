@@ -58,6 +58,7 @@ Route::get('/', function () {
     return $view;
 });
 ```
+
 <!--@start-->
 ---
 

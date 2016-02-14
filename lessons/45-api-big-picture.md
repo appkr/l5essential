@@ -328,7 +328,7 @@ class SessionsController extends ParentController
 
 사용자 인증을 위해 JSON Web Token 을 사용할 것이다. 앞으로 곧 보겠지만, 모든 API 요청의 HTTP 헤더에는 `Authorization: Bearer {header.payload.signature}` 형태의 JWT 를 붙여서 보내야 하고, 이를 통해 사용자를 인식할 뿐 아니라, CSRF 와 같은 악의적인 공격으로 부터 방어할 것이다. 바꾸어 말하면 API 에서 CSRF 토큰 사용은 적절하지 않다는 말. 왜일까 잘 생각해 보면, API 에서는 HTML "폼"를 서버에서 클라이언트에 내려 주지 않기 때문에 서버에서 생성한 CSRF 토큰을 전달할 방법이 없다.
 
-역시 [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller) 에서, 특정 Route 에 대해서 글로벌 미들웨어로 등록된 CSRF 를, `$except = []` 속성을 이용해서 제외시키는 방법을 살펴본 바 있다. 그런데, 이번에는 조금 특수하다. 기존 Route 와 API Route 가 동일한 형태이기 때문이다. 가령 로그인의 경우 'http://myproject.dev:8000/auth/login', 'http://api.myproject.dev:8000/auth/login' 으로 Route 에 정의된 'auth/login' Path 는 동일하기 때문이다. 둘 간에 서로 다른 부분은 도메인이라는 점에 착안해서, 필자는 아래 처럼 API 요청일 경우 CSRF 토큰 검사를 넘어가는 식으로 구현했다.
+역시 [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller.md) 에서, 특정 Route 에 대해서 글로벌 미들웨어로 등록된 CSRF 를, `$except = []` 속성을 이용해서 제외시키는 방법을 살펴본 바 있다. 그런데, 이번에는 조금 특수하다. 기존 Route 와 API Route 가 동일한 형태이기 때문이다. 가령 로그인의 경우 'http://myproject.dev:8000/auth/login', 'http://api.myproject.dev:8000/auth/login' 으로 Route 에 정의된 'auth/login' Path 는 동일하기 때문이다. 둘 간에 서로 다른 부분은 도메인이라는 점에 착안해서, 필자는 아래 처럼 API 요청일 경우 CSRF 토큰 검사를 넘어가는 식으로 구현했다.
   
 ```php
 // app/Http/Middlewares/VerifyCsrfToken.php
@@ -351,5 +351,5 @@ class VerifyCsrfToken extends BaseVerifier
 
 - [목록으로 돌아가기](../readme.md)
 - [44강 - API 기본기 및 기획](44-api-basic.md)
-- [46강 - JSON Web Token 을 이용한 인증](44-jwt.md)
+- [46강 - JSON Web Token 을 이용한 인증](46-jwt.md)
 <!--@end-->

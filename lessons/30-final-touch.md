@@ -231,6 +231,7 @@ $ php artisan cache:clear
 ```
 
 ![](30-final-touch-img-02.png)
+
 <!--@start-->
 ---
 

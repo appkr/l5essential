@@ -120,6 +120,7 @@ class PostsController extends Controller
 ```
 
 3 번 Form Request를 이용하는 방법이 가장 깔끔하긴 하다. [공식 문서](http://laravel.com/docs/validation#form-request-validation)를 참고하자.
+
 <!--@start-->
 ---
 

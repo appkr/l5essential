@@ -143,6 +143,7 @@ $ php artisan tinker
 처음 접하는 분들이 보기에 라라벨 공식 문서의 이벤트 설명은 정말 어렵다. 하지만, 기본적으로 위 예제와 같은 동작을 좀 더 관리하기 편리하도록 쪼개 놓은 것이라고 볼 수 있다.
 
 공식 문서의 `event(new PodcastWasPurchased($podcast))` 에서 이벤트 이름과 이벤트 데이터를 객체로 넘긴 것이며, app/Proviers/EventServiceProvider.php 에서 이벤트 이름과 이벤트 핸들러를 연결시켜 준 것이다. 연결된 이벤트 핸들러는 결국은 우리 예제의 `Event::listen()` 에 두번 째 인자로 전달한 Closure를 별도 클래스로 떼 놓은 것이다.
+
 <!--@start-->
 ---
 

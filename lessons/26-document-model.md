@@ -102,6 +102,7 @@ Route::get('docs/{file?}', function($file = null) {
 ```
 
 ![](26-document-model-img-02.png)
+
 <!--@start-->
 ---
 

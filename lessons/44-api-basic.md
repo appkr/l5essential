@@ -12,7 +12,7 @@ RESTful API 의 이론에 대해 이해하는 시간을 가져보자.
 
 - **RE**presentational **S**tate **T**ransfer. 대응되는 한국말 번역이 없어, 대부분 "레스트" 라 그냥 읽는다.
 - HTTP 의 특성을 잘 살려서 사용하는 방법에 대해, 그 창시자들이 제안한 **"이종(異種, heterogeneous) 시스템간의 네트워크 통신 구조"**다. 엄격하게 지켜야 하는 스펙은 아니지만, 남들, 특히 이름만 대면 아는 웹 거물들은 모두 쓰므로 꼭 써야 한다.
-- RESTful, "레스트" 스러운 HTTP 사용법은 [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller) 를 필두로 앞선 실전 프로젝트에서도 계속 사용했었다. 이 강좌를 잘 따라오신 분이라면 알게 모르게 쓰고 있었고 이미 알고 있는 개념이다.
+- RESTful, "레스트" 스러운 HTTP 사용법은 [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller.md) 를 필두로 앞선 실전 프로젝트에서도 계속 사용했었다. 이 강좌를 잘 따라오신 분이라면 알게 모르게 쓰고 있었고 이미 알고 있는 개념이다.
 - REST 는 **1) Command** *(==Method. HEAD/GET, POST, PUT, ...)*, **2) Things** *(==Resource. articles, comments, ...)*, **3) Response** *(==Message. 200, 422 등의 HTTP 상태 코드와 text/html, application/json 등의 메시지 본문)*, 총 세 가지 큰 덩어리로 구성된다. 
 
 #### (HTTP) API 가 무엇인지 알아보자.
@@ -31,7 +31,7 @@ RESTful API 의 이론에 대해 이해하는 시간을 가져보자.
 
 1.  Resource 는 명사를 쓴다. 
 
-    [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller) 에서 배운 내용을 다시 한번 리마인드 하자. 대신 테이블 형태를 약간 바꾸었다. 여기서 Resource 란 클라이언트 사이드에서 보이는 요소인 URI Endpoint 를 의미한다. 물론 URI 뒤에는 모델이 있는데 클라이언트에게 보이진 않는다.
+    [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller.md) 에서 배운 내용을 다시 한번 리마인드 하자. 대신 테이블 형태를 약간 바꾸었다. 여기서 Resource 란 클라이언트 사이드에서 보이는 요소인 URI Endpoint 를 의미한다. 물론 URI 뒤에는 모델이 있는데 클라이언트에게 보이진 않는다.
     
     Type|Resource|GET(Read)|POST(Store)|PUT(Update)|DELETE(Destroy)
     ---|---|---|---|---|---
@@ -210,7 +210,7 @@ RESTful API 의 이론에 대해 이해하는 시간을 가져보자.
 
 10. HTTP 메소드 오버라이드
     
-    [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller) 에서 이미 설명한 바 있는 내용이다. 모던 브라우저 또는 네트워크 프록시들이 GET, POST 메소드만 이해하기 때문에 PUT, DELETE 메소드를 사용할 때는 `_method=put` 과 같이 사용해야 한다고.. 라라벨은 `X-HTTP-Method-Override` HTTP 헤더를 이용한 메소드 오버라이드도 지원한다.
+    [13강 - RESTful 리소스 컨트롤러](13-restful-resource-controller.md) 에서 이미 설명한 바 있는 내용이다. 모던 브라우저 또는 네트워크 프록시들이 GET, POST 메소드만 이해하기 때문에 PUT, DELETE 메소드를 사용할 때는 `_method=put` 과 같이 사용해야 한다고.. 라라벨은 `X-HTTP-Method-Override` HTTP 헤더를 이용한 메소드 오버라이드도 지원한다.
     
     ```
     POST /articles

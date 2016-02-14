@@ -14,7 +14,7 @@
     
 2.  **Envoy (SSH Task Runner) 사용법을 익힌다.**
 
-    이 강좌를 통해서 FE 리소스를 관리하고 빌드하는 [Elixir](29-elixir.md), 팀 내 개발 환경을 표준화할 수 있는 [Homestead](02-install-homestead-osx) 등의 사용법을 살펴 보았다. 라라벨에서는 원격 서버에서의 복잡하고 반복되는 작업을 편리하게 할 수 있도록 도와 주는 [Envoy](https://laravel.com/docs/envoy) 라는 툴도 제공하고 있다. **Envoy 는 Non-Laravel, Non-PHP 프로젝트에서도 사용할 수 있다** 는 점을 강조하고 싶다.
+    이 강좌를 통해서 FE 리소스를 관리하고 빌드하는 [Elixir](29-elixir.md), 팀 내 개발 환경을 표준화할 수 있는 [Homestead](02-install-homestead-osx.md) 등의 사용법을 살펴 보았다. 라라벨에서는 원격 서버에서의 복잡하고 반복되는 작업을 편리하게 할 수 있도록 도와 주는 [Envoy](https://laravel.com/docs/envoy) 라는 툴도 제공하고 있다. **Envoy 는 Non-Laravel, Non-PHP 프로젝트에서도 사용할 수 있다** 는 점을 강조하고 싶다.
     
 3.  **Envoy 와 Git 을 이용하여 코드를 배포해 본다.**
 

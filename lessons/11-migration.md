@@ -126,6 +126,7 @@ $ php artisan migrate
 
 `migrate:rollback` 이 직전 마이그레이션만 롤백하는 반면 `migrate:reset` 는 모든 마이그레이션을 롤백하고 데이터베이스를 초기화 시킨다. `migrate:refresh` 는 리셋을 실행해서 데이터베이스를 청소한 후, 마이그레이션을 처음부터 다시 실행하는 코맨드이다.
 
+
 <!--@start-->
 ---
 

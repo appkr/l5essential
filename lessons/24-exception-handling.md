@@ -96,6 +96,7 @@ Route::get('/', function() {
 ```
 
 ![](./24-exception-handling-img-01.png)
+
 <!--@start-->
 ---
 

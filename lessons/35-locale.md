@@ -233,6 +233,7 @@ return [
 ```
 
 ![](35-locale-img-02.png)
+
 <!--@start-->
 ---
 

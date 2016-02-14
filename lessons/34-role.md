@@ -123,6 +123,7 @@ $ php artisan tinker
 # == is(['admin', 'member'], true); or isAll(['admin', 'member']);
 => false
 ```
+
 <!--@start-->
 ---
 

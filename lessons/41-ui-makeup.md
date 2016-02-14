@@ -319,6 +319,7 @@ Bootstrap 에는 Modal 요소를 포함하고 있다. 이를 활용하자.
 - 페이지에서 블럭을 잡았을 때, 선택 영역의 색상을 수정했다. (resources/assets/sass/\_commons.scss)
 
 ![](41-ui-makeup-img-06.png)
+
 <!--@start-->
 ---
 

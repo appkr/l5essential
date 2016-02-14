@@ -616,6 +616,7 @@ class Markdown extends ParsedownExtra {
 
 - [22강 - 이벤트](22-events.md) 에서 썼던 users.last_login 필드를 살려서, 사용자가 로그인할 때마다 시각을 업데이트하였다. (database/migrations/create_users_table.php, app/Http/Controllers/SessionsController.php, app/Providers/EventServiceProvider.php, app/Listeners/UserEventsHandler.php)
 - 포럼 상세 보기 페이지가 로드될 때마다 articles.view_count 값을 올려 조회수를 표시하는 기능을 추가하였다. (database/migrations/create_articles_table.php, app/Providers/EventServiceProvider.php, app/Listeners/ViewCountHandler.php, resources/views/articles/partial/article.blade.php)
+
 <!--@start-->
 ---
 

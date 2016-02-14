@@ -468,6 +468,7 @@ Click here to reset your password: {{ route('reset.create', $token) }}
 ![](32-login-img-07.png)
 
 디자인을 위해 resources/assets/sass/app.scss 도 일부 내용이 변경되었다. 상세 설명은 생략하니, 코드를 참고하기 바란다.
+
 <!--@start-->
 ---
 

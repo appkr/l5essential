@@ -112,6 +112,7 @@ Route::get('auth/login', function() {
 ```
 
 **`참고`** 방금 본 'auth' 미들웨어는 Route by Route로 사용자가 선택해서 적용할 수 있는 'Route 미들웨어'라 한다. 반면, 앞 강좌에서 보았던 'csrf' 미들웨어는 'HTTP 미들웨어'라 칭한다. HTTP 미들웨어는 모든 HTTP 요청이 무조건 거쳐야 하는 글로벌 미들웨어라고 생각하면 된다.
+
 <!--@start-->
 ---
 

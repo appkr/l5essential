@@ -250,6 +250,7 @@ Tag 와 관련된 뷰는 'resources/views/tags' 아래에 위치하고 있다. N
 ```
 
 ![](38-tags-img-03.png)
+
 <!--@start-->
 ---
 

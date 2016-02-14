@@ -87,10 +87,11 @@ $ memcached -u memcached -d -m 30 -l 127.0.0.1 -p 11211
 file 캐시에서 했던 방법과 동일한 방법으로 캐시 기능이 잘 동작하는 지 확인해 보자. 설정 값이 변경되었으므로 테스트 전에 `$ php artisan serve` 를 재기동하는 것을 잊지 말고.
 
 **`참고`** 서버 측 뿐만 아니라, 클라이언트(브라우저) 측에서도 캐싱을 한다. 라라벨과 무관하므로 설명하지 않는다.
+
 <!--@start-->
 ---
 
 - [목록으로 돌아가기](../readme.md)
 - [27강 - Document 컨트롤러](27-document-controller.md)
-- [29강 - Elixir, 만병통치약?](28-elixir.md)
+- [29강 - Elixir, 만병통치약?](29-elixir.md)
 <!--@end-->

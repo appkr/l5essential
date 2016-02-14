@@ -475,6 +475,7 @@ public function destroy($id)
 ```
 
 이번 강좌를 진행하는 동안 'resources/assets/js/app.js' 에 자잘한 Cosmetic Change 들이 있었다. 변경 내용들은 Commit 로그를 참고하도록 하자.
+
 <!--@start-->
 ---
 

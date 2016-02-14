@@ -166,6 +166,7 @@ class AuthController extends Controller
 ```
 
 ![](33-social-login-img-06.png)
+
 <!--@start-->
 ---
 

@@ -566,6 +566,7 @@ $ php artisan tinker
 >>> $attachment = App\Attachment::find(1);
 >>> $attachment->article()->first();
 ```
+
 <!--@start-->
 ---
 

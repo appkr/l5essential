@@ -116,6 +116,7 @@ resources/views/documents/index.blade.php 를 만들자.
 ![](27-document-controller-img-01.png)
 
 기본 기능은 이걸로 완료되었다. 다음 강의에서는 백엔드의 부하 감소를 위해 Cache 기능을 활용하는 것을 배우도록 하자. 좀 더 나이스하게 보이기 위해서 CSS 작업을 할 것인데, 빌드를 위해 Elixir도 사용해 볼 것이다.  
+
 <!--@start-->
 ---
 
