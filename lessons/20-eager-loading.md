@@ -45,6 +45,8 @@ DB::listen(function($sql, $bindings, $time){
 });
 ```
 
+**`알림`** 라라벨 5.2를 사용한다면 위 코드에서 에러가 날 것이다. [여기를 참고](https://github.com/appkr/l5essential/issues/12)해서 알맞게 코드를 수정하자. 
+
 다음과 같은 쿼리를 볼 수 있다. 즉, `{{ $post->user->name }}` 에서 매번 쿼리를 하는 것이다.
 
 - `select * from posts` x 1건

@@ -125,7 +125,7 @@ class PasswordsController extends Controller
      */
     protected function respondError($message, $statusCode = 400)
     {
-        flash()->errors($message);
+        flash()->error($message);
 
         return back()->withInput();
     }

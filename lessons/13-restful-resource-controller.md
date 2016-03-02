@@ -97,7 +97,7 @@ class PostsController extends Controller
 
 라라벨은 CSRF(Cross Site Request Forgery) 공격을 방지하기 위해 기존 데이터를 변경하는 행위, 즉, 신규 생성, 업데이트, 삭제 등의 행위에 대해서는 CSRF 토큰을 폼요청에서 제공해야 한다. 가령 `PostsController@create` 메소드에서 응답한 모델 생성 폼에서 숨은 필드로 `_token` 값을 제공해야 한다. 폼 요청을 받은 `PostsController@store` 메소드는 토큰의 유효성을 확인하고, 같은 세션일 경우, 즉, `create()`를 요청한 클라이언트와 `store()`를 요청한 클라이언트가 동일할 경우에만 `store()` 액션을 수행한다. 지금 우리가 PostMan을 통해서 테스트하는 행위 자체가 CSRF 공격이라 볼 수 있다.
   
-우선 이번 테스트를 위해 CSRF 보호기능을 잠시 끄도록 하자. app/Http/Middleware/VerifyCsrfToken.php를 수정하자.
+우선 이번 테스트를 위해 CSRF 보호기능을 잠시 끄도록 하자. app/Http/Middleware/VerifyCsrfToken.php를 아래 처럼 수정한다.
 
 ```php
 class VerifyCsrfToken extends BaseVerifier
@@ -109,7 +109,7 @@ class VerifyCsrfToken extends BaseVerifier
 }
 ```
 
-POST http://localhost:8000/posts가 정상 동작하는 것을 확인한 후, 이번에는 POST http://localhost:8000/posts/1 으로 요청해 보자.
+POST http://localhost:8000/posts가 정상 동작하는 것을 확인한 후, 이번에는 POST http://localhost:8000/posts/1 으로 요청해 보자. 또 에러가 날 것이다.
 
 ## MethodNotAllowedHttpException
 
