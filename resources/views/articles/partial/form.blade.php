@@ -84,7 +84,7 @@
     var myDropzone = new Dropzone("div#my-dropzone", {
       url: "/files",
       params: {
-        _token: csrfToken,
+        _token: window.csrfToken,
         articleId: "{{ $article->id }}"
       },
       dictDefaultMessage: "<div class=\"text-center text-muted\">" +
