@@ -3,7 +3,7 @@
 return [
 
     'login'       => 'fa fa-sign-in',
-    'github'      => 'fa fa-github icon',
+    'github'      => 'fa fa-github',
     'book'        => 'fa fa-book',
     'locale'      => 'fa fa-language',
     'certificate' => 'fa fa-certificate',
