@@ -234,9 +234,9 @@ class SessionsController extends ParentController
 {
     public function __construct()
     {
+        parent::__construct();
         // ParentController 의 미들웨어 정의 무력화.
         $this->middleware = [];
-        parent::__construct();
     }
     
     // ...

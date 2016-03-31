@@ -39,7 +39,7 @@ class CommentsController extends Controller
             ]);
 
         event('comments.created', [$comment]);
-        event(new ModelChanged('comments'));
+        event(new ModelChanged('articles', 'comments'));
         flash()->success(trans('forum.comment_add'));
 
         return back();
@@ -60,7 +60,7 @@ class CommentsController extends Controller
         $comment->update($request->only('content'));
 
         event('comments.updated', [$comment]);
-        event(new ModelChanged('comments'));
+        event(new ModelChanged('articles', 'comments'));
         flash()->success(trans('forum.comment_edit'));
 
         return back();
@@ -126,7 +126,7 @@ class CommentsController extends Controller
 
         // $this->recursiveDestroy($comment);
 
-        event(new ModelChanged('comments'));
+        event(new ModelChanged('articles', 'comments'));
 
         if ($request->ajax()) {
             return response()->json('', 204);

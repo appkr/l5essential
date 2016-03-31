@@ -11,7 +11,7 @@ class UsersController extends ParentController
     public function __construct()
     {
         // Kill middleware defined by ParentController.
-        $this->middleware = [];
+        // $this->middleware = [];
         $this->middleware('throttle.api:10,1');
 
         parent::__construct();
