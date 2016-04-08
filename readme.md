@@ -144,7 +144,7 @@ $ git checkout 03(tab & enter)
 
 [기여 가이드](CONTRIBUTING.md) 를 따라 주세요.
 
--   오탈자/오류 신고 - dosirak 님, [이현석 님](https://www.facebook.com/leehs), [ibin79 ](https://github.com/ibin79), [AidenJeon 님](https://github.com/AidenJeon), [smartyunhui 님](https://github.com/smartyunhui), [찬스냅 님](https://www.facebook.com/chansnapit), [김종운 님](https://www.facebook.com/profile.php?id=100001411952158), [richellin 님](https://github.com/richellin), [jicjjang 님](https://github.com/jicjjang), [jongguheo 님](https://github.com/jongguheo)
+-   오탈자/오류 신고 - dosirak 님, [이현석 님](https://www.facebook.com/leehs), [ibin79 ](https://github.com/ibin79), [AidenJeon 님](https://github.com/AidenJeon), [smartyunhui 님](https://github.com/smartyunhui), [찬스냅 님](https://www.facebook.com/chansnapit), [김종운 님](https://www.facebook.com/profile.php?id=100001411952158), [richellin 님](https://github.com/richellin), [jicjjang 님](https://github.com/jicjjang), [jongguheo 님](https://github.com/jongguheo), [desty 님](https://github.com/desty)
 -   감수 - [이종웅 님](https://www.facebook.com/jongwoong.lee.71)
 -   [Pull Request 를 통한 기여자 분들](https://github.com/appkr/l5essential/graphs/contributors)
 -   [정광섭님](https://github.com/lesstif) - 라이브 데모 서버
