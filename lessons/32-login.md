@@ -18,7 +18,7 @@ Route::get('/', [
 
 Route::get('home', [
     'as' => 'home',
-    'uses' => 'WelcomeController@index'
+    'uses' => 'WelcomeController@home'
 ]);
 
 /* User Registration */
