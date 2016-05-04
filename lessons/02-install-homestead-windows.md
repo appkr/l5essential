@@ -96,7 +96,7 @@ Homestead 설정에서 myproject.dev 란 도메인을 이용했다. 이런 도�
 192.168.10.10    myproject.dev
 ```
 
-![](02-install-homestead-windows-img-01.png)
+![](./images/02-install-homestead-windows-img-01.png)
 
 ## SSH Key 생성
 
@@ -152,7 +152,7 @@ vagrant@homestead:~$ cat ~/.ssh/authorized_keys
 
 Host `127.0.0.1`, Port `33060`, Username `homestead`, Password `secret` 로 접속한다. PostgresSQL 의 경우 Port `54320` 으로 접속한다. 필자는 [SQLyog](https://code.google.com/p/sqlyog/wiki/Downloads) 클라이언트를 이용하였다.
 
-![](02-install-homestead-windows-img-02.png)
+![](./images/02-install-homestead-windows-img-02.png)
 
 ## 웹 서버 접속
 
@@ -160,7 +160,7 @@ Homestead 에는 Nginx 가 기본으로 탑재되어 있고, Homestead.yaml 의 
 
 브라우저에서 'http://myproject.dev' 로 접속해 보자. 테스트용으로 쓸 수 있는 self-signed 인증서가 설치되어 있기 때문에 'https:://myproject.dev' 도 사용할 수 있다.
 
-![](02-install-homestead-windows-img-03.png)
+![](./images/02-install-homestead-windows-img-03.png)
 
 <!--@start-->
 ---

@@ -45,7 +45,7 @@ Route::get('/', function () {
 });
 ```
 
-**`참고`** 실전에서는 `compact(mixed $varname)]` php 내장 함수와 조합하여, `$greeting='World'; return view('index', compact('greeting'));`와 같은 식으로 많이 이용한다.
+**`참고`** 실전에서는 `compact(mixed $varname)` php 내장 함수와 조합하여, `$greeting='World'; return view('index', compact('greeting'));`와 같은 식으로 많이 이용한다.
 
 ## view 인스턴스의 Property를 이용하는 방법
 

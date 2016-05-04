@@ -71,7 +71,7 @@ public function up()
 
 #### Route 정의
 
-![](32n33-auth-refactoring-img-01.png)
+![](./images/32n33-auth-refactoring-img-01.png)
 
 잘 보면, `Route::get('social/{provider}', 'SocialController@execute')` 부분에서 'social/github', 'social/facebook' 등으로 소셜 로그인 공급자를 더 붙일 수 있도록 Route 구조를 좀 변경할 것을 확인할 수 있다.
 
@@ -135,7 +135,7 @@ Route::post('auth/reset', [
 
 앞 절의 Route 정의에서 `Route::get('social/{provider}', 'SocialController@execute')`로 썼다. 소셜 인증 과정에는 Github 'Authorize application' 페이지로 이동하는 Route 하나, 앞 과정에서 사용자가 승인하면 Github 에서 myProject 로 콜백해 주는 Route 총 두 개가 필요했던 것을 `execute()` 하나로 줄였다. `execute()` 메소드에서 myProject의 Router로 들어오는 HTTP 요청 쿼리스트링의 'code' 필드의 유무에 따라 분기시킨 것이다. 전체적인 과정은 아래 그림을 참조하자.
 
-![](32n33-auth-refactoring-img-02.png)
+![](./images/32n33-auth-refactoring-img-02.png)
 
 `$user = (\App\User::whereEmail($user->getEmail())->first()) ?: \App\User::create([...]);` 부분에서 기존의 `firstOrCreate()` 메소드를 다시 썼다. 'email' 로만 쿼리해서 있으면 myProject 에 로그인해 주고, 해당 'email'을 가진 레코드가 없으면, 'email', 'name' 필드를 가진 사용자를 생성시키도록 수정하였다.
 

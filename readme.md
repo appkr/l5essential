@@ -12,9 +12,7 @@
 
 ## 라이브 데모 사이트
 
-아래 주소를 방문하면 이 강좌에서 개발한 최종 결과물을 볼 수 있다.
-
-[http://l5.appkr.kr/](http://l5.appkr.kr/)
+라이브 데모 사이트는 폐지했다. Github에서 바로 보거나, 클론해서 로컬에서 강좌를 보시기 바란다.
 
 ## 목적
 
@@ -127,7 +125,7 @@ Forum 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 
 
 ## 이 강좌를 보는 방법
 
-강좌들은 Markdown 문법으로 작성되어 있으므로, Github 또는 라이브 데모 사이트에서 보는 것이 좋다. 이미 PHP 언어와 라라벨을 좀 아는 분이라면, 강좌를 눈으로 읽고 머리로 이해하는 것도 도움이 된다. 강좌의 내용과 더불어, [Github Commit 로그](https://github.com/appkr/l5essential/commits/master) 를 이용해서 이전 강좌 대비 달라진 부분들을 보는 것도 좋은 방법이다. 
+강좌들은 Markdown 문법으로 작성되어 있으므로 Github에서 보는 것이 좋다. 이미 PHP 언어와 라라벨을 좀 아는 분이라면, 강좌를 눈으로 읽고 머리로 이해하는 것도 도움이 된다. 강좌의 내용과 더불어, [Github Commit 로그](https://github.com/appkr/l5essential/commits/master) 를 이용해서 이전 강좌 대비 달라진 부분들을 보는 것도 좋은 방법이다. 
 
 **그런데 필자는 이미 만들어진 소스코드를 눈으로 읽는 것 보다, 한 문장, 한 단락씩 따라하면서 실제 실습해 볼 것을 적극 권장한다.** 강좌의 단계별 소스코드는 Git Tag 로 저장되어 있다. 먼저 이 프로젝트를 클론하고, 원하는 강좌로 체크아웃하자. 
 
@@ -144,7 +142,7 @@ $ git checkout 03(tab & enter)
 
 [기여 가이드](CONTRIBUTING.md) 를 따라 주세요.
 
--   오탈자/오류 신고 - dosirak 님, [이현석 님](https://www.facebook.com/leehs), [ibin79 ](https://github.com/ibin79), [AidenJeon 님](https://github.com/AidenJeon), [smartyunhui 님](https://github.com/smartyunhui), [찬스냅 님](https://www.facebook.com/chansnapit), [김종운 님](https://www.facebook.com/profile.php?id=100001411952158), [richellin 님](https://github.com/richellin), [jicjjang 님](https://github.com/jicjjang), [jongguheo 님](https://github.com/jongguheo), [desty 님](https://github.com/desty)
+-   오탈자/오류 신고 - dosirak 님, [이현석 님](https://www.facebook.com/leehs), [ibin79 ](https://github.com/ibin79), [AidenJeon 님](https://github.com/AidenJeon), [smartyunhui 님](https://github.com/smartyunhui), [찬스냅 님](https://www.facebook.com/chansnapit), [김종운 님](https://www.facebook.com/profile.php?id=100001411952158), [richellin 님](https://github.com/richellin), [jicjjang 님](https://github.com/jicjjang), [jongguheo 님](https://github.com/jongguheo), [desty 님](https://github.com/desty), [백창현 님](https://github.com/paikwiki)
 -   감수 - [이종웅 님](https://www.facebook.com/jongwoong.lee.71)
 -   [Pull Request 를 통한 기여자 분들](https://github.com/appkr/l5essential/graphs/contributors)
 -   [정광섭님](https://github.com/lesstif) - 라이브 데모 서버

@@ -37,7 +37,7 @@ Route::get('posts', function() {
 @stop
 ```
 
-![](./20-1-pagination-img-01.png)
+![](./images/20-1-pagination-img-01.png)
 
 <!--@start-->
 ---

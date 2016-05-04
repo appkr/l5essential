@@ -20,9 +20,9 @@ Windows 사용자에게도 2가지 옵션이 있다. 로컬 PC를 개발 머신�
 
 Bitnami 를 이용해 설치한 PHP 실행기가 OS 환경변수에 등록되어 있지 않으므로 등록해 주어야 한다. 제어판 -> 시스템 -> 고급 -> 시스템 변수 또는 환경 변수에서 Path 부분을 찾은 다음, PHP 실행기의 경로를 등록한다. 필자의 경우 `C:\Bitnami\wampstack-5.5.30-0\php` 을 등록하였다. 열려 있던 코맨드 프롬프트 창이 있다면, 재 실행 해 주어야 방금 변경한 환경설정의 적용된다는 것을 꼭 기억하자.
 
-![](02-install-on-windows-img-01.png)
+![](./images/02-install-on-windows-img-01.png)
 
-![](02-install-on-windows-img-02.png)
+![](./images/02-install-on-windows-img-02.png)
 
 그리고, 코맨드 프롬프트 대체 프로그램인 [Git Bash](https://git-for-windows.github.io/) 를 설치하자. 
 
@@ -57,7 +57,7 @@ $ php -m # Git Bash 에서는 파이프 (`|`) 연산자가 먹지 않아 `grep` 
 
 Bitnami Wamp 를 설치했다면 모두 설치되어 있을 것이다. 이미 PHP, Mysql 이 설치되어 있었던 경우에, 필요한 모듈 중 하나라도 빠진게 있다면 구글링해서 설치하자~
 
-![](02-install-on-windows-img-04.png)
+![](./images/02-install-on-windows-img-04.png)
 
 ## 이제 라라벨을 설치해 보자.
 
@@ -69,7 +69,7 @@ Bitnami Wamp 를 설치했다면 모두 설치되어 있을 것이다. 이미 PH
 \> composer --version # Composer version 1.xx
 ```
 
-![](02-install-on-windows-img-05.png)
+![](./images/02-install-on-windows-img-05.png)
 
 이제 Composer 를 이용해서 라라벨 인스톨러를 설치한다.
 
@@ -91,7 +91,7 @@ Bitnami Wamp 를 설치했다면 모두 설치되어 있을 것이다. 이미 PH
 \> php artisan --version # Laravel Framework version 5.x
 ```
 
-![](02-install-on-windows-img-06.png)
+![](./images/02-install-on-windows-img-06.png)
 
 서버를 부트업하고, 라라벨을 시작해 보자!
 
@@ -103,7 +103,7 @@ Bitnami Wamp 를 설치했다면 모두 설치되어 있을 것이다. 이미 PH
 
 브라우저에서 `http://localhost:8000` 페이지를 방문해서 'Laravel 5' 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한 것이다.
 
-![](02-install-on-windows-img-07.png)
+![](./images/02-install-on-windows-img-07.png)
 
 **`참고`** `artisan` 은 라라벨의 코맨드 라인 툴이다. `\> php artisan` 을 실행한 후, 설명을 쭈욱~ 한번 살펴보자. 개발 중에 코드 에디터와 콘솔을 오가면서, `artisan` 코맨드를 많이 사용하게 될 것이다.
 

@@ -2,7 +2,11 @@
 
 ## 사용할 테이블을 만들자
 
-[3강 - 글로벌 설정 살펴보기](03-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자. 
+[3강 - 글로벌 설정 살펴보기](03-configuration.md)에서 .env 파일에 설정한 내용으로 posts 테이블을 만들어 보자.
+ 
+> **주의**
+>
+> 홈스테드 환경 사용자는 데이터베이스 관련 모든 명령을, 호스트 컴퓨터의 쉘이 아니라 홈스테드 쉘에서 수행해야 한다. 뒤에 나올 마이그레이션 등도 마찬가지로 홈스테스 쉘에서 수행해야 한다.
 
 ```bash
 # 아래 명령들은 이런 내용으로 만든다는 내용을 보여주기 위한 것이며 실제로는 GUI 툴로 해도 무방하다.
@@ -26,7 +30,7 @@ mysql > exit (enter)
 
 mySql에 root로 로그인하여 myProject DB를 만들고, homestead 사용자에 대해 myProject DB에 대한 접근 권한 부여를 반드시 해야 한다. 아래 그림은 Sequel Pro 에서 권한 부여<kbd>Cmd</kbd> + <kbd>U</kbd>하는 과정이다.
 
-![](./08-raw-queries-img-01.png)
+![](./images/08-raw-queries-img-01.png)
 
 ## 라라벨을 이용해서 DB 쿼리를 해 보자. 
 

@@ -6,7 +6,7 @@
 
 간단히만 설명하자면... 내 서비스에서 사용자가 소셜로그인 버튼을 누르면, 우리 서비스('myProject'라 하자.)에 대한 여러가지 정보를 쿼리스트링으로 담고 소셜로그인 서비스 제공자의 페이지로 이동하게 된다. 표시된 UI 에서 사용자가 승인을 누르게 되는데, 이는 "내가 myProject 서비스에 이 소셜서비스의 권한을 위임해 줄게. 다는 안되고 UI 아래에 표시된 scope로 지정된 만큼만..." 의 의미이다. 즉 myProject는 소셜로그인 서비스를 통해 사용자의 신원을 확인하게 되는 과정인 것이다. 
 
-![](33-social-login-img-03.png)
+![](./images/33-social-login-img-03.png)
 
 이 코스에서는 github의 소셜로그인을 이용해 본다.
 
@@ -35,9 +35,9 @@ $ composer require "laravel/socialite:2.0.*"
 
 [Github Developer Applications Console](https://github.com/settings/developers) 을 방문하여 'Register new application' 버튼을 눌러 아래 그림과 같이 정보를 입력하자. Authorization callback URL 은 'http://localhost:8000/auth/github/callback'으로 하자.
 
-![](33-social-login-img-01.png)
+![](./images/33-social-login-img-01.png)
 
-![](33-social-login-img-02.png)
+![](./images/33-social-login-img-02.png)
 
 Application 등록이 완료되어 위 그림과 같은 등록정보 페이지를 확인할 수 있는데, 여기서 'Client ID'와 'Client Secret'를 복사하여, config/services.php 에 github 소셜로그인 정보를 셋팅한다. 물론 .env 파일에 넣고, `env()` Helper 로 읽어 오는 것이 정석이다.
 
@@ -102,7 +102,7 @@ class AuthController extends Controller
  
 'http://localhost:8000/auth/github' 주소를 직접 쳐서 여기까지 테스트를 해 보자.
  
-![](33-social-login-img-04.png)
+![](./images/33-social-login-img-04.png)
 
 ### 소셜 사용자 등록 및 로그인 처리
 
@@ -130,7 +130,7 @@ class AuthController extends Controller
 
 'http://localhost:8000/auth/github' 주소를 직접 쳐서 여기까지 테스트를 해 보자.
  
-![](33-social-login-img-05.png)
+![](./images/33-social-login-img-05.png)
 
 **`참고`** Github 사용자의 경우, 현재는 비밀번호가 없기 때문에 네이티브 로그인 기능으로 로그인할 수 없다. users 테이블에 소셜로그인으로 생성된 사용자에 대한 유효성을 표시하는 플래그를 만들고, 로그인 이메일은 맞는데 비밀번호가 없고 소셜 로그인 유효성 플래그가 있는 경우, 비밀번호를 추가로 받아 네이티브로도 로그인할 수 있게 하는 등의 기능 확장은 /각/자/ 해 보자. 또, Github 뿐만 아니라, 여러 소셜 로그인 공급자를 등록할 수 있도록 Social 모델을 만들어서 User 모델과 연결시키는 수준의 기능확장도 /각/자/ 도전해 보자.
 
@@ -165,7 +165,7 @@ class AuthController extends Controller
 @stop
 ```
 
-![](33-social-login-img-06.png)
+![](./images/33-social-login-img-06.png)
 
 <!--@start-->
 ---

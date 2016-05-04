@@ -18,7 +18,7 @@
 
 아래는 이번 강좌를 위해 개발한 JavaScript 기반의 [`appkr/api-client-demo`](https://github.com/appkr/api-client-demo) 코드를 http://localhost:3000 에서 구동하고, http://api.myproject.dev:8000 API 서버에 리소소를 요청하는 그림이다. 
  
-![](51-cors-img-01.png)
+![](./images/51-cors-img-01.png)
 
 JavaScript 기반의 SPA (== Single Page Application) 들이 계속 늘어나고 있고, 클라이언트와 서버는 API 로 데이터만 주고 받고, 뷰/UI 는 클라이언트 쪽에 모두 맡기는 것이 모던 웹 개발의 베스트 프렉티스라는 점을 감안한다면, API 서버를 개발하는 백엔드 개발자 입장에서 Same Origin Security Policy 문제는 반드시 해결해야 할 숙제이다. 
 
@@ -105,7 +105,7 @@ Route::group(['domain' => env('API_DOMAIN'), /* ... */, 'middleware' => 'cors'],
 
 설치한 `barryvdh/laravel-cors` 패키지와 `cors` 미들웨어는 어떤 일을 할까? 
 
-![](51-cors-img-02.png)
+![](./images/51-cors-img-02.png)
 
 JavaScript 클라이언트에서 Ajax 요청을 할 때 `Origin` HTTP Header 를 달아서 보내면, API 서버에서 응답할 때 `Access-Control-Allow-Origin` HTTP Header 를 내려주는 식이다. 그림을 보면, "JavaScript 엔진아! 나 API 서버인데... http://localhost:3000 은 나랑 scheme:://host:port 가 달라도 내가 허용해 줄라니까, Same Origin Security Policy 적용하지 말고 내 Client 한테 데이터 좀 넘겨 줘~" 라고 부탁하는 식이다. 왼쪽 클라이언트 화면을 보면, API 서버로 데이터를 받아 뷰를 정상적으로 렌더링한 것을 볼 수 있다. 요약하자면, `Origin` 요청 헤더를 검사하고, `Access-Control-*` 응답 헤더를 붙여 주는 역할을 한다. 
 
@@ -202,7 +202,7 @@ JavaScript 클라이언트에서 Ajax 요청을 할 때 `Origin` HTTP Header 를
 <!-- ... -->
 ```
 
-![](51-cors-img-03.png)
+![](./images/51-cors-img-03.png)
 
 <!--@start-->
 ---

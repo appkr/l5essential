@@ -73,13 +73,13 @@ public function show($id)
 </div>
 ```
 
-![](40-comments-img-01.png)
+![](./images/40-comments-img-01.png)
 
 ### 뷰 구조
 
 앞 절에서 'comments.index' 뷰로 뷰 데이터들이 잘 넘어오는 것을 확인했으니, 뷰 구조를 좀 더 확장해서 볼 것이다. 먼저 아래 그림을 확인하자. 빨강은 뷰 이름, 검정은 HTML class 이름이다. 
 
-![](40-comments-img-02.png)
+![](./images/40-comments-img-02.png)
 
 ```html
 <!-- resources/views/comments/index.blade.php -->
@@ -407,7 +407,7 @@ public function destroy($id)
 
 여기까지 작성하고, 브라우저에서 보면 스크린샷 처럼 나오지 않고, 아주 못~쉥긴 댓글 뷰가 표시될 것이다. 아래와 같은 뷰 로직을 생각해 보자.
 
-![](40-comments-img-03.png)
+![](./images/40-comments-img-03.png)
   
 1. 최상위 'comments.partial.create' 는 항상 표시된다.
 2. 페이지 로드시 'comments.partial.comment' 에 포함된 현재 댓글 수정 폼, 대댓글 작성 폼은 표시되지 않는다.

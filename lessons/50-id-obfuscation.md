@@ -243,7 +243,7 @@ class ArticlesController extends ParentController
 
 ### 테스트
 
-![](50-id-obfuscation-img-01.png)
+![](./images/50-id-obfuscation-img-01.png)
 
 Integration Test 코드도 약간 수정되었다. 
 

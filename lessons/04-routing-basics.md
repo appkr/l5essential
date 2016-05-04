@@ -18,7 +18,7 @@ $ open http://localhost:8000 # 크롬브라우저에 주소를 직접 입력하�
 
 **`중요`** 실습 중에 .env 파일 또는 config/\*\*.php 파일 수정으로 환경 변수가 바뀌면 반드시 로컬 서버를 재실행 해 주어야 한다.
 
-![](./04-routing-basic-img-01.png)
+![](./images/04-routing-basic-img-01.png)
 
 ## Routing
 

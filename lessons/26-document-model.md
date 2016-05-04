@@ -81,7 +81,7 @@ Route::get('docs/{file?}', function($file = null) {
 
 서버를 부트업하고 테스트해 보자.
 
-![](26-document-model-img-01.png)
+![](./images/26-document-model-img-01.png)
 
 ### 예외 처리
 
@@ -101,7 +101,7 @@ Route::get('docs/{file?}', function($file = null) {
     }
 ```
 
-![](26-document-model-img-02.png)
+![](./images/26-document-model-img-02.png)
 
 <!--@start-->
 ---

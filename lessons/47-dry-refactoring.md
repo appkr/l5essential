@@ -133,7 +133,7 @@ class UsersController extends ParentController
 }
 ```
 
-![](47-dry-fefactoring-img-01.png)
+![](./images/47-dry-fefactoring-img-01.png)
 
 `SessionsController` 에서 위와 중복된 메소드는 설명을 생략했다.
 
@@ -153,7 +153,7 @@ class SessionsController extends ParentController
 }
 ```
 
-![](47-dry-fefactoring-img-02.png)
+![](./images/47-dry-fefactoring-img-02.png)
 
 `PasswordsController::respondError()` 는 어떤 에러가 넘어올 지 모르기 때문에, `notFoundError(mixed $message)` 를 쓰지 않고, 좀 더 일반적인 `error()` 메소드를 사용하였다. 
 
@@ -173,7 +173,7 @@ class PasswordsController extends ParentController
 }
 ```
 
-![](47-dry-fefactoring-img-03.png)
+![](./images/47-dry-fefactoring-img-03.png)
 
 `App\Http\Controllers\Api\V1\ArticlesController` 는 좀 더 다른 형태의 메소드를 사용해야 하기에, 다음 강좌에서 살펴 보기로 하자.
 
@@ -197,7 +197,7 @@ class Handler extends ExceptionHandler
 }
 ```
 
-![](47-dry-fefactoring-img-04.png)
+![](./images/47-dry-fefactoring-img-04.png)
 
 <!--@start-->
 ---

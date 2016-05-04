@@ -412,7 +412,7 @@ Host: api.myproject.dev:8000
 Accept: application/json
 ```
 
-![](48-all-is-bad-img-01.png)
+![](./images/48-all-is-bad-img-01.png)
 
 Article 개별 인스턴스를 요청한다. 그런데, 여기서는 `?include=comments:limit(2|0):order(id|desc),tags` 쿼리스트링을 덧 붙였다. 해석하자면, Comment 를 네스팅하되 0 개를 건너 뛰고 총 2개만, Tag 는 전체 콜렉션을 전부 응답해 달라는 요청이다.
 
@@ -422,7 +422,7 @@ Host: api.myproject.dev:8000
 Accept: application/json
 ```
 
-![](48-all-is-bad-img-02.png)
+![](./images/48-all-is-bad-img-02.png)
 
 이번에는 Article 을 생성하는 요청을 한다. 먼저 API_DOMAIN/auth/login 을 방문하여 JWT Token 을 얻어서, 이번 테스트 요청의 Authorization 헤더에 붙인다. title, content, tags[] 등의 내용을 입력하고 요청해 보자. 아무 내용 없는 상태로도 요청해 보면, 아마 422 Unprocessable Entity 에 에러가 있는 필드에 대한 설명이 담긴 JSON 응답을 받았을 것이다.
 
@@ -452,7 +452,7 @@ Content-Disposition: form-data; name="tags[]"
 ----WebKitFormBoundary7MA4YWxkTrZu0gW
 ```
 
-![](48-all-is-bad-img-03.png)
+![](./images/48-all-is-bad-img-03.png)
 
 나머지들은 스스로 테스트해 보자.
 
@@ -502,7 +502,7 @@ abstract class Request extends FormRequest
 $ phpunit
 ```
 
-![](48-all-is-bad-img-04.png)
+![](./images/48-all-is-bad-img-04.png)
 
 테스트 코드를 짜는 과정에서 `App\Http\Controllers\ArticlesController::update()` 동작 관련 몇가지 버그를 잡았다.
 

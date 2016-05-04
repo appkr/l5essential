@@ -32,27 +32,27 @@ Amazon 에 신규로 회원 가입을 하면 1년 동안 무료로 [Free Tier �
 
 회원 가입을 하고 나서 로그인을 하면, AWS 의 모든 제품군이 나열된 AWS Management Console 화면을 볼 수 있을 것이다. 우리는 Compute 섹션의 EC2 만 사용할 것이다. **네비게이션 메뉴 오른쪽 위에 Region 선택 드롭다운에서 반드시 Seoul 로 선택하자.**  
 
-![](999-code-release-img-01.png)
+![](./images/999-code-release-img-01.png)
 
 EC2 제품을 눌러 표시된 화면에서, 중앙에 위치한 **"Launch Instance"** 버튼을 눌러 새로운 서버 인스턴스를 만들자. 총 7 단계를 거치는데 거의 대부부분이 그냥 **"Next"** 로 넘어가면 된다. 이 강좌 작성 이후, Amazon 의 화면 구성이나 UI 는 시간이 지남에 따라 언제든 달라질 수 있으니, 아래 설명을 참고해서 적응적으로 적용하도록 하자.
 
 **Step 1: Choose an Amazon Machine Image (AMI)** 화면에서 `Free Tier Eligible` 이라고 표시된 `Ubuntu Server 14.04 LTS (HVM), SSD Volume Type` 을 선택하자. 
 
-![](999-code-release-img-02.png)
+![](./images/999-code-release-img-02.png)
 
 2 ~5 단계는 특별한 것이 없다. **Step 6: Configure Security Group** 화면에서 **"Add Rule"** 버튼을 눌러, `HTTP` 와 `MYSQL` 을 추가해 주자. 아래 그림의 보안 경고에 보이듯이, HTTP 를 제외하고는 IP 를 지정하는 것이 보안 측면에서 좋다. 참고로, 앞으로 진행하는 과정 중에 자연스럽게 OpenSSL 기반의 Self-signed 인증서가 설치되므로, HTTPS 를 상용으로 쓸 예정이라면 개발 과정에 HTTPS 룰도 추가해 주자. 
 
-![](999-code-release-img-03.png)
+![](./images/999-code-release-img-03.png)
 
 **Step 6: Configure Security Group** 화면에서 **"Review and Launch"** 버튼, **Step 7: Review Instance Launch** 화면에서 **"Launch"** 버튼 순으로 진행한다. Step 7 에서 버튼을 누르는 순간, 서버에 SSH 로 접속하기 위한 Private Key 를 만드는 화면이 뜨는데, 키 이름을 입력하고, **"다운로드"** 버튼을 눌러 '~/.ssh' 디렉토리 아래에 저장하자. **"Launch"** 버튼을 한번 더 누르면 서버 생성이 시작된다. 대략 30초 이내로 끝난다.
 
 **`참고`** AWS 에서 SSH Key 는 인스턴스가 생성될 때 딱 한번 발급/지정할 수 있다. Key 를 잊어 버리면, 서버를 지우고 다시 생성해야 하니, Key 관리를 잘 해야 한다.
  
-![](999-code-release-img-04.png)
+![](./images/999-code-release-img-04.png)
 
 콘솔 화면에 다시 돌아오면, 생성된 서버 인스턴스를 확인할 수 있다. IP 와 DNS 는 곧 써야 하니, 어떤 화면 어디 쯤에 위치해 있는지 잘 봐 두자.
 
-![](999-code-release-img-05.png)
+![](./images/999-code-release-img-05.png)
 
 ### 서버에 접속
 
@@ -212,7 +212,7 @@ deployer@ip-xxx-xx-x-xx:~$
 
 MySql 로그인을 해보자.
 
-![](999-code-release-img-08.png)
+![](./images/999-code-release-img-08.png)
 
 이제 서버 쪽에 모든 준비는 완료된 상태이다. Envoy 에 대해 배워 보고, 배포 스크립트를 만들어 보자.
 
@@ -340,7 +340,7 @@ deployer@ip-xxx-xx-x-xx:~$ cat .ssh/id_rsa.pub
 
 복사한 내용을 [Github Setting 의 SSH keys 페이지](https://github.com/settings/ssh) 를 방문하여 **"Add SSH Key"** 버튼을 눌러 붙여 넣는다.
  
-![](999-code-release-img-07.png)
+![](./images/999-code-release-img-07.png)
 
 그러고나서, 아래 과정을 꼭 한번은 거쳐 주어야 한다. Github 서버가 aws-demo 서버를 인식하게 하는 과정이다.
 
@@ -362,7 +362,7 @@ deployer@ip-xxx-xx-x-xx:~$ ssh -T git@github.com
 $ envoy run release
 ```
 
-![](999-code-release-img-06.png)
+![](./images/999-code-release-img-06.png)
 
 앞으로 코드가 변경되어 `$ git push` 를 하고, 서버에 릴리즈해야 할 일이 있다면... 위 명령 한번으로 끝난다. 스크린샷이 aws-demo 가 아니라 필자가 라이브 데모로 사용하는 aws-seoul-deploy 로 되어 있는 점 양해 바란다. 필자의 라이브 데모 사이트의 경우, `release` Task 수행에 총 30 초 정도 소요되었다.
 

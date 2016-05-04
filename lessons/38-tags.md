@@ -26,7 +26,7 @@
 
 'form.blade.php' 에서 `@include('articles.partial.tagselector')` 로 'tagselector' 뷰를 하위로 포함하면서 `$article` 변수를 넘겨주지 않았다. 부모 뷰에서 `$article` 변수가 유효하기에 자식 뷰에서도 쓸 수 있는 것이다. `@include` 되는 뷰에서 쓸 변수와 같은 변수이면, `['varAtSubView' => $currentVar]` 식으로 변수 이름을 바꿀 필요가 없다는 것을 기억하고 있자.
 
-![](38-tags-img-01.png)
+![](./images/38-tags-img-01.png)
 
 **`참고`** [Laravel Collective의 Form Helper](http://laravelcollective.com/docs/5.1/html#drop-down-lists)를 이용하면, 복잡한 `<select>` 박스를 좀 더 쉽게 쓸 수 있다. 바로 아래 코드 블럭을 보면, 여전히 복잡하긴 하지만, 그래도 코드량을 상당히 줄일 수 있다는 것을 알 수 있다. 
 
@@ -180,7 +180,7 @@ $ gulp # 또는 gulp --production
 
 'placeholer', 'maximumSelectionLength' 등, select2 JS 인스턴스의 옵션은 [공식문서](https://select2.github.io/examples.html)를 참조하자.
 
-![](38-tags-img-02.png)
+![](./images/38-tags-img-02.png)
 
 ### 태그 링크 살리기
 
@@ -249,7 +249,7 @@ Tag 와 관련된 뷰는 'resources/views/tags' 아래에 위치하고 있다. N
 </ul>
 ```
 
-![](38-tags-img-03.png)
+![](./images/38-tags-img-03.png)
 
 <!--@start-->
 ---

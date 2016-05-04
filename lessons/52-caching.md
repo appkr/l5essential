@@ -143,11 +143,11 @@ DB::listen(function($event){
 
 우선, 우리가 사용하는 Apache 또는 Nginx 서버는 Html, Javascript, CSS, Image 등 Static Resource 에 대해서는 Etag 와 304 Not Modified 를 이용한 응답을 처리해 주고 있다. Static Resource 란 Content-Length 가 매 요청시 마다 변하지 않는 파일들을 말한다. 
 
-![](52-caching-img-02.png)
+![](./images/52-caching-img-02.png)
 
 반면, 확장자가 php 이거나 쿼리 스트링이 달린 경우에 웹 서버는 해당 요청에 대한 응답 형식을 Dynamic Resource 라 생각한다. Dynamic Resource 란 매 요청시마다 Content-Length 가 변할 수 있는 파일이다. 가령, /abc.php 요청했을 경우, abc.php 내에서 응답할 컨텐츠를 만들기 때문에, 설령 그 응답값이 지난 번과 동일하다 할 지라도, 웹 서버 입장에서는 응답의 크기를 미리 알 수 없다. 그래서, 304 응답을 자동으로 처리해 줄 수 없는 것이다.
 
-![](52-caching-img-01.png)
+![](./images/52-caching-img-01.png)
 
 **참고** 우리는 .php 로 요청하지 않고, '/v1/articles' 로 요청했는데 웹 서버가 어떻게 알지? 라고 궁금증이 생길 수 있다. 이 내용은 [2강 - 라라벨 5 설치하기](02-hello-laravel.md) 에서 라라벨의 동작 시퀀스라는 그림으로 설명한 바 있다. 웹 서버의 설정에 의해 '/v1/articles' 라 해도 무조건 'public/index.php' 로 들어가게 되고, 'index.php' 가 URL 을 Router 에 넘겨 적절한 컨트롤러로 작업을 위임하기 때문이다. 즉, 웹 서버는 확장자가 php 인 요청인지 안다는 얘기다.
 
@@ -270,7 +270,7 @@ class ArticlesController extends ParentController
 
 브라우저로 쉽게 테스트해 볼 수 있다. 
 
-![](52-caching-img-03.png)
+![](./images/52-caching-img-03.png)
 
 개발자 도구의 'Disable Cache' 를 이용하면 차이점을 보기 쉬우니 참고하자. 
 

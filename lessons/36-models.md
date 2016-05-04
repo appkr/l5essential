@@ -8,7 +8,7 @@
 
 [31강 - 포럼 개발 기획](31-forum-features.md)을 참고해서 articles, comments, tags, attachments 총 4개의 메인 테이블과 article_tag 란 피봇 테이블로 설계해 보았다. 
  
-![](36-models-img-01.png)
+![](./images/36-models-img-01.png)
 
 - Article 모델
     - Article 인스턴스는 1명의 User가 작성한 것이다. (외래키 'author_id')
@@ -452,7 +452,7 @@ class DatabaseSeeder extends Seeder
 
 Article 모델과 동일하게, 이번에는 앞서 생성된 `App\Article` 전체 컬렉션을 `$articles` 변수에 담고, 루프를 돌면서 미리 모델에서 정의한 관계를 이용해 `App\Comment` 인스턴스를 만든다. 여기서 `factory()->make()` 메소드에 인자로 넘긴 값은, 모델 팩토리에서 정의한 값을 오버라이드하거나 추가하는 값이다. 'author_id' 필드를 `$faker->randomElement()` 메소드를 이용하여 넣어 주었다.
 
-![](36-models-img-02.png)
+![](./images/36-models-img-02.png)
 
 ```php
         /*

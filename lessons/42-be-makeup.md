@@ -242,7 +242,7 @@ class FilterArticlesRequest extends Request
 
 **`참고`** 여기서는 MySql 네이티브 풀텍스트 검색을 이용했지만, 데이터베이스 엔진의 의존성을 버리고 빠른 성능을 달성하기 위해서는 [Elastic Search](https://www.elastic.co/downloads/elasticsearch) 등을 검토해 보기 바란다.
 
-![](42-be-makeup-img-01.png)
+![](./images/42-be-makeup-img-01.png)
 
 ### 캐시
 
@@ -610,7 +610,7 @@ class Markdown extends ParsedownExtra {
 @stop
 ```
 
-![](42-be-makeup-img-02.png)
+![](./images/42-be-makeup-img-02.png)
 
 ### 그 외 추가된 장식들
 

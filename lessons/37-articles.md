@@ -37,7 +37,7 @@ class ArticlesController extends Controller
 
 완성된 모양을 먼저 보자.
 
-![](37-articles-img-01.png)
+![](./images/37-articles-img-01.png)
 
 resources/views/articles/index.blade.php 는 포럼 목록을 보여주는 뷰이다. 크게 보면 Tag 를 보여주는 왼쪽 영역과, 목록을 보여주는 오른쪽 영역으로 구분된다. 왼쪽 영역에서는 검색 폼 (layouts/partial/search.blade.php) 과 전체 태그 목록(tags/partial/index.blade.php)을 블레이드 문법으로 `@include` 하고 있다. 오른쪽은 포럼 엔트리들을 표시하는데, 각 엔트리(articles/partial/article.blade.php)는 사용자의 [Gravatar](http://ko.gravatar.com/) (users/partial/avatar.blade.php)를 보여주는 영역과 각 Article과 연결된 태그의 목록(tags/partial/list.blade.php)을 보여주는 영역으로 구성되어 있다.
 
@@ -294,7 +294,7 @@ class ArticlesController extends Controller
 
 'Comment here' 라고 된 부분이 보일 것이다. 여기에 댓글 작성 폼과, 그간 작성된 댓글 목록이 표시될 것이다.
 
-![](37-articles-img-02.png)
+![](./images/37-articles-img-02.png)
  
 ### 포럼 쓰기 구현
 
@@ -395,7 +395,7 @@ public function create()
 
 `@include('articles.partial.tagselector')`, 나중에 포럼을 작성/수정할 때 태그를 선택하는 UI를 추가할 것이다. 여유가 된다면, 'content' 필드에 쓴 내용을 마크다운으로 미리보기하는 기능도 추가해 볼 것이다.
 
-![](37-articles-img-03.png)
+![](./images/37-articles-img-03.png)
 
 #### 저장 로직 구현
 
@@ -537,7 +537,7 @@ public function update(ArticlesRequest $request, $id)
 }
 ```
 
-![](37-articles-img-04.png)
+![](./images/37-articles-img-04.png)
 
 ### 포럼 삭제 구현
 

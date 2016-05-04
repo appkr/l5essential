@@ -6,7 +6,7 @@
  
 # User 모델
 
-라라벨에는 User 모델과 마이그레이션이 이미 포함되어 있다. app/Users.php를 살펴보자.
+라라벨에는 User 모델과 마이그레이션이 이미 포함되어 있다. app/User.php를 살펴보자.
  
 ```php
 class User extends Model implements ...
@@ -80,7 +80,7 @@ Route::get('protected', function () {
 
 서버를 부트업하고 브라우저에서 'auth' Route로 접근해 보자. 인증이 성공되고 바로 'protected' Route로 넘어가는 것을 확인할 수 있다. 
 
-이해를 돕기 위해, 'auth' Route의 Closure에다 인증에 필요한 정보를 하드코드롤(`$credentials`) 박았다. 실전에서는 `Request::input('email')`과 같은 식으로 받아야 한다. **`Auth::attempt()` 메소드에 `$credentials`를 넘기면, 단순히 true/false만 리턴하는 것이 아니라, 백그라운드에서는 서버에 로그인한 사용자의 세션도 생성한다**는 것을 기억하자.
+이해를 돕기 위해, 'auth' Route의 Closure에다 인증에 필요한 정보를 하드코드를(`$credentials`) 박았다. 실전에서는 `Request::input('email')`과 같은 식으로 받아야 한다. **`Auth::attempt()` 메소드에 `$credentials`를 넘기면, 단순히 true/false만 리턴하는 것이 아니라, 백그라운드에서는 서버에 로그인한 사용자의 세션도 생성한다**는 것을 기억하자.
 
 정상적으로 로그인되고 Redirect되어 'protected' Route로 들어 왔다면 사용자의 세션 정보가 서버에 생성되었을 것이다. 사용자가 로그인되어 있는 지 확인하는 메소드가 `Auth::check()` 이다. 실험을 위해 브라우저에서 'auth/logout' Route로 접근하여 (`Auth::logout()`) 사용자를 로그아웃 시킨 후, 'protected' Route로 다시 접근해 보자.
  

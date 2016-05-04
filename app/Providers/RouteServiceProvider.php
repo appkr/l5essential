@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->pattern('id', '[0-9]+');
         // Should handle 32n33-sss-img-dd.png exception
-        $router->pattern('image', '(?P<parent>[0-9n]{2,5}-[\pL-\pN\._-]+)-(?P<suffix>img-[0-9]{2}.png)');
+        $router->pattern('image', 'images/(?P<parent>[0-9n]{2,5}-[\pL-\pN\._-]+)-(?P<suffix>img-[0-9]{2}.png)');
 
         parent::boot($router);
     }

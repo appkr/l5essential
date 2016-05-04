@@ -65,7 +65,7 @@ EOT;
 
 서버를 부트업하고 '/' Route를 방문해 보자. Html로 잘 포맷팅 된 문서를 보고 있으면 성공한 것이다.
 
-![](./25-composer-img-01.png)
+![](./images/25-composer-img-01.png)
 
 입력 문자열로 긴 스트림을 쓰기 위해서 [Heredoc](http://php.net/manual/kr/language.types.string.php#language.types.string.syntax.heredoc) 문법을 사용하였다. 실전에서는 POST 로 넘겨 받은 폼 데이터의, 가령 'body' 필드 값일 것이며, `Input::get('body')/Request::input('body')`로 값을 얻어 올 수 있을 것이다.
 

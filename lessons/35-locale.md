@@ -120,7 +120,7 @@ class WelcomeController extends Controller
 
 **`참고`** 라라벨이 내 보내는 쿠키는 해킹 툴들로 값을 조작하는 것을 방지하지 위해 암호화 되어 있다. `Crypt::decrypt(string $payload)` 메소드로 풀어서 써야 한다. 
 
-![](35-locale-img-01.png)
+![](./images/35-locale-img-01.png)
 
 브라우저에 저장된 쿠키 값을 읽어서 tinker 로 해독해 보았다.
 
@@ -232,7 +232,7 @@ return [
 ...
 ```
 
-![](35-locale-img-02.png)
+![](./images/35-locale-img-02.png)
 
 <!--@start-->
 ---

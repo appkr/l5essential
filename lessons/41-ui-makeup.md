@@ -104,7 +104,7 @@ Fastclick 적용 결과는 눈에 딱히 보이지는 않는다. 모바일 브�
 hljs.initHighlightingOnLoad();
 ```
 
-![](41-ui-makeup-img-01.png)
+![](./images/41-ui-makeup-img-01.png)
 
 #### Tabby & Autosize
 
@@ -122,7 +122,7 @@ if (textAreas.length) {
 }
 ```
 
-![](41-ui-makeup-img-02.png)
+![](./images/41-ui-makeup-img-02.png)
 
 #### Marked & Hightlightjs
 
@@ -205,7 +205,7 @@ if (textAreas.length) {
 
 앞서 설명했듯이, Highlightjs 가 페이지 로드 이후에 동적으로 DOM 에 추가된 코드블럭에 대해서는 동작을 못하기 때문에, 이 부분을 처리하는 코드도 추가하였다.
 
-![](41-ui-makeup-img-03.png)
+![](./images/41-ui-makeup-img-03.png)
 
 ### 마크다운 사용법 Modal
 
@@ -271,7 +271,7 @@ Bootstrap 에는 Modal 요소를 포함하고 있다. 이를 활용하자.
 
 'a#md-caller' 가 클릭되었을 때, `modal()` 메소드를 호출하는 것으로 처리하였다.
 
-![](41-ui-makeup-img-04.png)
+![](./images/41-ui-makeup-img-04.png)
 
 ### 파일 첨부 UI 토글
 
@@ -310,7 +310,7 @@ Bootstrap 에는 Modal 요소를 포함하고 있다. 이를 활용하자.
 @stop
 ```
 
-![](41-ui-makeup-img-05.png)
+![](./images/41-ui-makeup-img-05.png)
 
 ### 그 외 추가된 장식들
 
@@ -318,7 +318,7 @@ Bootstrap 에는 Modal 요소를 포함하고 있다. 이를 활용하자.
 - 모바일에서 Forum, Documents 를 열었을 때 좌측에 표시되던 태그, 문서목록을 숨기도록 하였다. 그리고 뷰 하단에 작은 버튼을 두어 누르면, 목록이 열리도록 하였다. (resources/assets/sass/\_mediaqueries.scss, resources/assets/js/app.js)
 - 페이지에서 블럭을 잡았을 때, 선택 영역의 색상을 수정했다. (resources/assets/sass/\_commons.scss)
 
-![](41-ui-makeup-img-06.png)
+![](./images/41-ui-makeup-img-06.png)
 
 <!--@start-->
 ---

@@ -385,7 +385,7 @@ $ php artisan tinker
 => 0
 ```
 
-![](43-change-note-img-01.png)
+![](./images/43-change-note-img-01.png)
 
 ### 2. Lesson Refactoring
 
@@ -685,7 +685,7 @@ class LessonsController extends Controller
 
 기존 강좌에서 넣어 두었던 마크다운을 이용한 이전 강좌, 다음 강좌 링크와 이번에 구현한 페이지네이션간의 중복을 피하기 위해, 기존 강좌의 마크다운 파일에 &lt;!--@start--&gt; &lt;!--@end--&gt; 와 같은 커스텀 마크다운 컴파일 규칙을 정의하고, 그것을 이해하고 처리하기 위해 'app/Services/Markdown.php' 도 약간 수정했다.
 
-![](43-change-note-img-02.png)
+![](./images/43-change-note-img-02.png)
 
 #### Custom Artisan Command
 
@@ -741,7 +741,7 @@ class Kernel extends ConsoleKernel
 
 실행해 보면 아래 그림과 같은 결과를 얻을 수 있다.
 
-![](43-change-note-img-03.png)
+![](./images/43-change-note-img-03.png)
 
 **`참고`** 라라벨은 서버의 Crontab 정의를 직접 손대지 않고도, PHP 코드 레벨에서 작업 스케쥴을 정의할 수 있게 도와 준다. 공식 문서의 [Task Scheduling](https://laravel.com/docs/5.2/scheduling) 부분을 살펴볼 것을 권장한다. 아래는 이 서비스에 적용되어 있는 월 단위 라라벨 로그를 삭제하는 스케쥴이다. 매일 3시에 DB 를 백업하는 코맨드도 넣어 두었다.
 
@@ -792,7 +792,7 @@ class Kernel extends ConsoleKernel
 
 AWS 에 오픈했다.
 
-![](43-change-note-img-04.png)
+![](./images/43-change-note-img-04.png)
 
 #### Envoy SSH Task Runner
 
@@ -846,7 +846,7 @@ Host homestead.vm
 
 `$ envoy run hello` 를 실행하면 아래 그림과 같이 원격 서버에 접속해서 명령을 수행하고 결과를 로컬로 다시 돌려준 것을 확인할 수 있을 것이다.
 
-![](43-change-note-img-05.png)
+![](./images/43-change-note-img-05.png)
 
 #### \# slack 을 활용한 Error Reporting
 
@@ -940,7 +940,7 @@ class ErrorReport
 
 테스트를 위해 'Handler.php' 에서 `APP_ENV == 'production'` 일 때만 리포팅 하도록 한 `if ($this->shouldReport($e) and app()->environment('production')) {` 부분을 잠깐 주석 처리 하고, `App\Http\Controllers\WelcomeController::index()` 메소드에서 없는 뷰를 반환하도록 하고 홈 페이지를 방문하였다. 결과는 아래 그림과 같다.
 
-![](43-change-note-img-06.png)
+![](./images/43-change-note-img-06.png)
 
 <!--@start-->
 ---

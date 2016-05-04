@@ -12,7 +12,7 @@ Route::get('/', function() {
 
 '/' Route로 접근해서 Whoops 페이지를 확인해 보자. `throw new My\Name\Space\CustomException('message');` 처럼 자신만의 Exception 클래스를 만들어서 던질 수도 있다. 
 
-**`참고`** Production 환경에서는 보안을 위해 Stack Trace가 모두 찍히는 DEBUG 옵션을 꺼야 한다. .env 파일에서 `APP_ENV=production`, `APP_DEBUG=false`로 바꾼 후 '/' Route를 다시 방문해 보자.
+**`참고`** Production 환경에서는 보안을 위해 Stack Trace가 모두 찍히는 DEBUG 옵션을 꺼야 한다. .env 파일에서 `APP_ENV=production`, `APP_DEBUG=false`로 바꾼 후 '/' Route를 다시 방문해 보자. 웹 서버를 재시작해야 변경 내용을 확인할 수 있다.
 
 또 다른 방법은 `abort(404)` 처럼, `abort(int $code, string $message)` Helper Function을 이용하는 방법이다. `abort()`는 `HttpException` 을 던진다. 
 
@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
 }
 ```
 
-`Handler@render()` 메소드에서 뷰로 리턴할 resources/views/notice/notice.blade.php 뷰를 만들자.
+`Handler@render()` 메소드에서 뷰로 리턴할 resources/views/errors/notice.blade.php 뷰를 만들자.
 
 ```html
 <!DOCTYPE html>
@@ -95,7 +95,7 @@ Route::get('/', function() {
 });
 ```
 
-![](./24-exception-handling-img-01.png)
+![](./images/24-exception-handling-img-01.png)
 
 <!--@start-->
 ---

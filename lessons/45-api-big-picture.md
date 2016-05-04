@@ -119,7 +119,7 @@ class WelcomeController extends Controller
 
 브라우저로 테스트를 해도 되는데, API 이니까 [PostMan 크롬 확장 프로그램](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop) 을 이용하자. 'GET http://api.myproject.dev:8000' 요청을 해 보자. 현재 컨트롤러는 무조건 JSON 만 응답하기 때문에 `Accept` HTTP Header 는 필요없지만, 좋은 습관이니 `application/json` 으로 지정하도록 하자. 
 
-![](45-api-big-picture-img-01.png)
+![](./images/45-api-big-picture-img-01.png)
 
 ### DRY 구조 설계
 
@@ -225,7 +225,7 @@ class UsersController extends ParentController
 }
 ```
 
-![](45-api-big-picture-img-02.png)
+![](./images/45-api-big-picture-img-02.png)
 
 대충 감이 잡히는가? 하나만 더 살펴 보자.
 

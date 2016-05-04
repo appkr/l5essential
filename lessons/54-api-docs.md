@@ -74,15 +74,15 @@ Swagger 는 Java 라 패스, RAML 은 YAML 문법으로 스펙을 써야 해서 
 
 [Apiary](https://apiary.io/) 에 가입하고, 첫 프로젝트를 만들자.
 
-![](54-api-docs-img-01.png)
+![](./images/54-api-docs-img-01.png)
 
 프로젝트 이름을 입력한다. 처음 가입했다면 무조건 하나를 만들라는 창이 뜨는데, 거기서 이름을 입력하면 된다.
 
-![](54-api-docs-img-02.png)
+![](./images/54-api-docs-img-02.png)
 
 에디터 창이 떴을 것이다. 이 에디터는 문법 오류를 잡아주고 미리 보기도 보여 주므로, 첫 프로젝트는 여기서 API 문서를 쓰자. 익숙해지면 로컬 프로젝트 디렉토리에서 `apiary.apib` 파일을 만들어 스펙을 쓰고, Github 에 배포하면 자동으로 API 문서가 업데이트되도록 하자.
 
-![](54-api-docs-img-03.png)
+![](./images/54-api-docs-img-03.png)
 
 ### API Blueprint 문법
 
@@ -132,7 +132,7 @@ FORMAT: 1A
         Hello World!
 ```
 
-![](54-api-docs-img-04.png)
+![](./images/54-api-docs-img-04.png)
 
 ### Apiary with Resource
 
@@ -204,7 +204,7 @@ echo 'Hello Apiary';
 
 **`참고`** API 설계 과정, 즉 API 가 구현되기 전에는, Apiary 에서 제공하는 Mock Server 를 이용해서 설계와 시험을 할 수 있다. **클라이언트 개발자가 이것만 가지고 개발을 시작할 수 있다는 의미이다.** 
 
-![](54-api-docs-img-05.png)
+![](./images/54-api-docs-img-05.png)
 
 이 강좌의 라이브 데모 서버에 john@example 사용자는 이미 있으므로 아래와 같은 422 응답을 받았을 것이다.
 
@@ -212,7 +212,7 @@ echo 'Hello Apiary';
 
 라라벨은 정말 스마트하다. API 요청의 Payload 를 Form data 로 보내든 JSON 으로 보내든 라라벨은 다 잡아 낸다. 가령, 요청 Payload 를 `{"name": "John Doe"}` 로 보내면, 라라벨에서는 `Request::input('name') // 'John Doe'` 로 Form Data 와 동일하게 사용자 요청 값을 읽을 수 있다. PostMan 에서는 `raw` 버튼을 선택하고 JSON 을 직접 입력해서 실험해 볼 수 있다.
  
-![](54-api-docs-img-06.png)
+![](./images/54-api-docs-img-06.png)
  
 클라이언트에서 Form data 로 보내야 한다면, 아래 처럼 보내야 한다. Javascript Ajax 클라이언트는 Form data 를 아래와 같이 자동으로 포맷팅하는 기능을 가지고 있다. 요점은 API 클라이언트에게 요청 Content-type 에 대한 선택 자유도를 주었다는 점이다. 
 

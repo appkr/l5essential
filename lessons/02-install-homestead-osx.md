@@ -185,7 +185,7 @@ vagrant@homestead:~$ cat ~/.ssh/authorized_keys
 
 Host `127.0.0.1`, Port `33060`, Username `homestead`, Password `secret` 로 접속한다. PostgresSQL 의 경우 Port `54320` 으로 접속한다.
 
-![](02-install-homestead-osx-img-01.png)
+![](./images/02-install-homestead-osx-img-01.png)
 
 ## 웹 서버 접속
 

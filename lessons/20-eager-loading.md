@@ -52,7 +52,7 @@ DB::listen(function($sql, $bindings, $time){
 - `select * from posts` x 1건
 - `select * from users where users.id = ? limit 1` x N건
 
-![](./20-eager-loading-img-01.png)
+![](./images/20-eager-loading-img-01.png)
 
 ## Eager 로딩으로 N+1개의 쿼리를 2개로 만들어 보자.
 

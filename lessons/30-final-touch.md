@@ -139,7 +139,7 @@ class DocumentsController extends Controller
 
 `image()` 메소드에서 `Content-Type`을 png 타입으로 지정하고, 모델로 부터 넘겨 받은 이미지 인스턴스를 컨텐츠로 해서 HTTP 응답을 하고 있다.
 
-![](30-final-touch-img-01.png)
+![](./images/30-final-touch-img-01.png)
 
 ### 브라우저 캐시 살리기
 
@@ -191,7 +191,7 @@ class DocumentsController extends Controller
 }
 ```
 
-![](30-final-touch-img-03.png)
+![](./images/30-final-touch-img-03.png)
 
 ### Syntax Highlight 적용하기
 
@@ -230,7 +230,7 @@ $ gulp --production
 $ php artisan cache:clear
 ```
 
-![](30-final-touch-img-02.png)
+![](./images/30-final-touch-img-02.png)
 
 <!--@start-->
 ---

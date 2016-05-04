@@ -112,7 +112,7 @@ Route가 잘 정의되었는지 확인해 보자. 에러가 안났다는 것은 
 $ php artisan route:list
 ```
 
-![](32-login-img-01.png)
+![](./images/32-login-img-01.png)
 
 ### 마스터 템플릿을 손보자!
 
@@ -276,7 +276,7 @@ $ composer require "laracasts/flash:1.3.*"
 
 resources/views/index.blade.php, resources/views/home.blade.php 뷰 파일들은 각자의 취향에 맞게 적절한 내용을 담아 만들도록 하자.
 
-![](32-login-img-02.png)
+![](./images/32-login-img-02.png)
 
 ### 뷰를 만들자.
 
@@ -337,7 +337,7 @@ auth/reset/{token}|reset.create|PasswordController@getReset|auth.reset|비밀번
 
 스샷에서 입력값 유지, 유효성 검사, 앞 절에서 설치한 플래시메시지 등 모든 기능이 동작하는 것을 확인할 수 있다. 
 
-![](32-login-img-03.png)
+![](./images/32-login-img-03.png)
 
 ```html
 <!-- resources/views/auth/login.blade.php -->
@@ -386,7 +386,7 @@ auth/reset/{token}|reset.create|PasswordController@getReset|auth.reset|비밀번
 
 `<input type="checkbox" name="remember">` 의 값은 `Auth::attempt(array $credentials, bool $remember)` 메소드의 2번째 인자로 전달된다. 2번째 인자 없이 로그인하면 2시간동안 로그인 세션이 유지된다. 체크박스에 체크가 되어 `true` 값이 전달되면, 5년동안 로그인이 유지된다. 
 
-![](32-login-img-04.png)
+![](./images/32-login-img-04.png)
 
 ```html
 <!-- resources/views/auth/password.blade.php -->
@@ -414,7 +414,7 @@ auth/reset/{token}|reset.create|PasswordController@getReset|auth.reset|비밀번
 @stop
 ```
 
-![](32-login-img-05.png)
+![](./images/32-login-img-05.png)
 
 ```html
 <!-- resources/views/emails/password.blade.php -->
@@ -423,7 +423,7 @@ Click here to reset your password: {{ route('reset.create', $token) }}
 
 .env 파일에서 `MAIL_DRIVER=log`로 바꾸어 놓고, 비밀번호 초기화를 위한 이메일이 잘 나가는지 확인해 보았다.
 
-![](32-login-img-06.png)
+![](./images/32-login-img-06.png)
 
 ```html
 <!-- resources/views/auth/reset.blade.php -->
@@ -465,7 +465,7 @@ Click here to reset your password: {{ route('reset.create', $token) }}
 
 비밀번호 초기화 이메일에서 받은 링크를 브라우저에 붙여 넣어 비밀번호를 초기화할 수 있다.
 
-![](32-login-img-07.png)
+![](./images/32-login-img-07.png)
 
 디자인을 위해 resources/assets/sass/app.scss 도 일부 내용이 변경되었다. 상세 설명은 생략하니, 코드를 참고하기 바란다.
 

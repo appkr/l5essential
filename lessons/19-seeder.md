@@ -92,7 +92,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('users table seeded');
         
         $this->call(PostsTableSeeder::class);
-        $this->command->info('users table seeded');
+        $this->command->info('posts table seeded');
 
         Model::reguard();
     }

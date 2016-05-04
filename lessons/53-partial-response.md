@@ -408,7 +408,7 @@ return [
 GET /v1/articles?fields=id,content_raw,link&include=comments:limit(1|0):fields(id|content_raw|author)
 ```
 
-![](53-partial-response-img-01.png)
+![](./images/53-partial-response-img-01.png)
 
 부모 리소스를 선택할 때는 `fields` 값의 구분자로 콤마 (`,`) 를 사용하고, 자식 리소스에 대해서는 파이프 (`|`) 문자를 사용한다는 점을 주의하자.
 

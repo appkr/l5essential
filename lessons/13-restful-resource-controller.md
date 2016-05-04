@@ -41,7 +41,7 @@ $ php artisan make:controller PostsController --resource
 $ php artisan route:list
 ```
 
-![](./13-restful-resource-controller-img-02.png)
+![](./images/13-restful-resource-controller-img-02.png)
 
 ## 테스트
 
@@ -89,7 +89,7 @@ class PostsController extends Controller
 
 테스트를 위해 [PostMan 크롬 확장 프로그램](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)을 사용할 것을 권장한다. 이 문서의 표 대로 하나씩 대입해 보자. PostMan에서 GET을 선택하고 http://localhost:8000/posts, http://localhost:8000/posts/1, http://localhost:8000/posts/1/edit.
 
-![](./13-restful-resource-controller-img-01.png)
+![](./images/13-restful-resource-controller-img-01.png)
 
 그럼, HTTP 요청 메소드를 POST로 바꾸고, http://localhost:8000/posts를 해보자.
 

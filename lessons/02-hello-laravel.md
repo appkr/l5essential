@@ -129,7 +129,7 @@ $ php artisan serve # 종료하려면 ctrl+c
 
 브라우저에서 `http://localhost:8000` 페이지를 방문해서 'Laravel 5' 란 글씨가 써진 화면이 보인다면, 성공적으로 설치한 것이다.
 
-![](./02-hello-laravel-img-02.png)
+![](./images/02-hello-laravel-img-02.png)
 
 **`참고`** `artisan` 은 라라벨의 코맨드 라인 툴이다. `$ php artisan` 을 실행한 후, 설명을 쭈욱~ 한번 살펴보자. 개발 중에 코드에디터와 콘솔을 오가면서, `artisan` 코맨드를 많이 사용하게 될 것이다.
 
@@ -182,13 +182,13 @@ $ php artisan serve # 종료하려면 ctrl+c
  
 라라벨이 제공하는 문법과 API 들을 이용해서 User Code (`appkr/l5essential`) 라고 표시된, 우리만의 서비스를 만들게 된다. 이 과정에서 라라벨에서 제공하는 기본 기능외에 외부의 패키지들, User-pulled 3rd Party Packages 라 표시된 부분들도 가져와서 사용하게 된다.  
 
-![](./02-hello-laravel-img-03.png)
+![](./images/02-hello-laravel-img-03.png)
 
 ## 라라벨의 동작 시퀀스
 
 역시 마찬가지다. 지금은 몰라도 된다. 나중에 한번 돌아와서 다시 보게 된다면, 아~ 하고 이해될 것이다.
 
-![](./02-hello-laravel-img-01.png)
+![](./images/02-hello-laravel-img-01.png)
 
 <!--@start-->
 ---
