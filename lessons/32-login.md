@@ -182,7 +182,7 @@ $ composer require "laracasts/flash:1.3.*"
 `@include` 로 하위 뷰들을 포함하고 있다. `<meta name="csrf-token" content="{{ csrf_token() }}" />`는 자바스크립트에서 XHR 요청을 할 때 사용하기 위해 포함시켜 놓은 것이다 ([공식 문서 참고](http://laravel.com/docs/routing#csrf-protection)). 
 
 ```html
-<!-- resources/views/layouts/navigation.blade.php -->
+<!-- resources/views/layouts/partial/navigation.blade.php -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
   <div class="container-fluid">
@@ -233,7 +233,7 @@ $ composer require "laracasts/flash:1.3.*"
 `@if(! auth()->check())` 로 로그인이 안되어 있으면 로그인과 사용자 등록 링크를, 로그인되어 있으면 메뉴들과 로그아웃 링크를 보여 주도록 뷰를 분기시키고 있다.
 
 ```html
-<!-- resources/views/layouts/flash_message.blade.php -->
+<!-- resources/views/layouts/partial/flash_message.blade.php -->
 @if (session()->has('flash_notification.message'))
   <div class="alert alert-{{ session('flash_notification.level') }} alert-dismissible flash-message" role="alert">
     <button type="button" class="close" data-dismiss="alert">
@@ -258,7 +258,7 @@ $ composer require "laracasts/flash:1.3.*"
 첫번 째 블럭은 세션에 flash_notification으로 시작하는 값이 있으면 [Bootstrap CSS로 나이스하게 디자인된 Alert](http://getbootstrap.com/components/#alerts)를 보여 준다. 두번째 블럭은 23강 유효성 검사에서 배운 세션에 구워 놓은 `$errors` 값이 있으면 폼을 다시 한번 체크하라고 Alert를 띄워 준다. 
 
 ```html
-<!-- resources/views/layouts/footer.blade.php -->
+<!-- resources/views/layouts/partial/footer.blade.php -->
 <footer class="footer">
   <ul class="list-inline pull-right locale">
     <li><i class="fa fa-language"></i></li>
