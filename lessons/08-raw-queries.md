@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 8
+---
+
 # 8강 - 날 쿼리 :(
 
 ## 사용할 테이블을 만들자

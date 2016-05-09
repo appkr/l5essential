@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 0
+---
+
 # 1강 - 처음 만나는 라라벨
 
 라라벨은 php 언어로 짜여진 MVC 아키텍처를 지원하는 웹 프레임웍이다. 루비 언어에 레일즈, 파이썬 언어에 장고와 대칭되는 존재라고 보면 된다. [SitePoint의 2015년 설문조사](http://www.sitepoint.com/best-php-framework-2015-sitepoint-survey-results/)에 따르면, 라라벨은 **(국외에서)** 현재 가장 인기 있는 php 프레임웍으로 알려져 있다. 국산 CMS 중 사용자/사이트 수 측면에서 1위 CMS인 [XE](https://www.xpressengine.com/) 에서도 차기 버전인 XE3 는 라라벨로 전환한다고 발표한 바 있다. 

@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 39
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 38강 - Tag 기능 구현

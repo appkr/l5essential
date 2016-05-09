@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 42
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 40강 - Comment 기능 구현

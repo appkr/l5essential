@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 20
+---
+
 # 20강 - Eager 로딩
 
 Eager 로딩은 N+1 쿼리 문제를 해결해 주는 방법이다. 겁먹을 필요 없다, 아주 간단하니까.

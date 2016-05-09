@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 36
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 35강 - 다국어 지원

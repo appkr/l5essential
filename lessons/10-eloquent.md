@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 10
+---
+
 # 10강 - 엘로퀀트 ORM
 
 엘로퀀트는 라라벨의 ORM (Object Relational Mapper, Active Record Pattern 의 구현체)이다. 데이터베이스는 테이블간 관계를 가지고 있다. 데이터베이스를 추상화한 모델 클래스 간에 관계를 맺어 주는 구현체를 일반적으로 ORM이라 칭한다. 뿐만 아니라 라라벨에서는 config/database.php에 의해 설정된 DB Driver와 ORM 사용으로 인해 데이터베이스와 어플리케이션 간에 디커플링 효과도 얻게 된다. 어플리케이션 코드 수정 한 줄 없이 mySQL을 SQLite로 바꿀 수 있다는 의미이다.

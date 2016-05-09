@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 40
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 39강 - Attachment 기능 구현

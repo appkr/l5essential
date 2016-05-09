@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 9
+---
+
 # 9강 - 쿼리 빌더
 
 SQL 문을 php 코드로 쓴 거라고 보면 된다. 지금은 그냥 SQL로 쓰면 될 것, 더 길고 복잡한 코드로 쓰지?라고 반문할 수 있지만.. 차차 그 편리성을 알게 되니 무작정 따라해 보자.

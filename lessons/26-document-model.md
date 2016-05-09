@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 27
+---
+
 # 실전 프로젝트 1 - Markdown Viewer 
 
 라라벨 공식 문서와 유사하게 왼쪽 사이드바에 문서 목록, 오른쪽 본문 영역에 HTML 로 컴파일된 문서가 표시되는 헝태로 최종 목표이미지를 잡아 보자. 이 실전 프로젝트를 통해 25강까지 배운 기본기 외에 Filesystem, Custom Helper, Cache, Elixir 등을 더 사용해 보게될 것이다.

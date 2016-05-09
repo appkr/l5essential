@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 25
+---
+
 # 24강 - 예외 처리
 
 ## 예외 던지기

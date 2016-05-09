@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 21
+---
+
 # 페이징
 
 모델에 데이터가 많아지면 한번에 모든 레코드를 표시할 수가 없게 된다. 이때 필요한 것이 페이징이다.

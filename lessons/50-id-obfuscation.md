@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 52
+---
+
 # 실전 프로젝트 3 - RESTful API
 
 ## 50강 - 리소스 id 난독화

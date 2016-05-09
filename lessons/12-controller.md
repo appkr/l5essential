@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 12
+---
+
 # 12강 - 컨트롤러
 
 MVC에서 V(뷰)와 M(모델)을 살펴보았다. 이제 마지막 콤포넌트인 C(컨트롤러)를 살펴볼 차례이다.

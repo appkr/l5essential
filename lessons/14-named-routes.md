@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 14
+---
+
 # 14강 - 이름 있는 Route
 
 Named Routes는 여러모로 유용하다. 컨트롤러에서 `redirect(string $to)` Helper Function 으로 이동할 Url을 만들거나, 뷰 안에서 다른 Url로 이동하는 링크를 만들 때, 하드코드로 Url을 써 놓는 것 보다 여러 모로 관리상 편리하다. 가령, posts 라는 Url 엔트포인트를 어느날 갑자기 articles 로 모두 바꾸어야 한다고 생각해 보라. 모든 컨트롤러와 뷰를 찾아 다니면서 Url을 변경하는 것이 얼마나 귀찮을까?

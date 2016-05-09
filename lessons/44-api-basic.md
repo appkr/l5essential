@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 46
+---
+
 # 실전 프로젝트 3 - RESTful API
 
 **"실전 프로젝트 2 - Forum"** 에서 생성된 게시글/댓글을 JSON API 로 외부에 노출하여, 다양한 앱에서 "포럼" 을 이용할 수 있도록 서비스를 확장해 보자.

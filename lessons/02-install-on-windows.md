@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 2
+---
+
 # 2강 - 라라벨 5 설치하기 (on Windows)
 
 Windows 사용자라면 Mac 으로 전환할 것을 권장한다. 필자는 10년도 훨씬 전에 Windows Server 2000 트랙에서 [MCSE](https://www.microsoft.com/en-us/learning/mcse-certification.aspx) 였었다. 무려 6 주에 걸쳐 매주 한 과목씩 총 6 과목을 시험을 봐야 했었다. 예전엔 Windows 밖엔 쓸 줄 몰랐단 얘기다. 

@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 5
+---
+
 # 5강 - 뷰에 데이터 바인딩하기
 
 ## 블레이드 템플릿 맛보기

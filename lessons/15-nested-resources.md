@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 15
+---
+
 # 15강 - 중첩된 리소스
 
 특정 리소스에 딸린 하위 리소스를 보여줘야 하는 경우가 있다. 가령, Post id 1번에 딸린 Comment 목록을 보여주거나, Comment를 생성/수정/삭제하는 경우 등이다.

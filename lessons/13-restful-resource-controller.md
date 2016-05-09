@@ -1,3 +1,8 @@
+---
+extends: _layouts.master
+section: content
+current_index: 13
+---
 
 # 13강 - RESTful 리소스 컨트롤러
 

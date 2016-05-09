@@ -11,6 +11,8 @@ class Markdown extends ParsedownExtra {
 
     const PATTERN_REMOVE = '/<!--\s?@start\s?-->[\w\W\d\D]+<!--\s?@end\s?-->/';
 
+    const PATTERN_FRONT_FORMATTER = '/---[\w\W\d\D]+extends[\w\W\d\D]+---/';
+
     /**
      * Add link to another articles
      *
@@ -30,6 +32,12 @@ class Markdown extends ParsedownExtra {
 
         if (preg_match(self::PATTERN_REMOVE, $text, $matches) > 0) {
             $text = preg_replace_callback(self::PATTERN_REMOVE, function ($matches) {
+                return '';
+            }, $text);
+        }
+
+        if (preg_match(self::PATTERN_FRONT_FORMATTER, $text, $matches) > 0) {
+            $text = preg_replace_callback(self::PATTERN_FRONT_FORMATTER, function ($matches) {
                 return '';
             }, $text);
         }

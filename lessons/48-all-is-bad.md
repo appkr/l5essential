@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 50
+---
+
 # 실전 프로젝트 3 - RESTful API
 
 ## 48강 - `all()` is bad

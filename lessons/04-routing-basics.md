@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 4
+---
+
 # 4강 - Routing 기본기
 
 ## 웰컴 뷰를 가지고 놀자

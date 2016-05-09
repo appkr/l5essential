@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 34
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 33강 - 소셜 로그인

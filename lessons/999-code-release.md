@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 59
+---
+
 # 코드 배포 
 
 웹 프로그래머의 삶이 여유롭지는 않다. 왜냐하면, 사용자와 접하게 되는 UI/UX 요소인 CSS/JS 부터 시작해서, 서버 설치 및 운영까지 다 할 줄 알아야 될 뿐 아니라, 하루가 다르게 쏟아져 나오는 새로운 기술과 툴들을 익혀야 하기 때문이다. 그 뿐인가, 개발에 필요한 디자인 패턴이며, 컴퓨터 네트워크의 동작 원리 등등 배워야 할 것이 산적해 있기도 하다. 운이 좋아 FE (==Front End), BE (==Back End), SE (==Systems Engineer) 로 업무가 모두 나뉘어 있는 큰 회사에 소속되어 있다면 좋을텐데... 모두가 그런 행운아의 주인공일 수는 없일 일. 참고로, FE, BE, SE 의 영역을 모두 아우르는 프로그래머를 [풀 스택 프로그래머](https://speakerdeck.com/driesvints/the-laravel-ecosystem?slide=17) 라고 한다.

@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 38
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 37강 - Article 기능 구현

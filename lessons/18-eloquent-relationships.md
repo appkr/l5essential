@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 18
+---
+
 # 18강 - 모델간 관계 맺기
 
 쿼리빌더 없이 여러 개의 테이블에서 Join Query하는 것은 정말 번거로운 일이다. 엘로퀀트 ORM을 이용해서 모델간에 관계를 연결하고, 손쉽게 관계된 모델의 속성값들에 접근해 보자.

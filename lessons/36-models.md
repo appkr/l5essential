@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 37
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 36강 - 마이그레이션과 모델

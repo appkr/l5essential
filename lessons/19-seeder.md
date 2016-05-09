@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 19
+---
+
 # 19강 - 데이터 심기
  
 앞에서 마이그레이션으로 테이블을 만들어 보았다. 만들어진 테이블에 테스트 데이터 또는 기본 데이터를 심는 과정을 씨딩(Seeding)이라 한다. 라라벨 5부터 Seeding을 효율적으로 하기 위한 Factory 기능이 제공된다. Factory는 데이터베이스 Seeding 뿐만 아니라, 테스트 클래스에서 필요한 데이터를 Stubbing하는데도 유용하게 사용할 수 있다.

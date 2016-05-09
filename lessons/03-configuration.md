@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 3
+---
+
 # 3강 - 글로벌 설정 살펴보기
 
 ## Code Editor 와 DB Client

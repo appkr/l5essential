@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 33
+---
+
 # 실전 프로젝트 2 - Forum
 
 실습을 진행하기 전에 기존에 만들었던 파일 중, 쓰지 않을 파일이나, 쓰지 않을 코드 블럭들을 삭제할 것을 권장한다. 정리하지 않아도 무방하긴 하지만...

@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 41
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 32/33 보충 - 인증 리팩토링

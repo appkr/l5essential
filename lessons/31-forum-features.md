@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 32
+---
+
 # 실전 프로젝트 2 - Forum
 
 댓글이 가능한 간단한 포럼을 구현해 본다. 이를 통해 라라벨의 Request &amp; Response 라이프싸이클에 대한 이해를 높인다. 뿐만 아니라, CRUD, Event, File/Image Upload, 인증과 권한부여 등에 대해 배워볼 예정이다.

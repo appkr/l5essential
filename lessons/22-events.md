@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 23
+---
+
 # 22강 - 이벤트
 
 라라벨 이벤트 시스템은 Observer 또는 PubSub 패턴을 구현할 수 있게 해 준다. 필자가 알고 있는 이벤트 방식 구조체의 잇점 몇가지는 아래와 같다.

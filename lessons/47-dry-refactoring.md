@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 49
+---
+
 # 실전 프로젝트 3 - RESTful API
 
 ## 47강 - 중복 제거 리팩토링

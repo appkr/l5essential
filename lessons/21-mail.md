@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 22
+---
+
 # 21강 - 메일 보내기
 
 ## mailgun 서비스 가입하자

@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 58
+---
+
 # Homestead 설치 (on Windows)
 
 ## 사전 요구 사항

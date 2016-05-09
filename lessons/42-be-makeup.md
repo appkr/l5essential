@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 44
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 42강 - 서버 사이드 개선

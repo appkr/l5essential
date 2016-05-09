@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 47
+---
+
 # 실전 프로젝트 3 - RESTful API
 
 ## 45강 - 기본 구조 잡기

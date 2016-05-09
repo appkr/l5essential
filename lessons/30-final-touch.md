@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 31
+---
+
 # 실전 프로젝트 1 - Markdown Viewer 
 
 ## 30강 - Debug & Final Touch

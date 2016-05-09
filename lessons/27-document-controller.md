@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 28
+---
+
 # 실전 프로젝트 1 - Markdown Viewer 
 
 ## 27강 - Document 컨트롤러

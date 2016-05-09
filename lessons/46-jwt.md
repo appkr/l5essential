@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 48
+---
+
 # 실전 프로젝트 3 - RESTful API
 
 ## 46강 - JWT 를 이용한 인증

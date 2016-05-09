@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 43
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 41강 - UI 개선

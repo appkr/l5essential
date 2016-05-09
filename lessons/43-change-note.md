@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 45
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 43강 - 변경 사항 알림

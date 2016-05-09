@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 1
+---
+
 # 2강 - 라라벨 5 설치하기 (on Mac)
 
 ## 윈도우즈 사용자라면

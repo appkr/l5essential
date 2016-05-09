@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 30
+---
+
 # 실전 프로젝트 1 - Markdown Viewer 
 
 ## 29강 - Elixir, 만병통치약?

@@ -1,3 +1,9 @@
+---
+extends: _layouts.master
+section: content
+current_index: 35
+---
+
 # 실전 프로젝트 2 - Forum
 
 ## 34강 - 사용자 역할
