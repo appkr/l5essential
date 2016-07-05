@@ -6,7 +6,7 @@
 
 ## 이 강좌를 처음 시작하시는 분들께
 
-2016년 4월 현재 `laravel/framework` 프로젝트에는 13,000개가 넘는 이슈와 거의 13,000개에 육박하는 커밋이 등록되어 있다. 곧 라라벨 탄생 5주기가 되는데, 5년 동안의 행적치고는 엄청나다. 라라벨이 살아 있다는 증거다. 이 강좌는 1월 말에 다썼다. 불과 3달 남짓 동안 또 엄청난 변화가 있었다. 이 강좌를 읽기 전에, https://github.com/appkr/l5essential/issues/10 를 꼭 일고 시작하시기 바란다. 이 강좌에서 수정 적용할 부분을 기록해 두었다.
+2016년 4월 현재 `laravel/framework` 프로젝트에는 13,000개가 넘는 이슈와 거의 13,000개에 육박하는 커밋이 등록되어 있다. 곧 라라벨 탄생 5주기가 되는데, 5년 동안의 행적치고는 엄청나다. 라라벨이 살아 있다는 증거다. 이 강좌는 1월 말에 다썼다. 불과 3달 남짓 동안 또 엄청난 변화가 있었다. 이 강좌를 읽기 전에, https://github.com/appkr/l5essential/issues/10 를 꼭 읽고 시작하시기 바란다. 이 강좌에서 수정 적용할 부분을 기록해 두었다.
 
 그리고, 온라인 강좌를 바탕으로 정제하고 정리해서, 종이책으로 곧 나온다. 틀린 내용, 논리 비약등을 다듬고, 저자는 알지만 독자는 모를 수도 있다는 생각을 바탕으로.. 입문자를 더 생각하고 집필했다. 이 페이지에 곧 다시 소식을 알릴것이다.
 
@@ -142,7 +142,7 @@ $ git checkout 03(tab & enter)
 
 [기여 가이드](CONTRIBUTING.md) 를 따라 주세요.
 
--   오탈자/오류 신고 - dosirak 님, [이현석 님](https://www.facebook.com/leehs), [ibin79 ](https://github.com/ibin79), [AidenJeon 님](https://github.com/AidenJeon), [smartyunhui 님](https://github.com/smartyunhui), [찬스냅 님](https://www.facebook.com/chansnapit), [김종운 님](https://www.facebook.com/profile.php?id=100001411952158), [richellin 님](https://github.com/richellin), [jicjjang 님](https://github.com/jicjjang), [jongguheo 님](https://github.com/jongguheo), [desty 님](https://github.com/desty), [백창현 님](https://github.com/paikwiki)
+-   오탈자/오류 신고 - dosirak 님, [이현석 님](https://www.facebook.com/leehs), [ibin79 ](https://github.com/ibin79), [AidenJeon 님](https://github.com/AidenJeon), [smartyunhui 님](https://github.com/smartyunhui), [찬스냅 님](https://www.facebook.com/chansnapit), [김종운 님](https://www.facebook.com/profile.php?id=100001411952158), [richellin 님](https://github.com/richellin), [jicjjang 님](https://github.com/jicjjang), [jongguheo 님](https://github.com/jongguheo), [desty 님](https://github.com/desty), [백창현 님](https://github.com/paikwiki), SeungHyun Kang(selene)님
 -   감수 - [이종웅 님](https://www.facebook.com/jongwoong.lee.71)
 -   [Pull Request 를 통한 기여자 분들](https://github.com/appkr/l5essential/graphs/contributors)
 -   [정광섭님](https://github.com/lesstif) - 라이브 데모 서버
