@@ -197,7 +197,7 @@ Host `127.0.0.1`, Port `33060`, Username `homestead`, Password `secret` 로 접�
 
 Homestead 에는 Nginx 가 기본으로 탑재되어 있고, Homestead.yaml 의 sites 섹션에서 설정한대로 이미 서비스가 돌고 있는 상태이다.
 
-브라우저에서 'http://myproject.dev' 로 접속해 보자. 테스트용으로 쓸 수 있는 self-signed 인증서가 설치되어 있기 때문에 'https:://myproject.dev' 도 사용할 수 있다.
+브라우저에서 'http://myproject.dev' 로 접속해 보자. 테스트용으로 쓸 수 있는 self-signed 인증서가 설치되어 있기 때문에 'https://myproject.dev' 도 사용할 수 있다.
 
 <!--@start-->
 ---
