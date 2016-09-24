@@ -9,7 +9,7 @@ current_index: 58
 ## 사전 요구 사항
 
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 와 [Vagrant](http://www.vagrantup.com/downloads.html) 설치가 필요하다. 인스톨러 화면에서 "Next" 만 계속 눌러서 쉽게 설치할 수 있다.
- 
+
 ## Vagrant Box 설치
 
 라라벨 커뮤니티에서 미리 준비해서 [Vagrant Box Registry](https://atlas.hashicorp.com/boxes/search) 에 배포해 놓은 `laravel/homestead` Vagrant Box (==Virtual Machine Image) 를 다운로드 하는 과정이다. 이 강좌를 쓰는 시점에 `laravel/homestead` Vagrant Box 의 최신 버전은 PHP7 이 기본 포함되어 있는 0.4.0 이다.
@@ -36,7 +36,7 @@ Enter your choice: 1
 
 ## Homestead 프로젝트 설치
 
-`git` 명령을 쓸 수 없는 경우, [https://github.com/laravel/homestead](https://github.com/laravel/homestead) 를 방문해서 zip 파일을 다운로드 한 후, 적절한 위치에 압축을 해제한다. 
+`git` 명령을 쓸 수 없는 경우, [https://github.com/laravel/homestead](https://github.com/laravel/homestead) 를 방문해서 zip 파일을 다운로드 한 후, 적절한 위치에 압축을 해제한다.
 
 ```bash
 # Git Bash
@@ -67,9 +67,9 @@ memory: 2048
 cpus: 1
 provider: virtualbox # Virtual Machine Provider
 
-# SSH 로그인에 사용할 public key. 이 키 값은 homestead VM 의 
+# SSH 로그인에 사용할 public key. 이 키 값은 homestead VM 의
 # /home/vagrant/.ssh/authorized_keys 에 자동으로 추가된다.
-authorize: ~/.ssh/id_rsa.pub 
+authorize: ~/.ssh/id_rsa.pub
 
 keys:
     - ~/.ssh/id_rsa # SSH 로그인에 사용할 private key
@@ -94,10 +94,10 @@ sites:
 
 Homestead 설정에서 myproject.dev 란 도메인을 이용했다. 이런 도메인은 존재하지 않는다. 운영체제의 Host 파일을 수정할 것이다. 운영체제에 포함된 'hosts' 파일은 DNS 로 myproject.dev 에 대한 ip 주소 Resolution 요청이 나가기 전에 요청을 낚아 채서, 'hosts' 파일 안에서 찾는다. 사용자가 요청한 도메인에 해당하는 레코드가 있으면 지정된 ip 주소로 이동할 것이다.
 
-텍스트 편집기나 코드 에디터로 `%WINDOR%\System32\drivers\etc\hosts` 파일을 열어 아래 레코드를 추가한다.
+텍스트 편집기나 코드 에디터로 `%WINDIR%\System32\drivers\etc\hosts` 파일을 열어 아래 레코드를 추가한다.
 
 ```bash
-# %WINDOR%\System32\drivers\etc\hosts
+# %WINDIR%\System32\drivers\etc\hosts
 
 192.168.10.10    myproject.dev
 ```
@@ -107,7 +107,7 @@ Homestead 설정에서 myproject.dev 란 도메인을 이용했다. 이런 도�
 ## SSH Key 생성
 
 Homestead 설정에서 `authorize: ~/.ssh/id_rsa.pub` 와 `~/.ssh/id_rsa` 를 설정했는데, 해당 파일은 존재하지 않는다. Git Bash 를 쓸 수 없다면, [PuTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 을 설치하고 private, public key pair 를 만들자.
- 
+
 ```bash
 # Git Bash
 
@@ -120,7 +120,7 @@ $ ssh-keygen -t rsa
 
 ## Homestead 실행
 
-실행해 보자. 처음 실행할 때는 시간이 좀 걸리는데, 이유는 앞에서 Homestead.yaml 에 설정한, ip 주소, public key 복사, 공유 폴더 설정 등을 하기 때문이다. 처음 실행할 때는 방화벽 관련 보안 경고가 뜰 수 있는 데 "허용" 해 주자. 
+실행해 보자. 처음 실행할 때는 시간이 좀 걸리는데, 이유는 앞에서 Homestead.yaml 에 설정한, ip 주소, public key 복사, 공유 폴더 설정 등을 하기 때문이다. 처음 실행할 때는 방화벽 관련 보안 경고가 뜰 수 있는 데 "허용" 해 주자.
 
 ```bash
 # Git Bash
@@ -152,7 +152,7 @@ vagrant@homestead:~$ cat ~/.ssh/authorized_keys
 # ssh-rsa AAAAB3NzaC1...TpJ5HH suchc@homepc
 ```
 
-**`참고`** ssh 를 이용해 직접 접속하려면 `$ ssh vagrant@myproject.dev -D 2222`. 
+**`참고`** ssh 를 이용해 직접 접속하려면 `$ ssh vagrant@myproject.dev -D 2222`.
 
 ## 데이터베이스 접속
 
