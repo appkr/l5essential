@@ -29,7 +29,7 @@ public function up()
  
 ### 동작 구조 설계
  
-[37강 - Article 기능 구현](docs/37-articles.md) 에서 보았듯이, Comment (== 댓글)는 포럼 상세 보기에서 표시할 것이다. 여기에 댓글 목록, 수정 폼, 삭제 폼, 쓰기 폼 등을 덧 붙일 것이다. 즉, `ArticlesController::show()` 메소드에서 앞서 나열한 뷰들에 필요한 데이터를 주어야 한다.
+37강 - Article 기능 구현에서 보았듯이, Comment (== 댓글)는 포럼 상세 보기에서 표시할 것이다. 여기에 댓글 목록, 수정 폼, 삭제 폼, 쓰기 폼 등을 덧 붙일 것이다. 즉, `ArticlesController::show()` 메소드에서 앞서 나열한 뷰들에 필요한 데이터를 주어야 한다.
 
 ```php
 // app/Http/Controllers/ArticlesController.php
