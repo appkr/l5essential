@@ -148,6 +148,9 @@ $ git checkout 03(tab & enter)
 -   감수 - [이종웅 님](https://www.facebook.com/jongwoong.lee.71)
 -   [Pull Request 를 통한 기여자 분들](https://github.com/appkr/l5essential/graphs/contributors)
 -   [정광섭님](https://github.com/lesstif) - 라이브 데모 서버
+-   [JetBrains](https://www.jetbrains.com/)에서 phpStorm IDE를 지원해 주셨습니다.
+
+![](icon_PhpStorm.png)
 
 "모두 모두 감사합니다."
 
