@@ -6,7 +6,7 @@
 
 ## 종이책 출간 안내
 
-[http://blog.appkr.kr/work-n-play/laravel-paper-book-published/](http://blog.appkr.kr/work-n-play/laravel-paper-book-published/)
+[http://blog.appkr.dev/work-n-play/laravel-paper-book-published/](http://blog.appkr.dev/work-n-play/laravel-paper-book-published/)
 
 ## 이 강좌를 처음 시작하시는 분들께
 
@@ -14,7 +14,7 @@
 
 ## 라이브 데모 사이트
 
-클라우드 비용이 꽤 나와서 라이브 데모 사이트는 폐지했다. 대신 강의 내용만 모아 댓글이 가능한 정적 사이트([http://l5.appkr.kr](http://l5.appkr.kr))로 오픈해 두었다.
+클라우드 비용이 꽤 나와서 라이브 데모 사이트는 폐지했다. 대신 강의 내용만 모아 댓글이 가능한 정적 사이트([http://l5.appkr.dev](http://l5.appkr.dev))로 오픈해 두었다.
 
 ## 목적
 
